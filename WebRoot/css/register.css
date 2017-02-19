@@ -1,0 +1,121 @@
+/*CSS Document*/
+body{
+	background-image:url(../images/home_bg.gif);
+	background-repeat:repeat-x;
+	background-color:#70cbe0;
+}
+#header{
+	width:950px;
+	height:80px;
+}
+#post{
+	background-image:url(../images/regbtn1.png);
+	width:100px;
+	height:42px;
+}
+#post1{
+	background-image:url(../images/regbtn.png);
+	width:80px;
+	height:30px;
+	background-repeat:no-repeat;
+}
+/*container*/
+#container{
+	width:950px;
+	background-image:url(../images/home_bg.gif);
+	background-color:#ffffff;
+	background-repeat:no-repeat;
+}
+/*register*/
+#register{
+	width:90%;
+	margin-top:10px;
+	padding:20px;
+}
+#register .title{
+	font-size:16px;
+	font-weight:bold;
+	color:#09c;
+	border-bottom:dotted 1px #ccc;
+	line-height:30px;
+}
+#register_content{
+	font-size:14px;
+	color:#666;
+	margin-top:10px;
+}
+#register .input1{
+	border:solid 1px #ccc;
+	width:260px;
+	height:25px;
+	color:#666;
+	font-weight:bold;
+	font-size:14px;
+}
+#register .input2{
+	border:solid 1px #ccc;
+	width:100px;
+	height:25px;
+	color:#666;
+	font-weight:bold;
+	font-size:14px;
+}
+#register a{
+	color:#09c;
+	text-decoration:none;
+}
+/*login*/
+#login{
+	margin-top:30px;
+}
+#login .title{
+	font-size:14px;
+	color:#09c;	
+}
+#login td{
+	font-size:12px;
+	color:#333333;
+	padding:5px 0px;
+}
+.logininput{
+	width:200px;
+	height:17px;
+	color:#666;
+	font-weight:bold;
+	font-size:15px;
+	font-family:"Î¢ÈíÑÅºÚ";
+}
+.loginbtn{
+	background-color:#dedede;
+	font-size:12px;
+	color:#666;
+	padding:3px;
+	margin-top:5px;
+	border:1px solid #666;
+	border-left:1px #999 solid;
+	border-top:1px #999 solid;
+	cursor:pointer;
+}	
+#msnlogin{
+	margin-top:20px;
+	width:80%;
+	height:50px;
+	border-top:dotted 1px #ccc;
+	border-bottom:dotted 1px #ccc;
+}
+/*pageright*/
+.pageright{
+	border-left:solid 1px #ccc;
+}
+/*footer*/
+#footer{
+	width:950px;
+	color:#999;
+	background-color:#f0f0f0;
+	margin-top:2px;
+	padding:30px 30px 30px 30px;
+}
+#footer a{
+	color:#09c;
+	text-decoration:none;
+}

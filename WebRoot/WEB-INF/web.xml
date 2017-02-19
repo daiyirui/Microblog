@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  <display-name></display-name>
+  <filter>
+   <filter-name>charEncoding</filter-name>
+   <filter-class>com.microblog.filter.CharEncoding</filter-class>
+  </filter>
+  <filter-mapping>
+   <filter-name>charEncoding</filter-name>
+   <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <listener>
+    <listener-class>com.microblog.listener.UserIndexListener</listener-class>
+  </listener>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.LoginServlet</servlet-class>
+    <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ChangeUserServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.ChangeUserServlet</servlet-class>
+     <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PageChangeServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.PageChangeServlet</servlet-class>
+     <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ForWardServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.ForWardServlet</servlet-class>
+     <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>CommentServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.CommentServlet</servlet-class>
+     <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>InsertCommentServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.InsertCommentServlet</servlet-class>
+     <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ReturnHomeServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.ReturnHomeServlet</servlet-class>
+     <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>InsertWeiboServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.InsertWeiboServlet</servlet-class>
+    <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>CollectionWeiboServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.CollectionWeiboServlet</servlet-class>
+     <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DeleteCollectionServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.DeleteCollectionServlet</servlet-class>
+    <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>CollectionChangeServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.CollectionChangeServlet</servlet-class>
+    <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>InsertAttentionServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.InsertAttentionServlet</servlet-class>
+     <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DeleteAttentionServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.DeleteAttentionServlet</servlet-class>
+     <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>FriendChangeServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.FriendChangeServlet</servlet-class>
+      <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>FuzzyWeiboServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.FuzzyWeiboServlet</servlet-class>
+    <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DeleteCommentServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.DeleteCommentServlet</servlet-class>
+    <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>FuzzyCommentServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.FuzzyCommentServlet</servlet-class>
+    <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>FuzzyCollectionServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.FuzzyCollectionServlet</servlet-class>
+     <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>FansServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.FansServlet</servlet-class>
+    <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UserDetailServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.UserDetailServlet</servlet-class>
+     <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UserChangePageServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.UserChangePageServlet</servlet-class>
+     <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.RegisterServlet</servlet-class>
+      <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+ <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>BallotServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.BallotServlet</servlet-class>
+  </servlet> 
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>CheckPasswordServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.CheckPasswordServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateUserServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.UpdateUserServlet</servlet-class>
+     <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>BallhotShowServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.BallhotShowServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowBallotServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.ShowBallotServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowBallot3DServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.ShowBallot3DServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>MailServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.MailServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>MyBlogServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.MyBlogServlet</servlet-class>
+   <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HomeServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.HomeServlet</servlet-class>
+   <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+
+<servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>MyCollectionServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.MyCollectionServlet</servlet-class>
+   <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+
+<servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>MyFansServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.MyFansServlet</servlet-class>
+   <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>FollowServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.FollowServlet</servlet-class>
+   <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  
+  
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ChangeUserServlet</servlet-name>
+    <url-pattern>/ChangeUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PageChangeServlet</servlet-name>
+    <url-pattern>/PageChangeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ForWardServlet</servlet-name>
+    <url-pattern>/ForWardServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CommentServlet</servlet-name>
+    <url-pattern>/CommentServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>InsertCommentServlet</servlet-name>
+    <url-pattern>/InsertCommentServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ReturnHomeServlet</servlet-name>
+    <url-pattern>/ReturnHomeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>InsertWeiboServlet</servlet-name>
+    <url-pattern>/InsertWeiboServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CollectionWeiboServlet</servlet-name>
+    <url-pattern>/CollectionWeiboServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteCollectionServlet</servlet-name>
+    <url-pattern>/DeleteCollectionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CollectionChangeServlet</servlet-name>
+    <url-pattern>/CollectionChangeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>InsertAttentionServlet</servlet-name>
+    <url-pattern>/InsertAttentionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteAttentionServlet</servlet-name>
+    <url-pattern>/DeleteAttentionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FriendChangeServlet</servlet-name>
+    <url-pattern>/FriendChangeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FuzzyWeiboServlet</servlet-name>
+    <url-pattern>/FuzzyWeiboServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteCommentServlet</servlet-name>
+    <url-pattern>/DeleteCommentServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FuzzyCommentServlet</servlet-name>
+    <url-pattern>/FuzzyCommentServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FuzzyCollectionServlet</servlet-name>
+    <url-pattern>/FuzzyCollectionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FansServlet</servlet-name>
+    <url-pattern>/FansServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserDetailServlet</servlet-name>
+    <url-pattern>/UserDetailServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserChangePageServlet</servlet-name>
+    <url-pattern>/UserChangePageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BallotServlet</servlet-name>
+    <url-pattern>/BallotServlet</url-pattern>
+  </servlet-mapping> 
+  <servlet-mapping>
+    <servlet-name>CheckPasswordServlet</servlet-name>
+    <url-pattern>/CheckPasswordServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateUserServlet</servlet-name>
+    <url-pattern>/UpdateUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BallhotShowServlet</servlet-name>
+    <url-pattern>/BallhotShowServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowBallotServlet</servlet-name>
+    <url-pattern>/ShowBallotServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowBallot3DServlet</servlet-name>
+    <url-pattern>/ShowBallot3DServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MailServlet</servlet-name>
+    <url-pattern>/MailServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MyBlogServlet</servlet-name>
+    <url-pattern>/MyBlogServlet</url-pattern>
+  </servlet-mapping>
+ 
+ <servlet-mapping>
+    <servlet-name>HomeServlet</servlet-name>
+    <url-pattern>/HomeServlet</url-pattern>
+  </servlet-mapping>
+ 
+ <servlet-mapping>
+    <servlet-name>MyCollectionServlet</servlet-name>
+    <url-pattern>/MyCollectionServlet</url-pattern>
+  </servlet-mapping>
+ 
+ <servlet-mapping>
+    <servlet-name>MyFansServlet</servlet-name>
+    <url-pattern>/MyFansServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>FollowServlet</servlet-name>
+    <url-pattern>/FollowServlet</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
