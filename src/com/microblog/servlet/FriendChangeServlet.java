@@ -35,10 +35,10 @@ this.doPost(request, response);
 		if(session.getAttribute("userinfo")!=null){
 			use=(Users) session.getAttribute("userinfo");			
 		}
-			//显示已经关注人的信息
+			//鏄剧ず宸茬粡鍏虫敞浜虹殑淇℃伅
 			PageBean pb=new PageBean();
 			IUsersBiz useBiz=new UsersBizImpl();
-			//定义分页参数
+			//瀹氫箟鍒嗛〉鍙傛暟
 			int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 			int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 			pb=useBiz.SelectByOverInterest(use.getUid(), nowpage, pagesize);
