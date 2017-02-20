@@ -37,7 +37,7 @@ this.doPost(request, response);
         List<Bloghot> bol1=new ArrayList<Bloghot>();
         List<Bloghot> bol2=new ArrayList<Bloghot>();
         String t1="1",t2="1";
-        //循环遍历出两个Title
+        //寰幆閬嶅巻鍑轰袱涓猅itle
         for (int j = 0; j < bol.size(); j++) {
 			if(t1!=bol.get(j).getBtitle()){
 				if(t1=="1"){
@@ -47,7 +47,7 @@ this.doPost(request, response);
 				}
 			}
 		}
-        //循环遍历两个Items加载集合
+        //寰幆閬嶅巻涓や釜Items鍔犺浇闆嗗悎
         for (int i = 0; i < bol.size(); i++) {
         	if(t1.equals(bol.get(i).getBtitle())){        	
         		bol1.add(bol.get(i));

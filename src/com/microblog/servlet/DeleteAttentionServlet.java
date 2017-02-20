@@ -41,20 +41,20 @@ public class DeleteAttentionServlet extends HttpServlet {
 		}
 		IRelationsBiz relBiz=new RelationsBizImpl();
 		if(relBiz.DeleteRelationByuid(use.getUid(), gid)){
-		    //ÏÔÊ¾Ëù¹Ø×¢ÈËÊıÁ¿
+		    //æ˜¾ç¤ºæ‰€å…³æ³¨äººæ•°é‡
 			int countRlat=relBiz.CountByAttention(use.getUid());
 			session.setAttribute("countRlation",countRlat);
-			//ÏÔÊ¾ÒÑ¾­¹Ø×¢ÈËµÄĞÅÏ¢
+			//æ˜¾ç¤ºå·²ç»å…³æ³¨äººçš„ä¿¡æ¯
 			PageBean pb=new PageBean();
 			IUsersBiz useBiz=new UsersBizImpl();
-			//¶¨Òå·ÖÒ³²ÎÊı
+			//å®šä¹‰åˆ†é¡µå‚æ•°
 			int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 			int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 			pb=useBiz.SelectByOverInterest(use.getUid(), nowpage, pagesize);
 			session.setAttribute("AttentionUsers",pb);
-			response.getWriter().printf("<script>alert('É¾³ıºÃÓÑ¹Ø×¢³É¹¦!');location.href='friend.jsp'</script>");
+			response.getWriter().printf("<script>alert('åˆ é™¤å¥½å‹å…³æ³¨æˆåŠŸ!');location.href='friend.jsp'</script>");
 		}else{
-			response.getWriter().printf("<script>alert('É¾³ıºÃÓÑ¹Ø×¢Ê§°Ü!');location.href='home.jsp'</script>");
+			response.getWriter().printf("<script>alert('åˆ é™¤å¥½å‹å…³æ³¨å¤±è´¥!');location.href='home.jsp'</script>");
 		}
 	}
 	public void init() throws ServletException {

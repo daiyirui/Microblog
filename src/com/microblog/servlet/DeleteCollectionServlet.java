@@ -39,17 +39,17 @@ this.doPost(request, response);
 			    	use=(Users) session.getAttribute("userinfo");
 			 }
 			 PageBean pb=new PageBean();
-			//定义分页参数
+			//瀹氫箟鍒嗛〉鍙傛暟
 				int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 				int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 				pb=colBiz.SelectCollectionByPage(use.getUid(), nowpage, pagesize);
 				session.setAttribute("CollectionList",pb);
-				//显示收藏微博数量
+				//鏄剧ず鏀惰棌寰崥鏁伴噺
 				int count=colBiz.CountCollectionByLid(use.getUid());			 
 				session.setAttribute("CountCollection", count);
-				response.getWriter().printf("<script>alert('删除收藏成功!');location.href='profile.jsp'</script>");
+				response.getWriter().printf("<script>alert('鍒犻櫎鏀惰棌鎴愬姛!');location.href='profile.jsp'</script>");
 		}else{
-			response.getWriter().printf("<script>alert('删除收藏失败!');location.href='profile.jsp'</script>");
+			response.getWriter().printf("<script>alert('鍒犻櫎鏀惰棌澶辫触!');location.href='profile.jsp'</script>");
 		}
 	}
 	public void init() throws ServletException {

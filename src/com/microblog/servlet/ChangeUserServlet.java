@@ -42,12 +42,12 @@ this.doPost(request, response);
 		request.setCharacterEncoding("utf-8");
 		HttpSession session=request.getSession();
 		IUsersBiz userBiz=new UsersBizImpl();
-		//»ñÈ¡µÇÂ½ÈËĞÅÏ¢
+		//è·å–ç™»é™†äººä¿¡æ¯
 		Users use=new Users();
 		if(session.getAttribute("userinfo")!=null){
 			use=(Users) session.getAttribute("userinfo");
 		}
-		//»»Ò»»»Òª¹Ø×¢ÈËĞÅÏ¢
+		//æ¢ä¸€æ¢è¦å…³æ³¨äººä¿¡æ¯
 		List<Users> listAllUser=(List<Users>) session.getAttribute("userAllList");
 		List<Users> listUser=new ArrayList<Users>();
 		if(listAllUser==null){
@@ -62,11 +62,11 @@ this.doPost(request, response);
 					listUser.add(listAllUser.get(i));
 				}
 			}else if(((List<Users>)session.getAttribute("userList")).size()<=8){
-				////ºËĞÄ£¬ÒªËæ»ú²úÉú8¸öÊı×Ö£¬ÇÒÒªÈ«ÔÚÈ«²¿ÓÃ»§µÄuidÖĞ£¬µ«²»Ó¦¸ÃÔÚÒÑ¾­´æÔÚµÄlistUserÄÚµÄuidÖĞ
+				////æ ¸å¿ƒï¼Œè¦éšæœºäº§ç”Ÿ8ä¸ªæ•°å­—ï¼Œä¸”è¦å…¨åœ¨å…¨éƒ¨ç”¨æˆ·çš„uidä¸­ï¼Œä½†ä¸åº”è¯¥åœ¨å·²ç»å­˜åœ¨çš„listUserå†…çš„uidä¸­
 				listUser=this.RandomList(listAllUser, (List<Users>)session.getAttribute("userList"));
 			}
 		}else{
-			//È«²¿Òª¹Ø×¢µÄÈËµÄĞÅÏ¢Ğ¡ÓÚ8¸ö£¬Ò²¾ÍÊÇËµÒ»¸öÒ³Ãæ»áÓÉ¿ÕÈ±
+			//å…¨éƒ¨è¦å…³æ³¨çš„äººçš„ä¿¡æ¯å°äº8ä¸ªï¼Œä¹Ÿå°±æ˜¯è¯´ä¸€ä¸ªé¡µé¢ä¼šç”±ç©ºç¼º
 			listAllUser=(List<Users>) session.getAttribute("userAllList");
 			for (int i = 0; i < listAllUser.size(); i++) {
 				listUser.add(listAllUser.get(i));
@@ -78,31 +78,31 @@ this.doPost(request, response);
 		}
 		int change=Integer.parseInt(request.getParameter("change"));
 		if(change==1){
-			//ÏÔÊ¾µÇÂ¼Õß¹Ø×¢µÄĞÅÏ¢-·ÖÒ³ÏÔÊ¾
+			//æ˜¾ç¤ºç™»å½•è€…å…³æ³¨çš„ä¿¡æ¯-åˆ†é¡µæ˜¾ç¤º
 			IUsersBiz usersBiz=new UsersBizImpl();
 			PageBean pb=new PageBean();			
-			//¶¨Òå·ÖÒ³²ÎÊı
-			//¶¨Òå·ÖÒ³²ÎÊı
+			//å®šä¹‰åˆ†é¡µå‚æ•°
+			//å®šä¹‰åˆ†é¡µå‚æ•°
 			int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 			int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 			pb=usersBiz.SelectByOverInterest(use.getUid(),nowpage, pagesize);
 			session.setAttribute("OverInterestList",pb);
 			response.sendRedirect("myFollow.jsp");
 		}else if(change==2){
-			//ÏÔÊ¾µÇÂ¼ÕßºÍÆäËù¹Ø×¢ÈËµÄÎ¢²©ĞÅÏ¢-·ÖÒ³ÏÔÊ¾
+			//æ˜¾ç¤ºç™»å½•è€…å’Œå…¶æ‰€å…³æ³¨äººçš„å¾®åšä¿¡æ¯-åˆ†é¡µæ˜¾ç¤º
 			IWeiboBiz weiboBiz=new WeiboBizImpl();
 			PageBean pb=new PageBean();			
-			//¶¨Òå·ÖÒ³²ÎÊı
+			//å®šä¹‰åˆ†é¡µå‚æ•°
 			int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 			int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 			pb=weiboBiz.SelectByPage(use.getUid(),nowpage, pagesize);
 			session.setAttribute("weiboList",pb);
 			response.sendRedirect("home.jsp");	
 		}else if(change==3){
-			//ÏÔÊ¾µÇÂ¼ÕßÎ¢²©ĞÅÏ¢-·ÖÒ³ÏÔÊ¾
+			//æ˜¾ç¤ºç™»å½•è€…å¾®åšä¿¡æ¯-åˆ†é¡µæ˜¾ç¤º
 			IWeiboBiz weiboBiz=new WeiboBizImpl();
 			PageBean pb=new PageBean();			
-			//¶¨Òå·ÖÒ³²ÎÊı
+			//å®šä¹‰åˆ†é¡µå‚æ•°
 			int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 			int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 			pb=weiboBiz.SelectByPageOnlyOwn(use.getUid(),nowpage, pagesize);
@@ -110,20 +110,20 @@ this.doPost(request, response);
 			
 			response.sendRedirect("profile.jsp");	
 		}else if(change==4){
-			//ÏÔÊ¾µÇÂ¼ÕßÊÕ²ØµÄÎ¢²©ĞÅÏ¢-·ÖÒ³ÏÔÊ¾
+			//æ˜¾ç¤ºç™»å½•è€…æ”¶è—çš„å¾®åšä¿¡æ¯-åˆ†é¡µæ˜¾ç¤º
 			ICollectionBiz collectionBiz=new CollectionBizImpl();
 			PageBean pb=new PageBean();			
-			//¶¨Òå·ÖÒ³²ÎÊı
+			//å®šä¹‰åˆ†é¡µå‚æ•°
 			int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 			int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 			pb=collectionBiz.SelectCollectionByPage(use.getUid(),nowpage, pagesize);
 			session.setAttribute("weiboList",pb);
 			response.sendRedirect("collection.jsp");	
 		}else if(change==6){
-			//ÏÔÊ¾µÇÂ¼Õß·ÛË¿ĞÅÏ¢-·ÖÒ³ÏÔÊ¾
+			//æ˜¾ç¤ºç™»å½•è€…ç²‰ä¸ä¿¡æ¯-åˆ†é¡µæ˜¾ç¤º
 			IUsersBiz usersBiz=new UsersBizImpl();
 			PageBean pb=new PageBean();			
-			//¶¨Òå·ÖÒ³²ÎÊı
+			//å®šä¹‰åˆ†é¡µå‚æ•°
 			int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 			int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 			pb=usersBiz.SelectFansByPage(use.getUid(),nowpage, pagesize);
@@ -135,12 +135,12 @@ this.doPost(request, response);
 				tennis=request.getParameter("tennis").trim();
 				IBollhotBiz bolBiz=new BollhotBizImpl();
 				if(bolBiz.VoitHot(tennis)){
-					response.getWriter().printf("<script>alert('"+tennis+"Í¶Æ±³É¹¦!');location.href='ballot.jsp'</script>");
+					response.getWriter().printf("<script>alert('"+tennis+"æŠ•ç¥¨æˆåŠŸ!');location.href='ballot.jsp'</script>");
 				}else{
-					response.getWriter().printf("<script>alert('Í¶Æ±Ê§°Ü!');location.href='ballot.jsp'</script>");
+					response.getWriter().printf("<script>alert('æŠ•ç¥¨å¤±è´¥!');location.href='ballot.jsp'</script>");
 				}
 			}else{
-				response.getWriter().printf("<script>alert('ÇëÏÈÑ¡ÔñÍ¶Æ±!');location.href='ballot.jsp'</script>");
+				response.getWriter().printf("<script>alert('è¯·å…ˆé€‰æ‹©æŠ•ç¥¨!');location.href='ballot.jsp'</script>");
 			}		
 			response.sendRedirect("ballot.jsp");	
 		}	
@@ -148,13 +148,13 @@ this.doPost(request, response);
 	
     public List<Users> RandomList(List<Users> listAllUser,List<Users> listUser){
     	List<Users> lisRan=new ArrayList<Users>();
-    	int rd=0;//´æ·ÅËæ»úÊı
-    	int count=0;//¼ÇÂ¼²úÉúµÄËæ»úÊı¸öÊı
-        int uid=0;//¼ÇÂ¼ÓÃ»§µÄuid
-        int flag=0;//ÅĞ¶ÏÊÇ·ñÒÑ¾­Éú³É¹ıµÄ±êÖ¾
+    	int rd=0;//å­˜æ”¾éšæœºæ•°
+    	int count=0;//è®°å½•äº§ç”Ÿçš„éšæœºæ•°ä¸ªæ•°
+        int uid=0;//è®°å½•ç”¨æˆ·çš„uid
+        int flag=0;//åˆ¤æ–­æ˜¯å¦å·²ç»ç”Ÿæˆè¿‡çš„æ ‡å¿—
         while (count<8) {
 			rd=(int)(Math.random()*(listAllUser.size()));
-			//ÓÉËæ»úÊı²úÉúµÄÓÃ»§uid
+			//ç”±éšæœºæ•°äº§ç”Ÿçš„ç”¨æˆ·uid
 			uid=listAllUser.get(rd).getUid();
 			for (int i = 0; i < listUser.size(); i++) {
 				if(listUser.get(i).getUid()==uid){

@@ -42,19 +42,19 @@ public class ForWardServlet extends HttpServlet {
 		int uid=use.getUid();
 		IWeiboBiz weiboBiz=new WeiboBizImpl();
 		if(weiboBiz.ForWardMicroblog(uid, content, wid, wimage)){
-			//显示登录人和其所关注人的微博信息
+			//鏄剧ず鐧诲綍浜哄拰鍏舵墍鍏虫敞浜虹殑寰崥淇℃伅
 			PageBean pb=new PageBean();			
-			//定义分页参数
+			//瀹氫箟鍒嗛〉鍙傛暟
 			int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 			int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 			pb=weiboBiz.SelectByPage(uid,nowpage, pagesize);
 			session.setAttribute("weiboList",pb);
-			//微博数量
+			//寰崥鏁伴噺
 			int countMicroblog=weiboBiz.CountByMicroblog(use.getUid());
 			session.setAttribute("countBlog",countMicroblog);
-			response.getWriter().printf("<script>alert('转发微博成功!');location.href='home.jsp'</script>");
+			response.getWriter().printf("<script>alert('杞彂寰崥鎴愬姛!');location.href='home.jsp'</script>");
 		}else{
-			response.getWriter().printf("<script>alert('转发微博失败!');location.href='home.jsp'</script>");
+			response.getWriter().printf("<script>alert('杞彂寰崥澶辫触!');location.href='home.jsp'</script>");
 		}
 		
 	}

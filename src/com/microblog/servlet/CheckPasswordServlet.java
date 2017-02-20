@@ -34,7 +34,7 @@ this.doPost(request, response);
 		}
 		String nowpassword=request.getParameter("nowpassword").trim();
 		if(!use.getUpwd().equals(nowpassword)){
-			response.getWriter().printf("<script>alert('您输入的原始密码不对!');location.href='mypassword.jsp'</script>");
+			response.getWriter().printf("<script>alert('鎮ㄨ緭鍏ョ殑鍘熷瀵嗙爜涓嶅!');location.href='mypassword.jsp'</script>");
 			return ;
 		}else{
 			String upwd=request.getParameter("upwd").trim();

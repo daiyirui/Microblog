@@ -43,21 +43,21 @@ public class DeleteCommentServlet extends HttpServlet {
 			String wid=null;
 			IWeiboBiz weiboBiz=new WeiboBizImpl();
 			Weibo weibo=new Weibo();
-			//ÔÚ´Ó¸öÈËÖ÷Ò³ÃæÉÏÌø×ªÖÁÆÀÂÛÒ³ÃæÊ±ºòwid²»Îª¿Õ      /Microblog/upload/pic/dc.jpg
+			//åœ¨ä»ä¸ªäººä¸»é¡µé¢ä¸Šè·³è½¬è‡³è¯„è®ºé¡µé¢æ—¶å€™widä¸ä¸ºç©º      /Microblog/upload/pic/dc.jpg
 			if(request.getParameter("wid")!=null){
 				wid=request.getParameter("wid").trim();
 				weibo=weiboBiz.SelectBywid(Integer.parseInt(wid));
 				session.setAttribute("WeiboDetail", weibo);
 			}
-			//ÔÚ·ÖÒ³Ìø×ªµÄÊ±ºò£¬wid¾ÍÎª¿Õ
+			//åœ¨åˆ†é¡µè·³è½¬çš„æ—¶å€™ï¼Œwidå°±ä¸ºç©º
 			else{
 				wid=((Weibo)session.getAttribute("WeiboDetail")).getWid().toString();
 			}
 			pb=comBiz.SelectByPageComment(Integer.parseInt(wid),nowpage, pagesize);
 			session.setAttribute("CommentList",pb);
-			response.getWriter().printf("<script>alert('É¾³ıÆÀÂÛ³É¹¦!');location.href='comment.jsp'</script>");
+			response.getWriter().printf("<script>alert('åˆ é™¤è¯„è®ºæˆåŠŸ!');location.href='comment.jsp'</script>");
 		}else{
-			response.getWriter().printf("<script>alert('É¾³ıÆÀÂÛÊ§°Ü!');location.href='comment.jsp'</script>");
+			response.getWriter().printf("<script>alert('åˆ é™¤è¯„è®ºå¤±è´¥!');location.href='comment.jsp'</script>");
 		}
 	}
 	public void init() throws ServletException {

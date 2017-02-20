@@ -31,13 +31,13 @@ public class CollectionWeiboServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 	    request.setCharacterEncoding("utf-8");
-	    //获取登陆者用户信息，添加收藏的人
+	    //鑾峰彇鐧婚檰鑰呯敤鎴蜂俊鎭紝娣诲姞鏀惰棌鐨勪汉
 	    Users use=new Users();
 	    HttpSession session=request.getSession();
 	    if(session.getAttribute("userinfo")!=null){
 	    	use=(Users) session.getAttribute("userinfo");
 	    }
-	    //获取页面参数
+	    //鑾峰彇椤甸潰鍙傛暟
 	    String wcontent=request.getParameter("wcontent").trim();
 	    String content=new String(wcontent.getBytes("ISO-8859-1"),"gbk");	  
 	    String limages=request.getParameter("wimage");
@@ -48,17 +48,17 @@ public class CollectionWeiboServlet extends HttpServlet {
 	    ICollectionBiz collBiz=new CollectionBizImpl();
 	    if(collBiz.InsertCollection(uid, coll)){
 	    	PageBean pb=new PageBean();
-	    	//定义分页参数
+	    	//瀹氫箟鍒嗛〉鍙傛暟
 			int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 			int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 			pb=collBiz.SelectCollectionByPage(uid, nowpage, pagesize);
 			session.setAttribute("CollectionList",pb);
-			//显示收藏微博数量
+			//鏄剧ず鏀惰棌寰崥鏁伴噺
 			int count=collBiz.CountCollectionByLid(uid);			 
 			session.setAttribute("CountCollection", count);
-			response.getWriter().printf("<script>alert('添加收藏成功!');location.href='profile.jsp'</script>");
+			response.getWriter().printf("<script>alert('娣诲姞鏀惰棌鎴愬姛!');location.href='profile.jsp'</script>");
 	    }else{
-	    	response.getWriter().printf("<script>alert('添加收藏错误!');location.href='home.jsp'</script>");
+	    	response.getWriter().printf("<script>alert('娣诲姞鏀惰棌閿欒!');location.href='home.jsp'</script>");
 	    }
 	}
 

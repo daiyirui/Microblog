@@ -38,20 +38,20 @@ this.doPost(request, response);
 		IWeiboBiz weiboBiz=new WeiboBizImpl();
 		Weibo weibo=new Weibo();
 		String wid=null;
-		//ÔÚ´Ó¸öÈËÖ÷Ò³ÃæÉÏÌø×ªÖÁÆÀÂÛÒ³ÃæÊ±ºòwid²»Îª¿Õ      /Microblog/upload/pic/dc.jpg
+		//åœ¨ä»ä¸ªäººä¸»é¡µé¢ä¸Šè·³è½¬è‡³è¯„è®ºé¡µé¢æ—¶å€™widä¸ä¸ºç©º      /Microblog/upload/pic/dc.jpg
 		if(request.getParameter("wid")!=null){
 			wid=request.getParameter("wid").trim();
 			weibo=weiboBiz.SelectBywid(Integer.parseInt(wid));
 			session.setAttribute("WeiboDetail", weibo);
 		}
-		//ÔÚ·ÖÒ³Ìø×ªµÄÊ±ºò£¬wid¾ÍÎª¿Õ
+		//åœ¨åˆ†é¡µè·³è½¬çš„æ—¶å€™ï¼Œwidå°±ä¸ºç©º
 		else{
 			wid=((Weibo)session.getAttribute("WeiboDetail")).getWid().toString();
 		}
-		//ÏÔÊ¾¶Ô´ËÎ¢²©ĞÅÏ¢ÆÀÂÛµÄ·ÖÒ³ÏÔÊ¾ĞÅÏ¢
+		//æ˜¾ç¤ºå¯¹æ­¤å¾®åšä¿¡æ¯è¯„è®ºçš„åˆ†é¡µæ˜¾ç¤ºä¿¡æ¯
 		ICommentBiz commentBiz=new CommentBizImpl();
 		PageBean pb=new PageBean();
-		//¶¨Òå·ÖÒ³²ÎÊı
+		//å®šä¹‰åˆ†é¡µå‚æ•°
 		int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 		int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 		pb=commentBiz.SelectByPageComment(Integer.parseInt(wid), nowpage,pagesize);

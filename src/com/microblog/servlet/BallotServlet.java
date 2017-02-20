@@ -32,12 +32,12 @@ this.doPost(request, response);	}
 			tennis=request.getParameter("tennis").trim();
 			IBollhotBiz bolBiz=new BollhotBizImpl();
 			if(bolBiz.VoitHot(tennis)){
-				response.getWriter().printf("<script>alert('"+tennis+"投票成功!');location.href='ballot.jsp'</script>");
+				response.getWriter().printf("<script>alert('"+tennis+"鎶曠エ鎴愬姛!');location.href='ballot.jsp'</script>");
 			}else{
-				response.getWriter().printf("<script>alert('投票失败!');location.href='ballot.jsp'</script>");
+				response.getWriter().printf("<script>alert('鎶曠エ澶辫触!');location.href='ballot.jsp'</script>");
 			}
 		}else{
-			response.getWriter().printf("<script>alert('请先选择投票!');location.href='ballot.jsp'</script>");
+			response.getWriter().printf("<script>alert('璇峰厛閫夋嫨鎶曠エ!');location.href='ballot.jsp'</script>");
 		}		
 	}
 
