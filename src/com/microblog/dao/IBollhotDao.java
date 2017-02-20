@@ -5,8 +5,8 @@ import java.util.List;
 import com.microblog.po.Bloghot;
 
 public interface IBollhotDao {
-   //显示微博热议内容
+   //鏄剧ず寰崥鐑鍐呭
 	public List<Bloghot> FindByHot();
-	//热议投票
+	//鐑鎶曠エ
 	public int VoitHot(String hot);
 }

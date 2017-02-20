@@ -5,16 +5,16 @@ import java.util.List;
 import com.microblog.po.Users;
 
 public interface IRelationsDao {
-   //ÏÔÊ¾µÇÂ¼Õß¹Ø×¢ÈËµÄÊıÁ¿
+   //æ˜¾ç¤ºç™»å½•è€…å…³æ³¨äººçš„æ•°é‡
 	public int CountByAttention(int uid);
-	//ÏÔÊ¾µÇÂ¼Õß·ÛË¿ÊıÁ¿
+	//æ˜¾ç¤ºç™»å½•è€…ç²‰ä¸æ•°é‡
 	public int CountByVermicelli(int uid);
-	//Ìí¼Ó¹Ø×¢                                       ¼Ó¹Ø×¢×Å     ±»¼Ó¹Ø×¢Õß   flagÅĞ¶Ï¶Ô·½ÊÇ·ñÒÑ¾­¹Ø×¢ÎÒÁË£¬1Îª¹Ø×¢0ÎªÃ»ÓĞ¹Ø×¢
+	//æ·»åŠ å…³æ³¨                                       åŠ å…³æ³¨ç€     è¢«åŠ å…³æ³¨è€…   flagåˆ¤æ–­å¯¹æ–¹æ˜¯å¦å·²ç»å…³æ³¨æˆ‘äº†ï¼Œ1ä¸ºå…³æ³¨0ä¸ºæ²¡æœ‰å…³æ³¨
 	public int InsertRelation(int uid,int gid,int flag);
-	//delete¹Ø×¢                                       ¼Ó¹Ø×¢×Å     ±»¼Ó¹Ø×¢Õß
+	//deleteå…³æ³¨                                       åŠ å…³æ³¨ç€     è¢«åŠ å…³æ³¨è€…
 	public int DeleteRelationByuid(int uid,int gid);
-	//²éÑ¯¶Ô·½ÊÇ·ñ¹Ø×¢ÎÒ
+	//æŸ¥è¯¢å¯¹æ–¹æ˜¯å¦å…³æ³¨æˆ‘
 	public int FindRelationByuid(int uid,int gid);
-	//²éÑ¯ÎÒ¹Ø×¢ÁËÄÇĞ©ÈË
+	//æŸ¥è¯¢æˆ‘å…³æ³¨äº†é‚£äº›äºº
 	public List<Users> FindAllMyInterestByuid(int uid);
 }

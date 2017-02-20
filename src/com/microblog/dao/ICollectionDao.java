@@ -4,16 +4,16 @@ import com.microblog.filter.PageBean;
 import com.microblog.po.Collection;
 
 public interface ICollectionDao {
-    //Ìí¼ÓÊÕ²Ø
+    //æ·»åŠ æ”¶è—
 	public int InsertCollection(int uid,Collection coll);
-	//·ÖÒ³ÏÔÊ¾ÊÕ²ØĞÅÏ¢
+	//åˆ†é¡µæ˜¾ç¤ºæ”¶è—ä¿¡æ¯
 	public PageBean FindCollectionByPage(int uid,String strSQL,int currentPage,int pageSize);
-	//delete É¾³ı
+	//delete åˆ é™¤
 	public int DeleteCollection(int lid);
-	//count Í³¼ÆÊÕ²ØÊıÁ¿
+	//count ç»Ÿè®¡æ”¶è—æ•°é‡
 	public int CountCollectionByLid(int lid);
-	//Ä£ºıËÑË÷
+	//æ¨¡ç³Šæœç´¢
 	public PageBean FuzzyFindCollectionByuid(int uid,String content,String strSQL,int currentPage,int pageSize);
-    //Í³¼ÆµÇÂ½ÕßÊÕ²ØÎ¢²©ÊıÁ¿
+    //ç»Ÿè®¡ç™»é™†è€…æ”¶è—å¾®åšæ•°é‡
 	public int CountCollectionByUid(int uid);
 }

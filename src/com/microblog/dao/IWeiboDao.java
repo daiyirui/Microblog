@@ -6,22 +6,22 @@ import com.microblog.filter.PageBean;
 import com.microblog.po.Weibo;
 
 public interface IWeiboDao { 
-	//»ñÈ¡µÇÂ¼ÕßºÍÆäËù¹Ø×¢ÈËµÄÎ¢²©ĞÅÏ¢
+	//è·å–ç™»å½•è€…å’Œå…¶æ‰€å…³æ³¨äººçš„å¾®åšä¿¡æ¯
 	public List<Weibo> FindByLogin(int uid);
-	//ÏÔÊ¾Î¢²©ÊıÁ¿
+	//æ˜¾ç¤ºå¾®åšæ•°é‡
 	public int CountByMicroblog(int uid);
-	//·ÖÒ³ÏÔÊ¾µÇÂ¼ÕßºÍÆäËù¹Ø×¢ÈËµÄÎ¢²©ĞÅÏ¢  sqlÓï¾ä   µ±Ç°µÚ¼¸Ò³       Ã¿Ò³ÏÔÊ¾¶àÉÙĞĞ
+	//åˆ†é¡µæ˜¾ç¤ºç™»å½•è€…å’Œå…¶æ‰€å…³æ³¨äººçš„å¾®åšä¿¡æ¯  sqlè¯­å¥   å½“å‰ç¬¬å‡ é¡µ       æ¯é¡µæ˜¾ç¤ºå¤šå°‘è¡Œ
 	public PageBean FindByPage(int uid,String strSQL,int currentPage,int pageSize);
-	//·ÖÒ³ÏÔÊ¾µÇÂ¼ÕßÎ¢²©ĞÅÏ¢
+	//åˆ†é¡µæ˜¾ç¤ºç™»å½•è€…å¾®åšä¿¡æ¯
 	public PageBean FindByPageOnlyOwn(int uid,String strSQL, int currentPage, int pageSize);
-	//×ª·¢Î¢²©
+	//è½¬å‘å¾®åš
 	public int ForWardMicroblog(int uid,String wcontent,int wid,String wimage);
-	//ÏÔÊ¾µ¥¸öÎ¢²©ĞÅÏ¢¶ÔÏó
+	//æ˜¾ç¤ºå•ä¸ªå¾®åšä¿¡æ¯å¯¹è±¡
 	public Weibo FindBywid(int wid);
-	//Ìí¼ÓÎ¢²©ĞÅÏ¢
+	//æ·»åŠ å¾®åšä¿¡æ¯
 	public int InsertWeibo(Weibo weibo,int uid);
-	//Ä£ºıËÑÑ°Î¢²©ĞÅÏ¢
+	//æ¨¡ç³Šæœå¯»å¾®åšä¿¡æ¯
 	public PageBean FuzzyFindWeiboByPage(int uid,String content,String strSQL,int currentPage,int pageSize);
-	//·ÖÒ³ÏÔÊ¾¸öÈËÎ¢²©ĞÅÏ¢
+	//åˆ†é¡µæ˜¾ç¤ºä¸ªäººå¾®åšä¿¡æ¯
 	public PageBean FindWeiboByuid(int uid,String strSQL,int currentPage,int pageSize);
 }

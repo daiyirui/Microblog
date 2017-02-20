@@ -7,23 +7,23 @@ import com.microblog.filter.PageBean;
 import com.microblog.po.Users;
 
 public interface IUserDao {
-    //ÓÃ»§µÇÂ¼ÑéÖ¤
+    //ç”¨æˆ·ç™»å½•éªŒè¯
 	public Users UserLoginCheck(String usn,String pwd);
-    //µÇÂ¼ÕßËùÒª¹Ø×¢ÈËµÄĞÅÏ¢
+    //ç™»å½•è€…æ‰€è¦å…³æ³¨äººçš„ä¿¡æ¯
 	public List<Users> FindByInterest(int uid );
-	//¼àÌıÆ÷ÏÔÊ¾Ê×Ò³ÓÃ»§Í·ÏñĞÅÏ¢
+	//ç›‘å¬å™¨æ˜¾ç¤ºé¦–é¡µç”¨æˆ·å¤´åƒä¿¡æ¯
 	public List<Users> FindByListener();
-	//·ÖÒ³ÏÔÊ¾ µÇÂ½ÕßËùÒªÒÑ¾­¹Ø×¢ÈËµÄĞÅÏ¢
+	//åˆ†é¡µæ˜¾ç¤º ç™»é™†è€…æ‰€è¦å·²ç»å…³æ³¨äººçš„ä¿¡æ¯
 	public PageBean FindByOverInterest(int uid,String strSQL,int currentPage,int pageSize);
-	//·ÖÒ³ÏÔÊ¾µÇÂ½Õß·ÛË¿ĞÅÏ¢
+	//åˆ†é¡µæ˜¾ç¤ºç™»é™†è€…ç²‰ä¸ä¿¡æ¯
 	public PageBean FindFansByPage(int uid,String strSQL,int currentPage,int pageSize);
-	//ÏÔÊ¾ÓÃ»§¸öÈËÏêÏ¸ĞÅÏ¢
+	//æ˜¾ç¤ºç”¨æˆ·ä¸ªäººè¯¦ç»†ä¿¡æ¯
 	public Users FindByuid(int uid);
-	//×¢²áÓÃ»§
+	//æ³¨å†Œç”¨æˆ·
 	public int RegisterUser(Users use);
-	// ÏÔÊ¾¸Õ×¢²áÓÃ»§¸öÈËÏêÏ¸ÏêÏ¸
+	// æ˜¾ç¤ºåˆšæ³¨å†Œç”¨æˆ·ä¸ªäººè¯¦ç»†è¯¦ç»†
 	public Users FindByObject(String uname,String upwd,String sex);
-	//¸üĞÂÓÃ»§ĞÅÏ¢
+	//æ›´æ–°ç”¨æˆ·ä¿¡æ¯
 	public int UpdateUser(Users use);
 	//find password
 	public Users FindByMail(String uname,String uques);
