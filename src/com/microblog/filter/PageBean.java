@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 @SuppressWarnings("rawtypes")
 public class PageBean {
-   private int totalRows;//×ÜĞĞÊı
-   private int pageSize;//Ò³´óĞ¡£¬Ã¿Ò³ÊıÁ¿
-   private int currentPage;//µ±Ç°(µÚ¼¸)Ò³
+   private int totalRows;//æ€»è¡Œæ•°
+   private int pageSize;//é¡µå¤§å°ï¼Œæ¯é¡µæ•°é‡
+   private int currentPage;//å½“å‰(ç¬¬å‡ )é¡µ
    @SuppressWarnings("unused")
-   private int totalPages;//×ÜÒ³Êı
-    private List data=new ArrayList();//Ã¿Ò³ÄÚÈİ(¼¯ºÏ)
+   private int totalPages;//æ€»é¡µæ•°
+    private List data=new ArrayList();//æ¯é¡µå†…å®¹(é›†åˆ)
 	public int getTotalRows() {
 		return totalRows;
 	}

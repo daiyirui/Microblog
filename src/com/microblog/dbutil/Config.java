@@ -4,18 +4,18 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Config {
-	//step1:´´½¨Á¬½ÓÅäÖÃÎÄ¼ş¶ÔÏó
+	//step1:åˆ›å»ºè¿æ¥é…ç½®æ–‡ä»¶å¯¹è±¡
    private static Properties prop=new Properties();
    static{
 	   try {
-		   //step2:¼ÓÔØdbconfig.propertiesÅäÖÃÎÄ¼ş
+		   //step2:åŠ è½½dbconfig.propertiesé…ç½®æ–‡ä»¶
 		prop.load(Config.class.getResourceAsStream("dbconfigs.properties"));
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
    }
-   //step3:ÉèÖÃ»ñÈ¡ÅäÖÃÎÄ¼ş7¸ö³£Á¿
+   //step3:è®¾ç½®è·å–é…ç½®æ–‡ä»¶7ä¸ªå¸¸é‡
    public static final String CLASS_NAME=prop.getProperty("CLASS_NAME");
    public static final String DATABASE_URL=prop.getProperty("DATABASE_URL");
    public static final String SERVER_IP=prop.getProperty("SERVER_IP");

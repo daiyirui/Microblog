@@ -3,20 +3,20 @@ package com.microblog.dbutil;
 import java.sql.*;
 
 public class DBConn {
-   //Èı´óÊôĞÔ£¬ËÄ´ó·½·¨
-	//Èı´óºËĞÄ½Ó¿Ú(ÊôĞÔ)
+   //ä¸‰å¤§å±æ€§ï¼Œå››å¤§æ–¹æ³•
+	//ä¸‰å¤§æ ¸å¿ƒæ¥å£(å±æ€§)
 	private Connection conn=null;
 	private PreparedStatement pstmt=null;
 	private ResultSet rs=null;
-	//4·½·¨	
-	//method1:´´½¨Êı¾İ¿âÁ¬½Ó
+	//4æ–¹æ³•	
+	//method1:åˆ›å»ºæ•°æ®åº“è¿æ¥
 	public void getConnection(){		
 		try {
-			//step1:¼ÓÔØÁ¬½ÓÇı¶¯£¬java·´ÉäÔ­Àí
+			//step1:åŠ è½½è¿æ¥é©±åŠ¨ï¼Œjavaåå°„åŸç†
 			Class.forName(Config.CLASS_NAME);
-			//step2:´´½¨connection½Ó¿Ú¶ÔÏó£¬ÓÃÓÚ»ñÈ¡mysqlÊı¾İ¿âÁ¬½Ó¶ÔÏó¡£Èı¸ö²ÎÊı urlÁ¬½ÓµÄ×Ö·û´®£¬usernameÕËºÅ£¬passwordÃÜÂë
+			//step2:åˆ›å»ºconnectionæ¥å£å¯¹è±¡ï¼Œç”¨äºè·å–mysqlæ•°æ®åº“è¿æ¥å¯¹è±¡ã€‚ä¸‰ä¸ªå‚æ•° urlè¿æ¥çš„å­—ç¬¦ä¸²ï¼Œusernameè´¦å·ï¼Œpasswordå¯†ç 
 			String url=Config.DATABASE_URL+"://"+Config.SERVER_IP+":"+Config.SERVER_PORT+"/"+Config.DATABASE_SID;
-			//step3:´´½¨Êı¾İ¿âÁ¬½Ó
+			//step3:åˆ›å»ºæ•°æ®åº“è¿æ¥
 			conn=DriverManager.getConnection(url,Config.USERNAME,Config.PASSWORD);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -26,10 +26,10 @@ public class DBConn {
 			e.printStackTrace();
 		}
 	}
-	//method2:¹Ø±ÕÊı¾İ¿â·½·¨
+	//method2:å…³é—­æ•°æ®åº“æ–¹æ³•
     public void closeConn(){
-    	//¹Ø±ÕË³Ğò£ºResultSet PreparedStatement Connection    	
-    	//¹Ø±Õ£ºResultSet
+    	//å…³é—­é¡ºåºï¼šResultSet PreparedStatement Connection    	
+    	//å…³é—­ï¼šResultSet
     	if(rs!=null){
     		try {
 				rs.close();
@@ -38,7 +38,7 @@ public class DBConn {
 				e.printStackTrace();
 			}
     	}
-    	//¹Ø±Õ£ºPreparedStatement
+    	//å…³é—­ï¼šPreparedStatement
     	if(pstmt!=null){
     		try {
 				pstmt.close();
@@ -47,7 +47,7 @@ public class DBConn {
 				e.printStackTrace();
 			}
     	}    	
-    	//¹Ø±Õ£ºConnection
+    	//å…³é—­ï¼šConnection
     	if(conn!=null){
     		try {
 				conn.close();
@@ -57,20 +57,20 @@ public class DBConn {
 			}
     	}
     }	
-    //method3:ÓÃÓÚ·¢ËÍ Ôö¡¢É¾¡¢¸Ä µÄ·½·¨
+    //method3:ç”¨äºå‘é€ å¢ã€åˆ ã€æ”¹ çš„æ–¹æ³•
     public int execOther(final String sql,final Object[] params){
-    	//step1:»ñÈ¡Êı¾İ¿âÁ¬½Ó
+    	//step1:è·å–æ•°æ®åº“è¿æ¥
     	this.getConnection();	
     	try {
-    		//step3:´´½¨Statement½Ó¿Ú¶ÔÏó
+    		//step3:åˆ›å»ºStatementæ¥å£å¯¹è±¡
 			pstmt=conn.prepareStatement(sql);
-			//step4:¶¯Ì¬Îªpstmt¶ÔÏó¸³Öµ²ÎÊı
+			//step4:åŠ¨æ€ä¸ºpstmtå¯¹è±¡èµ‹å€¼å‚æ•°
 			for(int i=0;i<params.length;i++){
 				pstmt.setObject(i+1, params[i]);
 			}
-			//step5:Ê¹ÓÃStatement¶ÔÏó·¢ËÍsqlÓï¾ä
+			//step5:ä½¿ç”¨Statementå¯¹è±¡å‘é€sqlè¯­å¥
 			int affectedRows=pstmt.executeUpdate();
-			 //step6:·µ»Ø½á¹û
+			 //step6:è¿”å›ç»“æœ
 			return affectedRows;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -78,20 +78,20 @@ public class DBConn {
 			return -1;
 		}    	
     }
-    //method4:ÓÃÓÚ·¢ËÍ ²éÑ¯½á¹û µÄ·½·¨
+    //method4:ç”¨äºå‘é€ æŸ¥è¯¢ç»“æœ çš„æ–¹æ³•
     public ResultSet execQuery(final String sql,final Object[] params){
-    	//step1:»ñÈ¡Êı¾İ¿âÁ¬½Ó
+    	//step1:è·å–æ•°æ®åº“è¿æ¥
     	this.getConnection();   	
     	try {
-    		//step3:´´½¨PreparedStatement½Ó¿Ú¶ÔÏó
+    		//step3:åˆ›å»ºPreparedStatementæ¥å£å¯¹è±¡
 			pstmt=conn.prepareStatement(sql);
-			//step4:¶¯Ì¬Îªpstmt¶ÔÏó¸³Öµ²ÎÊı
+			//step4:åŠ¨æ€ä¸ºpstmtå¯¹è±¡èµ‹å€¼å‚æ•°
 			for(int i=0;i<params.length;i++){
 				pstmt.setObject(i+1, params[i]);
 			}
-			//step5:Ê¹ÓÃStatement¶ÔÏó·¢ËÍsqlÓï¾ä
+			//step5:ä½¿ç”¨Statementå¯¹è±¡å‘é€sqlè¯­å¥
 			rs=pstmt.executeQuery();
-			//step6:·µ»Ø½á¹û
+			//step6:è¿”å›ç»“æœ
 			return rs;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
