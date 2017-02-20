@@ -4,12 +4,12 @@ import com.microblog.filter.PageBean;
 import com.microblog.po.Comment;
 
 public interface ICommentBiz {
-	//分页显示评论信息
+	//鍒嗛〉鏄剧ず璇勮淇℃伅
 	public PageBean SelectByPageComment(int cid,int currentPage,int pageSize);
-	//添加评论
+	//娣诲姞璇勮
 	public boolean InsertComment(Comment comm);
-	//删除评论
+	//鍒犻櫎璇勮
 	public boolean DeleteComment(int cid);
-	//模糊搜索
+	//妯＄硦鎼滅储
 	public PageBean FuzzyFindCommentByPage(int wid,String content,int currentPage,int pageSize);
 }

@@ -5,16 +5,16 @@ import java.util.List;
 import com.microblog.po.Users;
 
 public interface IRelationsBiz {
-	//ÏÔÊ¾µÇÂ¼Õß¹Ø×¢ÈËµÄÊıÁ¿
+	//æ˜¾ç¤ºç™»å½•è€…å…³æ³¨äººçš„æ•°é‡
 	public int CountByAttention(int uid);
-	//ÏÔÊ¾µÇÂ¼Õß·ÛË¿ÊıÁ¿
+	//æ˜¾ç¤ºç™»å½•è€…ç²‰ä¸æ•°é‡
 	public int CountByVermicelli(int uid);
-	//Ìí¼Ó¹Ø×¢                                       ¼Ó¹Ø×¢×Å     ±»¼Ó¹Ø×¢Õß
+	//æ·»åŠ å…³æ³¨                                       åŠ å…³æ³¨ç€     è¢«åŠ å…³æ³¨è€…
 	public boolean InsertRelation(int uid,int gid);
-	//delete¹Ø×¢                                       ¼Ó¹Ø×¢×Å     ±»¼Ó¹Ø×¢Õß
+	//deleteå…³æ³¨                                       åŠ å…³æ³¨ç€     è¢«åŠ å…³æ³¨è€…
 	public boolean DeleteRelationByuid(int uid,int gid);
-	//²éÕÒµ±Ç°¹Ø×¢×´Ì¬
+	//æŸ¥æ‰¾å½“å‰å…³æ³¨çŠ¶æ€
 	public int FindRelationByuid(int uid, int gid);
-	//²éÑ¯ÎÒ¹Ø×¢ÁËÄÇĞ©ÈË
+	//æŸ¥è¯¢æˆ‘å…³æ³¨äº†é‚£äº›äºº
 	public List<Users> FindAllMyInterestByuid(int uid);
 }
