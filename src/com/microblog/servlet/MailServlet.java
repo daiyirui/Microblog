@@ -41,32 +41,32 @@ this.doPost(request, response);
 		Users us=new Users();
 		us=useBiz.SelectByMail(uname,result);
 		if(us!=null){
-			//Ìá½»EmailÓÊÏä,µ¥¸ö·¢ËÍÓÊ¼ş£¬²»ÊÇÈº·¢£¬°Ñ·¢ËÍ·½ÓÊÏä´ò¿ª×´Ì¬²âÊÔ
+			//æäº¤Emailé‚®ç®±,å•ä¸ªå‘é€é‚®ä»¶ï¼Œä¸æ˜¯ç¾¤å‘ï¼ŒæŠŠå‘é€æ–¹é‚®ç®±æ‰“å¼€çŠ¶æ€æµ‹è¯•
 			Email email=new SimpleEmail();
 			email.setCharset("gbk");
 			email.setHostName("smtp.qq.com");
-			//Èç¹ûÊÇ163ÓÊÏäÎªÀı£¬ÔòÎª smtp.163.com  Ö¸µÄÊÇ·¢ËÍ·½ÓÊÏäÊôĞÔ
-			//                      ·¢ËÍ·½ÓÊÏäµØÖ·      ·¢ËÍ·½ÓÊÏäÃÜÂë   
+			//å¦‚æœæ˜¯163é‚®ç®±ä¸ºä¾‹ï¼Œåˆ™ä¸º smtp.163.com  æŒ‡çš„æ˜¯å‘é€æ–¹é‚®ç®±å±æ€§
+			//                      å‘é€æ–¹é‚®ç®±åœ°å€      å‘é€æ–¹é‚®ç®±å¯†ç    
 			email.setAuthentication("12345@qq.com", "12345");
 		    try { 
-		    	//ÕâÀïÉèÖÃ·¢ËÍ·½ÓÊÏäµØÖ·£¬ÓëÉÏ±ßsetAuthenticationÉèÖÃÏàÍ¬
+		    	//è¿™é‡Œè®¾ç½®å‘é€æ–¹é‚®ç®±åœ°å€ï¼Œä¸ä¸Šè¾¹setAuthenticationè®¾ç½®ç›¸åŒ
 				email.setFrom("12345@qq.com");
-				//ÓÊ¼ş½ÓÊÕ·½µØÖ·
+				//é‚®ä»¶æ¥æ”¶æ–¹åœ°å€
 				email.addTo(mail);
-				//ÉèÖÃ·¢ËÍÓÊ¼şµÄ±êÌâ
-				email.setSubject("Î¢²©ÏµÍ³-------ÕÒ»ØÃÜÂë");
-				//ÉèÖÃ·¢ËÍÓÊ¼şµÄÄÚÈİ
-				email.setMsg("ÄúµÄÃÜÂëÊÇ£º"+us.getUpwd()+",ÏÂ´Î²»ÒªÍü¼Ç°¡£¡");
-				//·¢ËÍÓÊ¼ş
+				//è®¾ç½®å‘é€é‚®ä»¶çš„æ ‡é¢˜
+				email.setSubject("å¾®åšç³»ç»Ÿ-------æ‰¾å›å¯†ç ");
+				//è®¾ç½®å‘é€é‚®ä»¶çš„å†…å®¹
+				email.setMsg("æ‚¨çš„å¯†ç æ˜¯ï¼š"+us.getUpwd()+",ä¸‹æ¬¡ä¸è¦å¿˜è®°å•Šï¼");
+				//å‘é€é‚®ä»¶
 				email.send();
-				response.getWriter().printf("<script>alert('ÃÜÂëÒÑ¾­·¢ËÍµ½ÄúµÄÓÊÏäÄÚ!');location.href='findpassword.jsp'</script>");
+				response.getWriter().printf("<script>alert('å¯†ç å·²ç»å‘é€åˆ°æ‚¨çš„é‚®ç®±å†…!');location.href='findpassword.jsp'</script>");
 			} catch (EmailException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				response.getWriter().printf("<script>alert('ÃÜÂë·¢ËÍ´íÎó!');location.href='login.jsp'</script>");
+				response.getWriter().printf("<script>alert('å¯†ç å‘é€é”™è¯¯!');location.href='login.jsp'</script>");
 			}
 		}else{
-			response.getWriter().printf("<script>alert('ÓÃ»§Ãû»ò»Ø´ğµÄÎÊÌâÓĞÎó!');location.href='login.jsp'</script>");
+			response.getWriter().printf("<script>alert('ç”¨æˆ·åæˆ–å›ç­”çš„é—®é¢˜æœ‰è¯¯!');location.href='login.jsp'</script>");
 		}
 	}
 	public void init() throws ServletException {

@@ -47,12 +47,12 @@ this.doPost(request, response);
 		System.out.println("gid:"+gid);
 		System.out.println("use:"+use.getUid());
 		if(relBiz.InsertRelation(use.getUid(), gid)){
-			//ÏÔÊ¾µÇÂ¼ÕßÒª¹Ø×¢ÈËµÄĞÅÏ¢-µÚÒ»´ÎµÇÂ½Ö»ÏÔÊ¾Ç°°Ë¸öÄ°ÉúÅóÓÑ
+			//æ˜¾ç¤ºç™»å½•è€…è¦å…³æ³¨äººçš„ä¿¡æ¯-ç¬¬ä¸€æ¬¡ç™»é™†åªæ˜¾ç¤ºå‰å…«ä¸ªé™Œç”Ÿæœ‹å‹
 			IRelationsBiz relationBiz=new RelationsBizImpl();
 			IUsersBiz userBiz=new UsersBizImpl();
 			List<Users> MyInterestUsers= relationBiz.FindAllMyInterestByuid(use.getUid());
-			List<Users> listAllUser=new ArrayList<Users>();//È«²¿Ä°ÉúÅóÓÑĞÅÏ¢
-			List<Users> listUser=new ArrayList<Users>();//ÏÔÊ¾Ç°8¸öÄ°ÉúÅóÓÑĞÅÏ¢
+			List<Users> listAllUser=new ArrayList<Users>();//å…¨éƒ¨é™Œç”Ÿæœ‹å‹ä¿¡æ¯
+			List<Users> listUser=new ArrayList<Users>();//æ˜¾ç¤ºå‰8ä¸ªé™Œç”Ÿæœ‹å‹ä¿¡æ¯
 			if(session.getAttribute("userAllList")==null){
 				listAllUser=userBiz.SelectByInterest(use.getUid());
 				listAllUser.removeAll(MyInterestUsers);
@@ -70,13 +70,13 @@ this.doPost(request, response);
 			if(listUser!=null){
 				session.setAttribute("userList",listUser);	
 			}			
-			////ÏÔÊ¾Ëù¹Ø×¢ÈËÊıÁ¿
+			////æ˜¾ç¤ºæ‰€å…³æ³¨äººæ•°é‡
 			int countRlat=relBiz.CountByAttention(use.getUid());
 			session.setAttribute("countRlation",countRlat);
-			//ÏÔÊ¾ÒÑ¾­¹Ø×¢ÈËµÄĞÅÏ¢
+			//æ˜¾ç¤ºå·²ç»å…³æ³¨äººçš„ä¿¡æ¯
 			PageBean pb=new PageBean();
 			IUsersBiz useBiz=new UsersBizImpl();
-			//¶¨Òå·ÖÒ³²ÎÊı
+			//å®šä¹‰åˆ†é¡µå‚æ•°
 			int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 			int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 			pb=useBiz.SelectByOverInterest(use.getUid(), nowpage, pagesize);
@@ -84,7 +84,7 @@ this.doPost(request, response);
 			request.getRequestDispatcher("HomeServlet").forward(request,response);
 
 		}else{
-			response.getWriter().printf("<script>alert('Ìí¼ÓºÃÓÑ¹Ø×¢Ê§°Ü!');location.href='home.jsp'</script>");
+			response.getWriter().printf("<script>alert('æ·»åŠ å¥½å‹å…³æ³¨å¤±è´¥!');location.href='home.jsp'</script>");
 		}
 	}
 	public void init() throws ServletException {

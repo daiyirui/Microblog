@@ -31,14 +31,14 @@ this.doPost(request, response);
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		HttpSession session=request.getSession();		
-		//显示登录者和其所关注人的微博信息-分页显示
+		//鏄剧ず鐧诲綍鑰呭拰鍏舵墍鍏虫敞浜虹殑寰崥淇℃伅-鍒嗛〉鏄剧ず
 		IWeiboBiz weiboBiz=new WeiboBizImpl();
 		PageBean pb=new PageBean();	
 		Users use=new Users();		
 		if(session.getAttribute("userinfo")!=null){
 			use=(Users) session.getAttribute("userinfo");
 		}
-		//定义分页参数
+		//瀹氫箟鍒嗛〉鍙傛暟
 		int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 		int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 		pb=weiboBiz.SelectByPage(use.getUid(),nowpage, pagesize);

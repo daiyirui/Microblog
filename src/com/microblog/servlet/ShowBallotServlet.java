@@ -53,18 +53,18 @@ this.doPost(request, response);
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		//ÅĞ¶ÏÍ¼Æ¬ÊÇ·ñ´æÔÚ£¬Èç¹û´æÔÚÉ¾³ı
-        File f=new File("F:\\Java·½Ïò\\apache-tomcat-7.0.5\\webapps\\Microblog\\upload\\pic\\4d.jpg");
+		//åˆ¤æ–­å›¾ç‰‡æ˜¯å¦å­˜åœ¨ï¼Œå¦‚æœå­˜åœ¨åˆ é™¤
+        File f=new File("F:\\Javaæ–¹å‘\\apache-tomcat-7.0.5\\webapps\\Microblog\\upload\\pic\\4d.jpg");
 		if(f.isFile()){
 			f.delete();	
 		}
-		//Jfreechart 3DÖùĞÎÍ¼
+		//Jfreechart 3DæŸ±å½¢å›¾
 		HttpSession session=request.getSession();
 		    IBollhotBiz bolBiz=new BollhotBizImpl();
 		    List<Bloghot> bol=bolBiz.SelectByHot();
 	        List<Bloghot> bol1=new ArrayList<Bloghot>();	      
 	        String t1="1";
-	        //Ñ­»·±éÀú³öÁ½¸öTitle
+	        //å¾ªç¯éå†å‡ºä¸¤ä¸ªTitle
 	        for (int j = 0; j < bol.size(); j++) {
 				if(t1!=bol.get(j).getBtitle()){
 					if(t1=="1"){
@@ -72,7 +72,7 @@ this.doPost(request, response);
 					}
 				}
 			}
-	        //Ñ­»·±éÀúÁ½¸öItems¼ÓÔØ¼¯ºÏ
+	        //å¾ªç¯éå†ä¸¤ä¸ªItemsåŠ è½½é›†åˆ
 	        for (int i = 0; i < bol.size(); i++) {
 	        	if(t1.equals(bol.get(i).getBtitle())){        	
 	        		bol1.add(bol.get(i));
@@ -86,49 +86,49 @@ this.doPost(request, response);
 				}
 	        }
 	        double [][] data=new double[][]{{rs.get(0)},{rs.get(1)},{rs.get(2)},{rs.get(3)},{rs.get(4)}};
-	        String[] rowkeys={"·ÑµÂÀÕ","ÄÉ´ï¶û","µÂÔ¼¿ÆÎ¬Ææ","ÂŞµÏ¿Ë","ÄÂÀ×"};
+	        String[] rowkeys={"è´¹å¾·å‹’","çº³è¾¾å°”","å¾·çº¦ç§‘ç»´å¥‡","ç½—è¿ªå…‹","ç©†é›·"};
 	        String[] columnKeys={""};
 	        CategoryDataset dataset=DatasetUtilities.createCategoryDataset(rowkeys,columnKeys,data);
-	        Font font=new Font("ËÎÌå",Font.BOLD,16);
-	        JFreeChart chart=ChartFactory.createBarChart3D("ÓÃ»§Í¶Æ±","ÔË¶¯Ô±","ÓÃ»§Êı", dataset,PlotOrientation.VERTICAL,true,false,false);
+	        Font font=new Font("å®‹ä½“",Font.BOLD,16);
+	        JFreeChart chart=ChartFactory.createBarChart3D("ç”¨æˆ·æŠ•ç¥¨","è¿åŠ¨å‘˜","ç”¨æˆ·æ•°", dataset,PlotOrientation.VERTICAL,true,false,false);
 	        CategoryPlot plot=chart.getCategoryPlot();
-	        TextTitle title=new TextTitle("ÓÃ»§Í¶Æ±", font);
-	        TextTitle subtitle=new TextTitle("ÃÀÍø¾º²Â",new Font("ºÚÌå",Font.BOLD,12));
+	        TextTitle title=new TextTitle("ç”¨æˆ·æŠ•ç¥¨", font);
+	        TextTitle subtitle=new TextTitle("ç¾ç½‘ç«çŒœ",new Font("é»‘ä½“",Font.BOLD,12));
 	        chart.addSubtitle(subtitle);
 	        chart.setTitle(title);
 	        NumberAxis numberaxis=(NumberAxis) plot.getRangeAxis();
 	        CategoryAxis domainAxis=plot.getDomainAxis();
-	        //ÉèÖÃX×ø±êÖáÎÄ×Ö
+	        //è®¾ç½®Xåæ ‡è½´æ–‡å­—
 	        domainAxis.setTickLabelFont(new Font("sans-serif", Font.PLAIN,11));
-	        //ÉèÖÃX×ø±êÖá±êÌâÎÄ×Ö
-	        domainAxis.setLabelFont(new Font("ËÎÌå", Font.PLAIN,12));
-	        //ÉèÖÃY×ø±êÖáÎÄ×Ö
+	        //è®¾ç½®Xåæ ‡è½´æ ‡é¢˜æ–‡å­—
+	        domainAxis.setLabelFont(new Font("å®‹ä½“", Font.PLAIN,12));
+	        //è®¾ç½®Yåæ ‡è½´æ–‡å­—
 	        numberaxis.setTickLabelFont(new Font("sans-serif", Font.PLAIN,12));
-	        //ÉèÖÃY×ø±êÖá±êÌâÎÄ×Ö
-	        numberaxis.setLabelFont(new Font("ºÚÌå", Font.PLAIN,12));
-	        //µ×²¿ºº×ÖÂÒÂë
-	        chart.getLegend().setItemFont(new Font("ËÎÌå", Font.PLAIN,12));
-	        //ÉèÖÃÍø¸ñ±³¾°ÑÕÉ«
+	        //è®¾ç½®Yåæ ‡è½´æ ‡é¢˜æ–‡å­—
+	        numberaxis.setLabelFont(new Font("é»‘ä½“", Font.PLAIN,12));
+	        //åº•éƒ¨æ±‰å­—ä¹±ç 
+	        chart.getLegend().setItemFont(new Font("å®‹ä½“", Font.PLAIN,12));
+	        //è®¾ç½®ç½‘æ ¼èƒŒæ™¯é¢œè‰²
 	        plot.setBackgroundPaint(Color.white);
-	        //ÉèÖÃÍø¸ñÊúÏßÑÕÉ«
+	        //è®¾ç½®ç½‘æ ¼ç«–çº¿é¢œè‰²
 	        plot.setDomainGridlinePaint(Color.pink);
-	        //ÉèÖÃÍø¸ñºáÏßÑÕÉ«
+	        //è®¾ç½®ç½‘æ ¼æ¨ªçº¿é¢œè‰²
 	        plot.setRangeGridlinePaint(Color.pink);
-	        //ÏÔÊ¾Ã¿¸öÖùĞÎµÄÊıÖµ£¬²¢ĞŞ¸Ä¸ÃÊıÖµµÄ×ÖÌåÊôĞÔ
+	        //æ˜¾ç¤ºæ¯ä¸ªæŸ±å½¢çš„æ•°å€¼ï¼Œå¹¶ä¿®æ”¹è¯¥æ•°å€¼çš„å­—ä½“å±æ€§
 	        BarRenderer3D renderer=new BarRenderer3D();
 	        renderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
 	        renderer.setBaseItemLabelsVisible(true);
-	        //Ä¬ÈÏÊı×ÖÏÔÊ¾ÔÚÖùĞÎÍ¼ÉÏ£¬Í¨¹ıÈçÏÂÁ½¾ä¿Éµ÷ÕûÊıÖµµÄÏÔÊ¾£¬
+	        //é»˜è®¤æ•°å­—æ˜¾ç¤ºåœ¨æŸ±å½¢å›¾ä¸Šï¼Œé€šè¿‡å¦‚ä¸‹ä¸¤å¥å¯è°ƒæ•´æ•°å€¼çš„æ˜¾ç¤ºï¼Œ
 	        renderer.setBasePositiveItemLabelPosition(new ItemLabelPosition(
 	        		ItemLabelAnchor.OUTSIDE12,TextAnchor.BASELINE_LEFT));
 	        renderer.setItemLabelAnchorOffset(10D);
-	        renderer.setItemLabelFont(new Font("ËÎÌå", Font.PLAIN,12));
+	        renderer.setItemLabelFont(new Font("å®‹ä½“", Font.PLAIN,12));
 	        renderer.setItemLabelsVisible(true);
-	        //ÉèÖÃÃ¿¸öµØÇøËù°üº¬µÄÆ½ĞĞ×¡Ö®¼ä¾àÀë
+	        //è®¾ç½®æ¯ä¸ªåœ°åŒºæ‰€åŒ…å«çš„å¹³è¡Œä½ä¹‹é—´è·ç¦»
 	        plot.setRenderer(renderer);	        
-	        //Êä³öÍ¼Ïñ
+	        //è¾“å‡ºå›¾åƒ
 	        FileOutputStream fos;
-	        fos=new FileOutputStream("F:\\Java·½Ïò\\apache-tomcat-7.0.5\\webapps\\Microblog\\upload\\pic\\4d.jpg");
+	        fos=new FileOutputStream("F:\\Javaæ–¹å‘\\apache-tomcat-7.0.5\\webapps\\Microblog\\upload\\pic\\4d.jpg");
 	        ChartUtilities.writeChartAsJPEG(fos, chart, 800, 600,null);
 	        fos.close();	        
 	        request.getRequestDispatcher("/sample.jsp").forward(request, response);	       

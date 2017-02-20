@@ -43,8 +43,8 @@ this.doPost(request, response);
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		//ÅĞ¶ÏÍ¼Æ¬ÊÇ·ñ´æÔÚ£¬Èç¹û´æÔÚÉ¾³ı
-        File f=new File("F:\\Java·½Ïò\\apache-tomcat-7.0.5\\webapps\\Microblog\\upload\\pic\\6c.jpg");
+		//åˆ¤æ–­å›¾ç‰‡æ˜¯å¦å­˜åœ¨ï¼Œå¦‚æœå­˜åœ¨åˆ é™¤
+        File f=new File("F:\\Javaæ–¹å‘\\apache-tomcat-7.0.5\\webapps\\Microblog\\upload\\pic\\6c.jpg");
 		if(f.isFile()){
 			f.delete();	
 		}		
@@ -53,7 +53,7 @@ this.doPost(request, response);
 		    List<Bloghot> bol=bolBiz.SelectByHot();
 	        List<Bloghot> bol2=new ArrayList<Bloghot>();	      
 	        String t1="1",t2="1";
-	        //Ñ­»·±éÀú³öÁ½¸öTitle
+	        //å¾ªç¯éå†å‡ºä¸¤ä¸ªTitle
 	        for (int j = 0; j < bol.size(); j++) {
 				if(t1!=bol.get(j).getBtitle()){
 					if(t1=="1"){
@@ -64,37 +64,37 @@ this.doPost(request, response);
 					}
 				}
 			}
-	        //Ñ­»·±éÀúÁ½¸öItems¼ÓÔØ¼¯ºÏ
+	        //å¾ªç¯éå†ä¸¤ä¸ªItemsåŠ è½½é›†åˆ
 	        for (int i = 0; i < bol.size(); i++) {
 	        	if(t2.equals(bol.get(i).getBtitle())){        	
 	        		bol2.add(bol.get(i));
 	        	}
 	        }	 
 	        session.setAttribute("bol2", bol2);
-	      //Jfreechart 3D±ıÍ¼
+	      //Jfreechart 3Dé¥¼å›¾
 	        DefaultPieDataset dataset=new DefaultPieDataset();
 	        for (int i = 0; i < bol2.size(); i++) {
 				dataset.setValue(bol2.get(i).getBitems()+":"+bol2.get(i).getBvote(), bol2.get(i).getBvote());
 			}
 	        JFreeChart chart;
-	        chart=ChartFactory.createPieChart3D("Äú×îÏ²»¶µÄÊîÆÚµµÓ°ÊÓ×÷Æ·", dataset,true,false,true);
-	        //ÖØĞÂÉèÖÃÍ¼±ê±í±êÌâ
-	        chart.setTitle(new TextTitle("Äú×îÏ²»¶µÄÊîÆÚµµÓ°ÊÓ×÷Æ·",new Font("ºÚÌå",Font.ITALIC, 22)));
-	        //È¡µÃÍ³¼ÆÍ¼±íµÚÒ»¸öÍ¼Àı
+	        chart=ChartFactory.createPieChart3D("æ‚¨æœ€å–œæ¬¢çš„æš‘æœŸæ¡£å½±è§†ä½œå“", dataset,true,false,true);
+	        //é‡æ–°è®¾ç½®å›¾æ ‡è¡¨æ ‡é¢˜
+	        chart.setTitle(new TextTitle("æ‚¨æœ€å–œæ¬¢çš„æš‘æœŸæ¡£å½±è§†ä½œå“",new Font("é»‘ä½“",Font.ITALIC, 22)));
+	        //å–å¾—ç»Ÿè®¡å›¾è¡¨ç¬¬ä¸€ä¸ªå›¾ä¾‹
 	        LegendTitle legend=chart.getLegend(0);	        
-	        //ĞŞ¸ÄÍ¼ÀıµÄ×ÖÌå
-	        legend.setItemFont(new Font("ËÎÌå",Font.BOLD,14));
-	        //»ñµÃ3D±ıÍ¼µÄplot¶ÔÏó
+	        //ä¿®æ”¹å›¾ä¾‹çš„å­—ä½“
+	        legend.setItemFont(new Font("å®‹ä½“",Font.BOLD,14));
+	        //è·å¾—3Dé¥¼å›¾çš„plotå¯¹è±¡
 	        PiePlot plot=(PiePlot) chart.getPlot();
-	        //ÉèÖÃ±ıÍ¼µÄ¸÷²¿·Ö±êÇ©×ÖÌå
-	        plot.setLabelFont(new Font("Á¥Êé",Font.BOLD,18));
-	        //ÉèÖÃ±³¾°Í¼Í¸Ã÷¶È£¨0-1.0£©Ö®¼ä
+	        //è®¾ç½®é¥¼å›¾çš„å„éƒ¨åˆ†æ ‡ç­¾å­—ä½“
+	        plot.setLabelFont(new Font("éš¶ä¹¦",Font.BOLD,18));
+	        //è®¾ç½®èƒŒæ™¯å›¾é€æ˜åº¦ï¼ˆ0-1.0ï¼‰ä¹‹é—´
 	        plot.setBackgroundAlpha(0.9f);
-		    //ÉèÖÃÇ°¾°Í¼Í¸Ã÷¶È£¨0-1.0£©Ö®¼ä
+		    //è®¾ç½®å‰æ™¯å›¾é€æ˜åº¦ï¼ˆ0-1.0ï¼‰ä¹‹é—´
 	        plot.setForegroundAlpha(0.50f);
-	        //Êä³öIOÁ÷
+	        //è¾“å‡ºIOæµ
 	        FileOutputStream fos;
-	        fos=new FileOutputStream("F:\\Java·½Ïò\\apache-tomcat-7.0.5\\webapps\\Microblog\\upload\\pic\\6c.jpg");
+	        fos=new FileOutputStream("F:\\Javaæ–¹å‘\\apache-tomcat-7.0.5\\webapps\\Microblog\\upload\\pic\\6c.jpg");
 	        ChartUtilities.writeChartAsJPEG(fos, chart, 800,600,null);
 	        fos.close();
 	        request.getRequestDispatcher("/sample1.jsp").forward(request, response);

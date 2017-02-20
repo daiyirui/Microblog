@@ -50,11 +50,11 @@ this.doPost(request, response);
 		IWeiboBiz weiboBiz=new WeiboBizImpl();		
 		int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 		int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
-		//ÉÏ´«²Ù×÷		
+		//ä¸Šä¼ æ“ä½œ		
 		try {
 			FileItemFactory factory=new DiskFileItemFactory();
 			ServletFileUpload fileload=new ServletFileUpload(factory);
-			//ÉèÖÃÎÄ¼ş´óĞ¡£¬4m
+			//è®¾ç½®æ–‡ä»¶å¤§å°ï¼Œ4m
 			fileload.setSizeMax(4194304);
 			List<FileItem> iteraor=fileload.parseRequest(request);
 			Iterator<FileItem> iter=iteraor.iterator();
@@ -67,7 +67,7 @@ this.doPost(request, response);
 						weibo.setWcontent(item.getString("gbk"));						
 					}
 				}else{
-					//»ñÈ¡ÎÄ¼şÃû£¬°üº¬ÉÏ´«ÎÄ¼şÂ·¾¶
+					//è·å–æ–‡ä»¶åï¼ŒåŒ…å«ä¸Šä¼ æ–‡ä»¶è·¯å¾„
 					String filename=item.getName();
 					if(filename!=""){
 						File file=new File(filename);
@@ -78,23 +78,23 @@ this.doPost(request, response);
 						if(weiboBiz.InsertWeibo(weibo, use.getUid())){
 							pb=weiboBiz.SelectByPage(use.getUid(),nowpage, pagesize);
 							session.setAttribute("weiboList",pb);
-							//Î¢²©ÊıÁ¿
+							//å¾®åšæ•°é‡
 							int countMicroblog=weiboBiz.CountByMicroblog(use.getUid());
 							session.setAttribute("countBlog",countMicroblog);
-							response.getWriter().printf("<script>alert('Ìí¼ÓÎ¢²©³É¹¦!');location.href='home.jsp'</script>");
+							response.getWriter().printf("<script>alert('æ·»åŠ å¾®åšæˆåŠŸ!');location.href='home.jsp'</script>");
 						}else{
-							response.getWriter().printf("<script>alert('Ìí¼ÓÎ¢²©Ê§°Ü!');location.href='home.jsp'</script>");
+							response.getWriter().printf("<script>alert('æ·»åŠ å¾®åšå¤±è´¥!');location.href='home.jsp'</script>");
 						}
 					}else{
 						if(weiboBiz.InsertWeibo(weibo, use.getUid())){
 							pb=weiboBiz.SelectByPage(use.getUid(),nowpage, pagesize);
 							session.setAttribute("weiboList",pb);
-							//Î¢²©ÊıÁ¿
+							//å¾®åšæ•°é‡
 							int countMicroblog=weiboBiz.CountByMicroblog(use.getUid());
 							session.setAttribute("countBlog",countMicroblog);
-							response.getWriter().printf("<script>alert('Ìí¼ÓÎ¢²©³É¹¦!');location.href='home.jsp'</script>");
+							response.getWriter().printf("<script>alert('æ·»åŠ å¾®åšæˆåŠŸ!');location.href='home.jsp'</script>");
 						}else{
-							response.getWriter().printf("<script>alert('Ìí¼ÓÎ¢²©Ê§°Ü!');location.href='home.jsp'</script>");
+							response.getWriter().printf("<script>alert('æ·»åŠ å¾®åšå¤±è´¥!');location.href='home.jsp'</script>");
 						}
 					}
 				}

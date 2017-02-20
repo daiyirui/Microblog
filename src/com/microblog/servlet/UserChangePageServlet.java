@@ -38,7 +38,7 @@ this.doPost(request, response);
 		}
 		PageBean pb=new PageBean();		
 		IWeiboBiz weiBiz=new WeiboBizImpl();
-		//定义分页参数
+		//瀹氫箟鍒嗛〉鍙傛暟
 		int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));	
 		int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 		pb=weiBiz.SelectWeiboByuid(use.getUid(),nowpage, pagesize);

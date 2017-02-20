@@ -42,23 +42,23 @@ public class MyFansServlet extends HttpServlet {
 		if(session.getAttribute("userinfo")!=null){
 			use=(Users) session.getAttribute("userinfo");
 		}
-		//step3 ÈçºÎÓÃ»§ÃûÃÜÂëÕıÈ·
+		//step3 å¦‚ä½•ç”¨æˆ·åå¯†ç æ­£ç¡®
 		if(use!=null){
 			session.setAttribute("userinfo", use);
-			//ÏÔÊ¾µÇÂ¼Õß·ÛË¿ĞÅÏ¢-·ÖÒ³ÏÔÊ¾
+			//æ˜¾ç¤ºç™»å½•è€…ç²‰ä¸ä¿¡æ¯-åˆ†é¡µæ˜¾ç¤º
 			IUsersBiz usersBiz=new UsersBizImpl();
 			PageBean pb=new PageBean();			
-			//¶¨Òå·ÖÒ³²ÎÊı
+			//å®šä¹‰åˆ†é¡µå‚æ•°
 			int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 			int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 			pb=usersBiz.SelectFansByPage(use.getUid(),nowpage, pagesize);
 			session.setAttribute("fansList",pb);
-			//ÏÔÊ¾µÇÂ¼ÕßÒª¹Ø×¢ÈËµÄĞÅÏ¢-µÚÒ»´ÎµÇÂ½Ö»ÏÔÊ¾Ç°°Ë¸öÄ°ÉúÅóÓÑ
+			//æ˜¾ç¤ºç™»å½•è€…è¦å…³æ³¨äººçš„ä¿¡æ¯-ç¬¬ä¸€æ¬¡ç™»é™†åªæ˜¾ç¤ºå‰å…«ä¸ªé™Œç”Ÿæœ‹å‹
 			IRelationsBiz relationBiz=new RelationsBizImpl();
 			IUsersBiz userBiz=new UsersBizImpl();
 			List<Users> MyInterestUsers= relationBiz.FindAllMyInterestByuid(use.getUid());
-			List<Users> listAllUser=new ArrayList<Users>();//È«²¿Ä°ÉúÅóÓÑĞÅÏ¢
-			List<Users> listUser=new ArrayList<Users>();//ÏÔÊ¾Ç°8¸öÄ°ÉúÅóÓÑĞÅÏ¢
+			List<Users> listAllUser=new ArrayList<Users>();//å…¨éƒ¨é™Œç”Ÿæœ‹å‹ä¿¡æ¯
+			List<Users> listUser=new ArrayList<Users>();//æ˜¾ç¤ºå‰8ä¸ªé™Œç”Ÿæœ‹å‹ä¿¡æ¯
 			if(session.getAttribute("userAllList")==null){
 				listAllUser=userBiz.SelectByInterest(use.getUid());
 				listAllUser.removeAll(MyInterestUsers);
@@ -77,22 +77,22 @@ public class MyFansServlet extends HttpServlet {
 				session.setAttribute("userList",listUser);	
 			}			
 			IWeiboBiz weiboBiz=new WeiboBizImpl();
-			//Î¢²©ÊıÁ¿
+			//å¾®åšæ•°é‡
 			int countMicroblog=weiboBiz.CountByMicroblog(use.getUid());
 			session.setAttribute("countBlog",countMicroblog);
-			//ÏÔÊ¾Ëù¹Ø×¢ÈËÊıÁ¿
+			//æ˜¾ç¤ºæ‰€å…³æ³¨äººæ•°é‡
 			int countRlat=relationBiz.CountByAttention(use.getUid());
 			session.setAttribute("countRlation",countRlat);
-			//ÏÔÊ¾·ÛË¿ÊıÁ¿
+			//æ˜¾ç¤ºç²‰ä¸æ•°é‡
 			int countVeri=relationBiz.CountByVermicelli(use.getUid());
 			session.setAttribute("countVeri",countVeri);
-			//step5 Ìø×ªµ½¸öÈËÖ÷Ò³Ãæ
+			//step5 è·³è½¬åˆ°ä¸ªäººä¸»é¡µé¢
 			response.sendRedirect("myFans.jsp");
 		}
-		//step6 ´íÎó·µ»ØµÇÂ¼Ò³Ãæ
+		//step6 é”™è¯¯è¿”å›ç™»å½•é¡µé¢
 		else{
 			 
-			response.getWriter().printf("<script>alert('ÓÃ»§Ãû»òÃÜÂë´íÎó\n»ñÈ¡´ËÓÃ»§±»½ûÓÃ!');location.href='login.jsp'</script>");
+			response.getWriter().printf("<script>alert('ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯\nè·å–æ­¤ç”¨æˆ·è¢«ç¦ç”¨!');location.href='login.jsp'</script>");
 		}
 	}
 	public void init() throws ServletException {

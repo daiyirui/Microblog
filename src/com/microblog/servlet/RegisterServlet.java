@@ -53,22 +53,22 @@ this.doPost(request, response);
 		use.setUnickname(unickname);
 		IUsersBiz useBiz=new UsersBizImpl();
 		if(useBiz.RegisterUser(use)){
-			//Ö¤Ã÷ÓÃ»§µÇÂ¼ºóÖ±½ÓÌø×ª¸öÈËÖ÷Ò³Ãæ home
+			//è¯æ˜ç”¨æˆ·ç™»å½•åç›´æ¥è·³è½¬ä¸ªäººä¸»é¡µé¢ home
 			if(request.getParameter("sel")!=null){
-				//»ñÈ¡¸Õ×¢²áÓÃ»§¶ÔÏóÏêÏ¸
+				//è·å–åˆšæ³¨å†Œç”¨æˆ·å¯¹è±¡è¯¦ç»†
 				use=useBiz.SelectByObject(uname, upwd, sex);				
 				session.setAttribute("userinfo", use);
-				//»ñÈ¡µÇÂ¼Õß¼°Æä¹Ø×¢Î¢²©ÏêÏ¸===============
+				//è·å–ç™»å½•è€…åŠå…¶å…³æ³¨å¾®åšè¯¦ç»†===============
 				IWeiboBiz weiboBiz=new WeiboBizImpl();
 				PageBean pb=new PageBean();			
-				//¶¨Òå·ÖÒ³²ÎÊı
+				//å®šä¹‰åˆ†é¡µå‚æ•°
 				int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));				
 				int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
 				pb=weiboBiz.SelectByPage(use.getUid(),nowpage, pagesize);
 				session.setAttribute("weiboList",pb);
-				//ÏÔÊ¾µÇÂ¼ÕßÒª¹Ø×¢ÈËµÄĞÅÏ¢-µÚÒ»´ÎµÇÂ½Ö»ÏÔÊ¾Ç°°Ë¸öÄ°ÉúÅóÓÑ
-				List<Users> listAllUser=new ArrayList<Users>();//È«²¿Ä°ÉúÅóÓÑĞÅÏ¢
-				List<Users> listUser=new ArrayList<Users>();//ÏÔÊ¾Ç°8¸öÄ°ÉúÅóÓÑĞÅÏ¢
+				//æ˜¾ç¤ºç™»å½•è€…è¦å…³æ³¨äººçš„ä¿¡æ¯-ç¬¬ä¸€æ¬¡ç™»é™†åªæ˜¾ç¤ºå‰å…«ä¸ªé™Œç”Ÿæœ‹å‹
+				List<Users> listAllUser=new ArrayList<Users>();//å…¨éƒ¨é™Œç”Ÿæœ‹å‹ä¿¡æ¯
+				List<Users> listUser=new ArrayList<Users>();//æ˜¾ç¤ºå‰8ä¸ªé™Œç”Ÿæœ‹å‹ä¿¡æ¯
 				if(session.getAttribute("userAllList")==null){
 					listAllUser=useBiz.SelectByInterest(use.getUid());
 					for (int i = 0; i < 8; i++) {
@@ -84,23 +84,23 @@ this.doPost(request, response);
 				if(listUser!=null){
 					session.setAttribute("userList",listUser);	
 				}			
-				//Î¢²©ÊıÁ¿
+				//å¾®åšæ•°é‡
 				int countMicroblog=weiboBiz.CountByMicroblog(use.getUid());
 				session.setAttribute("countBlog",countMicroblog);
-				//ÏÔÊ¾Ëù¹Ø×¢ÈËÊıÁ¿
+				//æ˜¾ç¤ºæ‰€å…³æ³¨äººæ•°é‡
 				IRelationsBiz relationBiz=new RelationsBizImpl();
 				int countRlat=relationBiz.CountByAttention(use.getUid());
 				session.setAttribute("countRlation",countRlat);
-				//ÏÔÊ¾·ÛË¿ÊıÁ¿
+				//æ˜¾ç¤ºç²‰ä¸æ•°é‡
 				int countVeri=relationBiz.CountByVermicelli(use.getUid());
 				session.setAttribute("countVeri",countVeri);
-				//Ìø×ª¸öÈËÖ÷Ò³
-				response.getWriter().printf("<script>alert('ÓÃ»§"+uname+"×¢²á³É¹¦!');location.href='home.jsp'</script>");
+				//è·³è½¬ä¸ªäººä¸»é¡µ
+				response.getWriter().printf("<script>alert('ç”¨æˆ·"+uname+"æ³¨å†ŒæˆåŠŸ!');location.href='home.jsp'</script>");
 			}else{
-				response.getWriter().printf("<script>alert('ÓÃ»§"+uname+"×¢²á³É¹¦!');location.href='login.jsp'</script>");
+				response.getWriter().printf("<script>alert('ç”¨æˆ·"+uname+"æ³¨å†ŒæˆåŠŸ!');location.href='login.jsp'</script>");
 			}
 		}else{
-			response.getWriter().printf("<script>alert('ÓÃ»§×¢²áÊ§°Ü!');location.href='register.jsp'</script>");
+			response.getWriter().printf("<script>alert('ç”¨æˆ·æ³¨å†Œå¤±è´¥!');location.href='register.jsp'</script>");
 		}
 	}
 	public void init() throws ServletException {

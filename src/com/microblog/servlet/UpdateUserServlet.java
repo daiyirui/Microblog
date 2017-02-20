@@ -38,7 +38,7 @@ this.doPost(request, response);
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		//ĞŞ¸ÄÉÏ´«Í¼Æ¬
+		//ä¿®æ”¹ä¸Šä¼ å›¾ç‰‡
 		IUsersBiz useBiz=new UsersBizImpl();		
 		String w_image=request.getParameter("upfile");		
 		HttpSession session=request.getSession();
@@ -46,11 +46,11 @@ this.doPost(request, response);
 		if(session.getAttribute("userinfo")!=null){
 		   	use=(Users) session.getAttribute("userinfo");
 		}	   
-		//ÉÏ´«²Ù×÷		
+		//ä¸Šä¼ æ“ä½œ		
 		try {
 			FileItemFactory factory=new DiskFileItemFactory();
 			ServletFileUpload fileload=new ServletFileUpload(factory);
-			//ÉèÖÃÎÄ¼ş´óĞ¡£¬4m
+			//è®¾ç½®æ–‡ä»¶å¤§å°ï¼Œ4m
 			fileload.setSizeMax(4194304);
 			List<FileItem> iteraor=fileload.parseRequest(request);
 			Iterator<FileItem> iter=iteraor.iterator();			
@@ -58,7 +58,7 @@ this.doPost(request, response);
 				FileItem item=iter.next();
 				if(item.isFormField()){					
 				}else{
-					//»ñÈ¡ÎÄ¼şÃû£¬°üº¬ÉÏ´«ÎÄ¼şÂ·¾¶
+					//è·å–æ–‡ä»¶åï¼ŒåŒ…å«ä¸Šä¼ æ–‡ä»¶è·¯å¾„
 					String filename=item.getName();
 					if(filename!=""){
 						File file=new File(filename);
@@ -68,17 +68,17 @@ this.doPost(request, response);
 						use.setUpic(w_image);						
 						if(useBiz.UpdateUser(use)){
 							session.setAttribute("userinfo", use);
-							response.getWriter().printf("<script>alert('ĞŞ¸Ä¸öÈËĞÅÏ¢³É¹¦!');location.href='home.jsp'</script>");
+							response.getWriter().printf("<script>alert('ä¿®æ”¹ä¸ªäººä¿¡æ¯æˆåŠŸ!');location.href='home.jsp'</script>");
 						}else{
-							response.getWriter().printf("<script>alert('ĞŞ¸Ä¸öÈËĞÅÏ¢Ê§°Ü!');location.href='myface.jsp'</script>");
+							response.getWriter().printf("<script>alert('ä¿®æ”¹ä¸ªäººä¿¡æ¯å¤±è´¥!');location.href='myface.jsp'</script>");
 						}
 					}else{
 						use.setUpic(null);			
 						if(useBiz.UpdateUser(use)){
 							session.setAttribute("userinfo", use);							
-							response.getWriter().printf("<script>alert('ĞŞ¸Ä¸öÈËĞÅÏ¢³É¹¦!');location.href='home.jsp'</script>");
+							response.getWriter().printf("<script>alert('ä¿®æ”¹ä¸ªäººä¿¡æ¯æˆåŠŸ!');location.href='home.jsp'</script>");
 						}else{
-							response.getWriter().printf("<script>alert('ĞŞ¸Ä¸öÈËĞÅÏ¢Ê§°Ü!');location.href='myface.jsp'</script>");
+							response.getWriter().printf("<script>alert('ä¿®æ”¹ä¸ªäººä¿¡æ¯å¤±è´¥!');location.href='myface.jsp'</script>");
 						}
 					}
 				}

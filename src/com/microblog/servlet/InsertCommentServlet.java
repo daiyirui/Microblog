@@ -51,11 +51,11 @@ this.doPost(request, response);
 		HttpSession session=request.getSession();
 		int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
 		int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
-		//ÉÏ´«²Ù×÷		
+		//ä¸Šä¼ æ“ä½œ		
 		try {
 			FileItemFactory factory=new DiskFileItemFactory();
 			ServletFileUpload fileload=new ServletFileUpload(factory);
-			//ÉèÖÃÎÄ¼ş´óĞ¡£¬4m
+			//è®¾ç½®æ–‡ä»¶å¤§å°ï¼Œ4m
 			fileload.setSizeMax(4194304);
 			List<FileItem> iteraor=fileload.parseRequest(request);
 			Iterator<FileItem> iter=iteraor.iterator();
@@ -74,7 +74,7 @@ this.doPost(request, response);
 						comm.setC_uid(Integer.parseInt(item.getString("gbk")));
 					}
 				}else{
-					//»ñÈ¡ÎÄ¼şÃû£¬°üº¬ÉÏ´«ÎÄ¼şÂ·¾¶
+					//è·å–æ–‡ä»¶åï¼ŒåŒ…å«ä¸Šä¼ æ–‡ä»¶è·¯å¾„
 					String filename=item.getName();
 					if(filename!=""){
 						File file=new File(filename);
@@ -85,17 +85,17 @@ this.doPost(request, response);
 						if(commentBiz.InsertComment(comm)){
 							pb=commentBiz.SelectByPageComment(comm.getC_wid(),nowpage, pagesize);
 							session.setAttribute("CommentList",pb);
-							response.getWriter().printf("<script>alert('Ìí¼ÓÆÀÂÛ³É¹¦!');location.href='comment.jsp'</script>");
+							response.getWriter().printf("<script>alert('æ·»åŠ è¯„è®ºæˆåŠŸ!');location.href='comment.jsp'</script>");
 						}else{
-							response.getWriter().printf("<script>alert('Ìí¼ÓÆÀÂÛÊ§°Ü!');location.href='comment.jsp'</script>");
+							response.getWriter().printf("<script>alert('æ·»åŠ è¯„è®ºå¤±è´¥!');location.href='comment.jsp'</script>");
 						}
 					}else{
 						if(commentBiz.InsertComment(comm)){
 							pb=commentBiz.SelectByPageComment(comm.getC_wid(),nowpage, pagesize);
 							session.setAttribute("CommentList",pb);
-							response.getWriter().printf("<script>alert('Ìí¼ÓÆÀÂÛ³É¹¦!');location.href='comment.jsp'</script>");
+							response.getWriter().printf("<script>alert('æ·»åŠ è¯„è®ºæˆåŠŸ!');location.href='comment.jsp'</script>");
 						}else{
-							response.getWriter().printf("<script>alert('Ìí¼ÓÆÀÂÛÊ§°Ü!');location.href='comment.jsp'</script>");
+							response.getWriter().printf("<script>alert('æ·»åŠ è¯„è®ºå¤±è´¥!');location.href='comment.jsp'</script>");
 						}
 					}
 				}
