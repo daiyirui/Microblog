@@ -24,14 +24,14 @@ public class CommentDaoImpl implements ICommentDao {
 	}
 	@Override
 	public PageBean FuzzyFindCommentByPage(int wid, String content,String strSQL, int currentPage, int pageSize) {
-		//step1:´´½¨pagebean¶ÔÏó,ÎªÆäÎå¸öÊôĞÔ¸³Öµ
+		//step1:åˆ›å»ºpagebeanå¯¹è±¡,ä¸ºå…¶äº”ä¸ªå±æ€§èµ‹å€¼
 		PageBean pb=new PageBean();
-		//step2:sqlÓï¾ä£¬ÓÃÀ´»ñÈ¡weibo±íÖĞ¼ÇÂ¼ÊıÁ¿ count(*)   SELECT * FROM weibo order by wdate desc
+		//step2:sqlè¯­å¥ï¼Œç”¨æ¥è·å–weiboè¡¨ä¸­è®°å½•æ•°é‡ count(*)   SELECT * FROM weibo order by wdate desc
 		String strSql1=strSQL;
 		strSql1=strSql1.substring(strSql1.toLowerCase().indexOf("from"));
 		strSql1 = "select count(*) "+strSql1;
 		System.out.println("SqlCount:"+strSql1);
-		//step3:Ö´ĞĞsqlÓï¾äµÃµ½½á¹û²¢½«Æä½á¹û¸³Öµ¸øpbµÄtotalRows±äÁ¿£»
+		//step3:æ‰§è¡Œsqlè¯­å¥å¾—åˆ°ç»“æœå¹¶å°†å…¶ç»“æœèµ‹å€¼ç»™pbçš„totalRowså˜é‡ï¼›
 		ResultSet rs=db.execQuery(strSql1, new Object[]{wid,"%"+content+"%"});
 		try {
 			if(rs.next()){
@@ -42,12 +42,12 @@ public class CommentDaoImpl implements ICommentDao {
 			e.printStackTrace();
 			pb.setTotalRows(0);
 		}
-		//step4:ÎªpbµÄdataÊôĞÔ¸³Öµ£¬Ê×ÏÈÎª»ñÈ¡±¾Ò³µÚÒ»Ìõ¼ÇÂ¼ÉèÖÃĞĞ±ê
+		//step4:ä¸ºpbçš„dataå±æ€§èµ‹å€¼ï¼Œé¦–å…ˆä¸ºè·å–æœ¬é¡µç¬¬ä¸€æ¡è®°å½•è®¾ç½®è¡Œæ ‡
 		int start=(currentPage-1)*pageSize;
-		//step5:´´½¨¸³ÖµdataµÄsqlÓï¾ä
+		//step5:åˆ›å»ºèµ‹å€¼dataçš„sqlè¯­å¥
 		strSQL=strSQL+" limit ?,? ";
 		rs=db.execQuery(strSQL, new Object[]{wid,"%"+content+"%",start,pageSize});
-		//step6:»ñÈ¡data½á¹û¼¯ºÏ
+		//step6:è·å–dataç»“æœé›†åˆ
 		List<Comment> lisComment=new ArrayList<Comment>();
 		Comment comm=null;
 		try {
@@ -117,11 +117,11 @@ public class CommentDaoImpl implements ICommentDao {
 		} finally{
 			db.closeConn();
 		}
-		//step7:¸³ÖµÏàÓ¦ÊôĞÔ
+		//step7:èµ‹å€¼ç›¸åº”å±æ€§
 		pb.setData(lisComment);
 		pb.setCurrentPage(currentPage);
 		pb.setPageSize(pageSize);
-		//step*:·µ»Ø½á¹û
+		//step*:è¿”å›ç»“æœ
 		return pb;
 	}
     @Override
@@ -142,14 +142,14 @@ public class CommentDaoImpl implements ICommentDao {
 	}
 	@Override
 	public PageBean FindByPageComment(int cid, String strSQL, int currentPage,int pageSize) {
-		//step1:´´½¨pagebean¶ÔÏó,ÎªÆäÎå¸öÊôĞÔ¸³Öµ
+		//step1:åˆ›å»ºpagebeanå¯¹è±¡,ä¸ºå…¶äº”ä¸ªå±æ€§èµ‹å€¼
 		PageBean pb=new PageBean();
-		//step2:sqlÓï¾ä£¬ÓÃÀ´»ñÈ¡weibo±íÖĞ¼ÇÂ¼ÊıÁ¿ count(*)   SELECT * FROM weibo order by wdate desc
+		//step2:sqlè¯­å¥ï¼Œç”¨æ¥è·å–weiboè¡¨ä¸­è®°å½•æ•°é‡ count(*)   SELECT * FROM weibo order by wdate desc
 		String strSql1=strSQL;
 		strSql1=strSql1.substring(strSql1.toLowerCase().indexOf("from"));
 		strSql1 = "select count(*) "+strSql1;
 		System.out.println("SqlCount:"+strSql1);
-		//step3:Ö´ĞĞsqlÓï¾äµÃµ½½á¹û²¢½«Æä½á¹û¸³Öµ¸øpbµÄtotalRows±äÁ¿£»
+		//step3:æ‰§è¡Œsqlè¯­å¥å¾—åˆ°ç»“æœå¹¶å°†å…¶ç»“æœèµ‹å€¼ç»™pbçš„totalRowså˜é‡ï¼›
 		ResultSet rs=db.execQuery(strSql1, new Object[]{cid});
 		try {
 			if(rs.next()){
@@ -160,12 +160,12 @@ public class CommentDaoImpl implements ICommentDao {
 			e.printStackTrace();
 			pb.setTotalRows(0);
 		}
-		//step4:ÎªpbµÄdataÊôĞÔ¸³Öµ£¬Ê×ÏÈÎª»ñÈ¡±¾Ò³µÚÒ»Ìõ¼ÇÂ¼ÉèÖÃĞĞ±ê
+		//step4:ä¸ºpbçš„dataå±æ€§èµ‹å€¼ï¼Œé¦–å…ˆä¸ºè·å–æœ¬é¡µç¬¬ä¸€æ¡è®°å½•è®¾ç½®è¡Œæ ‡
 		int start=(currentPage-1)*pageSize;
-		//step5:´´½¨¸³ÖµdataµÄsqlÓï¾ä
+		//step5:åˆ›å»ºèµ‹å€¼dataçš„sqlè¯­å¥
 		strSQL=strSQL+" limit ?,? ";
 		rs=db.execQuery(strSQL, new Object[]{cid,start,pageSize});
-		//step6:»ñÈ¡data½á¹û¼¯ºÏ
+		//step6:è·å–dataç»“æœé›†åˆ
 		List<Comment> lisComment=new ArrayList<Comment>();
 		Comment comm=null;
 		try {
@@ -235,11 +235,11 @@ public class CommentDaoImpl implements ICommentDao {
 		} finally{
 			db.closeConn();
 		}
-		//step7:¸³ÖµÏàÓ¦ÊôĞÔ
+		//step7:èµ‹å€¼ç›¸åº”å±æ€§
 		pb.setData(lisComment);
 		pb.setCurrentPage(currentPage);
 		pb.setPageSize(pageSize);
-		//step*:·µ»Ø½á¹û
+		//step*:è¿”å›ç»“æœ
 		return pb;
 	}
 }

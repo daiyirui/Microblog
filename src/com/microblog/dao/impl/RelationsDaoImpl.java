@@ -16,12 +16,12 @@ public class RelationsDaoImpl implements IRelationsDao {
 	}
 	@Override
 	public int DeleteRelationByuid(int uid, int gid) {
-		//Ê×ÏÈÅĞ¶ÏÊÇµ¥Ïò»¹ÊÇË«Ğİ¹Ø×¢
+		//é¦–å…ˆåˆ¤æ–­æ˜¯å•å‘è¿˜æ˜¯åŒä¼‘å…³æ³¨
 		String sql="SELECT * FROM relations where r_id=? and g_id=?";
 		ResultSet rs=db.execQuery(sql, new Object[]{gid,uid});
 		try {
 			if(rs.next()){
-				//Ö¤Ã÷ÊÇË«Ğİ¹Ø×¢
+				//è¯æ˜æ˜¯åŒä¼‘å…³æ³¨
 				int id=rs.getInt(1);
 				sql="update relations set rstate=0 where rid=?";
 				int a=db.execOther(sql, new Object[]{id});
@@ -31,7 +31,7 @@ public class RelationsDaoImpl implements IRelationsDao {
 					return 0;
 				}
 			}
-			//ÎŞÂÛÊÇµ¥»¹ÊÇË«Ğİ£¬¶¼ĞèÒªÉ¾³ıµÇÂ½Õß¹Ø×¢µÄĞÅÏ¢
+			//æ— è®ºæ˜¯å•è¿˜æ˜¯åŒä¼‘ï¼Œéƒ½éœ€è¦åˆ é™¤ç™»é™†è€…å…³æ³¨çš„ä¿¡æ¯
 			sql="delete from relations where r_id=? and g_id=?";
 			int b =db.execOther(sql, new Object[]{uid,gid});
 			return b;
@@ -44,20 +44,20 @@ public class RelationsDaoImpl implements IRelationsDao {
 		}		
 	}
 	/*
-	 * 1.¼ì²é´ËÓÃ»§ÊÇ·ñÒÑ¾­ÔÚÎÒµÄºÃÓÑÖĞ£ºSELECT * FROM relations where r_id=1 and g_id=2
-	 *    Èç¹ûÓĞ·µ»ØÖµÖ¤Ã÷ÒÑ¾­Ìí¼Ó¹ı£¬·µ»Ø0£¬Èç¹ûÃ»ÓĞÔòÖ´ĞĞÏÂÒ»²½
-	 * 2.ÅĞ¶Ï´ËÓÃ»§ÊÇ·ñÒÑ¾­¹Ø×¢ÎÒÁË(ÔÚÎÒ¹Ø×¢ËûÖ®Ç°)£ºSELECT * FROM relations where r_id=2 and g_id=1
-	 * 3.Èç¹ûÓĞ·µ»ØÖµ£¬Ö¤Ã÷ÒÑ¾­¹Ø×¢ÎÒÁË£¬ËµÃ÷ÊÇË«Ïò¹Ø×¢£¬¸ü¸Ärstate=1
+	 * 1.æ£€æŸ¥æ­¤ç”¨æˆ·æ˜¯å¦å·²ç»åœ¨æˆ‘çš„å¥½å‹ä¸­ï¼šSELECT * FROM relations where r_id=1 and g_id=2
+	 *    å¦‚æœæœ‰è¿”å›å€¼è¯æ˜å·²ç»æ·»åŠ è¿‡ï¼Œè¿”å›0ï¼Œå¦‚æœæ²¡æœ‰åˆ™æ‰§è¡Œä¸‹ä¸€æ­¥
+	 * 2.åˆ¤æ–­æ­¤ç”¨æˆ·æ˜¯å¦å·²ç»å…³æ³¨æˆ‘äº†(åœ¨æˆ‘å…³æ³¨ä»–ä¹‹å‰)ï¼šSELECT * FROM relations where r_id=2 and g_id=1
+	 * 3.å¦‚æœæœ‰è¿”å›å€¼ï¼Œè¯æ˜å·²ç»å…³æ³¨æˆ‘äº†ï¼Œè¯´æ˜æ˜¯åŒå‘å…³æ³¨ï¼Œæ›´æ”¹rstate=1
 	 *   update  relations set rstate=1 where 
 	 *   insert into relations values(null,1,2,1);
-	 * 4Èç¹ûÃ»ÓĞ·µ»ØÖµ£¬Ö¤Ã÷µ¥Ïò¹Ø×¢£¬Ö»×öÌí¼Ó²Ù×÷
+	 * 4å¦‚æœæ²¡æœ‰è¿”å›å€¼ï¼Œè¯æ˜å•å‘å…³æ³¨ï¼Œåªåšæ·»åŠ æ“ä½œ
 	 * insert into relations values(null,1,2,0);    
 	 */
 	@Override
 	public int InsertRelation(int uid, int gid,int flag) {
 		try {
 				if(flag>0){
-					//3,Ö¤Ã÷ÊÇË«Ïò¹Ø×¢
+					//3,è¯æ˜æ˜¯åŒå‘å…³æ³¨
 					String sql1="update relations set rstate=1 where r_id=? and g_id=?";
 					System.out.println("sql1:"+sql1);
 					int a=db.execOther(sql1, new Object[]{uid,gid});
@@ -74,7 +74,7 @@ public class RelationsDaoImpl implements IRelationsDao {
 						return 0;
 					}
 				}else{
-					//4Ö¤Ã÷ÊÇµ¥Ïò¹Ø×¢
+					//4è¯æ˜æ˜¯å•å‘å…³æ³¨
 					String	sql2="insert into relations(r_id,g_id,rstate) values(?,?,?)";
 					int b=db.execOther(sql2, new Object[]{uid,gid,flag});
 					if(b==1){
@@ -91,19 +91,19 @@ public class RelationsDaoImpl implements IRelationsDao {
 			db.closeConn();
 		}
 	}
-	 //ÏÔÊ¾µÇÂ¼Õß¹Ø×¢ÈËµÄÊıÁ¿
+	 //æ˜¾ç¤ºç™»å½•è€…å…³æ³¨äººçš„æ•°é‡
 	@Override
 	public int CountByAttention(int uid) {
-		//step1:sqlÓï¾ä
+		//step1:sqlè¯­å¥
 		String sql="SELECT count(*) FROM relations where r_id=?";
 		
-		//step3:»ñÈ¡·µ»ØÖµ½á¹û¼¯
+		//step3:è·å–è¿”å›å€¼ç»“æœé›†
 		ResultSet rs=db.execQuery(sql, new Object[]{uid});
-		//step4:int ±äÁ¿
+		//step4:int å˜é‡
 		int countrelation=0;
 		try {
 			if(rs.next()){
-				//step6:±éÀú½á¹û¼¯
+				//step6:éå†ç»“æœé›†
 				countrelation=rs.getInt(1);
 				return countrelation;
 			}else{
@@ -119,16 +119,16 @@ public class RelationsDaoImpl implements IRelationsDao {
 	}
 	@Override
 	public int CountByVermicelli(int uid) {
-		//step1:sqlÓï¾ä
+		//step1:sqlè¯­å¥
 		String sql="SELECT count(*) FROM relations where g_id=? and r_id!=?";
 		
-		//step3:»ñÈ¡·µ»ØÖµ½á¹û¼¯
+		//step3:è·å–è¿”å›å€¼ç»“æœé›†
 		ResultSet rs=db.execQuery(sql, new Object[]{uid,uid});
-		//step4:int ±äÁ¿
+		//step4:int å˜é‡
 		int countver=0;
 		try {
 			if(rs.next()){
-				//step6:±éÀú½á¹û¼¯
+				//step6:éå†ç»“æœé›†
 				countver=rs.getInt(1);
 				return countver;
 			}else{
@@ -142,17 +142,17 @@ public class RelationsDaoImpl implements IRelationsDao {
 			db.closeConn();
 		}		
 	}
-	//ÅĞ¶Ï¶Ô·½ÊÇ·ñÒÑ¾­¹Ø×¢ÎÒÀ²
+	//åˆ¤æ–­å¯¹æ–¹æ˜¯å¦å·²ç»å…³æ³¨æˆ‘å•¦
 	@Override
 	public int FindRelationByuid(int uid, int gid) {
-		//step1:sqlÓï¾ä
+		//step1:sqlè¯­å¥
 		int flag = 0;
 		String sql="SELECT count(*) FROM relations where r_id=? and g_id=?";
 		ResultSet rs=db.execQuery(sql, new Object[]{uid,gid});
 		
 		try {
 			while(rs.next()){
-				//1.Ö¤Ã÷¶Ô·½ÒÑ¾­¹Ø×¢ÎÒÁË
+				//1.è¯æ˜å¯¹æ–¹å·²ç»å…³æ³¨æˆ‘äº†
 				flag =rs.getInt(1);
 			}
 		} catch (SQLException e) {

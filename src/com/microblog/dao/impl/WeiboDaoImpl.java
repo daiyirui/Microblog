@@ -18,14 +18,14 @@ public class WeiboDaoImpl implements IWeiboDao {
 	}
 	@Override
 	public PageBean FindWeiboByuid(int uid, String strSQL, int currentPage,int pageSize) {
-		//²½Öè1£º´´½¨Ò»¸öPageBean¶ÔÏó		
+		//æ­¥éª¤1ï¼šåˆ›å»ºä¸€ä¸ªPageBeanå¯¹è±¡		
 		PageBean pb = new PageBean();
-		//²½Öè2£º´´½¨Ò»¸öSQLÓï¾ä£¬ÓÃÀ´»ñÈ¡emp±íÖĞ¼ÇÂ¼µÄ¸öÊı
+		//æ­¥éª¤2ï¼šåˆ›å»ºä¸€ä¸ªSQLè¯­å¥ï¼Œç”¨æ¥è·å–empè¡¨ä¸­è®°å½•çš„ä¸ªæ•°
 		String strSQL1 = strSQL;
 		strSQL1 = strSQL1.substring(strSQL1.toLowerCase().indexOf("from"));
 		strSQL1 = "select count(*) "+strSQL1;
 		System.out.println("$$"+strSQL);
-		//²½Öè3£ºÖ´ĞĞSQLÓï¾äµÃµ½½á¹û²¢½«½á¹û¸³Öµ¸øpb¶ÔÏóµÄtotalRows;
+		//æ­¥éª¤3ï¼šæ‰§è¡ŒSQLè¯­å¥å¾—åˆ°ç»“æœå¹¶å°†ç»“æœèµ‹å€¼ç»™pbå¯¹è±¡çš„totalRows;
 		ResultSet rs = db.execQuery(strSQL1, new Object[]{uid});
 		try {
 			rs.next();			
@@ -34,12 +34,12 @@ public class WeiboDaoImpl implements IWeiboDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
-		//²½Öè4£ºĞèÒªÎªpb¶ÔÏóµÄdataÊôĞÔ¸³Öµ,Ê×ÏÈ»ñÈ¡±¾Ò³µÄµÚÒ»ÌõÊı¾İµÄĞĞ±ê
+		//æ­¥éª¤4ï¼šéœ€è¦ä¸ºpbå¯¹è±¡çš„dataå±æ€§èµ‹å€¼,é¦–å…ˆè·å–æœ¬é¡µçš„ç¬¬ä¸€æ¡æ•°æ®çš„è¡Œæ ‡
 		int start = (currentPage-1)*pageSize;
-		//²½Öè5£º´´½¨¶¯Ì¬µÄSQLÓï¾ä
+		//æ­¥éª¤5ï¼šåˆ›å»ºåŠ¨æ€çš„SQLè¯­å¥
 		strSQL = strSQL+" limit ?,?";
 		rs = db.execQuery(strSQL, new Object[]{uid,start,pageSize});
-		//²½Öè6£º½«»ñÈ¡µÄ½á¹û¼¯½øĞĞ·â×°
+		//æ­¥éª¤6ï¼šå°†è·å–çš„ç»“æœé›†è¿›è¡Œå°è£…
 		List<Weibo> lstWeibo = new ArrayList<Weibo>();
 		Weibo weibo=null;
 		try {
@@ -79,24 +79,24 @@ public class WeiboDaoImpl implements IWeiboDao {
 		} finally{
 			db.closeConn();	
 		}		
-		//²½Öè7£º½«»ñÈ¡µ½µÄ±¾Ò³Êı¾İ¸³Öµ¸øpb¶ÔÏóµÄdataÊôĞÔ
+		//æ­¥éª¤7ï¼šå°†è·å–åˆ°çš„æœ¬é¡µæ•°æ®èµ‹å€¼ç»™pbå¯¹è±¡çš„dataå±æ€§
 		pb.setData(lstWeibo);		
-		//²½Öè8£ºÎªÆäÓàÊôĞÔ¸³Öµ,ÎŞĞèÎªtotalPages¸³Öµ£¬ÒÔÎªtotalRowsºÍpageSizeÒÑ¾­±»¸³Öµ
+		//æ­¥éª¤8ï¼šä¸ºå…¶ä½™å±æ€§èµ‹å€¼,æ— éœ€ä¸ºtotalPagesèµ‹å€¼ï¼Œä»¥ä¸ºtotalRowså’ŒpageSizeå·²ç»è¢«èµ‹å€¼
 		pb.setCurrentPage(currentPage);
 		pb.setPageSize(pageSize);				
-		//²½Öè9£º½«·â×°ºÃµÄpb¶ÔÏó·µ»Ø
+		//æ­¥éª¤9ï¼šå°†å°è£…å¥½çš„pbå¯¹è±¡è¿”å›
 		return pb;
 	}	
 	@Override
 	public PageBean FuzzyFindWeiboByPage(int uid, String content,String strSQL, int currentPage, int pageSize) {
-		//²½Öè1£º´´½¨Ò»¸öPageBean¶ÔÏó		
+		//æ­¥éª¤1ï¼šåˆ›å»ºä¸€ä¸ªPageBeanå¯¹è±¡		
 		PageBean pb = new PageBean();
-		//²½Öè2£º´´½¨Ò»¸öSQLÓï¾ä£¬ÓÃÀ´»ñÈ¡emp±íÖĞ¼ÇÂ¼µÄ¸öÊı
+		//æ­¥éª¤2ï¼šåˆ›å»ºä¸€ä¸ªSQLè¯­å¥ï¼Œç”¨æ¥è·å–empè¡¨ä¸­è®°å½•çš„ä¸ªæ•°
 		String strSQL1 = strSQL;
 		strSQL1 = strSQL1.substring(strSQL1.toLowerCase().indexOf("from"));
 		strSQL1 = "select count(*) "+strSQL1;
 		System.out.println("$$"+strSQL);
-		//²½Öè3£ºÖ´ĞĞSQLÓï¾äµÃµ½½á¹û²¢½«½á¹û¸³Öµ¸øpb¶ÔÏóµÄtotalRows;
+		//æ­¥éª¤3ï¼šæ‰§è¡ŒSQLè¯­å¥å¾—åˆ°ç»“æœå¹¶å°†ç»“æœèµ‹å€¼ç»™pbå¯¹è±¡çš„totalRows;
 		ResultSet rs = db.execQuery(strSQL1, new Object[]{"%"+content+"%",uid,uid});
 		try {
 			rs.next();			
@@ -105,12 +105,12 @@ public class WeiboDaoImpl implements IWeiboDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
-		//²½Öè4£ºĞèÒªÎªpb¶ÔÏóµÄdataÊôĞÔ¸³Öµ,Ê×ÏÈ»ñÈ¡±¾Ò³µÄµÚÒ»ÌõÊı¾İµÄĞĞ±ê
+		//æ­¥éª¤4ï¼šéœ€è¦ä¸ºpbå¯¹è±¡çš„dataå±æ€§èµ‹å€¼,é¦–å…ˆè·å–æœ¬é¡µçš„ç¬¬ä¸€æ¡æ•°æ®çš„è¡Œæ ‡
 		int start = (currentPage-1)*pageSize;
-		//²½Öè5£º´´½¨¶¯Ì¬µÄSQLÓï¾ä
+		//æ­¥éª¤5ï¼šåˆ›å»ºåŠ¨æ€çš„SQLè¯­å¥
 		strSQL = strSQL+" limit ?,?";
 		rs = db.execQuery(strSQL, new Object[]{"%"+content+"%",uid,uid,start,pageSize});
-		//²½Öè6£º½«»ñÈ¡µÄ½á¹û¼¯½øĞĞ·â×°
+		//æ­¥éª¤6ï¼šå°†è·å–çš„ç»“æœé›†è¿›è¡Œå°è£…
 		List<Weibo> lstWeibo = new ArrayList<Weibo>();
 		Weibo weibo=null;
 		try {
@@ -150,12 +150,12 @@ public class WeiboDaoImpl implements IWeiboDao {
 		} finally{
 			db.closeConn();	
 		}		
-		//²½Öè7£º½«»ñÈ¡µ½µÄ±¾Ò³Êı¾İ¸³Öµ¸øpb¶ÔÏóµÄdataÊôĞÔ
+		//æ­¥éª¤7ï¼šå°†è·å–åˆ°çš„æœ¬é¡µæ•°æ®èµ‹å€¼ç»™pbå¯¹è±¡çš„dataå±æ€§
 		pb.setData(lstWeibo);		
-		//²½Öè8£ºÎªÆäÓàÊôĞÔ¸³Öµ,ÎŞĞèÎªtotalPages¸³Öµ£¬ÒÔÎªtotalRowsºÍpageSizeÒÑ¾­±»¸³Öµ
+		//æ­¥éª¤8ï¼šä¸ºå…¶ä½™å±æ€§èµ‹å€¼,æ— éœ€ä¸ºtotalPagesèµ‹å€¼ï¼Œä»¥ä¸ºtotalRowså’ŒpageSizeå·²ç»è¢«èµ‹å€¼
 		pb.setCurrentPage(currentPage);
 		pb.setPageSize(pageSize);				
-		//²½Öè9£º½«·â×°ºÃµÄpb¶ÔÏó·µ»Ø
+		//æ­¥éª¤9ï¼šå°†å°è£…å¥½çš„pbå¯¹è±¡è¿”å›
 		return pb;
 	}
 	@Override
@@ -169,7 +169,7 @@ public class WeiboDaoImpl implements IWeiboDao {
 	}
 	@Override
 	public Weibo FindBywid(int wid) {
-		// »ñÈ¡µ¥¸öÎ¢²©ĞÅÏ¢¶ÔÏó
+		// è·å–å•ä¸ªå¾®åšä¿¡æ¯å¯¹è±¡
 		Weibo weibo=new Weibo();
 		String sql="SELECT * FROM weibo where wremarks!='no' and  wid=?";
 		ResultSet rs=db.execQuery(sql, new Object[]{wid});
@@ -211,26 +211,26 @@ public class WeiboDaoImpl implements IWeiboDao {
 			db.closeConn();
 		}		
 	}
-	/* ×ª·¢Î¢²©Ë¼Â·Á÷³Ì£º
-	 * 1.ÅĞ¶Ï´ËÎ¢²©ĞÅÏ¢ÊÇ·ñÒÑ¾­×ª·¢¹ı£ºselect * from weibo where wcontent='±±·çÍø' and w_uid=1
-	 * 2.update×ª·¢µÄ´ËÎ¢²©ĞÅÏ¢Ôö¼ÓÒ»´Î×ª·¢´ÎÊı    update weibo set wtimes=wtimes+1 where wid=2
-	 * 3.Ìí¼ÓÒ»ÑùµÄÄÚÈİµÄÒ»ÌõÎ¢²©ĞÅÏ¢£¬Íâ¼üµÄµÇÂ½Õß±¾ÈËuid£¬×÷Îª×Ô¼ºµÄÒ»ÌõÎ¢²©ĞÅÏ¢´æ´¢¡£
+	/* è½¬å‘å¾®åšæ€è·¯æµç¨‹ï¼š
+	 * 1.åˆ¤æ–­æ­¤å¾®åšä¿¡æ¯æ˜¯å¦å·²ç»è½¬å‘è¿‡ï¼šselect * from weibo where wcontent='åŒ—é£ç½‘' and w_uid=1
+	 * 2.updateè½¬å‘çš„æ­¤å¾®åšä¿¡æ¯å¢åŠ ä¸€æ¬¡è½¬å‘æ¬¡æ•°    update weibo set wtimes=wtimes+1 where wid=2
+	 * 3.æ·»åŠ ä¸€æ ·çš„å†…å®¹çš„ä¸€æ¡å¾®åšä¿¡æ¯ï¼Œå¤–é”®çš„ç™»é™†è€…æœ¬äººuidï¼Œä½œä¸ºè‡ªå·±çš„ä¸€æ¡å¾®åšä¿¡æ¯å­˜å‚¨ã€‚
 	 */
 	@Override
 	public int ForWardMicroblog(int uid, String wcontent, int wid, String wimage) {
-		//step1:sqlÓï¾ä£¬ÅĞ¶Ï´ËÎ¢²©ĞÅÏ¢ÊÇ·ñÒÑ¾­×ª·¢¹ı
+		//step1:sqlè¯­å¥ï¼Œåˆ¤æ–­æ­¤å¾®åšä¿¡æ¯æ˜¯å¦å·²ç»è½¬å‘è¿‡
 		String sql="select * from weibo where wremarks!='no' and  wcontent=? and w_uid=?";
-		//step2£º·µ»Ø½á¹û¼¯
+		//step2ï¼šè¿”å›ç»“æœé›†
 		ResultSet rs=db.execQuery(sql, new Object[]{wcontent,uid});
 		try {
-			if(rs.next()){//Ö¤Ã÷´ËÎ¢²©ĞÅÏ¢ÒÑ¾­×ª·¢¹ı
+			if(rs.next()){//è¯æ˜æ­¤å¾®åšä¿¡æ¯å·²ç»è½¬å‘è¿‡
 				return 0;
 			}else{
-				//step3:update×ª·¢µÄ´ËÎ¢²©ĞÅÏ¢Ôö¼ÓÒ»´Î×ª·¢´ÎÊı
+				//step3:updateè½¬å‘çš„æ­¤å¾®åšä¿¡æ¯å¢åŠ ä¸€æ¬¡è½¬å‘æ¬¡æ•°
 				String sql1="update weibo set wtimes=wtimes+1 where wid=?";
 				int flag=db.execOther(sql1, new Object[]{wid});
-				if(flag==1){  //Ö¤Ã÷update³É¹¦
-					//step4:Ìí¼ÓÒ»ÑùµÄÄÚÈİµÄÒ»ÌõÎ¢²©ĞÅÏ¢
+				if(flag==1){  //è¯æ˜updateæˆåŠŸ
+					//step4:æ·»åŠ ä¸€æ ·çš„å†…å®¹çš„ä¸€æ¡å¾®åšä¿¡æ¯
 					String sql2="";
 					int fla=0;
 					if(wimage.equals("")){
@@ -241,7 +241,7 @@ public class WeiboDaoImpl implements IWeiboDao {
 						fla=db.execOther(sql2, new Object[]{wcontent,wimage,uid});
 					}
 					if(fla==1){
-						return 1;//Ö¤Ã÷Èı²¿ºËĞÄ²Ù×÷³É¹¦£¡
+						return 1;//è¯æ˜ä¸‰éƒ¨æ ¸å¿ƒæ“ä½œæˆåŠŸï¼
 					}else{
 						return 0;
 					}
@@ -259,14 +259,14 @@ public class WeiboDaoImpl implements IWeiboDao {
 	}
 	@Override
 	public PageBean FindByPage(int uid,String strSQL, int currentPage, int pageSize) {
-		//step1:´´½¨pagebean¶ÔÏó,ÎªÆäÎå¸öÊôĞÔ¸³Öµ
+		//step1:åˆ›å»ºpagebeanå¯¹è±¡,ä¸ºå…¶äº”ä¸ªå±æ€§èµ‹å€¼
 		PageBean pb=new PageBean();
-		//step2:sqlÓï¾ä£¬ÓÃÀ´»ñÈ¡weibo±íÖĞ¼ÇÂ¼ÊıÁ¿ count(*)   SELECT * FROM weibo order by wdate desc
+		//step2:sqlè¯­å¥ï¼Œç”¨æ¥è·å–weiboè¡¨ä¸­è®°å½•æ•°é‡ count(*)   SELECT * FROM weibo order by wdate desc
 		String sqlcount=strSQL;
 		sqlcount=sqlcount.substring(sqlcount.toLowerCase().indexOf("from"));
 		sqlcount = "select count(*) "+sqlcount;
 		System.out.println("SqlCount:"+sqlcount);
-		//step3:Ö´ĞĞsqlÓï¾äµÃµ½½á¹û²¢½«Æä½á¹û¸³Öµ¸øpbµÄtotalRows±äÁ¿£»
+		//step3:æ‰§è¡Œsqlè¯­å¥å¾—åˆ°ç»“æœå¹¶å°†å…¶ç»“æœèµ‹å€¼ç»™pbçš„totalRowså˜é‡ï¼›
 		ResultSet rs=db.execQuery(sqlcount, new Object[]{uid,uid});
 		try {
 			if(rs.next()){
@@ -277,12 +277,12 @@ public class WeiboDaoImpl implements IWeiboDao {
 			e.printStackTrace();
 			pb.setTotalRows(0);
 		}
-		//step4:ÎªpbµÄdataÊôĞÔ¸³Öµ£¬Ê×ÏÈÎª»ñÈ¡±¾Ò³µÚÒ»Ìõ¼ÇÂ¼ÉèÖÃĞĞ±ê
+		//step4:ä¸ºpbçš„dataå±æ€§èµ‹å€¼ï¼Œé¦–å…ˆä¸ºè·å–æœ¬é¡µç¬¬ä¸€æ¡è®°å½•è®¾ç½®è¡Œæ ‡
 		int start=(currentPage-1)*pageSize;
-		//step5:´´½¨¸³ÖµdataµÄsqlÓï¾ä
+		//step5:åˆ›å»ºèµ‹å€¼dataçš„sqlè¯­å¥
 		strSQL=strSQL+" limit ?,? ";
 		rs=db.execQuery(strSQL, new Object[]{uid,uid,start,pageSize});
-		//step6:»ñÈ¡data½á¹û¼¯ºÏ
+		//step6:è·å–dataç»“æœé›†åˆ
 		List<Weibo> lisWeibo=new ArrayList<Weibo>();
 		Weibo weibo=null;
 		try {
@@ -322,23 +322,23 @@ public class WeiboDaoImpl implements IWeiboDao {
 		} finally{
 			db.closeConn();
 		}
-		//step7:¸³ÖµÏàÓ¦ÊôĞÔ
+		//step7:èµ‹å€¼ç›¸åº”å±æ€§
 		pb.setData(lisWeibo);
 		pb.setCurrentPage(currentPage);
 		pb.setPageSize(pageSize);
-		//step*:·µ»Ø½á¹û
+		//step*:è¿”å›ç»“æœ
 		return pb;
 	}
 	@Override
 	public PageBean FindByPageOnlyOwn(int uid,String strSQL, int currentPage, int pageSize) {
-		//step1:´´½¨pagebean¶ÔÏó,ÎªÆäÎå¸öÊôĞÔ¸³Öµ
+		//step1:åˆ›å»ºpagebeanå¯¹è±¡,ä¸ºå…¶äº”ä¸ªå±æ€§èµ‹å€¼
 		PageBean pb=new PageBean();
-		//step2:sqlÓï¾ä£¬ÓÃÀ´»ñÈ¡weibo±íÖĞ¼ÇÂ¼ÊıÁ¿ count(*)   SELECT * FROM weibo order by wdate desc
+		//step2:sqlè¯­å¥ï¼Œç”¨æ¥è·å–weiboè¡¨ä¸­è®°å½•æ•°é‡ count(*)   SELECT * FROM weibo order by wdate desc
 		String sqlcount=strSQL;
 		sqlcount=sqlcount.substring(sqlcount.toLowerCase().indexOf("from"));
 		sqlcount = "select count(*) "+sqlcount;
 		System.out.println("SqlCount:"+sqlcount);
-		//step3:Ö´ĞĞsqlÓï¾äµÃµ½½á¹û²¢½«Æä½á¹û¸³Öµ¸øpbµÄtotalRows±äÁ¿£»
+		//step3:æ‰§è¡Œsqlè¯­å¥å¾—åˆ°ç»“æœå¹¶å°†å…¶ç»“æœèµ‹å€¼ç»™pbçš„totalRowså˜é‡ï¼›
 		ResultSet rs=db.execQuery(sqlcount, new Object[]{uid});
 		try {
 			if(rs.next()){
@@ -349,12 +349,12 @@ public class WeiboDaoImpl implements IWeiboDao {
 			e.printStackTrace();
 			pb.setTotalRows(0);
 		}
-		//step4:ÎªpbµÄdataÊôĞÔ¸³Öµ£¬Ê×ÏÈÎª»ñÈ¡±¾Ò³µÚÒ»Ìõ¼ÇÂ¼ÉèÖÃĞĞ±ê
+		//step4:ä¸ºpbçš„dataå±æ€§èµ‹å€¼ï¼Œé¦–å…ˆä¸ºè·å–æœ¬é¡µç¬¬ä¸€æ¡è®°å½•è®¾ç½®è¡Œæ ‡
 		int start=(currentPage-1)*pageSize;
-		//step5:´´½¨¸³ÖµdataµÄsqlÓï¾ä
+		//step5:åˆ›å»ºèµ‹å€¼dataçš„sqlè¯­å¥
 		strSQL=strSQL+" limit ?,? ";
 		rs=db.execQuery(strSQL, new Object[]{uid,start,pageSize});
-		//step6:»ñÈ¡data½á¹û¼¯ºÏ
+		//step6:è·å–dataç»“æœé›†åˆ
 		List<Weibo> lisWeibo=new ArrayList<Weibo>();
 		Weibo weibo=null;
 		try {
@@ -394,26 +394,26 @@ public class WeiboDaoImpl implements IWeiboDao {
 		} finally{
 			db.closeConn();
 		}
-		//step7:¸³ÖµÏàÓ¦ÊôĞÔ
+		//step7:èµ‹å€¼ç›¸åº”å±æ€§
 		pb.setData(lisWeibo);
 		pb.setCurrentPage(currentPage);
 		pb.setPageSize(pageSize);
-		//step*:·µ»Ø½á¹û
+		//step*:è¿”å›ç»“æœ
 		return pb;
 	}
-    //ÏÔÊ¾µÇÂ¼ÕßºÍÆäËù¹Ø×¢ÈËµÄÎ¢²©ĞÅÏ¢
+    //æ˜¾ç¤ºç™»å½•è€…å’Œå…¶æ‰€å…³æ³¨äººçš„å¾®åšä¿¡æ¯
 	@Override
 	public List<Weibo> FindByLogin(int uid) {
 		// TODO Auto-generated method stub
-		//step1:sqlÓï¾ä
+		//step1:sqlè¯­å¥
 		String sql="SELECT * FROM weibo where wremarks!='no' and w_uid= any(select g_id from relations where r_id=?) or w_uid=? order by wdate desc";
-		//step3:»ñÈ¡·µ»ØÖµ½á¹û¼¯
+		//step3:è·å–è¿”å›å€¼ç»“æœé›†
 		ResultSet rs=db.execQuery(sql, new Object[]{uid,uid});
-		//step4:´´½¨weiboÊµÌåÀà¶ÔÏó
+		//step4:åˆ›å»ºweiboå®ä½“ç±»å¯¹è±¡
 		Weibo weibo=null;
-		//step5:´´½¨List½áºÏ¶ÔÏó
+		//step5:åˆ›å»ºListç»“åˆå¯¹è±¡
 		List<Weibo> lisWeibo=new ArrayList<Weibo>();
-		//step6:±éÀú½á¹û¼¯
+		//step6:éå†ç»“æœé›†
 		try {
 			while (rs.next()) {
 		       weibo=new Weibo();		
@@ -443,7 +443,7 @@ public class WeiboDaoImpl implements IWeiboDao {
 				    use.setUremarks(re.getString("uremarks"));
 				    weibo.setUse(use);
 			   }
-			   //step6:Ìí¼Óµ½list¼¯ºÏ
+			   //step6:æ·»åŠ åˆ°listé›†åˆ
 			   lisWeibo.add(weibo);
 			}
 			return lisWeibo;
@@ -455,18 +455,18 @@ public class WeiboDaoImpl implements IWeiboDao {
 			db.closeConn();
 		}		
 	}
-	//ÏÔÊ¾µÇÂ¼ÕßÎ¢²©ÊıÁ¿
+	//æ˜¾ç¤ºç™»å½•è€…å¾®åšæ•°é‡
 	@Override
 	public int CountByMicroblog(int uid) {
-		//step1£º sqlÓï¾ä
+		//step1ï¼š sqlè¯­å¥
 		String sql="SELECT count(*) FROM weibo where wremarks!='no' and  w_uid=?";		
-		//step3:»ñÈ¡·µ»ØÖµ½á¹û¼¯
+		//step3:è·å–è¿”å›å€¼ç»“æœé›†
 		ResultSet rs=db.execQuery(sql, new Object[]{uid});
-		//step4:int ±äÁ¿
+		//step4:int å˜é‡
 		int countblog=0;
 		try {
 			if(rs.next()){
-				//step6:±éÀú½á¹û¼¯
+				//step6:éå†ç»“æœé›†
 				countblog=rs.getInt(1);
 				return countblog;
 			}else{

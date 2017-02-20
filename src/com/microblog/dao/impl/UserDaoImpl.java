@@ -58,7 +58,7 @@ public class UserDaoImpl implements IUserDao {
     @Override
 	public int RegisterUser(Users use) {
 		// TODO Auto-generated method stub
-    	String sql="insert into users values(null,?,?,?,?,?,now(),'1','±¾¿Æ',null,'','','null')";
+    	String sql="insert into users values(null,?,?,?,?,?,now(),'1','æœ¬ç§‘',null,'','','null')";
      	int a=db.execOther(sql, new Object[]{use.getUname(),use.getUpwd(),use.getUnickname(),use.getUsex(),use.getUaddress()});
 		return a;
 	}
@@ -131,14 +131,14 @@ public class UserDaoImpl implements IUserDao {
 	
     @Override
 	public PageBean FindFansByPage(int uid, String strSQL, int currentPage,int pageSize) {
-    	//step1:´´½¨pagebean¶ÔÏó,ÎªÆäÎå¸öÊôĞÔ¸³Öµ
+    	//step1:åˆ›å»ºpagebeanå¯¹è±¡,ä¸ºå…¶äº”ä¸ªå±æ€§èµ‹å€¼
 		PageBean pb=new PageBean();
-		//step2:sqlÓï¾ä£¬ÓÃÀ´»ñÈ¡weibo±íÖĞ¼ÇÂ¼ÊıÁ¿ count(*)   SELECT * FROM weibo order by wdate desc
+		//step2:sqlè¯­å¥ï¼Œç”¨æ¥è·å–weiboè¡¨ä¸­è®°å½•æ•°é‡ count(*)   SELECT * FROM weibo order by wdate desc
 		String sqlcount=strSQL;
 		sqlcount=sqlcount.substring(sqlcount.toLowerCase().indexOf("from"));
 		sqlcount = "select count(*) "+sqlcount;
 		System.out.println("SqlCount:"+sqlcount);
-		//step3:Ö´ĞĞsqlÓï¾äµÃµ½½á¹û²¢½«Æä½á¹û¸³Öµ¸øpbµÄtotalRows±äÁ¿£»
+		//step3:æ‰§è¡Œsqlè¯­å¥å¾—åˆ°ç»“æœå¹¶å°†å…¶ç»“æœèµ‹å€¼ç»™pbçš„totalRowså˜é‡ï¼›
 		ResultSet rs=db.execQuery(sqlcount, new Object[]{uid,uid});
 		try {
 			if(rs.next()){
@@ -149,12 +149,12 @@ public class UserDaoImpl implements IUserDao {
 			e.printStackTrace();
 			pb.setTotalRows(0);
 		}
-		//step4:ÎªpbµÄdataÊôĞÔ¸³Öµ£¬Ê×ÏÈÎª»ñÈ¡±¾Ò³µÚÒ»Ìõ¼ÇÂ¼ÉèÖÃĞĞ±ê
+		//step4:ä¸ºpbçš„dataå±æ€§èµ‹å€¼ï¼Œé¦–å…ˆä¸ºè·å–æœ¬é¡µç¬¬ä¸€æ¡è®°å½•è®¾ç½®è¡Œæ ‡
 		int start=(currentPage-1)*pageSize;
-		//step5:´´½¨¸³ÖµdataµÄsqlÓï¾ä
+		//step5:åˆ›å»ºèµ‹å€¼dataçš„sqlè¯­å¥
 		strSQL=strSQL+" limit ?,? ";
 		rs=db.execQuery(strSQL, new Object[]{uid,uid,start,pageSize});
-		//step6:»ñÈ¡data½á¹û¼¯ºÏ
+		//step6:è·å–dataç»“æœé›†åˆ
 		List<Users> lisUser=new ArrayList<Users>();
 		Users use=null;
 		try {
@@ -181,23 +181,23 @@ public class UserDaoImpl implements IUserDao {
 		} finally{
 			db.closeConn();
 		}
-		//step7:¸³ÖµÏàÓ¦ÊôĞÔ
+		//step7:èµ‹å€¼ç›¸åº”å±æ€§
 		pb.setData(lisUser);
 		pb.setCurrentPage(currentPage);
 		pb.setPageSize(pageSize);
-		//step*:·µ»Ø½á¹û
+		//step*:è¿”å›ç»“æœ
 		return pb;
 	}
     @Override
 	public PageBean FindByOverInterest(int uid, String strSQL, int currentPage,	int pageSize) {
-    	//step1:´´½¨pagebean¶ÔÏó,ÎªÆäÎå¸öÊôĞÔ¸³Öµ
+    	//step1:åˆ›å»ºpagebeanå¯¹è±¡,ä¸ºå…¶äº”ä¸ªå±æ€§èµ‹å€¼
 		PageBean pb=new PageBean();
-		//step2:sqlÓï¾ä£¬ÓÃÀ´»ñÈ¡weibo±íÖĞ¼ÇÂ¼ÊıÁ¿ count(*)   SELECT * FROM weibo order by wdate desc
+		//step2:sqlè¯­å¥ï¼Œç”¨æ¥è·å–weiboè¡¨ä¸­è®°å½•æ•°é‡ count(*)   SELECT * FROM weibo order by wdate desc
 		String sqlcount=strSQL;
 		sqlcount=sqlcount.substring(sqlcount.toLowerCase().indexOf("from"));
 		sqlcount = "select count(*) "+sqlcount;
 		System.out.println("SqlCount:"+sqlcount);
-		//step3:Ö´ĞĞsqlÓï¾äµÃµ½½á¹û²¢½«Æä½á¹û¸³Öµ¸øpbµÄtotalRows±äÁ¿£»
+		//step3:æ‰§è¡Œsqlè¯­å¥å¾—åˆ°ç»“æœå¹¶å°†å…¶ç»“æœèµ‹å€¼ç»™pbçš„totalRowså˜é‡ï¼›
 		ResultSet rs=db.execQuery(sqlcount, new Object[]{uid,uid});
 		try {
 			if(rs.next()){
@@ -208,12 +208,12 @@ public class UserDaoImpl implements IUserDao {
 			e.printStackTrace();
 			pb.setTotalRows(0);
 		}
-		//step4:ÎªpbµÄdataÊôĞÔ¸³Öµ£¬Ê×ÏÈÎª»ñÈ¡±¾Ò³µÚÒ»Ìõ¼ÇÂ¼ÉèÖÃĞĞ±ê
+		//step4:ä¸ºpbçš„dataå±æ€§èµ‹å€¼ï¼Œé¦–å…ˆä¸ºè·å–æœ¬é¡µç¬¬ä¸€æ¡è®°å½•è®¾ç½®è¡Œæ ‡
 		int start=(currentPage-1)*pageSize;
-		//step5:´´½¨¸³ÖµdataµÄsqlÓï¾ä
+		//step5:åˆ›å»ºèµ‹å€¼dataçš„sqlè¯­å¥
 		strSQL=strSQL+" limit ?,? ";
 		rs=db.execQuery(strSQL, new Object[]{uid,uid,start,pageSize});
-		//step6:»ñÈ¡data½á¹û¼¯ºÏ
+		//step6:è·å–dataç»“æœé›†åˆ
 		List<Users> lisUser=new ArrayList<Users>();
 		Users use=null;
 		try {
@@ -240,24 +240,24 @@ public class UserDaoImpl implements IUserDao {
 		} finally{
 			db.closeConn();
 		}
-		//step7:¸³ÖµÏàÓ¦ÊôĞÔ
+		//step7:èµ‹å€¼ç›¸åº”å±æ€§
 		pb.setData(lisUser);
 		pb.setCurrentPage(currentPage);
 		pb.setPageSize(pageSize);
-		//step*:·µ»Ø½á¹û
+		//step*:è¿”å›ç»“æœ
 		return pb;
 	}
 	@Override
 	public Users UserLoginCheck(String usn, String pwd) {
-		//step1:´´½¨²éÑ¯Êı¾İ¿âsqlÓï¾ä
+		//step1:åˆ›å»ºæŸ¥è¯¢æ•°æ®åº“sqlè¯­å¥
 		String sql="SELECT * FROM users where uremarks!='no' and uname=? and upwd=?";
 		
-		//step3:»ñÈ¡²éÑ¯½á¹û
+		//step3:è·å–æŸ¥è¯¢ç»“æœ
 		ResultSet rs=db.execQuery(sql, new Object[]{usn,pwd});
-		//step4:´´½¨UsersÊµÌåÀà¶ÔÏó
+		//step4:åˆ›å»ºUserså®ä½“ç±»å¯¹è±¡
 		Users use=new Users();
 		try {
-			//step5:»ñÈ¡½á¹û¶ÔÏó
+			//step5:è·å–ç»“æœå¯¹è±¡
 			if(rs.next()){
 			    use.setUid(rs.getInt("uid"));
 			    use.setUname(rs.getString("uname"));
@@ -284,21 +284,21 @@ public class UserDaoImpl implements IUserDao {
 			db.closeConn();
 		}		
 	}	
-	//»ñÈ¡µÇÂ¼Õß¹Ø×¢ÈËµÄĞÅÏ¢
+	//è·å–ç™»å½•è€…å…³æ³¨äººçš„ä¿¡æ¯
 	@Override
 	public List<Users> FindByInterest(int uid) {
-		//step1:´´½¨²éÑ¯Óï¾ä
+		//step1:åˆ›å»ºæŸ¥è¯¢è¯­å¥
 		String sql="SELECT * FROM users where uremarks!='no' and uid!=? and uid not in (select g_id from relations where r_id=?)";
 		
-		//step3:»ñÈ¡²éÑ¯½á¹û
+		//step3:è·å–æŸ¥è¯¢ç»“æœ
 		ResultSet rs=db.execQuery(sql, new Object[]{uid,uid});
-		//step4:´´½¨UsersÊµÌåÀà¶ÔÏó
+		//step4:åˆ›å»ºUserså®ä½“ç±»å¯¹è±¡
 		Users use=null;
-		//step5:´´½¨list¼¯ºÏ
+		//step5:åˆ›å»ºlisté›†åˆ
 		List<Users> listUser=new ArrayList<Users>();
 		try {
 			while (rs.next()) {
-				//step6:»ñÈ¡½á¹û¶ÔÏó
+				//step6:è·å–ç»“æœå¯¹è±¡
 				use=new Users();
 				use.setUid(rs.getInt("uid"));
 			    use.setUname(rs.getString("uname"));
@@ -313,7 +313,7 @@ public class UserDaoImpl implements IUserDao {
 			    use.setUques(rs.getString("uques"));
 			    use.setUrealname(rs.getString("urealname"));
 			    use.setUremarks(rs.getString("uremarks"));
-			    //½áºÏÌí¼Ó¶ÔÏó
+			    //ç»“åˆæ·»åŠ å¯¹è±¡
 				listUser.add(use);
 			}
 			return listUser;
@@ -328,18 +328,18 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public List<Users> FindByListener() {
-		//step1:sqlÓï¾ä
+		//step1:sqlè¯­å¥
 		String sql="SELECT * FROM users where uremarks!='no' order by uid limit 55";
 		
-		//step3:»ñÈ¡²éÑ¯½á¹û
+		//step3:è·å–æŸ¥è¯¢ç»“æœ
 		ResultSet rs=db.execQuery(sql, new Object[]{});
-		//step4:´´½¨UsersÊµÌåÀà¶ÔÏó
+		//step4:åˆ›å»ºUserså®ä½“ç±»å¯¹è±¡
 		Users use=null;
-		//step5:´´½¨list¼¯ºÏ
+		//step5:åˆ›å»ºlisté›†åˆ
 		List<Users> listUser=new ArrayList<Users>();
 		try {
 			while (rs.next()) {
-				//step6:»ñÈ¡½á¹û¶ÔÏó
+				//step6:è·å–ç»“æœå¯¹è±¡
 				use=new Users();
 				use.setUid(rs.getInt("uid"));
 			    use.setUname(rs.getString("uname"));
@@ -354,7 +354,7 @@ public class UserDaoImpl implements IUserDao {
 			    use.setUques(rs.getString("uques"));
 			    use.setUrealname(rs.getString("urealname"));
 			    use.setUremarks(rs.getString("uremarks"));
-			    //½áºÏÌí¼Ó¶ÔÏó
+			    //ç»“åˆæ·»åŠ å¯¹è±¡
 				listUser.add(use);
 			}
 			return listUser;
