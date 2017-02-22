@@ -47,7 +47,7 @@
     <td class="phototitle" align="center">
       <font size="5">What do you think is the best Blog in the world?</font>
       <a href="register.jsp" style="text-decoration:none;"><font size="4" color="#6699cc">&nbsp;立即加入我们</font></a>
-      <font size="3" style="font-family:幼圆; font-weight:bold">开始微博之旅</font>###### <a href="BallotServlet?action=0" style="text-decoration:none;"><font size="4" color="#6699cc">&nbsp;热门话题
+      <font size="3" style="font-family:幼圆; font-weight:bold">开始微博之旅</font><a href="index.jsp" style="text-decoration:none;"><font size="4" color="#6699cc">&nbsp;首页&nbsp;</font></a><a href="BallotServlet?action=0" style="text-decoration:none;"><font size="4" color="#6699cc">&nbsp;热门话题
       </font></a>
     </td>    
   </tr>

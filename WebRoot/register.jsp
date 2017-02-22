@@ -38,11 +38,41 @@ $("#date").text((new Date()).toString());
  ///用数组作级联
  function selectProvincesArray(){
   var cityList=new Array();
-  cityList['天津市']=['和平','河西','南开','河东','塘沽'];
-  cityList['北京市']=['东城','西城','崇文','宣武','朝阳'];
+  cityList['天津市']=['和平区','河西区','河北区','河东区','南开区','红桥区','东丽区','西青区','津南区','北辰区','武清','宝坻','蓟县','静海','宁河','塘沽','大港','汉沽'];
+  cityList['北京市']=['东城区','西城区','崇文区','宣武区','朝阳区','海淀区','丰台区','石景山区','顺义区','昌平区','门头沟区','通州区','房山区','大兴区','怀柔区','平谷区','延庆县','密云县'];
   cityList['四川省']=['成都','绵阳','眉山','雅安','自贡'];
   cityList['云南省']=['昆明','丽江','大理'];
   cityList['浙江省']=['杭州','嘉兴','义乌'];
+  cityList['河北省']=['石家庄','唐山','秦皇岛','邯郸','邢台','保定','张家口','承德','沧州','廊坊','衡水']; 
+  cityList['山西省']=[]; 
+  cityList['内蒙古自治区']=[]; 
+  cityList['辽宁省']=[]; 
+  cityList['吉林省']=[]; 
+  cityList['黑龙江省']=[]; 
+  cityList['上海市']=[]; 
+  cityList['江苏省']=[]; 
+  cityList['浙江省']=[]; 
+  cityList['安徽省']=[];
+  cityList['福建省']=[];  
+  cityList['江西省']=[];  
+  cityList['山东省']=[];  
+  cityList['河南省']=[];  
+  cityList['湖北省']=[];  
+  cityList['湖南省']=[];  
+  cityList['广东省']=[];  
+  cityList['广西壮族自治区']=[];  
+  cityList['海南省']=[];  
+  cityList['重庆市']=[];  
+  cityList['贵州省']=[]; 
+  cityList['西藏自治区']=[]; 
+  cityList['陕西省']=[]; 
+  cityList['甘肃省']=[]; 
+  cityList['青海省']=[]; 
+  cityList['宁夏回族自治区']=[]; 
+  cityList['新疆维吾尔自治区']=[]; 
+  cityList['台湾省']=[]; 
+  cityList['香港特别行政区']=[]; 
+  cityList['澳门特别行政区']=[];
   var pIndex=document.forms.selectProvinceArray.value;
   var newpotion3;
      document.forms.selectCityArray.options.length=0;
@@ -113,11 +143,43 @@ $("#date").text((new Date()).toString());
               <td align="right">所在省份：</td>
               <td> <select name="selectProvinceArray" onChange="selectProvincesArray()">
  <option>--请选择所在省份--</option>
- <option value="天津市">天津市</option>
  <option value="北京市">北京市</option>
+ <option value="天津市">天津市</option>
+ <option value="河北省">河北省</option>
+ <option value="山西省">山西省</option>
+ <option value="内蒙古自治区">内蒙古自治区</option>
+ <option value="辽宁省">辽宁省</option>
+ <option value="吉林省">吉林省</option>
+ <option value="黑龙江省">黑龙江省</option>
+ <option value="上海市">上海市</option>
+ <option value="江苏省">江苏省</option>
+ <option value="浙江省">浙江省</option>
+ <option value="安徽省">安徽省</option>
+ <option value="福建省">福建省</option>
+ <option value="江西省">江西省</option>
+ <option value="山东省">山东省</option>
+ <option value="河南省">河南省</option>
+ <option value="湖北省">湖北省</option>
+ <option value="湖南省">湖南省</option>
+ <option value="广东省">广东省</option>
+ <option value="广西壮族自治区">广西壮族自治区</option>
+ <option value="海南省">海南省</option>
+ <option value="重庆市">重庆市</option>
  <option value="四川省">四川省</option>
+ <option value="贵州省">贵州省</option>
  <option value="云南省">云南省</option>
- <option value="浙江省">浙江省</option></select>
+ <option value="西藏自治区">西藏自治区</option>
+ <option value="陕西省">陕西省</option>
+ <option value="甘肃省">甘肃省</option>
+ <option value="青海省">青海省</option>
+ <option value="宁夏回族自治区">宁夏回族自治区</option>
+ <option value="新疆维吾尔自治区">新疆维吾尔自治区</option>
+ <option value="台湾省">台湾省</option>
+ <option value="香港特别行政区">香港特别行政区</option>
+ <option value="澳门特别行政区">澳门特别行政区</option>
+ 
+ 
+ </select>
                  </td>
               <td><div class="Validform_checktip"></div></td>
             </tr>
