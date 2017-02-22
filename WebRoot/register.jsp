@@ -138,9 +138,27 @@
 										<td>&nbsp;</td>
 									</tr>
 									<tr>
+										<td align="right">真实姓名：</td>
+										<td><input name="urealname" type="password" class="input1"
+											id="password" /></td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
 										<td align="right">昵称：</td>
 										<td><input name="unickname" type="text" class="input1"
 											id="nickname" /></td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td align="right">qq账号：</td>
+										<td><input name="uqq" type="text" class="input1"
+											id="uqq" /></td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td align="right">邮箱：</td>
+										<td><input name="uemail" type="text" class="input1"
+											id="uemail" /></td>
 										<td>&nbsp;</td>
 									</tr>
 									<tr>
@@ -215,6 +233,9 @@
 										</select></td>
 
 									</tr>
+									
+									
+									
 									<tr>
 										<td align="right">验证码：</td>
 										<td><input type="text" name="checkcode" value=""

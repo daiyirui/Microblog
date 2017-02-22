@@ -15,6 +15,7 @@ public class Users implements Serializable {
    private String uedu;
    private String upic;
    private String uques;
+   private String uemail;
    private String urealname;
    private String uremarks;
    public Users(){}
@@ -127,11 +128,19 @@ public class Users implements Serializable {
 	public void setUremarks(String uremarks) {
 		this.uremarks = uremarks;
 	}
+	
+	public String getUemail() {
+		return uemail;
+	}
+	public void setUemail(String uemail) {
+		this.uemail = uemail;
+	}
 	@Override
 	public String toString() {
 		return "Users [uid=" + uid + ", uname=" + uname + ", upwd=" + upwd + ", unickname=" + unickname + ", usex="
 				+ usex + ", uaddress=" + uaddress + ", udate=" + udate + ", uqq=" + uqq + ", uedu=" + uedu + ", upic="
-				+ upic + ", uques=" + uques + ", urealname=" + urealname + ", uremarks=" + uremarks + "]";
+				+ upic + ", uques=" + uques + ", uemail=" + uemail + ", urealname=" + urealname + ", uremarks="
+				+ uremarks + "]";
 	}
-	   
+
 }
