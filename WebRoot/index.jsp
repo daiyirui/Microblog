@@ -63,7 +63,7 @@
 							<tr>
 								<c:forEach items="${applicationScope.userListListener}"
 									var="users" varStatus="su">
-									<td><a href="UserDetailServlet?uid=${users.uid}"
+									<td><a href="UserDetailServlet?uid=${users.uid}&action=0"
 										target="_blank"> <img src="${users.upic}"
 											id="${users.uid}" title="${users.uname}"
 											onMouseOver="xianshi(this)" onMouseOut="huifu(this)" />

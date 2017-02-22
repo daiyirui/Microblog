@@ -22,35 +22,25 @@ import com.microblog.po.Users;
 @SuppressWarnings("serial")
 public class UserDetailServlet extends HttpServlet {
 
-	public UserDetailServlet() {
-		super();
-	}
-	public void destroy() {
-		super.destroy(); 
-	}
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		this.doPost(request, response);
 	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-		request.setCharacterEncoding("utf-8");
-		int uid=Integer.parseInt(request.getParameter("uid"));
-		HttpSession session=request.getSession();
-		IUsersBiz useBiz=new UsersBizImpl();
-		Users use=useBiz.SelectByuid(uid);
-		session.setAttribute("UsersDetail", use);
-		IRelationsBiz relationsBiz = new RelationsBizImpl();
-		int interests = relationsBiz.CountByAttention(uid);
-		int follows = relationsBiz.CountByVermicelli(uid);
-		session.setAttribute("interests", interests);
-		session.setAttribute("follows", follows);
-		response.sendRedirect("user.jsp");
+		String action = request.getParameter("action");
+		if("0".equals(action)) {
+			forwardUserPage(request,response);
+		}else{
+			
+		}
 	}
-	public void init() throws ServletException {
-		// Put your code here
+	private void forwardUserPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int uid=Integer.parseInt(request.getParameter("uid"));
+		 IUsersBiz useBiz=new UsersBizImpl();
+		 Users user=useBiz.SelectByuid(uid);
+		 request.setAttribute("user", user);
+		 request.getRequestDispatcher("user.jsp").forward(request, response);
 	}
 
 }
