@@ -1,13 +1,15 @@
 package com.microblog.po;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class Bloghot implements Serializable {
     private Integer bid;
     private Integer bstate;
     private String btitle;
-    private String bitems;
+    private List<Bloghotitem> bitems = new ArrayList<Bloghotitem>();
     private String bimages;
     private Integer bvote;
     private String bremarks;
@@ -17,15 +19,11 @@ public class Bloghot implements Serializable {
     	this.bid=bid;
     	this.bstate=bstate;
     	this.btitle=btitle;
-    	this.bitems=bitems;
-    	this.bvote=bvote;
     	this.bremarks=bremarks;
     }
     public Bloghot( Integer bstate,String btitle,String bitems,Integer bvote,String bremarks){    	
     	this.bstate=bstate;
     	this.btitle=btitle;
-    	this.bitems=bitems;
-    	this.bvote=bvote;
     	this.bremarks=bremarks;
     }
 	public Integer getBid() {
@@ -53,10 +51,11 @@ public class Bloghot implements Serializable {
 	public void setBtitle(String btitle) {
 		this.btitle = btitle;
 	}
-	public String getBitems() {
+	
+	public List<Bloghotitem> getBitems() {
 		return bitems;
 	}
-	public void setBitems(String bitems) {
+	public void setBitems(List<Bloghotitem> bitems) {
 		this.bitems = bitems;
 	}
 	public Integer getBvote() {
@@ -76,5 +75,6 @@ public class Bloghot implements Serializable {
 		return "Bloghot [bid=" + bid + ", bstate=" + bstate + ", btitle=" + btitle + ", bitems=" + bitems + ", bimages="
 				+ bimages + ", bvote=" + bvote + ", bremarks=" + bremarks + "]";
 	}
+	
 	
 }

@@ -11,6 +11,7 @@ import com.microblog.common.JDBCUtil;
 import com.microblog.dao.IBollhotDao;
 import com.microblog.dbutil.DBConn;
 import com.microblog.po.Bloghot;
+import com.microblog.po.Bloghotitem;
 
 
 public class BollhotDaoImpl implements IBollhotDao {
@@ -20,7 +21,6 @@ public class BollhotDaoImpl implements IBollhotDao {
     }
 	@Override
 	public List<Bloghot> FindByHot() {
-		// TODO Auto-generated method stub
 		String sql="SELECT * FROM bloghot where bstate=1";
 		ResultSet rs=db.execQuery(sql, new Object[]{});
 		List<Bloghot> litHot=new ArrayList<Bloghot>();
@@ -31,7 +31,6 @@ public class BollhotDaoImpl implements IBollhotDao {
 		        hot.setBid(rs.getInt("bid"));
 		        hot.setBstate(rs.getInt("bstate"));
 				hot.setBtitle(rs.getString("btitle"));
-				hot.setBitems(rs.getString("bitems"));
 				hot.setBimages(rs.getString("bimages"));
 				hot.setBvote(rs.getInt("bvote"));
 				hot.setBremarks(rs.getString("bremarks"));
@@ -71,12 +70,13 @@ public class BollhotDaoImpl implements IBollhotDao {
 			        hot.setBid(rs.getInt("bid"));
 			        hot.setBstate(rs.getInt("bstate"));
 					hot.setBtitle(rs.getString("btitle"));
-					hot.setBitems(rs.getString("bitems"));
 					hot.setBimages(rs.getString("bimages"));
 					hot.setBvote(rs.getInt("bvote"));
 					hot.setBremarks(rs.getString("bremarks"));
+					hot.setBitems(FindAllHotItem(rs.getInt("bid")));
 					litHot.add(hot);
 				}
+	            System.out.println(litHot);
 				return litHot;
 	        } catch (Exception e) {
 	            e.printStackTrace();
@@ -85,5 +85,35 @@ public class BollhotDaoImpl implements IBollhotDao {
 	            return litHot;
 	        }
 		
+	}
+	
+	public List<Bloghotitem> FindAllHotItem(Integer bid) {
+		Connection conn = null;
+        Statement stat = null;
+        ResultSet rs = null;
+        String sql="SELECT * FROM bloghotitem where bid="+bid;
+		List<Bloghotitem> bloghotitems=new ArrayList<Bloghotitem>();
+				
+		conn = JDBCUtil.getConn();
+	        try {
+	            stat = conn.createStatement();
+	            rs = stat.executeQuery(sql);
+	            while (rs.next()) {
+	            	Bloghotitem item=new Bloghotitem();
+	            	item.setBloghotitemid(rs.getInt("bloghotitemid"));
+			        item.setBid(rs.getInt("bid"));
+			        item.setBitemimage(rs.getString("bitemimage"));
+			        item.setBitemName(rs.getString("bitemName"));
+			        item.setBvote(rs.getInt("bvote"));
+			        item.setBremarks(rs.getString("remark"));
+			        bloghotitems.add(item);
+				}
+				return bloghotitems;
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            JDBCUtil.closeDB(conn, stat, rs);
+	            return bloghotitems;
+	        }
 	}
 }

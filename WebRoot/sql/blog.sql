@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50163
 File Encoding         : 65001
 
-Date: 2017-02-20 12:01:20
+Date: 2017-02-22 16:25:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -48,7 +48,7 @@ CREATE TABLE `bloghot` (
   `bid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `bstate` int(10) unsigned NOT NULL COMMENT '热议状态',
   `btitle` varchar(80) NOT NULL COMMENT '热议标题',
-  `bitems` varchar(50) NOT NULL COMMENT '热议items',
+  `bimages` varchar(50) DEFAULT NULL,
   `bvote` int(10) unsigned NOT NULL COMMENT '热议投票',
   `bremarks` text COMMENT '备注',
   PRIMARY KEY (`bid`)
@@ -57,16 +57,34 @@ CREATE TABLE `bloghot` (
 -- ----------------------------
 -- Records of bloghot
 -- ----------------------------
-INSERT INTO `bloghot` VALUES ('1', '1', '谁最有可能成为美网大满贯得主', '费德勒', '13', null);
-INSERT INTO `bloghot` VALUES ('2', '1', '谁最有可能成为美网大满贯得主', '纳达尔', '14', null);
-INSERT INTO `bloghot` VALUES ('3', '1', '谁最有可能成为美网大满贯得主', '德约科维奇', '14', null);
-INSERT INTO `bloghot` VALUES ('4', '1', '谁最有可能成为美网大满贯得主', '罗迪克', '15', null);
-INSERT INTO `bloghot` VALUES ('5', '1', '谁最有可能成为美网大满贯得主', '穆雷', '16', null);
-INSERT INTO `bloghot` VALUES ('6', '1', '您最喜爱的暑期档影视作品', '加勒比海盗', '47001', null);
-INSERT INTO `bloghot` VALUES ('7', '1', '您最喜爱的暑期档影视作品', '功夫熊猫2', '38002', null);
-INSERT INTO `bloghot` VALUES ('8', '1', '您最喜爱的暑期档影视作品', '哈利波特7', '31001', null);
-INSERT INTO `bloghot` VALUES ('9', '1', '您最喜爱的暑期档影视作品', '变形金刚3', '29001', null);
-INSERT INTO `bloghot` VALUES ('10', '1', '您最喜爱的暑期档影视作品', '裸婚时代', '25001', null);
+INSERT INTO `bloghot` VALUES ('1', '1', '谁最有可能成为美网大满贯得主', null, '13', null);
+INSERT INTO `bloghot` VALUES ('2', '1', '您最喜爱的暑期档影视作品', null, '15', null);
+
+-- ----------------------------
+-- Table structure for `bloghotitem`
+-- ----------------------------
+DROP TABLE IF EXISTS `bloghotitem`;
+CREATE TABLE `bloghotitem` (
+  `bloghotitemid` int(2) NOT NULL,
+  `bitemName` varchar(80) CHARACTER SET utf8 NOT NULL,
+  `bitemimage` varchar(80) CHARACTER SET utf8 DEFAULT NULL,
+  `bvote` int(15) NOT NULL,
+  `bid` int(2) NOT NULL,
+  `remark` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`bloghotitemid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of bloghotitem
+-- ----------------------------
+INSERT INTO `bloghotitem` VALUES ('1', '周星驰', 'face/6.jpg', '0', '1', '12');
+INSERT INTO `bloghotitem` VALUES ('2', '刘德华', 'face/1.jpg', '1', '1', null);
+INSERT INTO `bloghotitem` VALUES ('3', '周杰伦', 'face/2.jpg', '2', '1', null);
+INSERT INTO `bloghotitem` VALUES ('4', '王敏', 'face/4.jpg', '3', '1', null);
+INSERT INTO `bloghotitem` VALUES ('5', '射雕英雄传', null, '12', '2', null);
+INSERT INTO `bloghotitem` VALUES ('6', '鹿鼎记', null, '13', '2', '1');
+INSERT INTO `bloghotitem` VALUES ('7', '封神榜', null, '10', '2', '11');
+INSERT INTO `bloghotitem` VALUES ('8', '琅琊榜', null, '18', '2', '13');
 
 -- ----------------------------
 -- Table structure for `collection`
@@ -82,7 +100,7 @@ CREATE TABLE `collection` (
   PRIMARY KEY (`lid`),
   KEY `FK_l_uid` (`l_uid`),
   CONSTRAINT `FK_l_uid` FOREIGN KEY (`l_uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='收藏表';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='收藏表';
 
 -- ----------------------------
 -- Records of collection
@@ -92,6 +110,8 @@ INSERT INTO `collection` VALUES ('5', '1', '没有图片的微博', '2012-05-31 
 INSERT INTO `collection` VALUES ('6', '1', '黄岩岛', '2012-06-02 20:34:45', '/Microblog/upload/pic/s.jpg', null);
 INSERT INTO `collection` VALUES ('7', '1', '???', '2017-01-09 18:23:14', '/Microblog/upload/pic/1.jpg', null);
 INSERT INTO `collection` VALUES ('8', '1', '', '2017-01-09 18:23:22', '', null);
+INSERT INTO `collection` VALUES ('9', '1', '???', '2017-02-21 19:31:38', '/Microblog/upload/pic/1.jpg', null);
+INSERT INTO `collection` VALUES ('10', '1', '???', '2017-02-21 19:31:49', '/Microblog/upload/pic/1.jpg', null);
 
 -- ----------------------------
 -- Table structure for `comment`
@@ -320,7 +340,7 @@ CREATE TABLE `weibo` (
   PRIMARY KEY (`wid`),
   KEY `FK_w_uid` (`w_uid`),
   CONSTRAINT `FK_w_uid` FOREIGN KEY (`w_uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='微博信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='微博信息表';
 
 -- ----------------------------
 -- Records of weibo
@@ -335,6 +355,7 @@ INSERT INTO `weibo` VALUES ('25', '没有图片的微博', '2012-05-30 20:15:46'
 INSERT INTO `weibo` VALUES ('26', '有图片', '2012-05-30 20:15:56', '/Microblog/upload/pic/n.jpg', '0', '1', 'null', '0');
 INSERT INTO `weibo` VALUES ('27', 'hel', '2012-05-30 20:15:56', null, '0', '1', 'null', '0');
 INSERT INTO `weibo` VALUES ('28', '???', '2017-01-05 19:16:32', '/Microblog/upload/pic/1.jpg', '0', '1', 'null', '0');
+INSERT INTO `weibo` VALUES ('29', '123???', '2017-02-21 09:19:50', '/Microblog/upload/pic/Desert.jpg', '0', '1', 'null', '0');
 
 -- ----------------------------
 -- Procedure structure for `hel`

@@ -35,13 +35,7 @@ document.getElementById(spanName).innerHTML = 140 - document.getElementById(text
 }  
 
 function show(id){
-
-	var obj=document.getElementById(id);
-	obj.style.display="block";
-}
-function hide(id){
-	var obj=document.getElementById(id);
-	obj.style.display="none";
+	 document.location.href="./login.jsp";
 }
 </script>  
 
@@ -81,33 +75,39 @@ function hide(id){
 <!-- container 开始-->
 <table border="0" align="center" cellpadding="0" cellspacing="0" id="container">
   <tr>
-    <td width="670" height="600" valign="top">
+    <td width="600" height="600" valign="top">
    
-       <table width="709" border="0" cellpadding="0" >
+       <table width="600" border="0" cellpadding="0" >
   <tr>
-    <td width="705" height="46"><span class="STYLE6"><h1>微博热议：</h1></span></td>
+    <td width="600" height="46"><span class="STYLE6"><h1>微博热议：</h1></span></td>
   </tr>
     <c:forEach items="${bloghots}"  var="bloghot" begin="0" end="5" >
 	   	<tr>
 	   	    <td height="166">
-    <form id="form1" name="form1" method="post" action="BallotServlet">
+    <form id="form1" name="form1" method="post" action="login.jsp">
     <table width="707" border="1" cellpadding="0">
       <tr>
         <td height="35" colspan="2">${bloghot.btitle}：</td>
       </tr>
+       <c:forEach items="${bloghot.bitems}"  var="bitem"  >
       <tr>
-        <td height="84" colspan="2" align="left">
+        <td height="20" colspan="1" align="left">
      
-             <label><input type="radio" name="tennis" value="${bloghot.bitems}" />${bloghot.bitems}</label>  
+             <label><input type="radio" name="tennis" value="${bitem.bitemName}" />${bitem.bitemName}</label>  
              
+	   </td><td height="20" colspan="1" align="left">
+	         <label>当前票数:${bitem.bvote}</label>
 	   </td>
      
         </tr> 
-          <tr>
-          <td height="84" colspan="2" align="left">
-       ${bloghot.bimages}
-       </td>
-       </tr>   
+        <c:if test="${ !empty bitem.bitemimage }">
+        <tr>
+          <td height="60" colspan="2" align="left">
+           ${bitem.bitemimage}
+          </td>
+       </tr>
+        </c:if>
+       </c:forEach>   
       <tr>
         <td width="462" height="37" align="right"><input type="submit" value="投票" /></td>
         <td width="239" align="right"><input type="button" onclick="show('staResult')" value="查看投票结果" /></td>
