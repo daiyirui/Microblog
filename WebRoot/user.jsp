@@ -53,9 +53,8 @@
             <td><p>注册日期：${user.udate }<br/><br/>
             教育信息：${user.uedu }<br /><br/>
             QQ：${user.uqq }<br /><br/>
-            <c:if test="!empty user.uemail">
+           
             邮箱：${user.uemail }<br /><br/>
-            </c:if>
             
             <br/></p></td>
           </tr>
