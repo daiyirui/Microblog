@@ -8,6 +8,7 @@ public class Bloghot implements Serializable {
     private Integer bstate;
     private String btitle;
     private String bitems;
+    private String bimages;
     private Integer bvote;
     private String bremarks;
     public Bloghot(){    	
@@ -39,6 +40,13 @@ public class Bloghot implements Serializable {
 	public void setBstate(Integer bstate) {
 		this.bstate = bstate;
 	}
+	
+	public String getBimages() {
+		return bimages;
+	}
+	public void setBimages(String bimages) {
+		this.bimages = bimages;
+	}
 	public String getBtitle() {
 		return btitle;
 	}
@@ -65,8 +73,8 @@ public class Bloghot implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Bloghot [bid=" + bid + ", bstate=" + bstate + ", btitle=" + btitle + ", bitems=" + bitems + ", bvote="
-				+ bvote + ", bremarks=" + bremarks + "]";
+		return "Bloghot [bid=" + bid + ", bstate=" + bstate + ", btitle=" + btitle + ", bitems=" + bitems + ", bimages="
+				+ bimages + ", bvote=" + bvote + ", bremarks=" + bremarks + "]";
 	}
 	
 }

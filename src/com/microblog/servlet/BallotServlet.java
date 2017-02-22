@@ -37,7 +37,7 @@ public class BallotServlet extends HttpServlet {
 	  private void indexBallot(HttpServletRequest request, HttpServletResponse response) {
 		  try{
 			  IBollhotBiz bolBiz=new BollhotBizImpl();
-			  List<Bloghot> bloghots = bolBiz.SelectByHot();
+			  List<Bloghot> bloghots = bolBiz.SelectAllHot();
 			  request.setAttribute("bloghots", bloghots);
 		      request.getRequestDispatcher("./index_ballot.jsp").forward(request, response);
 			}catch (Exception e) {

@@ -49,7 +49,7 @@ function hide(id){
 </head>
 <body>
  <div>
- ${bloghots}
+
    <table style="margin-left: 150px; margin-top: 40px">
     <tr>
 	  <td>&nbsp;
@@ -87,52 +87,36 @@ function hide(id){
   <tr>
     <td width="705" height="46"><span class="STYLE6"><h1>微博热议：</h1></span></td>
   </tr>
-  <tr>
-    <td height="166">
+    <c:forEach items="${bloghots}"  var="bloghot" begin="0" end="5" >
+	   	<tr>
+	   	    <td height="166">
     <form id="form1" name="form1" method="post" action="BallotServlet">
     <table width="707" border="1" cellpadding="0">
       <tr>
-        <td height="35" colspan="2">1、${sessionScope.title1}：</td>
-        </tr>
+        <td height="35" colspan="2">${bloghot.btitle}：</td>
+      </tr>
       <tr>
         <td height="84" colspan="2" align="left">
-        <c:if test="${!empty sessionScope.bol1}">
-          <c:forEach items="${sessionScope.bol1}" var="bo">
-             <label><input type="radio" name="tennis" value="${bo.bitems}" />${bo.bitems}</label>  
-          </c:forEach>
-        </c:if>        
+     
+             <label><input type="radio" name="tennis" value="${bloghot.bitems}" />${bloghot.bitems}</label>  
+             
 	   </td>
-        </tr>    
+     
+        </tr> 
+          <tr>
+          <td height="84" colspan="2" align="left">
+       ${bloghot.bimages}
+       </td>
+       </tr>   
       <tr>
         <td width="462" height="37" align="right"><input type="submit" value="投票" /></td>
         <td width="239" align="right"><input type="button" onclick="show('staResult')" value="查看投票结果" /></td>
       </tr>
       
     </table></form></td>
-  </tr>
-  <tr>
-    <td height="114">
-    <form id="form2" name="form2" method="post" action="BallotServlet">
-    <table width="706" border="1" cellpadding="0">
-      <tr>
-        <td height="42" colspan="2">2、${sessionScope.title2}：</td>
-        </tr>
-      <tr>
-        <td height="91" colspan="2">
-         <c:if test="${!empty sessionScope.bol2}">
-          <c:forEach items="${sessionScope.bol2}" var="bo">
-              <label><input type="radio" name="tennis" value="${bo.bitems}" />${bo.bitems}</label>
-          </c:forEach>
-          </c:if>      
-         </td>
-        </tr>
-      <tr>
-       <td width="462" height="37" align="right"><input type="submit" value="投票" /></td>
-         <td width="238" align="right"><input type="button" onclick="show('staResult2')" value="查看投票结果" /></td>
-      </tr>
-    </table>
-    </form></td>
-  </tr>
+	   	
+	   	</tr>
+	</c:forEach>
 </table>
        <!-- weibo 开始-->
       </td> 
