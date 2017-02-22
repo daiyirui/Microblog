@@ -72,7 +72,16 @@ DIV.contextmenu {
 											<font color="#000000" size="3">注册</font>
 										</a>
 									</p>
-								</div></td>
+								</div>
+								<div class="loginin" id="55">
+									<p>
+										<font color="#6f7171" size="2">立即： </font>&nbsp; <a
+											href="javascript:history.go(-1);" style="text-decoration: none;">
+											<font color="#000000" size="3">返回</font>
+										</a>
+									</p>
+								</div>
+								</td>
 						</tr>
 					</table>
 				</td>
@@ -89,8 +98,10 @@ DIV.contextmenu {
 			<td width="600" height="600" valign="top">
 
 				<table width="600" border="0" cellpadding="0">
+				
 					<tr>
-						<td width="600" height="46"><span class="STYLE6"><h1>微博热议：</h1></span></td>
+						<td width="600" height="46"><span class="STYLE6"><h1>微博热议：</h1></span>&nbsp;&nbsp;</td>
+				       
 					</tr>
 					<c:forEach items="${bloghots}" var="bloghot" begin="0" end="5">
 						<tr>

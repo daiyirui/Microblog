@@ -17,7 +17,6 @@ public class UserDaoImpl implements IUserDao {
     }
     @Override
 	public Users FindByMail(String uname,String uques) {
-		// TODO Auto-generated method stub
     	String sql="SELECT * FROM users where uremarks!='no' and uname=? and uques=?";
     	ResultSet rs=db.execQuery(sql, new Object[]{uname,uques});
     	try {
@@ -32,6 +31,7 @@ public class UserDaoImpl implements IUserDao {
 			    use.setUdate(rs.getString("udate"));
 			    use.setUpic(rs.getString("upic"));   
 			    use.setUqq(rs.getString("uqq"));
+			    use.setUemail(rs.getString("uemail"));
 			    use.setUedu(rs.getString("uedu"));
 			    use.setUques(rs.getString("uques"));
 			    use.setUrealname(rs.getString("urealname"));
@@ -80,6 +80,7 @@ public class UserDaoImpl implements IUserDao {
 			    use.setUpic(rs.getString("upic"));   
 			    use.setUqq(rs.getString("uqq"));
 			    use.setUedu(rs.getString("uedu"));
+			    use.setUemail(rs.getString("uemail"));
 			    use.setUques(rs.getString("uques"));
 			    use.setUrealname(rs.getString("urealname"));
 			    use.setUremarks(rs.getString("uremarks"));
@@ -88,7 +89,6 @@ public class UserDaoImpl implements IUserDao {
 				return null;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		} finally{
@@ -112,6 +112,7 @@ public class UserDaoImpl implements IUserDao {
 			    use.setUdate(rs.getString("udate"));
 			    use.setUpic(rs.getString("upic"));   
 			    use.setUqq(rs.getString("uqq"));
+			    use.setUemail(rs.getString("uemail"));
 			    use.setUedu(rs.getString("uedu"));
 			    use.setUques(rs.getString("uques"));
 			    use.setUrealname(rs.getString("urealname"));
@@ -169,6 +170,7 @@ public class UserDaoImpl implements IUserDao {
 					    use.setUdate(rs.getString("udate"));
 					    use.setUpic(rs.getString("upic"));   
 					    use.setUqq(rs.getString("uqq"));
+					    use.setUemail(rs.getString("uemail"));
 					    use.setUedu(rs.getString("uedu"));
 					    use.setUques(rs.getString("uques"));
 					    use.setUrealname(rs.getString("urealname"));
@@ -229,6 +231,7 @@ public class UserDaoImpl implements IUserDao {
 					    use.setUpic(rs.getString("upic"));   
 					    use.setUqq(rs.getString("uqq"));
 					    use.setUedu(rs.getString("uedu"));
+					    use.setUemail(rs.getString("uemail"));
 					    use.setUques(rs.getString("uques"));
 					    use.setUrealname(rs.getString("urealname"));
 					    use.setUremarks(rs.getString("uremarks"));
@@ -269,6 +272,7 @@ public class UserDaoImpl implements IUserDao {
 			    use.setUpic(rs.getString("upic"));
 			    use.setUqq(rs.getString("uqq"));
 			    use.setUedu(rs.getString("uedu"));
+			    use.setUemail(rs.getString("uemail"));
 			    use.setUques(rs.getString("uques"));
 			    use.setUrealname(rs.getString("urealname"));
 			    use.setUremarks(rs.getString("uremarks"));
@@ -309,6 +313,7 @@ public class UserDaoImpl implements IUserDao {
 			    use.setUdate(rs.getString("udate"));
 			    use.setUpic(rs.getString("upic"));
 			    use.setUqq(rs.getString("uqq"));
+			    use.setUemail(rs.getString("uemail"));
 			    use.setUedu(rs.getString("uedu"));
 			    use.setUques(rs.getString("uques"));
 			    use.setUrealname(rs.getString("urealname"));
@@ -350,6 +355,7 @@ public class UserDaoImpl implements IUserDao {
 			    use.setUdate(rs.getString("udate"));
 			    use.setUpic(rs.getString("upic"));
 			    use.setUqq(rs.getString("uqq"));
+			    use.setUemail(rs.getString("uemail"));
 			    use.setUedu(rs.getString("uedu"));
 			    use.setUques(rs.getString("uques"));
 			    use.setUrealname(rs.getString("urealname"));

@@ -103,6 +103,7 @@
 			<td width="55%" align="left">用户注册</td>
 			<td width="25%" align="right">&nbsp;</td>
 		</tr>
+		
 	</table>
 	<!-- header结束-->
 	<!-- container 开始-->
@@ -254,8 +255,10 @@
 									<tr>
 										<td align="center">&nbsp;</td>
 										<td align="left"><input type="checkbox" checked="checked"
-											name="sel" value="select" />自动登录个人主页</td>
-										<td align="center">&nbsp;</td>
+											name="sel" value="select" />自动登录个人主页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="javascript:history.go(-1);">返回</a></td>
+										<td align="center">&nbsp;</td> 	
+
+										
 									</tr>
 								</table></td>
 						</tr>
