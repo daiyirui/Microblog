@@ -10,7 +10,7 @@ public class Weibo implements Serializable {
    private String wimage;
    private String wremarks;
    private Integer wtimes;
-   private Integer w_uid;//Íâ¼ü
+   private Integer w_uid;//ï¿½ï¿½ï¿½
    private Integer wcountcomment;
    private Users use=new Users();
 
@@ -88,4 +88,11 @@ public class Weibo implements Serializable {
 	public void setW_uid(Integer w_uid) {
 		this.w_uid = w_uid;
 	}
+	@Override
+	public String toString() {
+		return "Weibo [wid=" + wid + ", wcontent=" + wcontent + ", wdate=" + wdate + ", wimage=" + wimage
+				+ ", wremarks=" + wremarks + ", wtimes=" + wtimes + ", w_uid=" + w_uid + ", wcountcomment="
+				+ wcountcomment + ", use=" + use + "]";
+	}
+	
 }

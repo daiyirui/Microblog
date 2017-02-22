@@ -3,7 +3,7 @@ package com.microblog.po;
 @SuppressWarnings("serial")
 public class Admins implements java.io.Serializable{
     private Integer aid;
-    private Integer a_pid;//Íâ¼ü
+    private Integer a_pid;//ï¿½ï¿½ï¿½
     private String aname;
     private String apwd;
     private String adate;
@@ -81,4 +81,10 @@ public class Admins implements java.io.Serializable{
 	public void setAremarks(String aremarks) {
 		this.aremarks = aremarks;
 	}
+	@Override
+	public String toString() {
+		return "Admins [aid=" + aid + ", a_pid=" + a_pid + ", aname=" + aname + ", apwd=" + apwd + ", adate=" + adate
+				+ ", arealname=" + arealname + ", asex=" + asex + ", aremarks=" + aremarks + "]";
+	}
+	
 }

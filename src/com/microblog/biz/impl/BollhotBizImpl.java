@@ -14,18 +14,20 @@ public class BollhotBizImpl implements IBollhotBiz {
     }
 	@Override
 	public List<Bloghot> SelectByHot() {
-		// TODO Auto-generated method stub
 		return bollDao.FindByHot();
 	}
 
 	@Override
 	public boolean VoitHot(String hot) {
-		// TODO Auto-generated method stub
 		int a =bollDao.VoitHot(hot);
 		if(a==1){
 			return true;
 		}else{
 		return false;
 		}
+	}
+	@Override
+	public List<Bloghot> SelectAllHot() {
+		return bollDao.FindAllHot();
 	}  
 }

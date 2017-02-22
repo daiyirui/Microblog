@@ -54,4 +54,10 @@ public class Permissions implements Serializable {
 	public void setContent(List<Percontent> content) {
 		this.content = content;
 	}
+	@Override
+	public String toString() {
+		return "Permissions [pid=" + pid + ", pname=" + pname + ", pcontent=" + pcontent + ", premarks=" + premarks
+				+ ", content=" + content + "]";
+	}
+	
 }

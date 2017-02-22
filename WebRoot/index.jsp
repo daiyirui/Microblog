@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>微博系统</title>
+    <title>欢迎来到微博 微博-随时随地发现新鲜事</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <link rel="stylesheet" type="text/css" href="css/global.css" />
     <link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -47,7 +47,8 @@
     <td class="phototitle" align="center">
       <font size="5">What do you think is the best Blog in the world?</font>
       <a href="register.jsp" style="text-decoration:none;"><font size="4" color="#6699cc">&nbsp;立即加入我们</font></a>
-      <font size="3" style="font-family:幼圆; font-weight:bold">开始微博之旅</font>
+      <font size="3" style="font-family:幼圆; font-weight:bold">开始微博之旅</font>###### <a href="BallotServlet?action=0" style="text-decoration:none;"><font size="4" color="#6699cc">&nbsp;热门话题
+      </font></a>
     </td>    
   </tr>
   <tr>

@@ -91,4 +91,10 @@ public class Comment implements Serializable {
 	public void setCremarks(String cremarks) {
 		this.cremarks = cremarks;
 	}
+	@Override
+	public String toString() {
+		return "Comment [cid=" + cid + ", c_wid=" + c_wid + ", c_uid=" + c_uid + ", ccontent=" + ccontent + ", cdate="
+				+ cdate + ", cremarks=" + cremarks + ", cimages=" + cimages + ", weibo=" + weibo + ", use=" + use + "]";
+	}
+	
 }

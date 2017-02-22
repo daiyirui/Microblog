@@ -49,4 +49,30 @@ public class BollhotDaoImpl implements IBollhotDao {
 		int a=db.execOther(sql, new Object[]{hot});
 		return a;
 	}
+	
+	@Override
+	public List<Bloghot> FindAllHot() {
+		String sql="SELECT * FROM bloghot where bstate=1 order by bvote desc";
+		ResultSet rs=db.execQuery(sql, new Object[]{});
+		List<Bloghot> litHot=new ArrayList<Bloghot>();
+		Bloghot hot=null;		
+		try {
+			while (rs.next()) {
+				hot=new Bloghot();
+		        hot.setBid(rs.getInt("bid"));
+		        hot.setBstate(rs.getInt("bstate"));
+				hot.setBtitle(rs.getString("btitle"));
+				hot.setBitems(rs.getString("bitems"));
+				hot.setBvote(rs.getInt("bvote"));
+				hot.setBremarks(rs.getString("bremarks"));
+				litHot.add(hot);
+			}
+			return litHot;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}finally{
+			db.closeConn();
+		}		
+	}
 }

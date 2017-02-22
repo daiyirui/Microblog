@@ -53,4 +53,10 @@ public class Percontent implements Serializable {
 	public void setPcremarks(String pcremarks) {
 		this.pcremarks = pcremarks;
 	}
+	@Override
+	public String toString() {
+		return "Percontent [pcid=" + pcid + ", pc_pid=" + pc_pid + ", pcitems=" + pcitems + ", pcurl=" + pcurl
+				+ ", pcremarks=" + pcremarks + "]";
+	}
+	
 }

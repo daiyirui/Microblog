@@ -63,4 +63,10 @@ public class Bloghot implements Serializable {
 	public void setBremarks(String bremarks) {
 		this.bremarks = bremarks;
 	}
+	@Override
+	public String toString() {
+		return "Bloghot [bid=" + bid + ", bstate=" + bstate + ", btitle=" + btitle + ", bitems=" + bitems + ", bvote="
+				+ bvote + ", bremarks=" + bremarks + "]";
+	}
+	
 }

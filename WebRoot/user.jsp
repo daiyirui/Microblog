@@ -14,27 +14,8 @@
 <table id="header" align="center" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="20%" align="center"><img src="images/logo.png" width="178" height="62" /></td>
-    <td width="55%" align="right">
-      <table border="0" align="right" cellpadding="0" cellspacing="0" id="daohang">
-        <tr>
-          <td width="20%"><a href="home.jsp">我的首页</a></td>
-          <td width="20%"><a href="profile.jsp">我的博客</a></td>
-          <td width="20%"><a href="friend.jsp">我的好友</a></td>
-          <td width="20%"><a href="user.jsp">微博热议</a></td>
-        </tr>
-      </table>
-    </td>
-    <td width="25%" align="right">
-      <table id="welcome" border="0" cellspacing="0" cellpadding="0">
-        <tr>          
-          <td width="30" height="30" rowspan="2" class="userface_bg"><img src="face/9.jpg" border="0" width="20" height="20" /></td>
-          <td>${sessionScope.UsersDetail.uname}个人主页！</td>
-        </tr>
-        <tr>
-          <td><a href="index.jsp">[ 退出 ]</a></td>
-        </tr>
-      </table>
-    </td>
+   
+    
   </tr>
 </table>
 <!-- header结束-->
@@ -57,118 +38,9 @@
         </table></td>
       </tr>
     </table>
-      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" id="menu">
-          <tr>
-            <td width="33%" align="center"><table width="165" border="0" align="center" cellpadding="0" cellspacing="0">
-              
-            </table></td>
-            <td width="18%" align="right">&nbsp;</td>
-            <td width="49%" align="center"><form id="form1" name="form1" method="post" action="">
-              <input name="textfield" type="text" class="input" id="textfield" />
-              <input name="button" type="submit" class="btnsearch" id="button" value="搜索" />
-            </form></td>
-          </tr>
-      </table>
-        <!-- weibo 开始-->
-    <c:if test="${!empty sessionScope.UsersDetailWeibo}">
-      <c:forEach items="${sessionScope.UsersDetailWeibo.data}" var="weibo">
-          <table id="weibo" width="90%" border="0" align="center" cellpadding="3" cellspacing="0">
-          <tr>
-            <td rowspan="3" align="center" valign="top"><img src="${weibo.use.upic}" width="50" height="50" /></td>
-            <td width="88%" class="content"><a href="user.jsp">${weibo.use.uname}</a><img src="icon/v.gif" width="11" height="10" align="middle" />： ${weibo.wcontent}</td>
-          </tr>
-          <tr>
-            <td>
-            <c:if test="${weibo.wimage ne null}">
-               <img src="${weibo.wimage}" width="89" height="120" />   
-            </c:if>
-           </td>
-          </tr>
-          <tr>
-            <td height="25"><table width="100%" border="0" cellpadding="0" cellspacing="0" id="weibo_status">
-              <tr>
-                <td>${weibo.wdate}</td>
-                <td align="right">
-                  <a href="ForWardServlet?wid=${weibo.wid}&wcontent=${weibo.wcontent}&wimage=${weibo.wimage}">转发(${weibo.wtimes})</a>  
-                  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                  <a href="CollectionWeiboServlet?wcontent=${weibo.wcontent}&wimage=${weibo.wimage}">收藏</a> 
-                  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                  <a href="CommentServlet?wid=${weibo.wid}">评论(${weibo.wcountcomment})</a>
-                </td>
-              </tr>
-            </table></td>
-          </tr>
-    </table>
-      </c:forEach>
-    </c:if>  
-   <br/>   
      
-    <table align="center" id="page">
-      <tr>
-        <td align="left">第${sessionScope.UsersDetailWeibo.currentPage}页&nbsp;共${sessionScope.UsersDetailWeibo.totalRows}条微博 </td>            
-        <td align="right">
-           <c:if test="${sessionScope.UsersDetailWeibo.currentPage==1}">首页</c:if>
-           <c:if test="${sessionScope.UsersDetailWeibo.currentPage!=1}">
-             <a href="UserChangePageServlet">首页</a>
-             &nbsp;<a href="UserChangePageServlet?np=${sessionScope.UsersDetailWeibo.currentPage-1}">上一页</a>
-           </c:if>
-           <c:if test="${sessionScope.UsersDetailWeibo.currentPage!=sessionScope.UsersDetailWeibo.totalPages}">
-             &nbsp;<a href="UserChangePageServlet?np=${sessionScope.UsersDetailWeibo.currentPage+1}">下一页</a>
-             &nbsp;<a href="UserChangePageServlet?np=${sessionScope.UsersDetailWeibo.totalPages}">尾页</a>
-           </c:if>
-           <c:if test="${sessionScope.UsersDetailWeibo.currentPage==sessionScope.UsersDetailWeibo.totalPages}">&nbsp;尾页</c:if>
-         </td>  
-       </tr>
-    </table>
-    <!-- weibo 结束-->
     </td>
-	    <td width="280" align="center" valign="top" class="pageright">
-        <!-- userinfo 开始-->
-        <table align="center" id="userinfo">
-          <tr>
-            <td width="25%" rowspan="2"><img src="face/9.jpg" width="50" height="50" /></td>
-            <td width="75%"><a href="profile.jsp">${sessionScope.UsersDetail.uname}</a></td>
-          </tr>
-          <tr>
-            <td valign="top">天津</td>
-          </tr>
-          <tr>
-            <td colspan="2" align="left"><table width="80%" border="0" align="left" cellpadding="3" cellspacing="0">
-              <tr>
-                <td align="center" class="split2"><a href="3">关注</a><br>${sessionScope.countDRlation}</td>
-                <td align="center" class="split2"><a href="3">粉丝</a><br>${sessionScope.countDVeri}</td>
-                <td align="center"><a href="#">微博</a><br>${sessionScope.countDBlog}</td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td colspan="2" class="split1"><a href="userinfo.jsp">个人账户设置</a></td>
-          </tr>
-        </table>
-       <table border="0" align="center" cellpadding="0" cellspacing="0" id="userlist">
-          <tr>
-            <td class="title" height="29">可能感兴趣的人</td>
-            <td align="right" class="title"><a href="ChangeUserServlet?change=5">[换一换]</a></td>
-          </tr>
-          
-          <c:if test="${!empty sessionScope.userList }">
-            <c:forEach items="${sessionScope.userList}" var="usl">
-               <tr>
-            <td colspan="2"><table border="0" cellpadding="0" cellspacing="0" class="userdetail">
-              <tr>
-                <td width="26%"><a href="user.jsp"><img src="${usl.upic}" width="50" height="50" border="0" /></a></td>
-                <td width="74%"><a href="user.jsp">${usl.uname}</a>
-                <a href="InsertAttentionServlet?gid=${usl.uid}" style="border: 0px;" >
-                <span class="btnguanzhu" style="width:50px;height: 3px;" id="button3">+关注</span></a>                 
-                <br /><font  color="#333333" size="2px">
-                ${usl.uaddress}</font><br /><font  color="#333333" size="2px">Time：${usl.udate}</font></td>
-              </tr>
-            </table></td>
-          </tr>
-            </c:forEach>
-          </c:if>        
-        </table>
-        <!-- userinfo 结束--></td>
+	  
   </tr>
 	</table>
 <!-- container 结束-->

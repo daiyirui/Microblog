@@ -9,4 +9,6 @@ public interface IBollhotBiz {
 	public List<Bloghot> SelectByHot();
 	//热议投票
 	public boolean VoitHot(String hot);
+	//显示所有微博热议内容，对投票内容进行排序
+	public List<Bloghot> SelectAllHot();
 }

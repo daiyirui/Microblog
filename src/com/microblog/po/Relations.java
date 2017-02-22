@@ -68,5 +68,10 @@ public class Relations implements Serializable {
 	public void setGidUser(Users gidUser) {
 		this.gidUser = gidUser;
 	}
+	@Override
+	public String toString() {
+		return "Relations [rid=" + rid + ", r_id=" + r_id + ", g_id=" + g_id + ", rstate=" + rstate + ", remarks="
+				+ remarks + ", ridUser=" + ridUser + ", gidUser=" + gidUser + "]";
+	}
    
 }
