@@ -22,13 +22,6 @@ import com.microblog.po.Users;
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
 
-	public LoginServlet() {
-		super();
-	}
-	public void destroy() {
-		super.destroy(); // Just puts "destroy" string in log
-		// Put your code here
-	}
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
           this.doPost(request, response);
@@ -36,8 +29,6 @@ public class LoginServlet extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-		request.setCharacterEncoding("utf-8");
 		//step1:获取页面提交表单值
 		String usn=request.getParameter("usn").trim();
 		String pwd=request.getParameter("pwd").trim();
@@ -106,12 +97,10 @@ public class LoginServlet extends HttpServlet {
 		}
 		//step6 错误返回登录页面
 		else{
-			 
-			response.getWriter().printf("<script>alert('用户名或密码错误\n获取此用户被禁用!');location.href='login.jsp'</script>");
+			request.setAttribute("flag", 1);
+			request.getRequestDispatcher("./login.jsp").forward(request, response);
 		}
 	}
-	public void init() throws ServletException {
-		// Put your code here
-	}
+	
 
 }
