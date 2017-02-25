@@ -20,263 +20,125 @@
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>com.microblog.servlet.LoginServlet</servlet-class>
-    <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   
   <servlet>
     <servlet-name>ChangeUserServlet</servlet-name>
     <servlet-class>com.microblog.servlet.ChangeUserServlet</servlet-class>
-     <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   
   <servlet>
     <servlet-name>PageChangeServlet</servlet-name>
     <servlet-class>com.microblog.servlet.PageChangeServlet</servlet-class>
-     <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   
   <servlet>
     <servlet-name>ForWardServlet</servlet-name>
     <servlet-class>com.microblog.servlet.ForWardServlet</servlet-class>
-     <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   
   <servlet>
     <servlet-name>CommentServlet</servlet-name>
     <servlet-class>com.microblog.servlet.CommentServlet</servlet-class>
-     <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   
   <servlet>
     <servlet-name>InsertCommentServlet</servlet-name>
     <servlet-class>com.microblog.servlet.InsertCommentServlet</servlet-class>
-     <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   
   <servlet>
     <servlet-name>ReturnHomeServlet</servlet-name>
     <servlet-class>com.microblog.servlet.ReturnHomeServlet</servlet-class>
-     <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   
   <servlet>
     <servlet-name>InsertWeiboServlet</servlet-name>
     <servlet-class>com.microblog.servlet.InsertWeiboServlet</servlet-class>
-    <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   
   <servlet>
     <servlet-name>CollectionWeiboServlet</servlet-name>
     <servlet-class>com.microblog.servlet.CollectionWeiboServlet</servlet-class>
-     <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   
   <servlet>
     <servlet-name>DeleteCollectionServlet</servlet-name>
     <servlet-class>com.microblog.servlet.DeleteCollectionServlet</servlet-class>
-    <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   <servlet>
     <servlet-name>CollectionChangeServlet</servlet-name>
     <servlet-class>com.microblog.servlet.CollectionChangeServlet</servlet-class>
-    <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   <servlet>
     <servlet-name>InsertAttentionServlet</servlet-name>
     <servlet-class>com.microblog.servlet.InsertAttentionServlet</servlet-class>
-     <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   
   <servlet>
     <servlet-name>DeleteAttentionServlet</servlet-name>
     <servlet-class>com.microblog.servlet.DeleteAttentionServlet</servlet-class>
-     <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   <servlet>
-    
-   
     <servlet-name>FriendChangeServlet</servlet-name>
     <servlet-class>com.microblog.servlet.FriendChangeServlet</servlet-class>
-      <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   <servlet>
-    
-   
     <servlet-name>FuzzyWeiboServlet</servlet-name>
     <servlet-class>com.microblog.servlet.FuzzyWeiboServlet</servlet-class>
-    <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   <servlet>
-    
-   
     <servlet-name>DeleteCommentServlet</servlet-name>
     <servlet-class>com.microblog.servlet.DeleteCommentServlet</servlet-class>
-    <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   <servlet>
-    
-   
     <servlet-name>FuzzyCommentServlet</servlet-name>
     <servlet-class>com.microblog.servlet.FuzzyCommentServlet</servlet-class>
-    <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   <servlet>
-    
-   
     <servlet-name>FuzzyCollectionServlet</servlet-name>
     <servlet-class>com.microblog.servlet.FuzzyCollectionServlet</servlet-class>
-     <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   <servlet>
-    
-   
     <servlet-name>FansServlet</servlet-name>
     <servlet-class>com.microblog.servlet.FansServlet</servlet-class>
-    <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   <servlet>
-    
-   
     <servlet-name>UserDetailServlet</servlet-name>
     <servlet-class>com.microblog.servlet.UserDetailServlet</servlet-class>
-     <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   <servlet>
-    
-   
     <servlet-name>UserChangePageServlet</servlet-name>
     <servlet-class>com.microblog.servlet.UserChangePageServlet</servlet-class>
-     <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   <servlet>
-    
-   
-    <servlet-name>RegisterServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.RegisterServlet</servlet-class>
-      <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
-  </servlet>
- <servlet>
-    
-   
-    <servlet-name>BallotServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.BallotServlet</servlet-class>
-  </servlet> 
-  <servlet>
-    
-   
     <servlet-name>CheckPasswordServlet</servlet-name>
     <servlet-class>com.microblog.servlet.CheckPasswordServlet</servlet-class>
   </servlet>
   <servlet>
-    
-   
     <servlet-name>UpdateUserServlet</servlet-name>
     <servlet-class>com.microblog.servlet.UpdateUserServlet</servlet-class>
-     <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   <servlet>
-    
-   
     <servlet-name>BallhotShowServlet</servlet-name>
     <servlet-class>com.microblog.servlet.BallhotShowServlet</servlet-class>
   </servlet>
   <servlet>
-    
-   
     <servlet-name>ShowBallotServlet</servlet-name>
     <servlet-class>com.microblog.servlet.ShowBallotServlet</servlet-class>
   </servlet>
   <servlet>
-    
-   
     <servlet-name>ShowBallot3DServlet</servlet-name>
     <servlet-class>com.microblog.servlet.ShowBallot3DServlet</servlet-class>
   </servlet>
   <servlet>
-    
-   
     <servlet-name>MailServlet</servlet-name>
     <servlet-class>com.microblog.servlet.MailServlet</servlet-class>
   </servlet>
 
   <servlet>
-    
-   
     <servlet-name>MyBlogServlet</servlet-name>
     <servlet-class>com.microblog.servlet.MyBlogServlet</servlet-class>
-   <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
 
   <servlet>
@@ -284,56 +146,28 @@
    
     <servlet-name>HomeServlet</servlet-name>
     <servlet-class>com.microblog.servlet.HomeServlet</servlet-class>
-   <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
 
 <servlet>
-    
-   
     <servlet-name>MyCollectionServlet</servlet-name>
     <servlet-class>com.microblog.servlet.MyCollectionServlet</servlet-class>
-   <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
 
 <servlet>
-    
-   
     <servlet-name>MyFansServlet</servlet-name>
     <servlet-class>com.microblog.servlet.MyFansServlet</servlet-class>
-   <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   
   <servlet>
-    
-   
     <servlet-name>FollowServlet</servlet-name>
     <servlet-class>com.microblog.servlet.FollowServlet</servlet-class>
-   <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   
   
   
   <servlet>
-    
-   
     <servlet-name>DeleteWeiboServlet</servlet-name>
     <servlet-class>com.microblog.servlet.DeleteWeiboServlet</servlet-class>
-   <init-param>
-      <param-name>pagesize</param-name>
-      <param-value>5</param-value>
-    </init-param>
   </servlet>
   
   
@@ -421,14 +255,8 @@
     <servlet-name>UserChangePageServlet</servlet-name>
     <url-pattern>/UserChangePageServlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>RegisterServlet</servlet-name>
-    <url-pattern>/RegisterServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>BallotServlet</servlet-name>
-    <url-pattern>/BallotServlet</url-pattern>
-  </servlet-mapping> 
+  
+
   <servlet-mapping>
     <servlet-name>CheckPasswordServlet</servlet-name>
     <url-pattern>/CheckPasswordServlet</url-pattern>

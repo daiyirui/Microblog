@@ -88,9 +88,19 @@
 								<td height="25"><table width="100%" border="0"
 										cellpadding="0" cellspacing="0" id="weibo_status">
 										<tr>
-											<td>${fan.udate}</td>
+											<td>好友注册日期：${fan.udate}</td>
 											<td align="right">&nbsp;</td>
 										</tr>
+										
+										<!--如果对方我没有关注就显示这个tr-->
+										<c:if test="${! empty insert}">
+										<tr><td><a href="InsertAttentionServlet?gid=fan.uid&action=1">+关注</a></td></tr>
+										</c:if>
+									    <!-- 如果对方我已经关注了，就变成取消关注 -->
+									    <c:if test="${! empty delete}">
+									     <tr><td><a href="DeleteAttentionServlet?gid=fan.uid&action=1">取消关注</a></td></tr>
+									    </c:if>
+									    
 									</table></td>
 							</tr>
 						</table>

@@ -14,9 +14,7 @@ public interface IUserDao {
 	//监听器显示首页用户头像信息
 	public List<Users> FindByListener();
 	//分页显示 登陆者所要已经关注人的信息
-	public PageBean FindByOverInterest(int uid,String strSQL,int currentPage,int pageSize);
-	//分页显示登陆者粉丝信息
-	public PageBean FindFansByPage(int uid,String strSQL,int currentPage,int pageSize);
+	public List<Users> FindByOverInterest(int uid);
 	//显示用户个人详细信息
 	public Users FindByuid(int uid);
 	//注册用户

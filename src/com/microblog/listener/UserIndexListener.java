@@ -4,9 +4,8 @@ import java.util.List;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
-import com.microblog.biz.IUsersBiz;
-import com.microblog.biz.impl.UsersBizImpl;
+import com.microblog.dao.IUserDao;
+import com.microblog.dao.impl.UserDaoImpl;
 import com.microblog.po.Users;
 
 public class UserIndexListener implements ServletContextListener {
@@ -20,8 +19,8 @@ public class UserIndexListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent content) {
 		// TODO Auto-generated method stub
-        IUsersBiz userBiz=new UsersBizImpl();
-        List<Users> lisUser=userBiz.SelectByListener();
+        IUserDao userBiz=new UserDaoImpl();
+        List<Users> lisUser=userBiz.FindByListener();
         content.getServletContext().setAttribute("userListListener", lisUser);
 	}
 

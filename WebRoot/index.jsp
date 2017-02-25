@@ -51,7 +51,7 @@
 					<font size="3" style="font-family: 幼圆; font-weight: bold">开始微博之旅</font><a
 					href="index.jsp" style="text-decoration: none;"><font size="4"
 						color="#6699cc">&nbsp;首页&nbsp;</font></a><a
-					href="BallotServlet?action=0" style="text-decoration: none;"><font
+					href="HomeServlet?action=Ballot" style="text-decoration: none;"><font
 						size="4" color="#6699cc">&nbsp;热门话题 </font></a></td>
 			</tr>
 			<tr>
@@ -63,7 +63,7 @@
 							<tr>
 								<c:forEach items="${applicationScope.userListListener}"
 									var="users" varStatus="su">
-									<td><a href="UserDetailServlet?uid=${users.uid}&action=0"
+									<td><a href="HomeServlet?uid=${users.uid}&action=userdetail"
 										target="_blank"> <img src="${users.upic}"
 											id="${users.uid}" title="${users.uname}"
 											onMouseOver="xianshi(this)" onMouseOut="huifu(this)" />

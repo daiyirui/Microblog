@@ -28,8 +28,8 @@
 		id="container">
 		<tr>
 			<td width="670" valign="top">
-				<form action="RegisterServlet" name="forms" method="post" id="for">
-				   <input type="hidden" name="action" value ="0">
+				<form action="HomeServlet" name="forms" method="post" id="for">
+				   <input type="hidden" name="action" value ="register">
 					<table border="0" align="center" cellpadding="0" cellspacing="0"
 						id="register">
 						<tr>

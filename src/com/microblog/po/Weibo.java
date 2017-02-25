@@ -10,7 +10,7 @@ public class Weibo implements Serializable {
    private String wimage;
    private String wremarks;
    private Integer wtimes;
-   private Integer w_uid;//���
+   private Integer w_uid;//
    private Integer wcountcomment;
    private Users use=new Users();
 

@@ -20,7 +20,7 @@ public class UserDaoImpl implements IUserDao {
     }
     @Override
 	public Users FindByMail(String uname,String uques) {
-    	String sql="SELECT * FROM users where uremarks!='no' and uname=? and uques=?";
+    	String sql="SELECT * FROM users where  uname=? and uques=?";
     	ResultSet rs=db.execQuery(sql, new Object[]{uname,uques});
     	try {
 			if(rs.next()){
@@ -61,11 +61,9 @@ public class UserDaoImpl implements IUserDao {
     
     @Override
 	public int RegisterUser(Users use) {
-    	
 	    Connection connection = null;
         PreparedStatement statement = null;
         int  a = 0;
-
         try {
         	String sql="insert into users(uname,upwd,unickname,usex,uaddress,udate,uqq,uedu,urealname,uemail,uremarks) values(?,?,?,?,?,?,?,?,?,?,null)";
             connection = JDBCUtil.getConn();
@@ -95,7 +93,7 @@ public class UserDaoImpl implements IUserDao {
 	@Override
 	public Users FindByObject(String uname, String upwd, String sex) {
 		// TODO Auto-generated method stub
-		String sql="SELECT * FROM users where uremarks!='no' and uname=? and upwd=? and usex=?";
+		String sql="SELECT * FROM users where  uname=? and upwd=? and usex=?";
 		ResultSet rs=db.execQuery(sql, new Object[]{uname,upwd,sex});
 		try {
 			if(rs.next()){
@@ -127,8 +125,7 @@ public class UserDaoImpl implements IUserDao {
 	}
     @Override
 	public Users FindByuid(int uid) {
-		//SELECT * FROM users where uid=5
-    	String sql="SELECT * FROM users where uremarks!='no' and uid=?";
+    	String sql="SELECT * FROM users where  uid=?";
     	ResultSet rs=db.execQuery(sql, new Object[]{uid});
     	try {
 			if(rs.next()){
@@ -160,130 +157,11 @@ public class UserDaoImpl implements IUserDao {
 		}	
 	}
 	
-    @Override
-	public PageBean FindFansByPage(int uid, String strSQL, int currentPage,int pageSize) {
-    	//step1:创建pagebean对象,为其五个属性赋值
-		PageBean pb=new PageBean();
-		//step2:sql语句，用来获取weibo表中记录数量 count(*)   SELECT * FROM weibo order by wdate desc
-		String sqlcount=strSQL;
-		sqlcount=sqlcount.substring(sqlcount.toLowerCase().indexOf("from"));
-		sqlcount = "select count(*) "+sqlcount;
-		System.out.println("SqlCount:"+sqlcount);
-		//step3:执行sql语句得到结果并将其结果赋值给pb的totalRows变量；
-		ResultSet rs=db.execQuery(sqlcount, new Object[]{uid,uid});
-		try {
-			if(rs.next()){
-				pb.setTotalRows(rs.getInt(1));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			pb.setTotalRows(0);
-		}
-		//step4:为pb的data属性赋值，首先为获取本页第一条记录设置行标
-		int start=(currentPage-1)*pageSize;
-		//step5:创建赋值data的sql语句
-		strSQL=strSQL+" limit ?,? ";
-		rs=db.execQuery(strSQL, new Object[]{uid,uid,start,pageSize});
-		//step6:获取data结果集合
-		List<Users> lisUser=new ArrayList<Users>();
-		Users use=null;
-		try {
-			while (rs.next()) {
-				        use=new Users();			  
-					    use.setUid(rs.getInt("uid"));
-					    use.setUname(rs.getString("uname"));
-					    use.setUpwd(rs.getString("upwd"));
-					    use.setUnickname(rs.getString("unickname"));
-					    use.setUsex(rs.getString("usex"));
-					    use.setUaddress(rs.getString("uaddress"));
-					    use.setUdate(rs.getString("udate"));
-					    use.setUpic(rs.getString("upic"));   
-					    use.setUqq(rs.getString("uqq"));
-					    use.setUemail(rs.getString("uemail"));
-					    use.setUedu(rs.getString("uedu"));
-					    use.setUques(rs.getString("uques"));
-					    use.setUrealname(rs.getString("urealname"));
-					    use.setUremarks(rs.getString("uremarks"));
-					    lisUser.add(use);	 				
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally{
-			db.closeConn();
-		}
-		//step7:赋值相应属性
-		pb.setData(lisUser);
-		pb.setCurrentPage(currentPage);
-		pb.setPageSize(pageSize);
-		//step*:返回结果
-		return pb;
-	}
-    @Override
-	public PageBean FindByOverInterest(int uid, String strSQL, int currentPage,	int pageSize) {
-    	//step1:创建pagebean对象,为其五个属性赋值
-		PageBean pb=new PageBean();
-		//step2:sql语句，用来获取weibo表中记录数量 count(*)   SELECT * FROM weibo order by wdate desc
-		String sqlcount=strSQL;
-		sqlcount=sqlcount.substring(sqlcount.toLowerCase().indexOf("from"));
-		sqlcount = "select count(*) "+sqlcount;
-		System.out.println("SqlCount:"+sqlcount);
-		//step3:执行sql语句得到结果并将其结果赋值给pb的totalRows变量；
-		ResultSet rs=db.execQuery(sqlcount, new Object[]{uid,uid});
-		try {
-			if(rs.next()){
-				pb.setTotalRows(rs.getInt(1));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			pb.setTotalRows(0);
-		}
-		//step4:为pb的data属性赋值，首先为获取本页第一条记录设置行标
-		int start=(currentPage-1)*pageSize;
-		//step5:创建赋值data的sql语句
-		strSQL=strSQL+" limit ?,? ";
-		rs=db.execQuery(strSQL, new Object[]{uid,uid,start,pageSize});
-		//step6:获取data结果集合
-		List<Users> lisUser=new ArrayList<Users>();
-		Users use=null;
-		try {
-			while (rs.next()) {
-				        use=new Users();			  
-					    use.setUid(rs.getInt("uid"));
-					    use.setUname(rs.getString("uname"));
-					    use.setUpwd(rs.getString("upwd"));
-					    use.setUnickname(rs.getString("unickname"));
-					    use.setUsex(rs.getString("usex"));
-					    use.setUaddress(rs.getString("uaddress"));
-					    use.setUdate(rs.getString("udate"));
-					    use.setUpic(rs.getString("upic"));   
-					    use.setUqq(rs.getString("uqq"));
-					    use.setUedu(rs.getString("uedu"));
-					    use.setUemail(rs.getString("uemail"));
-					    use.setUques(rs.getString("uques"));
-					    use.setUrealname(rs.getString("urealname"));
-					    use.setUremarks(rs.getString("uremarks"));
-					    lisUser.add(use);	 				
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally{
-			db.closeConn();
-		}
-		//step7:赋值相应属性
-		pb.setData(lisUser);
-		pb.setCurrentPage(currentPage);
-		pb.setPageSize(pageSize);
-		//step*:返回结果
-		return pb;
-	}
+
 	@Override
 	public Users UserLoginCheck(String usn, String pwd) {
 		//step1:创建查询数据库sql语句
-		String sql="SELECT * FROM users where uremarks!='no' and uname=? and upwd=?";
+		String sql="SELECT * FROM users where  uname=? and upwd=?";
 		System.out.println(sql);
 		//step3:获取查询结果
 		ResultSet rs=db.execQuery(sql, new Object[]{usn,pwd});
@@ -322,7 +200,7 @@ public class UserDaoImpl implements IUserDao {
 	@Override
 	public List<Users> FindByInterest(int uid) {
 		//step1:创建查询语句
-		String sql="SELECT * FROM users where uremarks!='no' and uid!=? and uid not in (select g_id from relations where r_id=?)";
+		String sql="SELECT * FROM users where  uid!=? and uid not in (select g_id from relations where r_id=?)";
 		
 		//step3:获取查询结果
 		ResultSet rs=db.execQuery(sql, new Object[]{uid,uid});
@@ -402,6 +280,10 @@ public class UserDaoImpl implements IUserDao {
 			db.closeConn();
 		}		
 	}		
+	@Override
+	public List<Users> FindByOverInterest(int uid) {
+		return null;
+	}
 	public static void main(String[] args) {
 		IUserDao u=new UserDaoImpl();
 		List<Users> listUser=u.FindByListener();
