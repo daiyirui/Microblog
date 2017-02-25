@@ -115,7 +115,13 @@
 										cellpadding="0" cellspacing="0" id="weibo_status">
 										<tr>
 											<td>${weibo.wdate}</td>
-											<td align="right"><a
+											<td align="right">
+											  <c:if test="${weibo.w_uid == sessionScope.userinfo.uid}">
+											   <a
+												href="DeleteWeiboServlet?wid=${weibo.wid}">删除</a>
+												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+											  </c:if>
+											 <a
 												href="ForWardServlet?wid=${weibo.wid}&wcontent=${weibo.wcontent}&wimage=${weibo.wimage}">转发(${weibo.wtimes})</a>
 												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a
 												href="CollectionWeiboServlet?wcontent=${weibo.wcontent}&wimage=${weibo.wimage}">收藏</a>

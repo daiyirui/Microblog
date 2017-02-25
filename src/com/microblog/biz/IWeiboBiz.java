@@ -24,4 +24,6 @@ public interface IWeiboBiz {
 	public PageBean FuzzyFindWeiboByPage(int uid,String content,int currentPage,int pageSize);
 	//分页显示个人微博信息
 	public PageBean SelectWeiboByuid(int uid,int currentPage,int pageSize);
+	//删除某条微博
+	public boolean DeleteWeibo(int wid,int w_uid);
 }

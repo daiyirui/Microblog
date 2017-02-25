@@ -18,8 +18,6 @@
   </listener>
   
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>com.microblog.servlet.LoginServlet</servlet-class>
     <init-param>
@@ -27,9 +25,8 @@
       <param-value>5</param-value>
     </init-param>
   </servlet>
+  
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>ChangeUserServlet</servlet-name>
     <servlet-class>com.microblog.servlet.ChangeUserServlet</servlet-class>
      <init-param>
@@ -37,9 +34,8 @@
       <param-value>5</param-value>
     </init-param>
   </servlet>
+  
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>PageChangeServlet</servlet-name>
     <servlet-class>com.microblog.servlet.PageChangeServlet</servlet-class>
      <init-param>
@@ -47,9 +43,8 @@
       <param-value>5</param-value>
     </init-param>
   </servlet>
+  
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>ForWardServlet</servlet-name>
     <servlet-class>com.microblog.servlet.ForWardServlet</servlet-class>
      <init-param>
@@ -57,9 +52,8 @@
       <param-value>5</param-value>
     </init-param>
   </servlet>
+  
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>CommentServlet</servlet-name>
     <servlet-class>com.microblog.servlet.CommentServlet</servlet-class>
      <init-param>
@@ -67,9 +61,8 @@
       <param-value>5</param-value>
     </init-param>
   </servlet>
+  
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>InsertCommentServlet</servlet-name>
     <servlet-class>com.microblog.servlet.InsertCommentServlet</servlet-class>
      <init-param>
@@ -77,9 +70,8 @@
       <param-value>5</param-value>
     </init-param>
   </servlet>
+  
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>ReturnHomeServlet</servlet-name>
     <servlet-class>com.microblog.servlet.ReturnHomeServlet</servlet-class>
      <init-param>
@@ -87,9 +79,8 @@
       <param-value>5</param-value>
     </init-param>
   </servlet>
+  
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>InsertWeiboServlet</servlet-name>
     <servlet-class>com.microblog.servlet.InsertWeiboServlet</servlet-class>
     <init-param>
@@ -97,9 +88,8 @@
       <param-value>5</param-value>
     </init-param>
   </servlet>
+  
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>CollectionWeiboServlet</servlet-name>
     <servlet-class>com.microblog.servlet.CollectionWeiboServlet</servlet-class>
      <init-param>
@@ -107,9 +97,8 @@
       <param-value>5</param-value>
     </init-param>
   </servlet>
+  
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>DeleteCollectionServlet</servlet-name>
     <servlet-class>com.microblog.servlet.DeleteCollectionServlet</servlet-class>
     <init-param>
@@ -118,8 +107,6 @@
     </init-param>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>CollectionChangeServlet</servlet-name>
     <servlet-class>com.microblog.servlet.CollectionChangeServlet</servlet-class>
     <init-param>
@@ -128,8 +115,6 @@
     </init-param>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>InsertAttentionServlet</servlet-name>
     <servlet-class>com.microblog.servlet.InsertAttentionServlet</servlet-class>
      <init-param>
@@ -137,9 +122,8 @@
       <param-value>5</param-value>
     </init-param>
   </servlet>
+  
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>DeleteAttentionServlet</servlet-name>
     <servlet-class>com.microblog.servlet.DeleteAttentionServlet</servlet-class>
      <init-param>
@@ -148,8 +132,8 @@
     </init-param>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>FriendChangeServlet</servlet-name>
     <servlet-class>com.microblog.servlet.FriendChangeServlet</servlet-class>
       <init-param>
@@ -158,8 +142,8 @@
     </init-param>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>FuzzyWeiboServlet</servlet-name>
     <servlet-class>com.microblog.servlet.FuzzyWeiboServlet</servlet-class>
     <init-param>
@@ -168,8 +152,8 @@
     </init-param>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>DeleteCommentServlet</servlet-name>
     <servlet-class>com.microblog.servlet.DeleteCommentServlet</servlet-class>
     <init-param>
@@ -178,8 +162,8 @@
     </init-param>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>FuzzyCommentServlet</servlet-name>
     <servlet-class>com.microblog.servlet.FuzzyCommentServlet</servlet-class>
     <init-param>
@@ -188,8 +172,8 @@
     </init-param>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>FuzzyCollectionServlet</servlet-name>
     <servlet-class>com.microblog.servlet.FuzzyCollectionServlet</servlet-class>
      <init-param>
@@ -198,8 +182,8 @@
     </init-param>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>FansServlet</servlet-name>
     <servlet-class>com.microblog.servlet.FansServlet</servlet-class>
     <init-param>
@@ -208,8 +192,8 @@
     </init-param>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>UserDetailServlet</servlet-name>
     <servlet-class>com.microblog.servlet.UserDetailServlet</servlet-class>
      <init-param>
@@ -218,8 +202,8 @@
     </init-param>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>UserChangePageServlet</servlet-name>
     <servlet-class>com.microblog.servlet.UserChangePageServlet</servlet-class>
      <init-param>
@@ -228,8 +212,8 @@
     </init-param>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>com.microblog.servlet.RegisterServlet</servlet-class>
       <init-param>
@@ -238,20 +222,20 @@
     </init-param>
   </servlet>
  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>BallotServlet</servlet-name>
     <servlet-class>com.microblog.servlet.BallotServlet</servlet-class>
   </servlet> 
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>CheckPasswordServlet</servlet-name>
     <servlet-class>com.microblog.servlet.CheckPasswordServlet</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>UpdateUserServlet</servlet-name>
     <servlet-class>com.microblog.servlet.UpdateUserServlet</servlet-class>
      <init-param>
@@ -260,33 +244,33 @@
     </init-param>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>BallhotShowServlet</servlet-name>
     <servlet-class>com.microblog.servlet.BallhotShowServlet</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>ShowBallotServlet</servlet-name>
     <servlet-class>com.microblog.servlet.ShowBallotServlet</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>ShowBallot3DServlet</servlet-name>
     <servlet-class>com.microblog.servlet.ShowBallot3DServlet</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>MailServlet</servlet-name>
     <servlet-class>com.microblog.servlet.MailServlet</servlet-class>
   </servlet>
 
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>MyBlogServlet</servlet-name>
     <servlet-class>com.microblog.servlet.MyBlogServlet</servlet-class>
    <init-param>
@@ -296,8 +280,8 @@
   </servlet>
 
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>HomeServlet</servlet-name>
     <servlet-class>com.microblog.servlet.HomeServlet</servlet-class>
    <init-param>
@@ -307,8 +291,8 @@
   </servlet>
 
 <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>MyCollectionServlet</servlet-name>
     <servlet-class>com.microblog.servlet.MyCollectionServlet</servlet-class>
    <init-param>
@@ -318,8 +302,8 @@
   </servlet>
 
 <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>MyFansServlet</servlet-name>
     <servlet-class>com.microblog.servlet.MyFansServlet</servlet-class>
    <init-param>
@@ -329,10 +313,23 @@
   </servlet>
   
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    
+   
     <servlet-name>FollowServlet</servlet-name>
     <servlet-class>com.microblog.servlet.FollowServlet</servlet-class>
+   <init-param>
+      <param-name>pagesize</param-name>
+      <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  
+  
+  
+  <servlet>
+    
+   
+    <servlet-name>DeleteWeiboServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.DeleteWeiboServlet</servlet-class>
    <init-param>
       <param-name>pagesize</param-name>
       <param-value>5</param-value>
@@ -480,7 +477,11 @@
     <servlet-name>FollowServlet</servlet-name>
     <url-pattern>/FollowServlet</url-pattern>
   </servlet-mapping>
-  
+
+  <servlet-mapping>
+    <servlet-name>DeleteWeiboServlet</servlet-name>
+    <url-pattern>/DeleteWeiboServlet</url-pattern>
+  </servlet-mapping>
   
    <filter>
         <filter-name>CharsetEncodingFilter</filter-name>

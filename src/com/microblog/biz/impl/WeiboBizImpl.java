@@ -84,4 +84,13 @@ public class WeiboBizImpl implements IWeiboBiz {
 				currentPage, pageSize);
 	}
 
+	@Override
+	public boolean DeleteWeibo(int wid, int w_uid) {
+		int a = weiboDao.DeleteWeibo(wid, w_uid);
+		if(a==1) {
+		     return true;
+		} else {
+			return false;
+		} 
+	}
 }

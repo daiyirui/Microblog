@@ -25,22 +25,15 @@ import com.microblog.po.Weibo;
 @SuppressWarnings("serial")
 public class InsertWeiboServlet extends HttpServlet {
 	
-	public InsertWeiboServlet() {
-		super();
-	}
-	public void destroy() {
-		super.destroy(); // Just puts "destroy" string in log
-		// Put your code here
-	}
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-this.doPost(request, response);
+           this.doPost(request, response);
 	}
 	@SuppressWarnings("unchecked")
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-		request.setCharacterEncoding("utf-8");//
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
 		HttpSession session=request.getSession();
 		Users use=new Users();
 		if(session.getAttribute("userinfo")!=null){
@@ -64,7 +57,7 @@ this.doPost(request, response);
 				FileItem item=iter.next();
 				if(item.isFormField()){
 					if("weibotext".equals(item.getFieldName())){
-						weibo.setWcontent(item.getString("gbk"));						
+						weibo.setWcontent(item.getString("utf-8"));						
 					}
 				}else{
 					//获取文件名，包含上传文件路径
@@ -81,6 +74,7 @@ this.doPost(request, response);
 							//微博数量
 							int countMicroblog=weiboBiz.CountByMicroblog(use.getUid());
 							session.setAttribute("countBlog",countMicroblog);
+							
 							response.getWriter().printf("<script>alert('添加微博成功!');location.href='home.jsp'</script>");
 						}else{
 							response.getWriter().printf("<script>alert('添加微博失败!');location.href='home.jsp'</script>");
@@ -100,16 +94,9 @@ this.doPost(request, response);
 				}
 			}
 		} catch (FileUploadException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
-	public void init() throws ServletException {
-		// Put your code here
-	}
-
 }

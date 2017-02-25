@@ -1,10 +1,13 @@
 package com.microblog.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.microblog.common.JDBCUtil;
 import com.microblog.dao.IWeiboDao;
 import com.microblog.dbutil.DBConn;
 import com.microblog.filter.PageBean;
@@ -160,11 +163,23 @@ public class WeiboDaoImpl implements IWeiboDao {
 	}
 	@Override
 	public int InsertWeibo(Weibo weibo, int uid) {
-		// TODO Auto-generated method stub
-		String sql="";
-		int a=0;		
-	    sql="insert into weibo values(null,?,now(),?,0,?,'null',0)";
-		a=db.execOther(sql, new Object[]{weibo.getWcontent(),weibo.getWimage(),uid});		
+		   Connection connection = null;
+	       PreparedStatement statement = null;
+	       int  a = 0;
+	        try {
+	        	String sql="insert into weibo(wcontent,wdate,wimage,wtimes,w_uid,wremarks,wcountcomment) values(?,now(),?,0,?,null,0)";
+	            connection = JDBCUtil.getConn();
+	            statement = connection.prepareStatement(sql);
+	            statement.setString(1, weibo.getWcontent());
+	            statement.setString(2, weibo.getWimage());
+	            statement.setInt(3, uid);
+	            a=statement.executeUpdate();
+	        } catch (SQLException e) {
+	        	a=0;
+	            e.printStackTrace();
+	        } finally {
+	            JDBCUtil.closeDB(connection, statement, null);
+	        }
 		return a;
 	}
 	@Override
@@ -479,5 +494,26 @@ public class WeiboDaoImpl implements IWeiboDao {
 		}finally{
 			db.closeConn();
 		}	
+	}
+	
+	@Override
+	public int DeleteWeibo(int wid, int w_uid) {
+		   Connection connection = null;
+	       PreparedStatement statement = null;
+           int a = 0;
+           try {
+        	   connection = JDBCUtil.getConn();
+               String sql = "DELETE FROM weibo where wid=? and w_uid=?";
+               System.out.println(sql);
+               statement = connection.prepareStatement(sql);
+               statement.setInt(1, wid);
+               statement.setInt(2, w_uid);
+               a=statement.executeUpdate();
+           } catch (SQLException e) {
+               e.printStackTrace();
+           } finally {
+               JDBCUtil.closeDB(connection, statement, null);
+           }
+		return a;
 	}	
 }
