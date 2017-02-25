@@ -1,10 +1,13 @@
 package com.microblog.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.microblog.common.JDBCUtil;
 import com.microblog.dao.IUserDao;
 import com.microblog.dbutil.DBConn;
 import com.microblog.filter.PageBean;
@@ -58,10 +61,36 @@ public class UserDaoImpl implements IUserDao {
     
     @Override
 	public int RegisterUser(Users use) {
-    	String sql="insert into users(uname,upwd,unickname,usex,uaddress,udate,uqq,uedu,urealname,uemail) values(?,?,?,?,?,?,?,?,?,?)";
-     	int a=db.execOther(sql, new Object[]{use.getUname(),use.getUpwd(),use.getUnickname(),use.getUsex(),use.getUaddress(),use.getUdate(),use.getUqq(),use.getUedu(),use.getUrealname(),use.getUemail()});
-		return a;
-	}
+    	
+	    Connection connection = null;
+        PreparedStatement statement = null;
+        int  a = 0;
+
+        try {
+        	String sql="insert into users(uname,upwd,unickname,usex,uaddress,udate,uqq,uedu,urealname,uemail) values(?,?,?,?,?,?,?,?,?,?)";
+            connection = JDBCUtil.getConn();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, use.getUname());
+            statement.setString(2, use.getUpwd());
+            statement.setString(3, use.getUnickname());
+            statement.setString(4, use.getUsex());
+            statement.setString(5, use.getUaddress());
+            statement.setString(6, use.getUdate());
+            statement.setString(7, use.getUqq());
+            statement.setString(8, use.getUedu());
+            statement.setString(9, use.getUrealname());
+            statement.setString(10, use.getUemail());
+            a=statement.executeUpdate();
+        } catch (SQLException e) {
+        	a=0;
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closeDB(connection, statement, null);
+        }
+        return a;
+    
+    
+    }
     
 	@Override
 	public Users FindByObject(String uname, String upwd, String sex) {

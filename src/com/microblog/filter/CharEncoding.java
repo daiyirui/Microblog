@@ -21,7 +21,7 @@ public class CharEncoding implements Filter {
 	public void doFilter(ServletRequest arg0, ServletResponse arg1,
 			FilterChain arg2) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-        arg0.setCharacterEncoding("gbk");
+        arg0.setCharacterEncoding("utf-8");
         arg2.doFilter(arg0, arg1);
 	}
 
