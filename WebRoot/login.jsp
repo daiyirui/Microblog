@@ -70,6 +70,11 @@
 											    <td style="color:#F00" colspan="3">你输入的信息有误,请重新输入！</td>
 											</tr>
 											</c:if>
+											<c:if test="${ !empty register }">
+											<tr>
+											    <td style="color:#0F0" colspan="3">注册成功,请登录！</td>
+											</tr>
+											</c:if>
 											<tr>
 												<td width="103" height="103" align="center" valign="middle">账号:</td>
 												<td width="742" align="left"><input name="usn"

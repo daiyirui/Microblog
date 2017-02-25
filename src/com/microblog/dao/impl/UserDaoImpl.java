@@ -55,13 +55,14 @@ public class UserDaoImpl implements IUserDao {
         		,use.getUremarks(),use.getUqq(),use.getUpic(),use.getUid()});    	
 		return a;
 	}	
+    
     @Override
 	public int RegisterUser(Users use) {
-		// TODO Auto-generated method stub
-    	String sql="insert into users values(null,?,?,?,?,?,now(),'1','本科',null,'','','null')";
-     	int a=db.execOther(sql, new Object[]{use.getUname(),use.getUpwd(),use.getUnickname(),use.getUsex(),use.getUaddress()});
+    	String sql="insert into users(uname,upwd,unickname,usex,uaddress,udate,uqq,uedu,urealname,uemail) values(?,?,?,?,?,?,?,?,?,?)";
+     	int a=db.execOther(sql, new Object[]{use.getUname(),use.getUpwd(),use.getUnickname(),use.getUsex(),use.getUaddress(),use.getUdate(),use.getUqq(),use.getUedu(),use.getUrealname(),use.getUemail()});
 		return a;
 	}
+    
 	@Override
 	public Users FindByObject(String uname, String upwd, String sex) {
 		// TODO Auto-generated method stub
