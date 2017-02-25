@@ -170,6 +170,15 @@
     <servlet-class>com.microblog.servlet.DeleteWeiboServlet</servlet-class>
   </servlet>
   
+  <servlet>
+    <servlet-name>WeiboServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.WeiboServlet</servlet-class>
+  </servlet>
+  
+   <servlet>
+    <servlet-name>RelationServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.RelationServlet</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
@@ -309,6 +318,16 @@
   <servlet-mapping>
     <servlet-name>DeleteWeiboServlet</servlet-name>
     <url-pattern>/DeleteWeiboServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>WeiboServlet</servlet-name>
+    <url-pattern>/WeiboServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>RelationServlet</servlet-name>
+    <url-pattern>/RelationServlet</url-pattern>
   </servlet-mapping>
   
    <filter>

@@ -3,7 +3,6 @@ package com.microblog.dao;
 
 import java.util.List;
 
-import com.microblog.filter.PageBean;
 import com.microblog.po.Users;
 
 public interface IUserDao {
@@ -13,8 +12,6 @@ public interface IUserDao {
 	public List<Users> FindByInterest(int uid );
 	//监听器显示首页用户头像信息
 	public List<Users> FindByListener();
-	//分页显示 登陆者所要已经关注人的信息
-	public List<Users> FindByOverInterest(int uid);
 	//显示用户个人详细信息
 	public Users FindByuid(int uid);
 	//注册用户

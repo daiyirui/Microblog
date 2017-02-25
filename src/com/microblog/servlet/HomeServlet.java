@@ -1,105 +1,205 @@
 package com.microblog.servlet;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.microblog.biz.IRelationsBiz;
-import com.microblog.biz.IUsersBiz;
-import com.microblog.biz.IWeiboBiz;
-import com.microblog.biz.impl.RelationsBizImpl;
-import com.microblog.biz.impl.UsersBizImpl;
-import com.microblog.biz.impl.WeiboBizImpl;
-import com.microblog.filter.PageBean;
+import com.microblog.dao.IBollhotDao;
+import com.microblog.dao.IRelationsDao;
+import com.microblog.dao.IUserDao;
+import com.microblog.dao.IWeiboDao;
+import com.microblog.dao.impl.BollhotDaoImpl;
+import com.microblog.dao.impl.RelationsDaoImpl;
+import com.microblog.dao.impl.UserDaoImpl;
+import com.microblog.dao.impl.WeiboDaoImpl;
+import com.microblog.po.Bloghot;
 import com.microblog.po.Users;
+import com.microblog.po.Weibo;
 
 @SuppressWarnings("serial")
 public class HomeServlet extends HttpServlet {
-
 	
-	public HomeServlet() {
-		super();
-	}
-	public void destroy() {
-		super.destroy(); // Just puts "destroy" string in log
-		// Put your code here
-	}
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
           this.doPost(request, response);
 	}
-	@SuppressWarnings("unchecked")
+	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-		request.setCharacterEncoding("utf-8");
-		HttpSession session=request.getSession();
-		
-		Users use=new Users();
-		if(session.getAttribute("userinfo")!=null){
-			use=(Users) session.getAttribute("userinfo");
+		//游客查看单个用户信息
+		//注册功能
+		//登陆功能
+		//其他页面跳转到主页面功能
+		//退出功能
+		//游客页面之间相互跳转功能
+		String action = request.getParameter("action");
+		//实现注册功能
+		if("register".equals(action)) {
+			register(request,response);
+			//实现登陆功能
+		}else if("login".equals(action)) {
+			login(request,response);
+			//实现注册功能
+		}else if("home".equals(action)) {
+			home(request,response);
+			//实现退出功能
+		}else if("exit".equals(action)) {
+			exit(request,response);
+		}else if("userdetail".equals(action)) {
+			userdetail(request,response);
+		//游客跳转到热议话题
+		}else if("ballot".equals(action)) {
+			ballot(request,response);
 		}
-		//step3 如何用户名密码正确
+	}
+	/**
+	 * 游客跳转到热议话题
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void ballot(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		  IBollhotDao boldao=new BollhotDaoImpl();
+		  List<Bloghot> bloghots = boldao.FindAllHot();
+		  request.setAttribute("bloghots", bloghots);
+	      request.getRequestDispatcher("./index_ballot.jsp").forward(request, response);
+	}
+
+	/**
+	 * 游客跳转到用户信息展示页面
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void userdetail(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		 int uid=Integer.parseInt(request.getParameter("uid"));
+		 IUserDao useBiz=new UserDaoImpl();
+		 Users user=useBiz.FindByuid(uid);
+		 request.setAttribute("user", user);
+		 request.getRequestDispatcher("user.jsp").forward(request, response);	
+	}
+
+	/**
+	 * 用户退出功能
+	 * @param request
+	 * @param response
+	 */
+	private void exit(HttpServletRequest request, HttpServletResponse response) {
+		
+	}
+	/**
+	 * @param request
+	 * @param response
+	 */
+	private void home(HttpServletRequest request, HttpServletResponse response) {
+		
+	}
+	/**
+	 * 用户登录功能
+	 * @param request
+	 * @param response
+	 * @throws ServletException 
+	 * @throws IOException 
+	 */
+	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException   {
+
+		String usn=request.getParameter("usn").trim();
+		String pwd=request.getParameter("pwd").trim();
+		IUserDao userdao=new UserDaoImpl();
+		Users use=new Users();
+		use=userdao.UserLoginCheck(usn, pwd);
 		if(use!=null){
-			session.setAttribute("userinfo", use);
-			//显示登录者和其所关注人的微博信息-分页显示
-			IWeiboBiz weiboBiz=new WeiboBizImpl();
-			PageBean pb=new PageBean();			
-			//定义分页参数
-			int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
-			int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
-			pb=weiboBiz.SelectByPage(use.getUid(),nowpage, pagesize);
-			session.setAttribute("weiboList",pb);
-			//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
-			IRelationsBiz relationBiz=new RelationsBizImpl();
-			IUsersBiz userBiz=new UsersBizImpl();
-			List<Users> MyInterestUsers= relationBiz.FindAllMyInterestByuid(use.getUid());
-			List<Users> listAllUser=new ArrayList<Users>();//全部陌生朋友信息
-			List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
-			if(session.getAttribute("userAllList")==null){
-				listAllUser=userBiz.SelectByInterest(use.getUid());
-				listAllUser.removeAll(MyInterestUsers);
-				for (int i = 0; i < 8; i++) {
-					listUser.add(listAllUser.get(i));		
-				}
-			}else{
-				listAllUser=(List<Users>) session.getAttribute("userAllList");
-				listAllUser.removeAll(MyInterestUsers);
-				for (int i = 0; i < 8; i++) {
-					listUser.add(listAllUser.get(i));		
-				}
-			}
-			session.setAttribute("userAllList", listAllUser);
-			if(listUser!=null){
-				session.setAttribute("userList",listUser);	
-			}			
-			//微博数量
-			int countMicroblog=weiboBiz.CountByMicroblog(use.getUid());
-			session.setAttribute("countBlog",countMicroblog);
-			//显示所关注人数量
+			request.setAttribute("userinfo", use);
+			IWeiboDao weibodao=new WeiboDaoImpl();
+			List<Weibo> weiboList=weibodao.FindByLogin(use.getUid());
+			request.setAttribute("weiboList",weiboList);
 			
+			//显示所关注人数量
+			IRelationsDao relationBiz=new RelationsDaoImpl();
 			int countRlat=relationBiz.CountByAttention(use.getUid());
-			session.setAttribute("countRlation",countRlat);
+			request.setAttribute("countRlation",countRlat);
 			//显示粉丝数量
 			int countVeri=relationBiz.CountByVermicelli(use.getUid());
-			session.setAttribute("countVeri",countVeri);
+			request.setAttribute("countVeri",countVeri);
+			//自己已经关注成功的人
+			List<Users> interests = relationBiz.FindAllMyInterestByuid(use.getUid());
+			System.out.println("我关注的人有:"+interests);
+			//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
+			List<Users> listAllUser=new ArrayList<Users>();//全部陌生朋友信息
+			List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
+			listAllUser=userdao.FindByInterest(use.getUid());
+			listAllUser.remove(interests);
+			for (int i = 0; i < 8; i++) {
+				listUser.add(listAllUser.get(i));		
+			}
+			
+			request.setAttribute("userAllList", listAllUser);
+			if(listUser!=null){
+				request.setAttribute("userList",listUser);	
+			}			
+			//微博数量
+			int countMicroblog=weibodao.CountByMicroblog(use.getUid());
+			request.setAttribute("countBlog",countMicroblog);
 			//step5 跳转到个人主页面
-			response.sendRedirect("home.jsp");
+			request.getRequestDispatcher("./home.jsp").forward(request, response);
 		}
 		//step6 错误返回登录页面
 		else{
-			 
-			response.getWriter().printf("<script>alert('用户名或密码错误\n获取此用户被禁用!');location.href='login.jsp'</script>");
+			request.setAttribute("flag", 1);
+			request.getRequestDispatcher("./login.jsp").forward(request, response);
 		}
+	
 	}
-	public void init() throws ServletException {
-		// Put your code here
+	/**
+	 * 用户注册功能
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void register(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		String uname=request.getParameter("uname");
+		String upwd = request.getParameter("upwd");
+		String urealname=request.getParameter("urealname");
+		String unickname=request.getParameter("unickname");
+		String uqq = request.getParameter("uqq");
+		String uemail = request.getParameter("uemail");
+		String usex = request.getParameter("usex");
+		String province = request.getParameter("province");
+		String city = request.getParameter("city");
+		String uedu = request.getParameter("uedu");
+		Users user = new Users();
+		SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+		user.setUdate(time.format(new Date()));
+		user.setUname(uname);
+		user.setUpwd(upwd);
+		user.setUrealname(urealname);
+		user.setUemail(uemail);
+		user.setUaddress(province+city);
+		user.setUedu(uedu);
+		user.setUqq(uqq);
+		user.setUsex(usex);
+		user.setUnickname(unickname);
+		IUserDao usersDao = new UserDaoImpl();
+		int flag = usersDao.RegisterUser(user);
+		if(flag==1) {
+			request.setAttribute("register", 1);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}else{
+			request.setAttribute("register", 1);
+			request.getRequestDispatcher("register.jsp").forward(request, response);
+		}
 	}
 
 }

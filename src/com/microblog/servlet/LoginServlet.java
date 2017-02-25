@@ -92,8 +92,6 @@ public class LoginServlet extends HttpServlet {
 				}
 			}
 			
-			
-			
 			session.setAttribute("userAllList", listAllUser);
 			if(listUser!=null){
 				session.setAttribute("userList",listUser);	

@@ -2,7 +2,6 @@ package com.microblog.dao;
 
 import java.util.List;
 
-import com.microblog.filter.PageBean;
 import com.microblog.po.Weibo;
 
 public interface IWeiboDao { 

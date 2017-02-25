@@ -10,7 +10,6 @@ import java.util.List;
 import com.microblog.common.JDBCUtil;
 import com.microblog.dao.IUserDao;
 import com.microblog.dbutil.DBConn;
-import com.microblog.filter.PageBean;
 import com.microblog.po.Users;
 
 public class UserDaoImpl implements IUserDao {
@@ -86,13 +85,10 @@ public class UserDaoImpl implements IUserDao {
             JDBCUtil.closeDB(connection, statement, null);
         }
         return a;
-    
-    
     }
     
 	@Override
 	public Users FindByObject(String uname, String upwd, String sex) {
-		// TODO Auto-generated method stub
 		String sql="SELECT * FROM users where  uname=? and upwd=? and usex=?";
 		ResultSet rs=db.execQuery(sql, new Object[]{uname,upwd,sex});
 		try {
@@ -149,25 +145,27 @@ public class UserDaoImpl implements IUserDao {
 				return null;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}finally{
 			db.closeConn();
 		}	
 	}
-	
-
 	@Override
 	public Users UserLoginCheck(String usn, String pwd) {
-		//step1:创建查询数据库sql语句
+		 Connection connection = null;
+	      PreparedStatement statement = null;
+		  Users use=null;
+	  try {
+	     //step1:创建查询数据库sql语句
 		String sql="SELECT * FROM users where  uname=? and upwd=?";
-		System.out.println(sql);
+        connection = JDBCUtil.getConn();
+        statement = connection.prepareStatement(sql);
+        statement.setString(1, usn);
+        statement.setString(2, pwd);
 		//step3:获取查询结果
-		ResultSet rs=db.execQuery(sql, new Object[]{usn,pwd});
-		//step4:创建Users实体类对象
-		Users use=new Users();
-		try {
+        use=new Users();
+		ResultSet rs=statement.executeQuery();
 			//step5:获取结果对象
 			if(rs.next()){
 			    use.setUid(rs.getInt("uid"));
@@ -184,106 +182,100 @@ public class UserDaoImpl implements IUserDao {
 			    use.setUques(rs.getString("uques"));
 			    use.setUrealname(rs.getString("urealname"));
 			    use.setUremarks(rs.getString("uremarks"));
-				return use;	
-			}else{
-				return null;
-			}			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block		
-			e.printStackTrace();
-			return null;
-		} finally{
-			db.closeConn();
-		}		
+			  } 
+	    }catch (SQLException e) {
+		            e.printStackTrace();
+		            return null;
+		        } finally {
+		            JDBCUtil.closeDB(connection, statement, null);
+		        }
+		       return use;
 	}	
 	//获取登录者关注人的信息
 	@Override
 	public List<Users> FindByInterest(int uid) {
-		//step1:创建查询语句
-		String sql="SELECT * FROM users where  uid!=? and uid not in (select g_id from relations where r_id=?)";
-		
-		//step3:获取查询结果
-		ResultSet rs=db.execQuery(sql, new Object[]{uid,uid});
-		//step4:创建Users实体类对象
-		Users use=null;
-		//step5:创建list集合
-		List<Users> listUser=new ArrayList<Users>();
-		try {
-			while (rs.next()) {
-				//step6:获取结果对象
-				use=new Users();
-				use.setUid(rs.getInt("uid"));
-			    use.setUname(rs.getString("uname"));
-			    use.setUpwd(rs.getString("upwd"));
-			    use.setUnickname(rs.getString("unickname"));
-			    use.setUsex(rs.getString("usex"));
-			    use.setUaddress(rs.getString("uaddress"));
-			    use.setUdate(rs.getString("udate"));
-			    use.setUpic(rs.getString("upic"));
-			    use.setUqq(rs.getString("uqq"));
-			    use.setUemail(rs.getString("uemail"));
-			    use.setUedu(rs.getString("uedu"));
-			    use.setUques(rs.getString("uques"));
-			    use.setUrealname(rs.getString("urealname"));
-			    use.setUremarks(rs.getString("uremarks"));
-			    //结合添加对象
-				listUser.add(use);
-			}
-			return listUser;
+		 List<Users> users = null;
+		 Connection connection = null;
+		 PreparedStatement statement = null;
+     	try {
+			String sql="SELECT * FROM users where  uid!=? and uid not in (select g_id from relations where r_id=?)";
+	        connection = JDBCUtil.getConn();
+	        statement = connection.prepareStatement(sql);
+	        statement.setInt(1, uid);
+	        statement.setInt(2, uid);
+	         users = new ArrayList<Users>();
+			//step3:获取查询结果
+			ResultSet rs=statement.executeQuery();
+				while (rs.next()) {
+					//step6:获取结果对象
+					Users	use=new Users();
+					use.setUid(rs.getInt("uid"));
+				    use.setUname(rs.getString("uname"));
+				    use.setUpwd(rs.getString("upwd"));
+				    use.setUnickname(rs.getString("unickname"));
+				    use.setUsex(rs.getString("usex"));
+				    use.setUaddress(rs.getString("uaddress"));
+				    use.setUdate(rs.getString("udate"));
+				    use.setUpic(rs.getString("upic"));
+				    use.setUqq(rs.getString("uqq"));
+				    use.setUemail(rs.getString("uemail"));
+				    use.setUedu(rs.getString("uedu"));
+				    use.setUques(rs.getString("uques"));
+				    use.setUrealname(rs.getString("urealname"));
+				    use.setUremarks(rs.getString("uremarks"));
+				    //结合添加对象
+				    users.add(use);
+				}
+				return users;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}finally{
-			db.closeConn();
+			JDBCUtil.closeDB(connection, statement, null);
 		}	
 	}
-
+	
 	@Override
 	public List<Users> FindByListener() {
-		//step1:sql语句
-		String sql="SELECT * FROM users where uremarks!='no' order by uid limit 55";
-		
-		//step3:获取查询结果
-		ResultSet rs=db.execQuery(sql, new Object[]{});
-		//step4:创建Users实体类对象
-		Users use=null;
-		//step5:创建list集合
-		List<Users> listUser=new ArrayList<Users>();
-		try {
-			while (rs.next()) {
-				//step6:获取结果对象
-				use=new Users();
-				use.setUid(rs.getInt("uid"));
-			    use.setUname(rs.getString("uname"));
-			    use.setUpwd(rs.getString("upwd"));
-			    use.setUnickname(rs.getString("unickname"));
-			    use.setUsex(rs.getString("usex"));
-			    use.setUaddress(rs.getString("uaddress"));
-			    use.setUdate(rs.getString("udate"));
-			    use.setUpic(rs.getString("upic"));
-			    use.setUqq(rs.getString("uqq"));
-			    use.setUemail(rs.getString("uemail"));
-			    use.setUedu(rs.getString("uedu"));
-			    use.setUques(rs.getString("uques"));
-			    use.setUrealname(rs.getString("urealname"));
-			    use.setUremarks(rs.getString("uremarks"));
-			    //结合添加对象
-				listUser.add(use);
-			}
-			return listUser;
+		 String sql="SELECT * FROM users where uremarks!='no' order by uid limit 55";
+		 List<Users> users = null;
+		 Connection connection = null;
+		 PreparedStatement statement = null;
+     	try {
+	        connection = JDBCUtil.getConn();
+	        statement = connection.prepareStatement(sql);
+	         users = new ArrayList<Users>();
+			//step3:获取查询结果
+			ResultSet rs=statement.executeQuery();
+				while (rs.next()) {
+					//step6:获取结果对象
+					Users	use=new Users();
+					use.setUid(rs.getInt("uid"));
+				    use.setUname(rs.getString("uname"));
+				    use.setUpwd(rs.getString("upwd"));
+				    use.setUnickname(rs.getString("unickname"));
+				    use.setUsex(rs.getString("usex"));
+				    use.setUaddress(rs.getString("uaddress"));
+				    use.setUdate(rs.getString("udate"));
+				    use.setUpic(rs.getString("upic"));
+				    use.setUqq(rs.getString("uqq"));
+				    use.setUemail(rs.getString("uemail"));
+				    use.setUedu(rs.getString("uedu"));
+				    use.setUques(rs.getString("uques"));
+				    use.setUrealname(rs.getString("urealname"));
+				    use.setUremarks(rs.getString("uremarks"));
+				    //结合添加对象
+				    users.add(use);
+				}
+				return users;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}finally{
-			db.closeConn();
-		}		
+			JDBCUtil.closeDB(connection, statement, null);
+		}	
 	}		
-	@Override
-	public List<Users> FindByOverInterest(int uid) {
-		return null;
-	}
+
 	public static void main(String[] args) {
 		IUserDao u=new UserDaoImpl();
 		List<Users> listUser=u.FindByListener();

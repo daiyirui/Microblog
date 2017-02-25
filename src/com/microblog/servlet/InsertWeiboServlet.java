@@ -32,7 +32,7 @@ public class InsertWeiboServlet extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		
 		response.setContentType("text/html;charset=utf-8");
 		HttpSession session=request.getSession();
 		Users use=new Users();
