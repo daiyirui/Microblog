@@ -222,7 +222,7 @@ public class RelationsDaoImpl implements IRelationsDao {
 						user.setUnickname(rs.getString("unickname"));
 						user.setUsex(rs.getString("usex"));
 						user.setUaddress(rs.getString("uaddress"));
-						user.setUdate(rs.getString("udate"));
+						user.setUdate(rs.getDate("udate"));
 						user.setUqq(rs.getString("uqq"));
 						user.setUedu(rs.getString("uedu"));
 						user.setUpic(rs.getString("upic"));
@@ -266,7 +266,7 @@ public class RelationsDaoImpl implements IRelationsDao {
 						user.setUnickname(rs.getString("unickname"));
 						user.setUsex(rs.getString("usex"));
 						user.setUaddress(rs.getString("uaddress"));
-						user.setUdate(rs.getString("udate"));
+						user.setUdate(rs.getDate("udate"));
 						user.setUqq(rs.getString("uqq"));
 						user.setUedu(rs.getString("uedu"));
 						user.setUpic(rs.getString("upic"));

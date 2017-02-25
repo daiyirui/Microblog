@@ -12,26 +12,6 @@ public class Collection implements Serializable {
 	private String lremarks;
 	private Users use = new Users();
 
-	public Collection() {
-	}
-
-	public Collection(Integer lid, Integer l_uid, String lcontent, String ldate, String limages, String lremarks) {
-		this.lid = lid;
-		this.l_uid = l_uid;
-		this.lcontent = lcontent;
-		this.ldate = ldate;
-		this.limages = limages;
-		this.lremarks = lremarks;
-	}
-
-	public Collection(Integer l_uid, String lcontent, String ldate, String limages, String lremarks) {
-		this.l_uid = l_uid;
-		this.lcontent = lcontent;
-		this.ldate = ldate;
-		this.limages = limages;
-		this.lremarks = lremarks;
-	}
-
 	public Integer getLid() {
 		return lid;
 	}

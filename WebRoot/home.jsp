@@ -21,7 +21,7 @@
 					id="daohang">
 					<tr>
 						<td width="20%">我的首页</td>
-						<td width="20%"><a href="MyBlogServlet">我的微博</a></td>
+						<td width="20%"><a href="WeiboServlet?action=allweibo&uid=${user.uid}">我的微博</a></td>
 						<td width="20%"><a href="MyCollectionServlet">我的收藏</a></td>
 						<td width="20%"><a href="BallhotShowServlet">微博热议</a></td>
 					</tr>
@@ -31,9 +31,9 @@
 				<table id="welcome" border="0" cellspacing="0" cellpadding="0">
 					<tr>
 						<td width="30" height="30" rowspan="2" class="userface_bg"><img
-							src="${userinfo.upic}" border="0" width="20"
+							src="${user.upic}" border="0" width="20"
 							height="20" /></td>
-						<td>欢迎您, ${userinfo.uname }！</td>
+						<td>欢迎您, ${user.uname }！</td>
 					</tr>
 					<tr>
 						<td><a href="index.jsp">[ 退出 ]</a></td>
@@ -94,8 +94,8 @@
 							</form>
 						</td>
 					</tr>
-				</table> <!-- weibo 开始--> <c:if test="${!empty weiboList}">
-					<c:forEach items="${weiboList}" var="weibo">
+				</table> <!-- weibo 开始--> <c:if test="${!empty weibos}">
+					<c:forEach items="${weibos}" var="weibo">
 						<table id="weibo" width="90%" border="0" align="center"
 							cellpadding="3" cellspacing="0">
 							<tr>
@@ -116,7 +116,7 @@
 										<tr>
 											<td>${weibo.wdate}</td>
 											<td align="right">
-											  <c:if test="${weibo.w_uid == userinfo.uid}">
+											  <c:if test="${weibo.w_uid == user.uid}">
 											   <a
 												href="DeleteWeiboServlet?wid=${weibo.wid}">删除</a>
 												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -137,12 +137,12 @@
 
 			</td>
 			<td width="280" align="center" valign="top" class="pageright">
-				<!-- userinfo 开始-->
+					<!-- userinfo 开始-->
 				<table align="center" id="userinfo">
 					<tr>
 						<td width="25%" rowspan="2"><img
-							src="${userinfo.upic}" width="50" height="50" /></td>
-						<td width="75%"><a href="profile.jsp">${userinfo.uname }</a></td>
+							src="${user.upic}" width="50" height="50" /></td>
+						<td width="75%"><a href="#">${user.uname }</a></td>
 					</tr>
 					<tr>
 						<td valign="top">天津</td>
@@ -188,7 +188,7 @@
 							</tr>
 						</c:forEach>
 					</c:if>
-				</table> <!-- userinfo 结束-->
+				</table> <!-- user 结束-->
 			</td>
 		</tr>
 	</table>

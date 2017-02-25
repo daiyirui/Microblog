@@ -1,38 +1,19 @@
 package com.microblog.po;
 
+import java.util.Date;
+
 @SuppressWarnings("serial")
 public class Admins implements java.io.Serializable{
     private Integer aid;
     private Integer a_pid;//���
     private String aname;
     private String apwd;
-    private String adate;
+    private Date adate;
     private String arealname;
     private String asex;
     private String aremarks;
-    public Admins(){    	
-    }
-    public Admins(Integer aid,Integer a_pid,String aname,String apwd,
-    		String adate,String arealname,String asex,String aremarks){
-    	this.a_pid=a_pid;
-    	this.aid=aid;
-    	this.aname=aname;
-    	this.apwd=apwd;
-    	this.adate=adate;
-    	this.arealname=arealname;
-    	this.asex=asex;
-    	this.aremarks=aremarks;
-    }
-    public Admins(Integer a_pid,String aname,String apwd,
-    		String adate,String arealname,String asex,String aremarks){
-    	this.a_pid=a_pid;    	
-    	this.aname=aname;
-    	this.apwd=apwd;
-    	this.adate=adate;
-    	this.arealname=arealname;
-    	this.asex=asex;
-    	this.aremarks=aremarks;
-    }
+   
+    
 	public Integer getAid() {
 		return aid;
 	}
@@ -57,10 +38,10 @@ public class Admins implements java.io.Serializable{
 	public void setApwd(String apwd) {
 		this.apwd = apwd;
 	}
-	public String getAdate() {
+	public Date getAdate() {
 		return adate;
 	}
-	public void setAdate(String adate) {
+	public void setAdate(Date adate) {
 		this.adate = adate;
 	}
 	public String getArealname() {

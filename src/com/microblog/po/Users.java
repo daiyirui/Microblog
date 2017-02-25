@@ -1,6 +1,7 @@
 package com.microblog.po;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class Users implements Serializable {
@@ -10,7 +11,7 @@ public class Users implements Serializable {
    private String unickname;
    private String usex; 
    private String uaddress;
-   private String udate;
+   private Date udate;
    private String uqq;
    private String uedu;
    private String upic;
@@ -19,37 +20,7 @@ public class Users implements Serializable {
    private String urealname;
    private String uremarks;
    public Users(){}
-   public Users(Integer uid,String uname,String upwd,String unickname,String usex,String uaddress,
-             String udate,String uqq,String uedu,String upic,String uques,String urealname,String uremarks){
-	   this.uid=uid;
-	   this.uname=uname;
-	   this.upwd=upwd;
-	   this.unickname=unickname;
-	   this.usex=usex;
-	   this.uaddress=uaddress;
-	   this.udate=udate;
-	   this.uqq=uqq;
-	   this.uedu=uedu;
-	   this.upic=upic;
-	   this.uques=uques;
-	   this.urealname=urealname;
-	   this.uremarks=uremarks;
-   }
-   public Users(String uname,String upwd,String unickname,String usex,String uaddress,
-           String udate,String uqq,String uedu,String upic,String uques,String urealname,String uremarks){	   
-	   this.uname=uname;
-	   this.upwd=upwd;
-	   this.unickname=unickname;
-	   this.usex=usex;
-	   this.uaddress=uaddress;
-	   this.udate=udate;
-	   this.uqq=uqq;
-	   this.uedu=uedu;
-	   this.upic=upic;
-	   this.uques=uques;
-	   this.urealname=urealname;
-	   this.uremarks=uremarks;
-   }
+ 
 	public Integer getUid() {
 		return uid;
 	}
@@ -86,10 +57,10 @@ public class Users implements Serializable {
 	public void setUaddress(String uaddress) {
 		this.uaddress = uaddress;
 	}
-	public String getUdate() {
+	public Date getUdate() {
 		return udate;
 	}
-	public void setUdate(String udate) {
+	public void setUdate(Date udate) {
 		this.udate = udate;
 	}
 	public String getUqq() {

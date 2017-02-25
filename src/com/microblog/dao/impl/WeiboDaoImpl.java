@@ -57,7 +57,7 @@ public class WeiboDaoImpl implements IWeiboDao {
 				   Weibo weibo=new Weibo();		
 				   weibo.setWid(rs.getInt("wid"));
 				   weibo.setWcontent(rs.getString("wcontent"));
-				   weibo.setWdate(rs.getString("wdate"));
+				   weibo.setWdate(rs.getDate("wdate"));
 				   weibo.setWimage(rs.getString("wimage"));
 				   weibo.setWtimes(rs.getInt("wtimes"));
 				   weibo.setWremarks(rs.getString("wremarks"));
@@ -75,7 +75,7 @@ public class WeiboDaoImpl implements IWeiboDao {
 					    use.setUnickname(re.getString("unickname"));
 					    use.setUsex(re.getString("usex"));
 					    use.setUaddress(re.getString("uaddress"));
-					    use.setUdate(re.getString("udate"));
+					    use.setUdate(re.getDate("udate"));
 					    use.setUpic(re.getString("upic"));
 					    use.setUqq(re.getString("uqq"));
 					    use.setUedu(re.getString("uedu"));
@@ -149,17 +149,19 @@ public class WeiboDaoImpl implements IWeiboDao {
 				Connection connection = null;
 			    PreparedStatement statement = null;
 			    try {
-					String sql="SELECT * FROM weibo where w_uid=? by wdate desc";
+					String sql="SELECT * FROM weibo where w_uid=? order by wdate desc";
 					connection = JDBCUtil.getConn();
 			        statement = connection.prepareStatement(sql);
 			        statement.setInt(1, uid);
+			        System.out.println("uid:"+uid);
+			        System.out.println("sql:"+sql);
 			        ResultSet rs = statement.executeQuery();
 					//step6:遍历结果集
 						while (rs.next()) {
 						   Weibo weibo=new Weibo();		
 						   weibo.setWid(rs.getInt("wid"));
 						   weibo.setWcontent(rs.getString("wcontent"));
-						   weibo.setWdate(rs.getString("wdate"));
+						   weibo.setWdate(rs.getDate("wdate"));
 						   weibo.setWimage(rs.getString("wimage"));
 						   weibo.setWtimes(rs.getInt("wtimes"));
 						   weibo.setWremarks(rs.getString("wremarks"));
@@ -177,7 +179,7 @@ public class WeiboDaoImpl implements IWeiboDao {
 							    use.setUnickname(re.getString("unickname"));
 							    use.setUsex(re.getString("usex"));
 							    use.setUaddress(re.getString("uaddress"));
-							    use.setUdate(re.getString("udate"));
+							    use.setUdate(re.getDate("udate"));
 							    use.setUpic(re.getString("upic"));
 							    use.setUqq(re.getString("uqq"));
 							    use.setUedu(re.getString("uedu"));

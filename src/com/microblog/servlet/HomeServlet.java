@@ -1,7 +1,6 @@
 package com.microblog.servlet;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,6 +39,7 @@ public class HomeServlet extends HttpServlet {
 		//退出功能
 		//游客页面之间相互跳转功能
 		String action = request.getParameter("action");
+		System.out.println(action);
 		//实现注册功能
 		if("register".equals(action)) {
 			register(request,response);
@@ -48,6 +48,7 @@ public class HomeServlet extends HttpServlet {
 			login(request,response);
 			//实现注册功能
 		}else if("home".equals(action)) {
+			System.out.println("home");
 			home(request,response);
 			//实现退出功能
 		}else if("exit".equals(action)) {
@@ -100,8 +101,46 @@ public class HomeServlet extends HttpServlet {
 	/**
 	 * @param request
 	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
-	private void home(HttpServletRequest request, HttpServletResponse response) {
+	private void home(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		    String uid = request.getParameter("uid");
+	        IWeiboDao weibodao = new WeiboDaoImpl();
+	        List<Weibo> weibos= weibodao.FindByLogin(Integer.parseInt(uid));
+	        System.out.println("weibos:"+weibos);
+		    IUserDao userdao = new UserDaoImpl();
+		    Users user = userdao.FindByuid(Integer.parseInt(uid));
+	        request.setAttribute("user", user);
+	        request.setAttribute("weibos",weibos);
+	        //共同的代码块
+	     	//显示所关注人数量
+			IRelationsDao relationBiz=new RelationsDaoImpl();
+			int countRlat=relationBiz.CountByAttention(user.getUid());
+			request.setAttribute("countRlation",countRlat);
+			//显示粉丝数量
+			int countVeri=relationBiz.CountByVermicelli(user.getUid());
+			request.setAttribute("countVeri",countVeri);
+			//自己已经关注成功的人
+			List<Users> interests = relationBiz.FindAllMyInterestByuid(user.getUid());
+			//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
+			List<Users> listAllUser=new ArrayList<Users>();//全部陌生朋友信息
+			List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
+			listAllUser=userdao.FindByInterest(user.getUid());
+			listAllUser.remove(interests);
+			for (int i = 0; i < 8; i++) {
+				listUser.add(listAllUser.get(i));		
+			}
+			
+			request.setAttribute("userAllList", listAllUser);
+			if(listUser!=null){
+				request.setAttribute("userList",listUser);	
+			}			
+			//微博数量
+			int countMicroblog=weibodao.CountByMicroblog(user.getUid());
+			request.setAttribute("countBlog",countMicroblog);
+			
+			request.getRequestDispatcher("./home.jsp").forward(request, response);
 		
 	}
 	/**
@@ -119,10 +158,10 @@ public class HomeServlet extends HttpServlet {
 		Users use=new Users();
 		use=userdao.UserLoginCheck(usn, pwd);
 		if(use!=null){
-			request.setAttribute("userinfo", use);
+			request.setAttribute("user", use);
 			IWeiboDao weibodao=new WeiboDaoImpl();
-			List<Weibo> weiboList=weibodao.FindByLogin(use.getUid());
-			request.setAttribute("weiboList",weiboList);
+			List<Weibo> weibos=weibodao.FindByLogin(use.getUid());
+			request.setAttribute("weibos",weibos);
 			
 			//显示所关注人数量
 			IRelationsDao relationBiz=new RelationsDaoImpl();
@@ -180,8 +219,7 @@ public class HomeServlet extends HttpServlet {
 		String city = request.getParameter("city");
 		String uedu = request.getParameter("uedu");
 		Users user = new Users();
-		SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
-		user.setUdate(time.format(new Date()));
+		user.setUdate(new Date());
 		user.setUname(uname);
 		user.setUpwd(upwd);
 		user.setUrealname(urealname);

@@ -1,12 +1,13 @@
 package com.microblog.po;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class Weibo implements Serializable {
    private Integer wid;
    private String wcontent;
-   private String wdate;
+   private Date wdate;
    private String wimage;
    private String wremarks;
    private Integer wtimes;
@@ -14,26 +15,7 @@ public class Weibo implements Serializable {
    private Integer wcountcomment;
    private Users use=new Users();
 
-   public Weibo(){}
-   public Weibo(Integer wid,String wcontent,String wdate,String wimage,String wremarks,Integer wtimes,Integer w_uid,Integer wcountcomment){
-	   this.wid=wid;
-	   this.wcontent=wcontent;
-	   this.wdate=wdate;
-	   this.wimage=wimage;
-	   this.wremarks=wremarks;
-	   this.wtimes=wtimes;
-	   this.w_uid=w_uid;
-	   this.wcountcomment=wcountcomment;
-   }
-   public Weibo(String wcontent,String wdate,String wimage,String wremarks,Integer wtimes,Integer w_uid,Integer wcountcomment){	
-	   this.wcontent=wcontent;
-	   this.wdate=wdate;
-	   this.wimage=wimage;
-	   this.wremarks=wremarks;
-	   this.wtimes=wtimes;
-	   this.w_uid=w_uid;
-	   this.wcountcomment=wcountcomment;
-   }
+ 
     public Users getUse() {
 		return use;
 	}
@@ -58,10 +40,10 @@ public class Weibo implements Serializable {
 	public void setWcontent(String wcontent) {
 		this.wcontent = wcontent;
 	}
-	public String getWdate() {
+	public Date getWdate() {
 		return wdate;
 	}
-	public void setWdate(String wdate) {
+	public void setWdate(Date wdate) {
 		this.wdate = wdate;
 	}
 	public String getWimage() {

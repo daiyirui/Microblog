@@ -11,20 +11,6 @@ public class Relations implements Serializable {
    private String remarks;
    private Users ridUser = new Users();
    private Users gidUser = new Users();
-   public Relations(){}
-   public Relations(Integer rid, Integer r_id, Integer g_id, Integer rstate,String remarks){
-	   this.rid=rid;
-	   this.r_id=r_id;
-	   this.g_id=g_id;
-	   this.rstate=rstate;
-	   this.remarks=remarks;
-   }
-   public Relations( Integer r_id, Integer g_id, Integer rstate,String remarks){	 
-	   this.r_id=r_id;
-	   this.g_id=g_id;
-	   this.rstate=rstate;
-	   this.remarks=remarks;
-   }
    
 	public String getRemarks() {
 	    return remarks;

@@ -1,6 +1,7 @@
 package com.microblog.po;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class Comment implements Serializable {
@@ -8,35 +9,12 @@ public class Comment implements Serializable {
     private Integer c_wid;
     private Integer c_uid;
     private String ccontent;
-    private String cdate;
+    private Date cdate;
     private String cremarks;
     private String cimages;
     private Weibo weibo=new Weibo();
     private Users use=new Users();
-    public Comment(){}
-    public Comment(Integer cid,Integer c_wid,Integer c_uid, String ccontent,
-    		String cdate, String cremarks,String cimages,Weibo weibo, Users use){
-    	this.cid=cid;
-    	this.c_wid=c_wid;
-    	this.c_uid=c_uid;
-    	this.ccontent=ccontent;
-    	this.cdate=cdate;
-    	this.cremarks=cremarks;    	
-    	this.cimages=cimages;
-    	this.weibo=weibo;
-    	this.use=use;
-    }
-    public Comment(Integer c_wid,Integer c_uid, String ccontent,
-    		String cdate, String cremarks,String cimages,Weibo weibo, Users use){
-    	this.c_wid=c_wid;
-    	this.c_uid=c_uid;
-    	this.ccontent=ccontent;
-    	this.cdate=cdate;
-    	this.cremarks=cremarks;    	
-    	this.cimages=cimages;
-    	this.weibo=weibo;
-    	this.use=use;
-    }
+  
 	public String getCimages() {
 		return cimages;
 	}
@@ -79,10 +57,10 @@ public class Comment implements Serializable {
 	public void setCcontent(String ccontent) {
 		this.ccontent = ccontent;
 	}
-	public String getCdate() {
+	public Date getCdate() {
 		return cdate;
 	}
-	public void setCdate(String cdate) {
+	public void setCdate(Date cdate) {
 		this.cdate = cdate;
 	}
 	public String getCremarks() {

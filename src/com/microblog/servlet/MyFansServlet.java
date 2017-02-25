@@ -54,20 +54,29 @@ public class MyFansServlet extends HttpServlet {
 			pb=usersBiz.SelectFansByPage(use.getUid(),nowpage, pagesize);
 			session.setAttribute("fansList",pb);
 			//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
-			IRelationsBiz relationBiz=new RelationsBizImpl();
 			IUsersBiz userBiz=new UsersBizImpl();
-			List<Users> MyInterestUsers= relationBiz.FindAllMyInterestByuid(use.getUid());
+			//显示所关注人数量
+			IRelationsBiz relationBiz=new RelationsBizImpl();
+			int countRlat=relationBiz.CountByAttention(use.getUid());
+			session.setAttribute("countRlation",countRlat);
+			//显示粉丝数量
+			int countVeri=relationBiz.CountByVermicelli(use.getUid());
+			session.setAttribute("countVeri",countVeri);
+			//自己已经关注成功的人
+			List<Users> interests = relationBiz.FindAllMyInterestByuid(use.getUid());
+			System.out.println("我关注的人有:"+interests);
+			//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
 			List<Users> listAllUser=new ArrayList<Users>();//全部陌生朋友信息
 			List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
 			if(session.getAttribute("userAllList")==null){
 				listAllUser=userBiz.SelectByInterest(use.getUid());
-				listAllUser.removeAll(MyInterestUsers);
+				listAllUser.remove(interests);
 				for (int i = 0; i < 8; i++) {
 					listUser.add(listAllUser.get(i));		
 				}
 			}else{
 				listAllUser=(List<Users>) session.getAttribute("userAllList");
-				listAllUser.removeAll(MyInterestUsers);
+				listAllUser.remove(interests);
 				for (int i = 0; i < 8; i++) {
 					listUser.add(listAllUser.get(i));		
 				}
@@ -80,12 +89,6 @@ public class MyFansServlet extends HttpServlet {
 			//微博数量
 			int countMicroblog=weiboBiz.CountByMicroblog(use.getUid());
 			session.setAttribute("countBlog",countMicroblog);
-			//显示所关注人数量
-			int countRlat=relationBiz.CountByAttention(use.getUid());
-			session.setAttribute("countRlation",countRlat);
-			//显示粉丝数量
-			int countVeri=relationBiz.CountByVermicelli(use.getUid());
-			session.setAttribute("countVeri",countVeri);
 			//step5 跳转到个人主页面
 			response.sendRedirect("myFans.jsp");
 		}

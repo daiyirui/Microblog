@@ -10,27 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.microblog.biz.IBollhotBiz;
-import com.microblog.biz.ICollectionBiz;
-import com.microblog.biz.IUsersBiz;
-import com.microblog.biz.IWeiboBiz;
-import com.microblog.biz.impl.BollhotBizImpl;
-import com.microblog.biz.impl.CollectionBizImpl;
-import com.microblog.biz.impl.UsersBizImpl;
-import com.microblog.biz.impl.WeiboBizImpl;
+import com.microblog.dao.IUserDao;
+import com.microblog.dao.impl.UserDaoImpl;
 import com.microblog.filter.PageBean;
 import com.microblog.po.Users;
 
 @SuppressWarnings("serial")
 public class ChangeUserServlet extends HttpServlet {
 
-	public ChangeUserServlet() {
-		super();
-	}
-	public void destroy() {
-		super.destroy(); // Just puts "destroy" string in log
-		// Put your code here
-	}
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 this.doPost(request, response);
@@ -41,7 +29,7 @@ this.doPost(request, response);
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		HttpSession session=request.getSession();
-		IUsersBiz userBiz=new UsersBizImpl();
+		IUserDao userdao=new UserDaoImpl();
 		//获取登陆人信息
 		Users use=new Users();
 		if(session.getAttribute("userinfo")!=null){
@@ -51,7 +39,7 @@ this.doPost(request, response);
 		List<Users> listAllUser=(List<Users>) session.getAttribute("userAllList");
 		List<Users> listUser=new ArrayList<Users>();
 		if(listAllUser==null){
-			listAllUser=userBiz.SelectByInterest(use.getUid());
+			listAllUser=userdao.FindByInterest(use.getUid());
 			for(int i=0;i<8;i++){
 				listUser.add(listAllUser.get(i));
 			}
@@ -79,13 +67,8 @@ this.doPost(request, response);
 		int change=Integer.parseInt(request.getParameter("change"));
 		if(change==1){
 			//显示登录者关注的信息-分页显示
-			IUsersBiz usersBiz=new UsersBizImpl();
-			PageBean pb=new PageBean();			
-			//定义分页参数
-			//定义分页参数
-			int pagesize=Integer.parseInt(this.getServletConfig().getInitParameter("pagesize"));
-			int nowpage=request.getParameter("np")!=null?Integer.parseInt(request.getParameter("np")):1;
-			pb=usersBiz.SelectByOverInterest(use.getUid(),nowpage, pagesize);
+			IUserDao usedao=new UserDaoImpl();
+			
 			session.setAttribute("OverInterestList",pb);
 			response.sendRedirect("myFollow.jsp");
 		}else if(change==2){

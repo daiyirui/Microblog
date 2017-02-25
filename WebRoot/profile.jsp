@@ -20,7 +20,7 @@
 				<table border="0" align="right" cellpadding="0" cellspacing="0"
 					id="daohang">
 					<tr>
-						<td width="20%"><a href="HomeServlet">我的首页</a></td>
+						<td width="20%"><a href="HomeServlet?uid=${user.uid}&action=home">我的首页</a></td>
 						<td width="20%">我的微博</td>
 						<td width="20%"><a href="MyCollectionServlet">我的收藏</a></td>
 						<td width="20%"><a href="BallhotShowServlet">微博热议</a></td>
@@ -31,9 +31,9 @@
 				<table id="welcome" border="0" cellspacing="0" cellpadding="0">
 					<tr>
 						<td width="30" height="30" rowspan="2" class="userface_bg"><img
-							src="${sessionScope.userinfo.upic}" border="0" width="20"
+							src="${user.upic}" border="0" width="20"
 							height="20" /></td>
-						<td>欢迎您, ${sessionScope.userinfo.uname }！</td>
+						<td>欢迎您, ${user.uname }！</td>
 					</tr>
 					<tr>
 						<td><a href="index.jsp">[ 退出 ]</a></td>
@@ -94,8 +94,8 @@
 							</form>
 						</td>
 					</tr>
-				</table> <!-- weibo 开始--> <c:if test="${!empty sessionScope.weiboList}">
-					<c:forEach items="${sessionScope.weiboList.data}" var="weibo">
+				</table> <!-- weibo 开始--> <c:if test="${!empty weibos}">
+					<c:forEach items="${weibos}" var="weibo">
 						<table id="weibo" width="90%" border="0" align="center"
 							cellpadding="3" cellspacing="0">
 							<tr>
@@ -129,35 +129,14 @@
 					</c:forEach>
 				</c:if> <br />
 
-				<table align="center" id="page">
-					<tr>
-						<td align="left">第${sessionScope.weiboList.currentPage}页&nbsp;共${sessionScope.weiboList.totalRows}条微博
-						</td>
-						<td align="right"><c:if
-								test="${sessionScope.weiboList.currentPage==1}">首页</c:if> <c:if
-								test="${sessionScope.weiboList.currentPage!=1}">
-								<a href="PageChangeServlet">首页</a>
-             &nbsp;<a
-									href="PageChangeServlet?np=${sessionScope.weiboList.currentPage-1}">上一页</a>
-							</c:if> <c:if
-								test="${sessionScope.weiboList.currentPage!=sessionScope.weiboList.totalPages}">
-             &nbsp;<a
-									href="PageChangeServlet?np=${sessionScope.weiboList.currentPage+1}">下一页</a>
-             &nbsp;<a
-									href="PageChangeServlet?np=${sessionScope.weiboList.totalPages}">尾页</a>
-							</c:if> <c:if
-								test="${sessionScope.weiboList.currentPage==sessionScope.weiboList.totalPages}">&nbsp;尾页</c:if>
-						</td>
-					</tr>
-				</table> <!-- weibo 结束-->
 			</td>
 			<td width="280" align="center" valign="top" class="pageright">
 				<!-- userinfo 开始-->
 				<table align="center" id="userinfo">
 					<tr>
 						<td width="25%" rowspan="2"><img
-							src="${sessionScope.userinfo.upic}" width="50" height="50" /></td>
-						<td width="75%"><a href="profile.jsp">${sessionScope.userinfo.uname }</a></td>
+							src="${user.upic}" width="50" height="50" /></td>
+						<td width="75%"><a href="#">${user.uname }</a></td>
 					</tr>
 					<tr>
 						<td valign="top">天津</td>
@@ -166,9 +145,9 @@
 						<td colspan="2" align="left"><table width="80%" border="0"
 								align="left" cellpadding="3" cellspacing="0">
 								<tr>
-									<td align="center" class="split2"><a href="FollowServlet">关注</a><br>${sessionScope.countRlation}</td>
-									<td align="center" class="split2"><a href="MyFansServlet">粉丝</a><br>${sessionScope.countVeri}</td>
-									<td align="center"><a href="#">微博</a><br>${sessionScope.countBlog}</td>
+									<td align="center" class="split2"><a href="FollowServlet">关注</a><br>${countRlation}</td>
+									<td align="center" class="split2"><a href="MyFansServlet">粉丝</a><br>${countVeri}</td>
+									<td align="center"><a href="#">微博</a><br>${countBlog}</td>
 								</tr>
 							</table></td>
 					</tr>
@@ -184,8 +163,8 @@
 							href="ChangeUserServlet?change=3">[换一换]</a></td>
 					</tr>
 
-					<c:if test="${!empty sessionScope.userList }">
-						<c:forEach items="${sessionScope.userList}" var="usl">
+					<c:if test="${!empty userList }">
+						<c:forEach items="${userList}" var="usl">
 							<tr>
 								<td colspan="2"><table border="0" cellpadding="0"
 										cellspacing="0" class="userdetail">

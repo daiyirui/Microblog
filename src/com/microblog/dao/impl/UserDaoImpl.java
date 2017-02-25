@@ -30,7 +30,7 @@ public class UserDaoImpl implements IUserDao {
 			    use.setUnickname(rs.getString("unickname"));
 			    use.setUsex(rs.getString("usex"));
 			    use.setUaddress(rs.getString("uaddress"));
-			    use.setUdate(rs.getString("udate"));
+			    use.setUdate(rs.getDate("udate"));
 			    use.setUpic(rs.getString("upic"));   
 			    use.setUqq(rs.getString("uqq"));
 			    use.setUemail(rs.getString("uemail"));
@@ -72,7 +72,7 @@ public class UserDaoImpl implements IUserDao {
             statement.setString(3, use.getUnickname());
             statement.setString(4, use.getUsex());
             statement.setString(5, use.getUaddress());
-            statement.setString(6, use.getUdate());
+            statement.setString(6, use.getUdate().toString());
             statement.setString(7, use.getUqq());
             statement.setString(8, use.getUedu());
             statement.setString(9, use.getUrealname());
@@ -100,7 +100,7 @@ public class UserDaoImpl implements IUserDao {
 			    use.setUnickname(rs.getString("unickname"));
 			    use.setUsex(rs.getString("usex"));
 			    use.setUaddress(rs.getString("uaddress"));
-			    use.setUdate(rs.getString("udate"));
+			    use.setUdate(rs.getDate("udate"));
 			    use.setUpic(rs.getString("upic"));   
 			    use.setUqq(rs.getString("uqq"));
 			    use.setUedu(rs.getString("uedu"));
@@ -121,9 +121,14 @@ public class UserDaoImpl implements IUserDao {
 	}
     @Override
 	public Users FindByuid(int uid) {
-    	String sql="SELECT * FROM users where  uid=?";
-    	ResultSet rs=db.execQuery(sql, new Object[]{uid});
+    	  Connection connection = null;
+	      PreparedStatement statement = null;
     	try {
+    		String sql="SELECT * FROM users where  uid=?";
+    		  connection = JDBCUtil.getConn();
+    	      statement = connection.prepareStatement(sql);
+    	      statement.setInt(1, uid);
+    	      ResultSet rs=statement.executeQuery();
 			if(rs.next()){
 				Users use=new Users();			  
 			    use.setUid(rs.getInt("uid"));
@@ -132,7 +137,7 @@ public class UserDaoImpl implements IUserDao {
 			    use.setUnickname(rs.getString("unickname"));
 			    use.setUsex(rs.getString("usex"));
 			    use.setUaddress(rs.getString("uaddress"));
-			    use.setUdate(rs.getString("udate"));
+			    use.setUdate(rs.getDate("udate"));
 			    use.setUpic(rs.getString("upic"));   
 			    use.setUqq(rs.getString("uqq"));
 			    use.setUemail(rs.getString("uemail"));
@@ -144,16 +149,16 @@ public class UserDaoImpl implements IUserDao {
 			}else{
 				return null;
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}finally{
-			db.closeConn();
-		}	
+    	  }catch (SQLException e) {
+	            e.printStackTrace();
+	            return null;
+	        } finally {
+	            JDBCUtil.closeDB(connection, statement, null);
+	        }
 	}
 	@Override
 	public Users UserLoginCheck(String usn, String pwd) {
-		 Connection connection = null;
+		  Connection connection = null;
 	      PreparedStatement statement = null;
 		  Users use=null;
 	  try {
@@ -174,7 +179,7 @@ public class UserDaoImpl implements IUserDao {
 			    use.setUnickname(rs.getString("unickname"));
 			    use.setUsex(rs.getString("usex"));
 			    use.setUaddress(rs.getString("uaddress"));
-			    use.setUdate(rs.getString("udate"));
+			    use.setUdate(rs.getDate("udate"));
 			    use.setUpic(rs.getString("upic"));
 			    use.setUqq(rs.getString("uqq"));
 			    use.setUedu(rs.getString("uedu"));
@@ -215,7 +220,7 @@ public class UserDaoImpl implements IUserDao {
 				    use.setUnickname(rs.getString("unickname"));
 				    use.setUsex(rs.getString("usex"));
 				    use.setUaddress(rs.getString("uaddress"));
-				    use.setUdate(rs.getString("udate"));
+				    use.setUdate(rs.getDate("udate"));
 				    use.setUpic(rs.getString("upic"));
 				    use.setUqq(rs.getString("uqq"));
 				    use.setUemail(rs.getString("uemail"));
@@ -256,7 +261,7 @@ public class UserDaoImpl implements IUserDao {
 				    use.setUnickname(rs.getString("unickname"));
 				    use.setUsex(rs.getString("usex"));
 				    use.setUaddress(rs.getString("uaddress"));
-				    use.setUdate(rs.getString("udate"));
+				    use.setUdate(rs.getDate("udate"));
 				    use.setUpic(rs.getString("upic"));
 				    use.setUqq(rs.getString("uqq"));
 				    use.setUemail(rs.getString("uemail"));

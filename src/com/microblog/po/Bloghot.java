@@ -13,19 +13,7 @@ public class Bloghot implements Serializable {
     private String bimages;
     private Integer bvote;
     private String bremarks;
-    public Bloghot(){    	
-    }
-    public Bloghot(Integer bid, Integer bstate,String btitle,String bitems,Integer bvote,String bremarks){
-    	this.bid=bid;
-    	this.bstate=bstate;
-    	this.btitle=btitle;
-    	this.bremarks=bremarks;
-    }
-    public Bloghot( Integer bstate,String btitle,String bitems,Integer bvote,String bremarks){    	
-    	this.bstate=bstate;
-    	this.btitle=btitle;
-    	this.bremarks=bremarks;
-    }
+   
 	public Integer getBid() {
 		return bid;
 	}
