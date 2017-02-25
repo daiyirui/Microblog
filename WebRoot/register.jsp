@@ -32,65 +32,6 @@
 		cn.src = "image.jsp?" + Math.random();//随机生成一个数字，让图片缓冲区认为不是同一个缓冲区    
 	}
 </script>
-<script language="javascript">
-	///用数组作级联
-	function selectProvincesArray() {
-		var cityList = new Array();
-		cityList['天津市'] = [ '和平区', '河西区', '河北区', '河东区', '南开区', '红桥区', '东丽区',
-				'西青区', '津南区', '北辰区', '武清', '宝坻', '蓟县', '静海', '宁河', '塘沽', '大港',
-				'汉沽' ];
-		cityList['北京市'] = [ '东城区', '西城区', '崇文区', '宣武区', '朝阳区', '海淀区', '丰台区',
-				'石景山区', '顺义区', '昌平区', '门头沟区', '通州区', '房山区', '大兴区', '怀柔区',
-				'平谷区', '延庆县', '密云县' ];
-		cityList['四川省'] = [ '成都', '绵阳', '眉山', '雅安', '自贡' ];
-		cityList['云南省'] = [ '昆明', '丽江', '大理' ];
-		cityList['浙江省'] = [ '杭州', '嘉兴', '义乌' ];
-		cityList['河北省'] = [ '石家庄', '唐山', '秦皇岛', '邯郸', '邢台', '保定', '张家口', '承德',
-				'沧州', '廊坊', '衡水' ];
-		cityList['山西省'] = [];
-		cityList['内蒙古自治区'] = [];
-		cityList['辽宁省'] = [];
-		cityList['吉林省'] = [];
-		cityList['黑龙江省'] = [];
-		cityList['上海市'] = [];
-		cityList['江苏省'] = [];
-		cityList['浙江省'] = [];
-		cityList['安徽省'] = [];
-		cityList['福建省'] = [];
-		cityList['江西省'] = [];
-		cityList['山东省'] = [];
-		cityList['河南省'] = [];
-		cityList['湖北省'] = [];
-		cityList['湖南省'] = [];
-		cityList['广东省'] = [];
-		cityList['广西壮族自治区'] = [];
-		cityList['海南省'] = [];
-		cityList['重庆市'] = [];
-		cityList['贵州省'] = [];
-		cityList['西藏自治区'] = [];
-		cityList['陕西省'] = [];
-		cityList['甘肃省'] = [];
-		cityList['青海省'] = [];
-		cityList['宁夏回族自治区'] = [];
-		cityList['新疆维吾尔自治区'] = [];
-		cityList['台湾省'] = [];
-		cityList['香港特别行政区'] = [];
-		cityList['澳门特别行政区'] = [];
-		var pIndex = document.forms.selectProvinceArray.value;
-		var newpotion3;
-		document.forms.selectCityArray.options.length = 0;
-		for ( var j in cityList[pIndex]) {
-			newpotion3 = new Option(cityList[pIndex][j], cityList[pIndex][j]);
-			document.forms.selectCityArray.options.add(newpotion3);
-		}
-	}
-	function formsub() {
-		var f = document.getElementById("for");
-		if (confirm("确认提交注册详细?")) {
-			f.submit();
-		}
-	}
-</script>
 <link rel="stylesheet" href="css/css.css" type="text/css"></link>
 </head>
 <body onload="init()">
@@ -123,44 +64,44 @@
 									<tr>
 										<td width="20%" align="right">登陆名称：</td>
 										<td width="53%"><input name="uname" type="text"
-											class="input1" id="email" onblur="checkemail()" /></td>
-										<td width="27%"><span id="emailmsg"><span></td>
+											class=username id="username" onblur="checkUserName()" /></td>
+										<td width="27%"><span id="usernamemsg"></span></td>
 									</tr>
 									<tr>
 										<td align="right">创建密码：</td>
 										<td><input name="upwd" type="password" class="input1"
-											id="password" /></td>
-										<td>&nbsp;</td>
+											id="password" onblur="checkPassword()"/></td>
+										<td width="27%"><span id="passwordmsg"></span></td>
 									</tr>
 									<tr>
 										<td align="right">确认密码：</td>
 										<td><input name="rpassword" type="password"
-											class="input1" id="rpassword" /></td>
-										<td>&nbsp;</td>
+											class="input1" id="rpassword" onblur="checkRpassword()" /></td>
+										<td width="27%"><span id="rpasswordmsg"></span></td>
 									</tr>
 									<tr>
 										<td align="right">真实姓名：</td>
-										<td><input name="urealname" type="password" class="input1"
-											id="password" /></td>
-										<td>&nbsp;</td>
+										<td><input name="urealname" type="text" class="input1"
+											id="urealname"  class="urealname" onblur="checkRealName()"/></td>
+										<td width="27%"><span id="urealnamemsg" ></span></td>
 									</tr>
 									<tr>
 										<td align="right">昵称：</td>
 										<td><input name="unickname" type="text" class="input1"
-											id="nickname" /></td>
-										<td>&nbsp;</td>
+											id="nickname" class="nickname" onblur="checkNickname()"/></td>
+										<td width="27%"><span id="nicknamemsg" ></span></td>
 									</tr>
 									<tr>
 										<td align="right">qq账号：</td>
 										<td><input name="uqq" type="text" class="input1"
-											id="uqq" /></td>
-										<td>&nbsp;</td>
+											id="qq" class="qq" onblur="checkQQ()"/></td>
+										<td width="27%"><span id="qqmsg"></span></td>
 									</tr>
 									<tr>
 										<td align="right">邮箱：</td>
 										<td><input name="uemail" type="text" class="input1"
-											id="uemail" /></td>
-										<td>&nbsp;</td>
+											id="email" class="email" onblur="checkEmail()"/></td>
+										<td width="27%"><span id="emailmsg"></span></td>
 									</tr>
 									<tr>
 										<td align="right">性别：</td>
@@ -171,72 +112,17 @@
 									</tr>
 									<tr>
 										<td align="right">所在省份：</td>
-										<td><select name="selectProvinceArray"
-											onChange="selectProvincesArray()">
-												<option>--请选择所在省份--</option>
-												<option value="北京市">北京市</option>
-												<option value="天津市">天津市</option>
-												<option value="河北省">河北省</option>
-												<option value="山西省">山西省</option>
-												<option value="内蒙古自治区">内蒙古自治区</option>
-												<option value="辽宁省">辽宁省</option>
-												<option value="吉林省">吉林省</option>
-												<option value="黑龙江省">黑龙江省</option>
-												<option value="上海市">上海市</option>
-												<option value="江苏省">江苏省</option>
-												<option value="浙江省">浙江省</option>
-												<option value="安徽省">安徽省</option>
-												<option value="福建省">福建省</option>
-												<option value="江西省">江西省</option>
-												<option value="山东省">山东省</option>
-												<option value="河南省">河南省</option>
-												<option value="湖北省">湖北省</option>
-												<option value="湖南省">湖南省</option>
-												<option value="广东省">广东省</option>
-												<option value="广西壮族自治区">广西壮族自治区</option>
-												<option value="海南省">海南省</option>
-												<option value="重庆市">重庆市</option>
-												<option value="四川省">四川省</option>
-												<option value="贵州省">贵州省</option>
-												<option value="云南省">云南省</option>
-												<option value="西藏自治区">西藏自治区</option>
-												<option value="陕西省">陕西省</option>
-												<option value="甘肃省">甘肃省</option>
-												<option value="青海省">青海省</option>
-												<option value="宁夏回族自治区">宁夏回族自治区</option>
-												<option value="新疆维吾尔自治区">新疆维吾尔自治区</option>
-												<option value="台湾省">台湾省</option>
-												<option value="香港特别行政区">香港特别行政区</option>
-												<option value="澳门特别行政区">澳门特别行政区</option>
-
-
-										</select></td>
-										<td><div class="Validform_checktip"></div></td>
+										<td><input type="text" id="province" name="province" class="province" onblur="CheckProvince()" ></td>
+								         <td width="27%"><span id="provincemsg"></span></td>
 									</tr>
 									<tr>
 										<td align="right">所在城市：</td>
-										<td><select name="selectCityArray">
-												<option>--请选择所在城市--</option>
-										</select></td>
-										<td><div class="Validform_checktip"></div></td>
+										<td><input type="text" id="city" name="city" class="city"></td>
 									</tr>
 									<tr>
 										<td align="right">学历：</td>
-										<td><select name="uedu">
-												<option>--请选择学历信息--</option>
-												<option value="初中以下">初中以下</option>
-												<option value="初中">初中</option>
-												<option value="高中">高中</option>
-												<option value="本科">本科</option>
-												<option value="研究生">研究生</option>
-												<option value="博士">博士</option>
-
-										</select></td>
-
+										<td><input type="text" id="uedu" name="uedu" class="uedu"></td>
 									</tr>
-									
-									
-									
 									<tr>
 										<td align="right">验证码：</td>
 										<td><input type="text" name="checkcode" value=""
@@ -244,7 +130,6 @@
 											<img src="images/yanzhengma/1.png" id="img" width="70"
 											height="25" style="border: #999 1px solid;" /> <a
 											href="javascript:changeCode()">换一张</a></td>
-										<td><span id="checkcode_alt" class="alt"></span></td>
 									</tr>
 									<tr>
 										<td align="center">&nbsp;</td>

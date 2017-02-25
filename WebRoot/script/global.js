@@ -1,12 +1,12 @@
 //Javascript Document
 function myBrowser() {
-	//»ñÈ¡ä¯ÀÀÆ÷userAgent×Ö·û¼¯
+	//è·å–æµè§ˆå™¨userAgentå­—ç¬¦é›†
 	var userAgent=navigator.userAgent;
 	var isOpera=userAgent.indexOf("Opera") > -1;
 	if(isOpera){
 		return "Opera";
 	}
-	//ÅĞ¶ÏÊÇ·ñÊÇOperaä¯ÀÀÆ÷
+	//åˆ¤æ–­æ˜¯å¦æ˜¯Operaæµè§ˆå™¨
 	if(userAgent.indexOf("Firefox") > -1){
 		return "FF";
 	}

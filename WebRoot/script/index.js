@@ -1,4 +1,4 @@
-//Êó±êĞüÍ£Í¼Æ¬Ğ§¹û
+//é¼ æ ‡æ‚¬åœå›¾ç‰‡æ•ˆæœ
 function xianshi(img){
 	if(myBrowser()=="IE"){
 		img.filters.alpha.opacity=100;
@@ -7,7 +7,7 @@ function xianshi(img){
 		img.style.opacity=1;
 	}
 }
-//Êó±êÀë¿ªÍ¼Æ¬Ğ§¹û
+//é¼ æ ‡ç¦»å¼€å›¾ç‰‡æ•ˆæœ
 function huifu(img){
 	if(myBrowser()=="IE"){
 		img.filters.alpha.opacity=70;
@@ -16,15 +16,15 @@ function huifu(img){
 		img.style.opacity=0.7;
 	}
 }
-//±íµ¥ÑéÖ¤
+//è¡¨å•éªŒè¯
 function checkForm(){
 	if(document.getElementById("userid").value==""){
-		alert("ÓÃ»§Ãû±ØĞëÌîĞ´£¡");
+		alert("ç”¨æˆ·åå¿…é¡»å¡«å†™ï¼");
 		document.getElementById("userid").focus();
 		return false;
 	}
 	if(document.getElementById("password").value==""){
-		alert("ÃÜÂë±ØĞëÌîĞ´£¡");
+		alert("å¯†ç å¿…é¡»å¡«å†™ï¼");
 		document.getElementById("password").focus();
 		return false;
 	}

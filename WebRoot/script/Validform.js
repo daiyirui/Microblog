@@ -1,41 +1,41 @@
 /*
-	Í¨ÓÃ±íµ¥ÑéÖ¤·½·¨
+	é€šç”¨è¡¨å•éªŒè¯æ–¹æ³•
 	Validform version 2.0
 	For more information, you can visit http://www.rjboy.cn
 	By sean at April 7, 2010 - April 22, 2011
 	
 	Demo:
-	$(".demoform").Validform({//$(".demoform")Ö¸Ã÷ÊÇÄÄÒ»±íµ¥ĞèÒªÑéÖ¤,Ãû³ÆĞè¼ÓÔÚfrom±íµ¥ÉÏ;
-		btnSubmit:"#btn_sub", //#btn_subÊÇ¸Ã±íµ¥ÏÂÒª°ó¶¨µã»÷Ìá½»±íµ¥ÊÂ¼şµÄ°´Å¥;Èç¹ûformÄÚº¬ÓĞsubmit°´Å¥¸Ã²ÎÊı¿ÉÊ¡ÂÔ;
-		tiptype:1, //¿ÉÑ¡Ïî 1=>pop box,2=>side tip£¬Ä¬ÈÏÎª1;
-		postonce:true, //¿ÉÑ¡Ïî ÊÇ·ñ¿ªÆôÍøËÙÂıÊ±µÄ¶ş´ÎÌá½»·ÀÓù£¬true¿ªÆô£¬²»ÌîÔòÄ¬ÈÏ¹Ø±Õ;
-		ajaxurl:"ajax_post.php", //ajaxÌá½»±íµ¥Êı¾İ;
+	$(".demoform").Validform({//$(".demoform")æŒ‡æ˜æ˜¯å“ªä¸€è¡¨å•éœ€è¦éªŒè¯,åç§°éœ€åŠ åœ¨fromè¡¨å•ä¸Š;
+		btnSubmit:"#btn_sub", //#btn_subæ˜¯è¯¥è¡¨å•ä¸‹è¦ç»‘å®šç‚¹å‡»æäº¤è¡¨å•äº‹ä»¶çš„æŒ‰é’®;å¦‚æœformå†…å«æœ‰submitæŒ‰é’®è¯¥å‚æ•°å¯çœç•¥;
+		tiptype:1, //å¯é€‰é¡¹ 1=>pop box,2=>side tipï¼Œé»˜è®¤ä¸º1;
+		postonce:true, //å¯é€‰é¡¹ æ˜¯å¦å¼€å¯ç½‘é€Ÿæ…¢æ—¶çš„äºŒæ¬¡æäº¤é˜²å¾¡ï¼Œtrueå¼€å¯ï¼Œä¸å¡«åˆ™é»˜è®¤å…³é—­;
+		ajaxurl:"ajax_post.php", //ajaxæäº¤è¡¨å•æ•°æ®;
 		callback:function(data){
-			//·µ»ØÊı¾İdataÊÇjson¸ñÊ½£¬{"info":"demo info","status":"y"}
-			//info: Êä³öÌáÊ¾ĞÅÏ¢;
-			//status: ·µ»ØÌá½»Êı¾İµÄ×´Ì¬,ÊÇ·ñÌá½»³É¹¦¡£Èç¿ÉÒÔÓÃ"y"±íÊ¾Ìá½»³É¹¦£¬"n"±íÊ¾Ìá½»Ê§°Ü£¬ÔÚajax_post.phpÎÄ¼ş·µ»ØÊı¾İÀï×Ô¶¨×Ö·û£¬Ö÷ÒªÓÃÔÚcallbackº¯ÊıÀï¸ù¾İ¸ÃÖµÖ´ĞĞÏàÓ¦µÄ»Øµ÷²Ù×÷;
-			//ÄãÒ²¿ÉÒÔÔÚajax_post.phpÎÄ¼ş·µ»Ø¸ü¶àĞÅÏ¢ÔÚÕâÀï»ñÈ¡£¬½øĞĞÏàÓ¦²Ù×÷£»
+			//è¿”å›æ•°æ®dataæ˜¯jsonæ ¼å¼ï¼Œ{"info":"demo info","status":"y"}
+			//info: è¾“å‡ºæç¤ºä¿¡æ¯;
+			//status: è¿”å›æäº¤æ•°æ®çš„çŠ¶æ€,æ˜¯å¦æäº¤æˆåŠŸã€‚å¦‚å¯ä»¥ç”¨"y"è¡¨ç¤ºæäº¤æˆåŠŸï¼Œ"n"è¡¨ç¤ºæäº¤å¤±è´¥ï¼Œåœ¨ajax_post.phpæ–‡ä»¶è¿”å›æ•°æ®é‡Œè‡ªå®šå­—ç¬¦ï¼Œä¸»è¦ç”¨åœ¨callbackå‡½æ•°é‡Œæ ¹æ®è¯¥å€¼æ‰§è¡Œç›¸åº”çš„å›è°ƒæ“ä½œ;
+			//ä½ ä¹Ÿå¯ä»¥åœ¨ajax_post.phpæ–‡ä»¶è¿”å›æ›´å¤šä¿¡æ¯åœ¨è¿™é‡Œè·å–ï¼Œè¿›è¡Œç›¸åº”æ“ä½œï¼›
 			
-			//ÕâÀïÖ´ĞĞ»Øµ÷²Ù×÷;
+			//è¿™é‡Œæ‰§è¡Œå›è°ƒæ“ä½œ;
 		}
 	});
 */
 
 (function($){
-	var errorobj=null,//Ö¸Ê¾µ±Ç°ÑéÖ¤Ê§°ÜµÄ±íµ¥ÔªËØ;
+	var errorobj=null,//æŒ‡ç¤ºå½“å‰éªŒè¯å¤±è´¥çš„è¡¨å•å…ƒç´ ;
 		msgobj,//pop box object 
 		msghidden=true, //msgbox hidden?
-		tipmsg={//Ä¬ÈÏÌáÊ¾ÎÄ×Ö;
-			w:"ÇëÊäÈëÕıÈ·ĞÅÏ¢£¡",
-			r:"Í¨¹ıĞÅÏ¢ÑéÖ¤£¡",
-			c:"ÕıÔÚ¼ì²âĞÅÏ¢¡­",
-			s:"ÇëÌîÈëĞÅÏ¢£¡",
-			v:"ËùÌîĞÅÏ¢Ã»ÓĞ¾­¹ıÑéÖ¤£¬ÇëÉÔºó¡­",
-			p:"ÕıÔÚÌá½»Êı¾İ¡­"
+		tipmsg={//é»˜è®¤æç¤ºæ–‡å­—;
+			w:"è¯·è¾“å…¥æ­£ç¡®ä¿¡æ¯ï¼",
+			r:"é€šè¿‡ä¿¡æ¯éªŒè¯ï¼",
+			c:"æ­£åœ¨æ£€æµ‹ä¿¡æ¯â€¦",
+			s:"è¯·å¡«å…¥ä¿¡æ¯ï¼",
+			v:"æ‰€å¡«ä¿¡æ¯æ²¡æœ‰ç»è¿‡éªŒè¯ï¼Œè¯·ç¨åâ€¦",
+			p:"æ­£åœ¨æäº¤æ•°æ®â€¦"
 		},
 		creatMsgbox=function(){
 			if($("#Validform_msg").length!=0){return false;}
-			msgobj=$('<div id="Validform_msg"><div class="Validform_title">ÌáÊ¾ĞÅÏ¢<a class="Validform_close" href="javascript:void(0);">&chi;</a></div><div class="Validform_info"></div><div class="iframe"><iframe frameborder="0" scrolling="no" height="100%" width="100%"></iframe></div></div>').appendTo("body");//ÌáÊ¾ĞÅÏ¢¿ò;
+			msgobj=$('<div id="Validform_msg"><div class="Validform_title">æç¤ºä¿¡æ¯<a class="Validform_close" href="javascript:void(0);">&chi;</a></div><div class="Validform_info"></div><div class="iframe"><iframe frameborder="0" scrolling="no" height="100%" width="100%"></iframe></div></div>').appendTo("body");//æç¤ºä¿¡æ¯æ¡†;
 			msgobj.find("a.Validform_close").click(function(){
 				msgobj.hide();
 				msghidden=true;
@@ -64,8 +64,8 @@
 		
 		this.each(function(){
 			var $this=$(this);
-			var posting=false; //·ÀÖ¹±íµ¥°´Å¥Ë«»÷Ìá½»Á½´Î;
-			$this.find("[tip]").each(function(){//tipÊÇ±íµ¥ÔªËØµÄÄ¬ÈÏÌáÊ¾ĞÅÏ¢,ÕâÊÇµã»÷Çå¿ÕĞ§¹û;
+			var posting=false; //é˜²æ­¢è¡¨å•æŒ‰é’®åŒå‡»æäº¤ä¸¤æ¬¡;
+			$this.find("[tip]").each(function(){//tipæ˜¯è¡¨å•å…ƒç´ çš„é»˜è®¤æç¤ºä¿¡æ¯,è¿™æ˜¯ç‚¹å‡»æ¸…ç©ºæ•ˆæœ;
 				var defaultvalue=$(this).attr("tip");
 				var altercss=$(this).attr("altercss");
 				$(this).focus(function(){
@@ -81,13 +81,13 @@
 				});
 			});
 			
-			//°ó¶¨blurÊÂ¼ş;
+			//ç»‘å®šbluräº‹ä»¶;
 			$this.find("[datatype]").blur(function(){
 				var flag=true;
 				flag=$.fn.Validform.sn.checkform($(this),$this,settings.tiptype,"hide");
 
 				if(!flag){return false;}
-				if(typeof(flag)!="boolean"){//Èç¹ûÊÇradio, checkbox, selectÔò²»ĞèÔÙÖ´ĞĞÏÂÃæµÄ´úÂë;
+				if(typeof(flag)!="boolean"){//å¦‚æœæ˜¯radio, checkbox, selectåˆ™ä¸éœ€å†æ‰§è¡Œä¸‹é¢çš„ä»£ç ;
 					$(this).removeClass("Validform_error");
 					return false;
 				}
@@ -102,7 +102,7 @@
 						return true;
 					}
 					errorobj=$(this);
-					$.fn.Validform.sn.showmsg($(this).attr("errormsg")||tipmsg.w,settings.tiptype,{obj:$(this)},"hide"); //µ±tiptype=1µÄÇé¿öÏÂ£¬´«Èë"hide"ÔòÈÃÌáÊ¾¿ò²»µ¯³ö,tiptype=2µÄÇé¿öÏÂ¸½¼Ó²ÎÊı¡°hide¡±²»Æğ×÷ÓÃ;
+					$.fn.Validform.sn.showmsg($(this).attr("errormsg")||tipmsg.w,settings.tiptype,{obj:$(this)},"hide"); //å½“tiptype=1çš„æƒ…å†µä¸‹ï¼Œä¼ å…¥"hide"åˆ™è®©æç¤ºæ¡†ä¸å¼¹å‡º,tiptype=2çš„æƒ…å†µä¸‹é™„åŠ å‚æ•°â€œhideâ€ä¸èµ·ä½œç”¨;
 				}else{
 					if($(this).attr("ajaxurl")){
 						var inputobj=$(this);
@@ -187,7 +187,7 @@
 					errorobj=null;
 					if(settings.postonce){posting=true;}
 					if(settings.ajaxurl){
-						$.fn.Validform.sn.showmsg(tipmsg.p,settings.tiptype,{obj:$(this)},"alwaysshow");//´«Èë¡°alwaysshow¡±ÔòÈÃÌáÊ¾¿ò²»¹Üµ±Ç°tiptyeÎª1»¹ÊÇ2¶¼µ¯³ö;
+						$.fn.Validform.sn.showmsg(tipmsg.p,settings.tiptype,{obj:$(this)},"alwaysshow");//ä¼ å…¥â€œalwaysshowâ€åˆ™è®©æç¤ºæ¡†ä¸ç®¡å½“å‰tiptyeä¸º1è¿˜æ˜¯2éƒ½å¼¹å‡º;
 						$.ajax({
 							type: "POST",
 							dataType:"json",
@@ -213,7 +213,7 @@
 			});
 		})
 		
-		//Ô¤´´½¨pop box;
+		//é¢„åˆ›å»ºpop box;
 		if(settings.tiptype!=2 || settings.ajaxurl){		
 			creatMsgbox();
 		}
@@ -249,14 +249,14 @@
 					var repost = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
 					return repost.test(gets);
 				case "v":
-					var repost = /<<[Î´]>>/;
+					var repost = /<<[æœª]>>/;
 					return repost.test(gets);
 				default:
 					return false;
 			}
 		},
 		
-		showmsg:function(msg,type,o,show){//o:{obj:µ±Ç°¶ÔÏó, type:1=>ÕıÔÚ¼ì²â | 2=>Í¨¹ı}, showÓÃÀ´ÅĞ¶Ïtiptype=1µÄÇé¿öÏÂÊÇ·ñµ¯³öĞÅÏ¢¿ò;
+		showmsg:function(msg,type,o,show){//o:{obj:å½“å‰å¯¹è±¡, type:1=>æ­£åœ¨æ£€æµ‹ | 2=>é€šè¿‡}, showç”¨æ¥åˆ¤æ–­tiptype=1çš„æƒ…å†µä¸‹æ˜¯å¦å¼¹å‡ºä¿¡æ¯æ¡†;
 			if(errorobj){errorobj.addClass("Validform_error");}
 			
 			if(type==1 || show=="alwaysshow"){
@@ -279,10 +279,10 @@
 			if(type==2){
 				if(o.type){
 					switch(o.type){
-						case 1://ÕıÔÚ¼ì²â;
+						case 1://æ­£åœ¨æ£€æµ‹;
 							o.obj.parent().next().find(".Validform_checktip").removeClass().addClass("Validform_checktip Validform_loading").text(msg);
 							break;
-						case 2://¼ì²âÍ¨¹ı;
+						case 2://æ£€æµ‹é€šè¿‡;
 							o.obj.parent().next().find(".Validform_checktip").removeClass().addClass("Validform_checktip Validform_right").text(msg);	
 					}
 				}else{
@@ -292,10 +292,10 @@
 			
 		},
 		
-		checkform:function(obj,parentobj,tiptype,show){//showÓÃÀ´ÅĞ¶ÏÊÇ±í´ïÌá½»»¹ÊÇblurÊÂ¼şÒı·¢µÄ¼ì²â;
+		checkform:function(obj,parentobj,tiptype,show){//showç”¨æ¥åˆ¤æ–­æ˜¯è¡¨è¾¾æäº¤è¿˜æ˜¯bluräº‹ä»¶å¼•å‘çš„æ£€æµ‹;
 			var errormsg=obj.attr("errormsg") || tipmsg.w;
 			
-			if(obj.is("[datatype='radio']")){  //ÅĞ¶Ïradio±íµ¥ÔªËØ;
+			if(obj.is("[datatype='radio']")){  //åˆ¤æ–­radioè¡¨å•å…ƒç´ ;
 				var inputname=obj.attr("name");
 				var radiovalue=parentobj.find(":radio[name="+inputname+"]:checked").val();
 				if(!radiovalue){
@@ -308,7 +308,7 @@
 				return "radio";
 			}
 
-			if(obj.is("[datatype='checkbox']")){  //ÅĞ¶Ïcheckbox±íµ¥ÔªËØ;
+			if(obj.is("[datatype='checkbox']")){  //åˆ¤æ–­checkboxè¡¨å•å…ƒç´ ;
 				var inputname=obj.attr("name");
 				var checkboxvalue=parentobj.find(":checkbox[name="+inputname+"]:checked").val();
 				if(!checkboxvalue){
@@ -321,7 +321,7 @@
 				return "checkbox";
 			}
 
-			if(obj.is("[datatype='select']")){  //ÅĞ¶Ïselect±íµ¥ÔªËØ;
+			if(obj.is("[datatype='select']")){  //åˆ¤æ–­selectè¡¨å•å…ƒç´ ;
 				if(!obj.val()){
 				  errorobj=obj;
 				  this.showmsg(errormsg,tiptype,{obj:obj},show);
@@ -355,7 +355,7 @@
 		
 	}
 	
-	//¹«ÓÃ·½·¨ÏÔÊ¾&¹Ø±ÕĞÅÏ¢ÌáÊ¾¿ò;
+	//å…¬ç”¨æ–¹æ³•æ˜¾ç¤º&å…³é—­ä¿¡æ¯æç¤ºæ¡†;
 	$.Showmsg=function(msg){
 		creatMsgbox();
 		$.fn.Validform.sn.showmsg(msg,1);

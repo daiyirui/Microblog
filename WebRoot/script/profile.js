@@ -1,15 +1,15 @@
 // JavaScript Document
-//微博文本获取焦点
+//寰崥鏂囨湰鑾峰彇鐒︾偣
 function blogtextfocus(){
-	if(document.getElementById("blogtext").value == "你正在做什么？"){
+	if(document.getElementById("blogtext").value == "浣犳鍦ㄥ仛浠�涔堬紵"){
 	document.getElementById("blogtext").value="";
 	document.getElementById("blogtext").style.color="#000000";
 	}
 }
-//微博文本失去焦点
+//寰崥鏂囨湰澶卞幓鐒︾偣
 function blogtextblur(){
 	if(document.getElementById("blogtext").value == ""){
-	document.getElementById("blogtext").value="你正在做什么？";
+	document.getElementById("blogtext").value="浣犳鍦ㄥ仛浠�涔堬紵";
 	document.getElementById("blogtext").style.color="#999999";
 	}	
 }
