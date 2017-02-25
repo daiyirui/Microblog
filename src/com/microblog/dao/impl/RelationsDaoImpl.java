@@ -1,5 +1,7 @@
 package com.microblog.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -163,6 +165,7 @@ public class RelationsDaoImpl implements IRelationsDao {
 		}		
 		return flag;
 	}
+	//获取我关注的人的信息
 	@Override
 	public List<Users> FindAllMyInterestByuid(int uid) {
 		List<Users> gUsers = new ArrayList<Users>();
@@ -172,7 +175,7 @@ public class RelationsDaoImpl implements IRelationsDao {
 		try {
 			while(rsr.next()){
 				String sql1="SELECT * FROM users where uid=? ";
-				ResultSet rs=db.execQuery(sql1, new Object[]{rsr.getInt("rid")});
+				ResultSet rs=db.execQuery(sql1, new Object[]{rsr.getInt("g_id")});
 				while(rs.next()) {
 					Users user = new Users();
 					user.setUid(rs.getInt("uid"));
