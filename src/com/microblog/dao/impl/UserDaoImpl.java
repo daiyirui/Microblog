@@ -67,7 +67,7 @@ public class UserDaoImpl implements IUserDao {
         int  a = 0;
 
         try {
-        	String sql="insert into users(uname,upwd,unickname,usex,uaddress,udate,uqq,uedu,urealname,uemail) values(?,?,?,?,?,?,?,?,?,?)";
+        	String sql="insert into users(uname,upwd,unickname,usex,uaddress,udate,uqq,uedu,urealname,uemail,uremarks) values(?,?,?,?,?,?,?,?,?,?,null)";
             connection = JDBCUtil.getConn();
             statement = connection.prepareStatement(sql);
             statement.setString(1, use.getUname());
@@ -284,7 +284,7 @@ public class UserDaoImpl implements IUserDao {
 	public Users UserLoginCheck(String usn, String pwd) {
 		//step1:创建查询数据库sql语句
 		String sql="SELECT * FROM users where uremarks!='no' and uname=? and upwd=?";
-		
+		System.out.println(sql);
 		//step3:获取查询结果
 		ResultSet rs=db.execQuery(sql, new Object[]{usn,pwd});
 		//step4:创建Users实体类对象

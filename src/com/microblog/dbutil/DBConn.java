@@ -15,7 +15,7 @@ public class DBConn {
 			//step1:加载连接驱动，java反射原理
 			Class.forName(Config.CLASS_NAME);
 			//step2:创建connection接口对象，用于获取mysql数据库连接对象。三个参数 url连接的字符串，username账号，password密码
-			String url=Config.DATABASE_URL+"://"+Config.SERVER_IP+":"+Config.SERVER_PORT+"/"+Config.DATABASE_SID;
+			String url="jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&characterEncoding=utf-8";
 			//step3:创建数据库连接
 			conn=DriverManager.getConnection(url,Config.USERNAME,Config.PASSWORD);
 		} catch (ClassNotFoundException e) {
