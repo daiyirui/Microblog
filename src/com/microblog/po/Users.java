@@ -19,6 +19,10 @@ public class Users implements Serializable {
    private String uemail;
    private String urealname;
    private String uremarks;
+   //判断该用户是不是被登陆者关注了
+   private Integer iGtflag;
+   //判断该用户是不是关注登陆者了
+   private Integer tGiflag;
    public Users(){}
  
 	public Integer getUid() {
@@ -106,6 +110,23 @@ public class Users implements Serializable {
 	public void setUemail(String uemail) {
 		this.uemail = uemail;
 	}
+	
+	public Integer getiGtflag() {
+		return iGtflag;
+	}
+
+	public void setiGtflag(Integer iGtflag) {
+		this.iGtflag = iGtflag;
+	}
+
+	public Integer gettGiflag() {
+		return tGiflag;
+	}
+
+	public void settGiflag(Integer tGiflag) {
+		this.tGiflag = tGiflag;
+	}
+
 	@Override
 	public String toString() {
 		return "Users [uid=" + uid + ", uname=" + uname + ", upwd=" + upwd + ", unickname=" + unickname + ", usex="

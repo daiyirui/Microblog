@@ -11,6 +11,7 @@ public class Collection implements Serializable {
 	private Date ldate;
 	private String limages;
 	private String lremarks;
+	private Integer l_wid;
 	private Users use = new Users();
 
 	public Integer getLid() {
@@ -68,10 +69,20 @@ public class Collection implements Serializable {
 		this.use = use;
 	}
 
+	public Integer getL_wid() {
+		return l_wid;
+	}
+
+	public void setL_wid(Integer l_wid) {
+		this.l_wid = l_wid;
+	}
+
 	@Override
 	public String toString() {
-		return "Collection [lid=" + lid + ", l_uid=" + l_uid + ", lcontent=" + lcontent + ", ldate=" + ldate
-				+ ", limages=" + limages + ", lremarks=" + lremarks + ", use=" + use + "]";
+		return "Collection [lid=" + lid + ", l_uid=" + l_uid + ", lcontent="
+				+ lcontent + ", ldate=" + ldate + ", limages=" + limages
+				+ ", lremarks=" + lremarks + ", l_wid=" + l_wid + ", use="
+				+ use + "]";
 	}
 
 }

@@ -149,8 +149,8 @@
   </servlet>
 
 <servlet>
-    <servlet-name>MyCollectionServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.MyCollectionServlet</servlet-class>
+    <servlet-name>CollectionServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.CollectionServlet</servlet-class>
   </servlet>
 
 <servlet>
@@ -297,8 +297,8 @@
   </servlet-mapping>
  
  <servlet-mapping>
-    <servlet-name>MyCollectionServlet</servlet-name>
-    <url-pattern>/MyCollectionServlet</url-pattern>
+    <servlet-name>CollectionServlet</servlet-name>
+    <url-pattern>/CollectionServlet</url-pattern>
   </servlet-mapping>
  
  <servlet-mapping>

@@ -284,6 +284,32 @@ public class RelationsDaoImpl implements IRelationsDao {
 			JDBCUtil.closeDB(connection, statement, null);
 		}	
 	}
+    //判断我是不是关注了对方
+	@Override
+	public int judgeGuanzhu(int uid, int gid) {
+		 Connection connection = null;
+		 PreparedStatement statement = null;
+		//step1:sql语句
+		int flag = 0;
+		try{
+			 String sql="SELECT count(*) FROM relations where g_id=? and r_id=?";
+			 connection = JDBCUtil.getConn();
+			 statement = connection.prepareStatement(sql);
+			 statement.setInt(1,gid);
+			 statement.setInt(2,uid);
+			 ResultSet rs=statement.executeQuery();
+			while(rs.next()){
+				//1.证明对方已经关注我了
+				flag =rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}finally{
+			JDBCUtil.closeDB(connection, statement, null);
+		}		
+		return flag;
+	}
 	public static void main(String[] args) {
 		RelationsDaoImpl rl = new RelationsDaoImpl();
 		System.out.println(rl.CountByAttention(1));

@@ -19,4 +19,6 @@ public interface IRelationsDao {
 	public List<Users> FindAllMyInterestByuid(int uid);
 	//查询哪些人关注了我
 	public List<Users> FindAllMyFansByuid(int uid);
+	//判断我是不是关注了对方
+	public int judgeGuanzhu(int uid,int gid);
 }

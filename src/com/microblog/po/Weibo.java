@@ -13,6 +13,8 @@ public class Weibo implements Serializable {
    private Integer wtimes;
    private Integer w_uid;//
    private Integer wcountcomment;
+   //判断是否被登陆用户收藏标记
+   private Integer flag;
    private Users use=new Users();
 
  
@@ -69,6 +71,13 @@ public class Weibo implements Serializable {
 	}
 	public void setW_uid(Integer w_uid) {
 		this.w_uid = w_uid;
+	}
+	
+	public Integer getFlag() {
+		return flag;
+	}
+	public void setFlag(Integer flag) {
+		this.flag = flag;
 	}
 	@Override
 	public String toString() {

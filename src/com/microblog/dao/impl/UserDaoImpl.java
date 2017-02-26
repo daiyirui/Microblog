@@ -228,6 +228,7 @@ public class UserDaoImpl implements IUserDao {
 				    use.setUques(rs.getString("uques"));
 				    use.setUrealname(rs.getString("urealname"));
 				    use.setUremarks(rs.getString("uremarks"));
+				    use.setiGtflag(1);
 				    //结合添加对象
 				    users.add(use);
 				}
@@ -269,6 +270,7 @@ public class UserDaoImpl implements IUserDao {
 				    use.setUques(rs.getString("uques"));
 				    use.setUrealname(rs.getString("urealname"));
 				    use.setUremarks(rs.getString("uremarks"));
+				    use.settGiflag(1);
 				    //结合添加对象
 				    users.add(use);
 				}

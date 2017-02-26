@@ -13,4 +13,6 @@ public interface ICollectionDao {
 	public int DeleteCollection(int lid);
     //统计登陆者收藏微博数量
 	public int CountCollectionByUid(int uid);
+	//判断该微博是否被我收藏了
+	public int judgeColletionBywid(int uid,int wid);
 }

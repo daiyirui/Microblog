@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.microblog.common.JDBCUtil;
+import com.microblog.dao.ICollectionDao;
 import com.microblog.dao.IWeiboDao;
 import com.microblog.po.Users;
 import com.microblog.po.Weibo;
@@ -63,6 +64,11 @@ public class WeiboDaoImpl implements IWeiboDao {
 				   weibo.setWremarks(rs.getString("wremarks"));
 				   weibo.setWcountcomment(rs.getInt("wcountcomment"));
 				   weibo.setW_uid(rs.getInt("w_uid"));
+				   //判断该微博是否被用户收藏了
+				   ICollectionDao collectiondao = new CollectionDaoImpl();
+				   if(collectiondao.judgeColletionBywid(uid, rs.getInt("wid"))==1) {
+					   weibo.setFlag(1);
+				   }
 				   sql = "SELECT * FROM users where uid=?";
 				   statement = connection.prepareStatement(sql);
 				   statement.setInt(1, rs.getInt("w_uid"));
@@ -167,6 +173,12 @@ public class WeiboDaoImpl implements IWeiboDao {
 						   weibo.setWremarks(rs.getString("wremarks"));
 						   weibo.setWcountcomment(rs.getInt("wcountcomment"));
 						   weibo.setW_uid(rs.getInt("w_uid"));
+						   //判断该微博是否被用户收藏了
+						   ICollectionDao collectiondao = new CollectionDaoImpl();
+						   if(collectiondao.judgeColletionBywid(uid, rs.getInt("wid"))==1) {
+							   weibo.setFlag(1);
+						   }
+						   
 						   sql = "SELECT * FROM users where uid=?";
 						   statement = connection.prepareStatement(sql);
 						   statement.setInt(1, rs.getInt("w_uid"));

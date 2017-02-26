@@ -20,12 +20,13 @@ public class CollectionDaoImpl implements ICollectionDao {
 	       PreparedStatement statement = null;
 	       int  a = 0;
 	        try {
-	        	String sql="insert into collection(l_uid,lcontent,ldate,limages,wremarks) values(?,?,now(),?,null)";
+	        	String sql="insert into collection(l_uid,lcontent,ldate,limages,wremarks,l_wid) values(?,?,now(),?,null,?)";
 	            connection = JDBCUtil.getConn();
 	            statement = connection.prepareStatement(sql);
 	            statement.setInt(1, coll.getL_uid());
 	            statement.setString(2, coll.getLcontent());
 	            statement.setString(3, coll.getLimages());
+	            statement.setInt(4, coll.getL_wid());
 	            a=statement.executeUpdate();
 	        } catch (SQLException e) {
 	        	a=0;
@@ -107,6 +108,7 @@ public class CollectionDaoImpl implements ICollectionDao {
 					collection.setLcontent(rs.getString("lcontent"));
 					collection.setLdate(rs.getDate("ldate"));
 					collection.setLimages(rs.getString("limages"));
+					collection.setL_wid(rs.getInt("l_wid"));
 				    sql = "SELECT * FROM users where uid=?";
 				    statement = connection.prepareStatement(sql);
 				    statement.setInt(1, rs.getInt("l_uid"));
@@ -137,6 +139,33 @@ public class CollectionDaoImpl implements ICollectionDao {
            JDBCUtil.closeDB(connection, statement, null);
        }
 	   return collections;
+	}
+
+    //判断该微博是否被我收藏了
+	@Override
+	public int judgeColletionBywid(int uid, int wid) {
+		Connection connection = null;
+	    PreparedStatement statement = null;
+		int count=0;
+		try {
+			//step1： sql语句
+			String sql="SELECT count(*) FROM collection where  l_uid=? and l_wid";	
+			connection = JDBCUtil.getConn();
+	        statement = connection.prepareStatement(sql);
+	        statement.setInt(1, uid);
+			//step3:获取返回值结果集
+			ResultSet rs=statement.executeQuery();
+			//step4:int 变量
+			if(rs.next()){
+				//step6:遍历结果集
+				count=rs.getInt(1);
+			}			 
+		} catch (SQLException e) {
+	           e.printStackTrace();
+	       } finally {
+	           JDBCUtil.closeDB(connection, statement, null);
+	       }
+		return count;
 	}
 
    
