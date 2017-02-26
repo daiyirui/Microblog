@@ -165,10 +165,6 @@
   
   
   
-  <servlet>
-    <servlet-name>DeleteWeiboServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.DeleteWeiboServlet</servlet-class>
-  </servlet>
   
   <servlet>
     <servlet-name>WeiboServlet</servlet-name>
@@ -315,11 +311,6 @@
     <url-pattern>/FollowServlet</url-pattern>
   </servlet-mapping>
 
-  <servlet-mapping>
-    <servlet-name>DeleteWeiboServlet</servlet-name>
-    <url-pattern>/DeleteWeiboServlet</url-pattern>
-  </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>WeiboServlet</servlet-name>
     <url-pattern>/WeiboServlet</url-pattern>

@@ -48,7 +48,7 @@
 		id="container">
 		<tr>
 			<td width="670" height="600" valign="top">
-				<form action="InsertWeiboServlet" method="post"
+				<form action="WeiboServlet?action=insertweibo&uid=${user.uid }" method="post"
 					enctype="multipart/form-data">
 					<table width="100%" border="0" cellpadding="0" cellspacing="0"
 						id="input">
@@ -118,7 +118,7 @@
 											<td align="right">
 											  <c:if test="${weibo.w_uid == user.uid}">
 											   <a
-												href="DeleteWeiboServlet?wid=${weibo.wid}">删除</a>
+												href="WeiboServlet?uid=${user.uid}&wid=${weibo.wid}&action=deleteweibo">删除</a>
 												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 											  </c:if>
 											 <a

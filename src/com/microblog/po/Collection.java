@@ -1,13 +1,14 @@
 package com.microblog.po;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class Collection implements Serializable {
 	private Integer lid;
 	private Integer l_uid;
 	private String lcontent;
-	private String ldate;
+	private Date ldate;
 	private String limages;
 	private String lremarks;
 	private Users use = new Users();
@@ -36,14 +37,13 @@ public class Collection implements Serializable {
 		this.lcontent = lcontent;
 	}
 
-	public String getLdate() {
+	public Date getLdate() {
 		return ldate;
 	}
 
-	public void setLdate(String ldate) {
+	public void setLdate(Date ldate) {
 		this.ldate = ldate;
 	}
-
 	public String getLimages() {
 		return limages;
 	}

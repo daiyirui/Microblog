@@ -149,7 +149,7 @@ public class WeiboDaoImpl implements IWeiboDao {
 				Connection connection = null;
 			    PreparedStatement statement = null;
 			    try {
-					String sql="SELECT * FROM weibo where w_uid=? order by wdate desc";
+					String sql="SELECT * FROM weibo where w_uid=? by wdate desc";
 					connection = JDBCUtil.getConn();
 			        statement = connection.prepareStatement(sql);
 			        statement.setInt(1, uid);

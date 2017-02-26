@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50163
 File Encoding         : 65001
 
-Date: 2017-02-22 16:25:09
+Date: 2017-02-26 11:48:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,7 +52,7 @@ CREATE TABLE `bloghot` (
   `bvote` int(10) unsigned NOT NULL COMMENT '热议投票',
   `bremarks` text COMMENT '备注',
   PRIMARY KEY (`bid`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='微博热议内容表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='微博热议内容表';
 
 -- ----------------------------
 -- Records of bloghot
@@ -211,7 +211,7 @@ CREATE TABLE `relations` (
   PRIMARY KEY (`rid`),
   KEY `FK_r_id` (`r_id`),
   KEY `FK_g_id` (`g_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='关系表';
 
 -- ----------------------------
 -- Records of relations
@@ -238,6 +238,11 @@ INSERT INTO `relations` VALUES ('21', '1', '5', '1', null);
 INSERT INTO `relations` VALUES ('22', '1', '7', '0', null);
 INSERT INTO `relations` VALUES ('23', '1', '15', '1', null);
 INSERT INTO `relations` VALUES ('24', '1', '15', '1', null);
+INSERT INTO `relations` VALUES ('25', '68', '8', '0', null);
+INSERT INTO `relations` VALUES ('26', '68', '1', '0', null);
+INSERT INTO `relations` VALUES ('27', '68', '2', '1', null);
+INSERT INTO `relations` VALUES ('28', '68', '2', '1', null);
+INSERT INTO `relations` VALUES ('29', '68', '3', '0', null);
 
 -- ----------------------------
 -- Table structure for `users`
@@ -257,72 +262,79 @@ CREATE TABLE `users` (
   `uques` varchar(45) DEFAULT NULL COMMENT '密码保护问题',
   `urealname` varchar(45) DEFAULT NULL COMMENT '真实姓名',
   `uremarks` varchar(45) DEFAULT NULL COMMENT '备注',
+  `uemail` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'jerry', '123', 'jerry', '男', '天津市南开区', '2012-05-24 13:12:01', '123456789', '本科', 'face/6.jpg', '我的出生地?天津', 'hello', 'null');
-INSERT INTO `users` VALUES ('2', 'peter', '123', 'peter', '男', '天津市和平区', '2012-05-24 13:12:15', '123456780', '本科', 'face/10.jpg', '教育地?', 'hello', 'null');
-INSERT INTO `users` VALUES ('3', 'alice', '123', 'alice', '女', 'USA', '2012-05-24 13:12:15', '1345345', 'MBA', 'face/7.jpg', 'what is yourname?', 'hello', 'null');
-INSERT INTO `users` VALUES ('4', 'jackson', '123', 'jackson', '女', 'USA', '2012-05-24 13:12:15', '64576775', '专科', 'face/16.jpg', 'wharf are you doing?', 'hello', 'null');
-INSERT INTO `users` VALUES ('5', 'hello', '123', 'hello', '女', '北京 海淀', '2012-05-26 12:42:09', '867391409', '本科', 'face/8.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('6', 'hello1', '123', 'hello1', '男', '北京 朝阳', '2012-05-26 12:46:28', '867391409', '本科', 'face/9.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('7', 'hello30', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:46:28', '867391409', '本科', 'face/10.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('8', 'alive', '123', 'alive', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/9.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('9', 'hello2', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/10.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('10', 'succy', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/11.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('11', 'succy1', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/12.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('12', 'succy2', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/13.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('13', 'rose', '123', 'rose', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/14.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('14', 'succy3', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/15.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('15', 'succy4', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/16.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('16', 'succy5', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/17.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('17', 'succy6', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/18.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('18', 'rose1', '123', 'rose', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/19.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('19', 'succy7', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/20.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('20', 'hello3', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/21.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('21', 'hello4', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/22.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('22', 'andi', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/23.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('23', 'rose2', '123', 'rose', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/24.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('24', 'andi', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/25.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('25', 'andi1', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/26.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('26', 'andi2', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/27.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('27', 'andi3', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/28.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('28', 'rose3', '123', 'rose', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/29.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('29', 'andi4', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/30.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('30', 'andi5', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/31.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('31', 'hello5', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/32.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('32', 'hello6', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/33.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('33', 'rose3', '123', 'rose', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/34.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('34', 'hello7', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/35.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('35', 'hello8', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/36.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('36', 'hello9', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/37.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('37', 'hello10', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/38.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('38', 'hello11', '123', 'alive', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/39.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('39', 'hello12', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/40.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('40', 'hello13', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/41.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('41', 'hello14', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/42.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('42', 'hello15', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/43.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('43', 'alive', '123', 'alive', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/44.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('44', 'hello16', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/45.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('45', 'hello17', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/46.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('46', 'hello18', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/47.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('47', 'hello19', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/48.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('48', 'alive1', '123', 'alive', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/49.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('49', 'hello20', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/50.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('50', 'hello21', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/51.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('51', 'hello22', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/52.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('52', 'hello23', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/53.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('53', 'alive2', '123', 'alive', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/54.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('54', 'hello24', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/55.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('55', 'hello25', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/56.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('56', 'hello26', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/57.jpg ', '出生地?', '含笑', 'null');
-INSERT INTO `users` VALUES ('57', '??', '123', '??', '?', '???-??', '2017-01-01 20:35:38', '1', '??', null, '', '', 'null');
-INSERT INTO `users` VALUES ('58', '??', '123', '??', '?', '???-??', '2017-01-01 20:42:21', '1', '??', null, '', '', 'null');
-INSERT INTO `users` VALUES ('59', '??', '123', '??', '?', '???-??', '2017-01-01 20:44:45', '1', '??', null, '', '', 'null');
-INSERT INTO `users` VALUES ('60', '??', '123', '??', '?', '???-??', '2017-01-01 20:50:56', '1', '??', null, '', '', 'null');
+INSERT INTO `users` VALUES ('1', 'jerry', '123', 'jerry', '男', '天津市南开区', '2012-05-24 13:12:01', '123456789', '本科', 'face/6.jpg', '我的出生地?天津', 'hello', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('2', 'peter', '123', 'peter', '男', '天津市和平区', '2012-05-24 13:12:15', '123456780', '本科', 'face/10.jpg', '教育地?', 'hello', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('3', 'alice', '123', 'alice', '女', 'USA', '2012-05-24 13:12:15', '1345345', 'MBA', 'face/7.jpg', 'what is yourname?', 'hello', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('4', 'jackson', '123', 'jackson', '女', 'USA', '2012-05-24 13:12:15', '64576775', '专科', 'face/16.jpg', 'wharf are you doing?', 'hello', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('5', 'hello', '123', 'hello', '女', '北京 海淀', '2012-05-26 12:42:09', '867391409', '本科', 'face/8.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('6', 'hello1', '123', 'hello1', '男', '北京 朝阳', '2012-05-26 12:46:28', '867391409', '本科', 'face/9.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('7', 'hello30', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:46:28', '867391409', '本科', 'face/10.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('8', 'alive', '123', 'alive', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/9.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('9', 'hello2', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/10.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('10', 'succy', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/11.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('11', 'succy1', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/12.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('12', 'succy2', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/13.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('13', 'rose', '123', 'rose', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/14.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('14', 'succy3', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/15.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('15', 'succy4', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/16.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('16', 'succy5', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/17.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('17', 'succy6', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/18.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('18', 'rose1', '123', 'rose', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/19.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('19', 'succy7', '123', 'succy', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/20.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('20', 'hello3', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/21.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('21', 'hello4', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/22.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('22', 'andi', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/23.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('23', 'rose2', '123', 'rose', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/24.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('24', 'andi', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/25.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('25', 'andi1', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/26.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('26', 'andi2', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/27.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('27', 'andi3', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/28.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('28', 'rose3', '123', 'rose', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/29.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('29', 'andi4', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/30.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('30', 'andi5', '123', 'andi', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/31.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('31', 'hello5', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/32.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('32', 'hello6', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/33.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('33', 'rose3', '123', 'rose', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/34.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('34', 'hello7', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/35.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('35', 'hello8', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/36.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('36', 'hello9', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/37.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('37', 'hello10', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/38.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('38', 'hello11', '123', 'alive', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/39.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('39', 'hello12', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/40.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('40', 'hello13', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/41.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('41', 'hello14', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/42.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('42', 'hello15', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/43.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('43', 'alive', '123', 'alive', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/44.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('44', 'hello16', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/45.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('45', 'hello17', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/46.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('46', 'hello18', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/47.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('47', 'hello19', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/48.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('48', 'alive1', '123', 'alive', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/49.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('49', 'hello20', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/50.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('50', 'hello21', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/51.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('51', 'hello22', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/52.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('52', 'hello23', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/53.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('53', 'alive2', '123', 'alive', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/54.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('54', 'hello24', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/55.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('55', 'hello25', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/56.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('56', 'hello26', '123', 'hello2', '男', '北京 朝阳', '2012-05-26 12:57:25', '867391409', '本科', 'face/57.jpg ', '出生地?', '含笑', 'null', '45646346@qq.com');
+INSERT INTO `users` VALUES ('57', '??', '123', '??', '?', '???-??', '2017-01-01 20:35:38', '1', '??', null, '', '', 'null', null);
+INSERT INTO `users` VALUES ('58', '??', '123', '??', '?', '???-??', '2017-01-01 20:42:21', '1', '??', null, '', '', 'null', null);
+INSERT INTO `users` VALUES ('59', '??', '123', '??', '?', '???-??', '2017-01-01 20:44:45', '1', '??', null, '', '', 'null', null);
+INSERT INTO `users` VALUES ('60', '??', '123', '??', '?', '???-??', '2017-01-01 20:50:56', '1', '??', null, '', '', 'null', null);
+INSERT INTO `users` VALUES ('61', '1234', '1234', '1234', '?', '3423234', '2017-02-25 13:05:39', '12434', '234', null, null, '1234', null, '3421243@qq.com');
+INSERT INTO `users` VALUES ('62', '123443', '55555', '55555', '?', '1234124', '2017-02-25 13:08:14', '555555', '234', null, null, '55555', null, '5555@qq.com');
+INSERT INTO `users` VALUES ('63', '6666', '6666', '6666', '?', '435453553545', '2017-02-25 13:15:55', '66666', '34545', null, null, '6666', null, '66666@qq.com');
+INSERT INTO `users` VALUES ('64', '9999', '999', '9999', '?', '123412421', '2017-02-25 13:17:15', '9993456', '423234', null, null, '9999', null, '4543@qq.com');
+INSERT INTO `users` VALUES ('68', '123456', '123456', '小米2134', '男', '5343535', '2017-02-25 13:31:11', '241424531', '353', null, null, '小米', 'null', '2344@qq.com');
+INSERT INTO `users` VALUES ('69', '小明1223', '123456', '123345', '男', '235523', '2017-02-25 17:22:12', '214123423', '235', null, null, '小明', null, '412332@qq.com');
 
 -- ----------------------------
 -- Table structure for `weibo`
@@ -340,7 +352,7 @@ CREATE TABLE `weibo` (
   PRIMARY KEY (`wid`),
   KEY `FK_w_uid` (`w_uid`),
   CONSTRAINT `FK_w_uid` FOREIGN KEY (`w_uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='微博信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='微博信息表';
 
 -- ----------------------------
 -- Records of weibo
@@ -354,8 +366,11 @@ INSERT INTO `weibo` VALUES ('20', '发布第一个微博信息！', '2012-05-30 
 INSERT INTO `weibo` VALUES ('25', '没有图片的微博', '2012-05-30 20:15:46', null, '0', '1', 'null', '0');
 INSERT INTO `weibo` VALUES ('26', '有图片', '2012-05-30 20:15:56', '/Microblog/upload/pic/n.jpg', '0', '1', 'null', '0');
 INSERT INTO `weibo` VALUES ('27', 'hel', '2012-05-30 20:15:56', null, '0', '1', 'null', '0');
-INSERT INTO `weibo` VALUES ('28', '???', '2017-01-05 19:16:32', '/Microblog/upload/pic/1.jpg', '0', '1', 'null', '0');
 INSERT INTO `weibo` VALUES ('29', '123???', '2017-02-21 09:19:50', '/Microblog/upload/pic/Desert.jpg', '0', '1', 'null', '0');
+INSERT INTO `weibo` VALUES ('33', '小米，我拍你', '2017-02-25 14:12:13', '/Microblog/upload/pic/Jellyfish.jpg', '0', '68', null, '0');
+INSERT INTO `weibo` VALUES ('35', '小明，早上高', '2017-02-26 11:10:53', '/Microblog/upload/pic/Lighthouse.jpg', '0', '1', null, '0');
+INSERT INTO `weibo` VALUES ('36', '3131', '2017-02-26 11:11:09', '/Microblog/upload/pic/Jellyfish.jpg', '0', '1', null, '0');
+INSERT INTO `weibo` VALUES ('38', '我爱你，小敏', '2017-02-26 11:14:04', '/Microblog/upload/pic/Lighthouse.jpg', '0', '1', null, '0');
 
 -- ----------------------------
 -- Procedure structure for `hel`
