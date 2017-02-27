@@ -165,7 +165,7 @@
 								align="left" cellpadding="3" cellspacing="0">
 								<tr>
 									<td align="center" class="split2"><a href="FollowServlet">关注</a><br>${countRlation}</td>
-									<td align="center" class="split2"><a href="MyFansServlet">粉丝</a><br>${countVeri}</td>
+									<td align="center" class="split2"><a href="RelationServlet?action=showFans&uid=${user.uid }">粉丝</a><br>${countVeri}</td>
 									<td align="center"><a href="#">微博</a><br>${countBlog}</td>
 								</tr>
 							</table></td>

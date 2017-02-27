@@ -273,6 +273,11 @@ public class RelationsDaoImpl implements IRelationsDao {
 						user.setUques(rs.getString("uques"));
 						user.setUrealname(rs.getString("urealname"));
 						user.setUremarks(rs.getString("uremarks"));
+						if(judgeGuanzhu(uid,user.getUid())==1) {
+							user.setiGtflag(1);
+						}else {
+							user.setiGtflag(0);
+						}
 						users.add(user);
 					}
 			 }
