@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50163
 File Encoding         : 65001
 
-Date: 2017-02-26 11:48:47
+Date: 2017-02-27 09:45:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -97,21 +97,20 @@ CREATE TABLE `collection` (
   `ldate` datetime NOT NULL COMMENT '收藏时间',
   `limages` varchar(50) DEFAULT NULL COMMENT '收藏图片',
   `lremarks` text,
+  `l_wid` int(10) NOT NULL COMMENT '收藏的微博编号',
   PRIMARY KEY (`lid`),
   KEY `FK_l_uid` (`l_uid`),
   CONSTRAINT `FK_l_uid` FOREIGN KEY (`l_uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='收藏表';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='收藏表';
 
 -- ----------------------------
 -- Records of collection
 -- ----------------------------
-INSERT INTO `collection` VALUES ('4', '1', '有图片', '2012-05-31 20:35:04', '/Microblog/upload/pic/n.jpg', null);
-INSERT INTO `collection` VALUES ('5', '1', '没有图片的微博', '2012-05-31 20:52:04', '', null);
-INSERT INTO `collection` VALUES ('6', '1', '黄岩岛', '2012-06-02 20:34:45', '/Microblog/upload/pic/s.jpg', null);
-INSERT INTO `collection` VALUES ('7', '1', '???', '2017-01-09 18:23:14', '/Microblog/upload/pic/1.jpg', null);
-INSERT INTO `collection` VALUES ('8', '1', '', '2017-01-09 18:23:22', '', null);
-INSERT INTO `collection` VALUES ('9', '1', '???', '2017-02-21 19:31:38', '/Microblog/upload/pic/1.jpg', null);
-INSERT INTO `collection` VALUES ('10', '1', '???', '2017-02-21 19:31:49', '/Microblog/upload/pic/1.jpg', null);
+INSERT INTO `collection` VALUES ('4', '1', '有图片', '2012-05-31 20:35:04', '/Microblog/upload/pic/n.jpg', null, '0');
+INSERT INTO `collection` VALUES ('5', '1', '没有图片的微博', '2012-05-31 20:52:04', '', null, '0');
+INSERT INTO `collection` VALUES ('12', '68', '我爱你，小敏', '2017-02-26 13:16:39', '/Microblog/upload/pic/Lighthouse.jpg', null, '38');
+INSERT INTO `collection` VALUES ('14', '1', '小明，早上高', '2017-02-27 08:41:39', '/Microblog/upload/pic/Lighthouse.jpg', null, '35');
+INSERT INTO `collection` VALUES ('15', '1', '我爱你，小米', '2017-02-27 08:50:25', '/Microblog/upload/pic/Jellyfish.jpg', null, '39');
 
 -- ----------------------------
 -- Table structure for `comment`
@@ -352,7 +351,7 @@ CREATE TABLE `weibo` (
   PRIMARY KEY (`wid`),
   KEY `FK_w_uid` (`w_uid`),
   CONSTRAINT `FK_w_uid` FOREIGN KEY (`w_uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='微博信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COMMENT='微博信息表';
 
 -- ----------------------------
 -- Records of weibo
@@ -366,11 +365,8 @@ INSERT INTO `weibo` VALUES ('20', '发布第一个微博信息！', '2012-05-30 
 INSERT INTO `weibo` VALUES ('25', '没有图片的微博', '2012-05-30 20:15:46', null, '0', '1', 'null', '0');
 INSERT INTO `weibo` VALUES ('26', '有图片', '2012-05-30 20:15:56', '/Microblog/upload/pic/n.jpg', '0', '1', 'null', '0');
 INSERT INTO `weibo` VALUES ('27', 'hel', '2012-05-30 20:15:56', null, '0', '1', 'null', '0');
-INSERT INTO `weibo` VALUES ('29', '123???', '2017-02-21 09:19:50', '/Microblog/upload/pic/Desert.jpg', '0', '1', 'null', '0');
 INSERT INTO `weibo` VALUES ('33', '小米，我拍你', '2017-02-25 14:12:13', '/Microblog/upload/pic/Jellyfish.jpg', '0', '68', null, '0');
-INSERT INTO `weibo` VALUES ('35', '小明，早上高', '2017-02-26 11:10:53', '/Microblog/upload/pic/Lighthouse.jpg', '0', '1', null, '0');
-INSERT INTO `weibo` VALUES ('36', '3131', '2017-02-26 11:11:09', '/Microblog/upload/pic/Jellyfish.jpg', '0', '1', null, '0');
-INSERT INTO `weibo` VALUES ('38', '我爱你，小敏', '2017-02-26 11:14:04', '/Microblog/upload/pic/Lighthouse.jpg', '0', '1', null, '0');
+INSERT INTO `weibo` VALUES ('39', '我爱你，小米', '2017-02-27 08:50:21', '/Microblog/upload/pic/Jellyfish.jpg', '0', '1', null, '0');
 
 -- ----------------------------
 -- Procedure structure for `hel`
