@@ -84,17 +84,14 @@
 								<td width="88%" class="content"><a href="user.html">${fan.uname}</a><br/>昵称：${fan.unickname}&nbsp;&nbsp;&nbsp;&nbsp;<br/>QQ:${fan.uqq}
 									<br />地址：${fan.uaddress}<br/>注册日期：${fan.udate}</td>
 							</tr>
-							<tr>
-								<c:choose>
-										<c:when test="${fan.iGtflag==1 }">
-										       <tr><td><a href="DeleteAttentionServlet?gid=fan.uid&action=1">取消关注</a></td></tr>
-										</c:when>
-										<c:when test="${fan.iGtflag==0}">
-										        <tr><td><a href="InsertAttentionServlet?gid=fan.uid&action=1">+关注</a></td></tr>
-										</c:when>
-								</c:choose>
-									
-							</tr>
+						<c:choose>
+								<c:when test="${fan.iGtflag==1 }">
+										 <tr><td><a href="DeleteAttentionServlet?gid=${fan.uid }&action=1">取消关注</a></td></tr>
+								</c:when>
+								<c:when test="${fan.iGtflag==0}">
+										 <tr><td><a href="InsertAttentionServlet?gid=${fan.uid }&action=1">+关注</a></td></tr>
+								</c:when>
+						</c:choose>
 						</table>
 					</c:forEach>
 				</c:if>
