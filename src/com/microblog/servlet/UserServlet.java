@@ -35,9 +35,81 @@ public class UserServlet extends HttpServlet {
 		 String action = request.getParameter("action");
 		 if("userChange".equals(action)) {
 			 userChange(request,response);
+			//个人基本资料的修改
+		 }else if("modifyUserInfo".equals(action)) {
+			 modifyUserInfo(request,response);
+			 //跳转到个人信息修改页面
+		 }else if("shiftUserInfo".equals(action)) {
+			 shiftUserInfo(request,response);
+			 //跳转到密码修改页面
+		 }else if("shiftPassword".equals(action)) {
+			 shiftPassword(request,response);
+			//跳转到更换头像页面
+		 }else if("shiftChangeFace".equals(action)){
+			 shiftChangeFace(request,response);
+			 //修改密码功能实现
+		 }else if("modifyPassword".equals(action)) {
+			 modifyPassword(request,response);
+			 //更换头像功能
+		 }else if("changeFace".equals(action)) {
+			 changeFace(request,response);
 		 }
+		 
+		 
 	}
 
+	/**
+	 * 更换头像功能实现
+	 * @param request
+	 * @param response
+	 */
+	private void changeFace(HttpServletRequest request,
+			HttpServletResponse response) {
+	}
+	/**
+	 * 修改密码功能实现
+	 * @param request
+	 * @param response
+	 */
+	private void modifyPassword(HttpServletRequest request,
+			HttpServletResponse response) {
+	}
+	/**
+	 * 跳转到头像更换页面
+	 * @param request
+	 * @param response
+	 */
+	private void shiftChangeFace(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+	}
+	/**
+	 * 跳转到用户密码修改页面
+	 * @param request
+	 * @param response
+	 */
+	private void shiftPassword(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+	}
+	/**
+	 * 跳转到用户信息修改页面
+	 * @param request
+	 * @param response
+	 */
+	private void shiftUserInfo(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+	}
+	/**
+	 * 修改个人基本资料
+	 * @param request
+	 * @param response
+	 */
+	private void modifyUserInfo(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+	}
 	/**
 	 * 换一换功能
 	 * @param request
