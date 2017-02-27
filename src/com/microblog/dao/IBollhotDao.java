@@ -6,8 +6,6 @@ import com.microblog.po.Bloghot;
 import com.microblog.po.Bloghotitem;
 
 public interface IBollhotDao {
-   //显示微博热议内容
-	public List<Bloghot> FindByHot();
 	//热议投票
 	public int VoitHot(String hot);
 	//显示所有微博内容，按投票进行排序

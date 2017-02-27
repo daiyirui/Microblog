@@ -18,8 +18,8 @@
   </listener>
   
   <servlet>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.LoginServlet</servlet-class>
+    <servlet-name>BallhotServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.BallhotServlet</servlet-class>
   </servlet>
   
   <servlet>
@@ -177,8 +177,8 @@
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/LoginServlet</url-pattern>
+    <servlet-name>BallhotServlet</servlet-name>
+    <url-pattern>/BallhotServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ChangeUserServlet</servlet-name>
