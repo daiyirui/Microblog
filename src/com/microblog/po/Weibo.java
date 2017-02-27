@@ -79,11 +79,14 @@ public class Weibo implements Serializable {
 	public void setFlag(Integer flag) {
 		this.flag = flag;
 	}
+	
 	@Override
 	public String toString() {
-		return "Weibo [wid=" + wid + ", wcontent=" + wcontent + ", wdate=" + wdate + ", wimage=" + wimage
-				+ ", wremarks=" + wremarks + ", wtimes=" + wtimes + ", w_uid=" + w_uid + ", wcountcomment="
-				+ wcountcomment + ", use=" + use + "]";
+		return "Weibo [wid=" + wid + ", wcontent=" + wcontent + ", wdate="
+				+ wdate + ", wimage=" + wimage + ", wremarks=" + wremarks
+				+ ", wtimes=" + wtimes + ", w_uid=" + w_uid
+				+ ", wcountcomment=" + wcountcomment + ", flag=" + flag
+				+ ", use=" + use + "]";
 	}
 	
 }

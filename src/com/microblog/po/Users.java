@@ -129,10 +129,14 @@ public class Users implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Users [uid=" + uid + ", uname=" + uname + ", upwd=" + upwd + ", unickname=" + unickname + ", usex="
-				+ usex + ", uaddress=" + uaddress + ", udate=" + udate + ", uqq=" + uqq + ", uedu=" + uedu + ", upic="
-				+ upic + ", uques=" + uques + ", uemail=" + uemail + ", urealname=" + urealname + ", uremarks="
-				+ uremarks + "]";
+		return "Users [uid=" + uid + ", uname=" + uname + ", upwd=" + upwd
+				+ ", unickname=" + unickname + ", usex=" + usex + ", uaddress="
+				+ uaddress + ", udate=" + udate + ", uqq=" + uqq + ", uedu="
+				+ uedu + ", upic=" + upic + ", uques=" + uques + ", uemail="
+				+ uemail + ", urealname=" + urealname + ", uremarks="
+				+ uremarks + ", iGtflag=" + iGtflag + ", tGiflag=" + tGiflag
+				+ "]";
 	}
+
 
 }

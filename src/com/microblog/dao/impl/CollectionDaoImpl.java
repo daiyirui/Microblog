@@ -20,7 +20,7 @@ public class CollectionDaoImpl implements ICollectionDao {
 	       PreparedStatement statement = null;
 	       int  a = 0;
 	        try {
-	        	String sql="insert into collection(l_uid,lcontent,ldate,limages,wremarks,l_wid) values(?,?,now(),?,null,?)";
+	        	String sql="insert into collection(l_uid,lcontent,ldate,limages,lremarks,l_wid) values(?,?,now(),?,null,?)";
 	            connection = JDBCUtil.getConn();
 	            statement = connection.prepareStatement(sql);
 	            statement.setInt(1, coll.getL_uid());
@@ -39,16 +39,17 @@ public class CollectionDaoImpl implements ICollectionDao {
 
 
 	@Override
-	public int DeleteCollection(int lid) {
+	public int DeleteCollection(int uid,int wid) {
 		 Connection connection = null;
 	       PreparedStatement statement = null;
          int a = 0;
          try {
       	   connection = JDBCUtil.getConn();
-             String sql = "DELETE FROM collection where lid=?";
+             String sql = "DELETE FROM collection where l_uid=? and l_wid=?";
              System.out.println(sql);
              statement = connection.prepareStatement(sql);
-             statement.setInt(1, lid);
+             statement.setInt(1, uid);
+             statement.setInt(2, wid);
              a=statement.executeUpdate();
          } catch (SQLException e) {
              e.printStackTrace();
@@ -144,15 +145,18 @@ public class CollectionDaoImpl implements ICollectionDao {
     //判断该微博是否被我收藏了
 	@Override
 	public int judgeColletionBywid(int uid, int wid) {
+		System.out.println("uid"+uid);
+		System.out.println("wid"+wid);
 		Connection connection = null;
 	    PreparedStatement statement = null;
 		int count=0;
 		try {
 			//step1： sql语句
-			String sql="SELECT count(*) FROM collection where  l_uid=? and l_wid";	
+			String sql="SELECT count(*) FROM collection where  l_uid=? and l_wid =?";	
 			connection = JDBCUtil.getConn();
 	        statement = connection.prepareStatement(sql);
 	        statement.setInt(1, uid);
+	        statement.setInt(2, wid);
 			//step3:获取返回值结果集
 			ResultSet rs=statement.executeQuery();
 			//step4:int 变量

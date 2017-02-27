@@ -123,19 +123,20 @@
 											  </c:if>
 											 <a
 												href="ForWardServlet?wid=${weibo.wid}&wcontent=${weibo.wcontent}&wimage=${weibo.wimage}">转发(${weibo.wtimes})</a>
-												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-												
-												<!-- 收藏和取消收藏判断 -->
-												<c:if test="${!empty colletion}">
-												<a
-												href="CollectionServlet?wid=${weibo.wid}&uid=${user.uid}&action=cancelcollection">取消收藏</a>
-												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-												</c:if>
-												<c:if test="${!empty cnacelcolletion}">
-												<a
-												href="CollectionServlet?wid=${weibo.wid}&uid=${user.uid}&action=collection">收藏</a>
-												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-												</c:if>
+												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+												<!-- 收藏和取消收藏判断 --> 
+												<c:choose>
+												    <c:when test="${ weibo.flag == 1}">
+												    <a
+											     	href="CollectionServlet?wid=${weibo.wid}&uid=${user.uid}&action=cancelcollection">取消收藏</a>
+												   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+												    </c:when>
+												    <c:otherwise>
+												    	<a
+											    	href="CollectionServlet?wid=${weibo.wid}&uid=${user.uid}&action=collection">收藏</a>
+											      	&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                                    </c:otherwise> 
+												</c:choose>
 												
 												<a
 												href="CommentServlet?wid=${weibo.wid}">评论(${weibo.wcountcomment})</a>

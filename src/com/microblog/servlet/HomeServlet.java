@@ -162,7 +162,7 @@ public class HomeServlet extends HttpServlet {
 			IWeiboDao weibodao=new WeiboDaoImpl();
 			List<Weibo> weibos=weibodao.FindByLogin(use.getUid());
 			request.setAttribute("weibos",weibos);
-			
+			System.out.println("weibos:"+weibos);
 			//显示所关注人数量
 			IRelationsDao relationBiz=new RelationsDaoImpl();
 			int countRlat=relationBiz.CountByAttention(use.getUid());

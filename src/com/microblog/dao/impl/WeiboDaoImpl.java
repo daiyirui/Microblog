@@ -15,7 +15,74 @@ import com.microblog.po.Weibo;
 
 public class WeiboDaoImpl implements IWeiboDao {
 		
-	
+	@SuppressWarnings("resource")
+	@Override
+	public Weibo FindBywid(int uid,int wid) {
+		Connection connection = null;
+	    PreparedStatement statement = null;
+		Weibo weibo = new Weibo();
+		try {
+			//step1： sql语句
+			String sql="SELECT * FROM weibo where  wid=?";	
+			connection = JDBCUtil.getConn();
+	        statement = connection.prepareStatement(sql);
+	        statement.setInt(1, wid);
+			//step3:获取返回值结果集
+			ResultSet rs=statement.executeQuery();
+			//step4:int 变量
+			if(rs.next()){
+				//step6:遍历结果集
+				  weibo.setWid(rs.getInt("wid"));
+				   weibo.setWcontent(rs.getString("wcontent"));
+				   weibo.setWdate(rs.getDate("wdate"));
+				   weibo.setWimage(rs.getString("wimage"));
+				   weibo.setWtimes(rs.getInt("wtimes"));
+				   weibo.setWremarks(rs.getString("wremarks"));
+				   weibo.setWcountcomment(rs.getInt("wcountcomment"));
+				   weibo.setW_uid(rs.getInt("w_uid"));
+				   weibo.setWid(rs.getInt("wid"));
+				   weibo.setWcontent(rs.getString("wcontent"));
+				   weibo.setWdate(rs.getDate("wdate"));
+				   weibo.setWimage(rs.getString("wimage"));
+				   weibo.setWtimes(rs.getInt("wtimes"));
+				   weibo.setWremarks(rs.getString("wremarks"));
+				   weibo.setWcountcomment(rs.getInt("wcountcomment"));
+				   weibo.setW_uid(rs.getInt("w_uid"));
+				   //判断该微博是否被用户收藏了
+				   ICollectionDao collectiondao = new CollectionDaoImpl();
+				   if(collectiondao.judgeColletionBywid(uid, rs.getInt("wid"))==1) {
+					   weibo.setFlag(1);
+				   }
+				   sql = "SELECT * FROM users where uid=?";
+				   statement = connection.prepareStatement(sql);
+				   statement.setInt(1, rs.getInt("w_uid"));
+				   ResultSet re=statement.executeQuery();
+				   if(re.next()){
+					    Users use=new Users();
+					    use.setUid(re.getInt("uid"));
+					    use.setUname(re.getString("uname"));
+					    use.setUpwd(re.getString("upwd"));
+					    use.setUnickname(re.getString("unickname"));
+					    use.setUsex(re.getString("usex"));
+					    use.setUaddress(re.getString("uaddress"));
+					    use.setUdate(re.getDate("udate"));
+					    use.setUpic(re.getString("upic"));
+					    use.setUqq(re.getString("uqq"));
+					    use.setUedu(re.getString("uedu"));
+					    use.setUques(re.getString("uques"));
+					    use.setUrealname(re.getString("urealname"));
+					    use.setUremarks(re.getString("uremarks"));
+					    weibo.setUse(use);
+				   }
+			}			 
+		} catch (SQLException e) {
+	           e.printStackTrace();
+	           return null;
+	       } finally {
+	           JDBCUtil.closeDB(connection, statement, null);
+	       }
+		return weibo;
+	}
 	@Override
 	public int InsertWeibo(Weibo weibo, int uid) {
 		   Connection connection = null;
@@ -66,6 +133,7 @@ public class WeiboDaoImpl implements IWeiboDao {
 				   weibo.setW_uid(rs.getInt("w_uid"));
 				   //判断该微博是否被用户收藏了
 				   ICollectionDao collectiondao = new CollectionDaoImpl();
+				   System.out.println(collectiondao.judgeColletionBywid(uid, rs.getInt("wid")));
 				   if(collectiondao.judgeColletionBywid(uid, rs.getInt("wid"))==1) {
 					   weibo.setFlag(1);
 				   }
@@ -177,8 +245,9 @@ public class WeiboDaoImpl implements IWeiboDao {
 						   ICollectionDao collectiondao = new CollectionDaoImpl();
 						   if(collectiondao.judgeColletionBywid(uid, rs.getInt("wid"))==1) {
 							   weibo.setFlag(1);
+						   }else {
+							   weibo.setFlag(0);
 						   }
-						   
 						   sql = "SELECT * FROM users where uid=?";
 						   statement = connection.prepareStatement(sql);
 						   statement.setInt(1, rs.getInt("w_uid"));
@@ -210,4 +279,5 @@ public class WeiboDaoImpl implements IWeiboDao {
 		       }
 			   return lisWeibo;
 	}
+
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import com.microblog.po.Weibo;
 
 public interface IWeiboDao { 
+	//通过wid查找微博
+	public Weibo FindBywid(int uid,int wid);
 	//获取登录者和其所关注人的微博信息
 	public List<Weibo> FindByLogin(int uid);
 	//显示微博数量
