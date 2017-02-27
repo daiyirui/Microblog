@@ -22,7 +22,7 @@
 					<tr>
 						<td width="20%">我的首页</td>
 						<td width="20%"><a href="WeiboServlet?action=allweibo&uid=${user.uid}">我的微博</a></td>
-						<td width="20%"><a href="MyCollectionServlet">我的收藏</a></td>
+						<td width="20%"><a href="CollectionServlet?action=allcollection&uid=${user.uid}">我的收藏</a></td>
 						<td width="20%"><a href="BallhotShowServlet">微博热议</a></td>
 					</tr>
 				</table>

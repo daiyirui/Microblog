@@ -94,7 +94,7 @@ public class CollectionDaoImpl implements ICollectionDao {
 		Connection connection = null;
 	    PreparedStatement statement = null;
 	    try {
-			String sql="SELECT * FROM collection where l_uid=? by ldate desc";
+			String sql="SELECT * FROM collection where l_uid=? order by ldate desc";
 			connection = JDBCUtil.getConn();
 	        statement = connection.prepareStatement(sql);
 	        statement.setInt(1, uid);
