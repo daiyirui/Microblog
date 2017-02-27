@@ -40,8 +40,9 @@
 							<td class="title">个人资料</td>
 						</tr>
 						<tr>
-							<td class="menu"><a href="userinfo.jsp">基本资料</a> | 修改密码 | <a
-								href="myface.jsp">修改头像</a></td>
+							<td class="menu"><a href="UserServlet?action=shiftUserInfo&uid=${user.uid}">基本资料</a> | 修改密码 | <a
+								href="UserServlet?action=shiftChangeFace&uid=${user.uid}">修改头像</a> |  <a
+								href="HomeServlet?action=home&uid=${user.uid}">返回主页</a></td>
 						</tr>
 						<tr>
 							<td align="center"><table width="90%" border="0"

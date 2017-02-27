@@ -73,33 +73,53 @@ public class UserServlet extends HttpServlet {
 	 */
 	private void modifyPassword(HttpServletRequest request,
 			HttpServletResponse response) {
+		
 	}
 	/**
 	 * 跳转到头像更换页面
 	 * @param request
 	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
 	private void shiftChangeFace(HttpServletRequest request,
-			HttpServletResponse response) {
-		
+			HttpServletResponse response) throws ServletException, IOException {
+		  String uid = request.getParameter("uid");
+		  IUserDao userdao = new UserDaoImpl();
+		  Users user = userdao.FindByuid(Integer.parseInt(uid));
+	      request.setAttribute("user", user);
+		  request.getRequestDispatcher("myface.jsp").forward(request, response);
 	}
 	/**
 	 * 跳转到用户密码修改页面
 	 * @param request
 	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
 	private void shiftPassword(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws ServletException, IOException {
+		  String uid = request.getParameter("uid");
+		  IUserDao userdao = new UserDaoImpl();
+		  Users user = userdao.FindByuid(Integer.parseInt(uid));
+	      request.setAttribute("user", user);
+		  request.getRequestDispatcher("mypassword.jsp").forward(request, response);
 		
 	}
 	/**
 	 * 跳转到用户信息修改页面
 	 * @param request
 	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
 	private void shiftUserInfo(HttpServletRequest request,
-			HttpServletResponse response) {
-		
+			HttpServletResponse response) throws ServletException, IOException {
+		  String uid = request.getParameter("uid");
+		  IUserDao userdao = new UserDaoImpl();
+		  Users user = userdao.FindByuid(Integer.parseInt(uid));
+	      request.setAttribute("user", user);
+		  request.getRequestDispatcher("userinfo.jsp").forward(request, response);
 	}
 	/**
 	 * 修改个人基本资料
