@@ -27,10 +27,6 @@
     <servlet-class>com.microblog.servlet.UserServlet</servlet-class>
   </servlet>
   
-  <servlet>
-    <servlet-name>ChangeUserServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.ChangeUserServlet</servlet-class>
-  </servlet>
   
   <servlet>
     <servlet-name>PageChangeServlet</servlet-name>
@@ -112,10 +108,7 @@
     <servlet-name>UserDetailServlet</servlet-name>
     <servlet-class>com.microblog.servlet.UserDetailServlet</servlet-class>
   </servlet>
-  <servlet>
-    <servlet-name>UserChangePageServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.UserChangePageServlet</servlet-class>
-  </servlet>
+ 
   <servlet>
     <servlet-name>CheckPasswordServlet</servlet-name>
     <servlet-class>com.microblog.servlet.CheckPasswordServlet</servlet-class>
@@ -185,10 +178,7 @@
     <servlet-name>BallhotServlet</servlet-name>
     <url-pattern>/BallhotServlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ChangeUserServlet</servlet-name>
-    <url-pattern>/ChangeUserServlet</url-pattern>
-  </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>PageChangeServlet</servlet-name>
     <url-pattern>/PageChangeServlet</url-pattern>
@@ -261,11 +251,6 @@
     <servlet-name>UserDetailServlet</servlet-name>
     <url-pattern>/UserDetailServlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>UserChangePageServlet</servlet-name>
-    <url-pattern>/UserChangePageServlet</url-pattern>
-  </servlet-mapping>
-  
 
   <servlet-mapping>
     <servlet-name>CheckPasswordServlet</servlet-name>
