@@ -104,9 +104,9 @@ DIV.contextmenu {
 				<table id="welcome" border="0" cellspacing="0" cellpadding="0">
 					<tr>
 						<td width="30" height="30" rowspan="2" class="userface_bg"><img
-							src="${sessionScope.userinfo.upic}" border="0" width="20"
+							src="${user.upic}" border="0" width="20"
 							height="20" /></td>
-						<td>欢迎您, ${sessionScope.userinfo.uname }！</td>
+						<td>欢迎您, ${user.uname }！</td>
 					</tr>
 					<tr>
 						<td><a href="index.jsp">[ 退出 ]</a></td>
@@ -168,74 +168,59 @@ DIV.contextmenu {
 						<td width="49%" align="center"></td>
 					</tr>
 				</table>
-				<table width="709" border="0" cellpadding="0">
+				<table width="600" border="0" cellpadding="0">
+				
 					<tr>
-						<td width="705" height="46"><span class="STYLE6"><h1>微博热议：</h1></span></td>
+						<td width="600" height="46"><span class="STYLE6"><h1>微博热议：</h1></span>&nbsp;&nbsp;</td>
+				       
 					</tr>
-					<tr>
-						<td height="166">
-							<form id="form1" name="form1" method="post"
-								action="BallotServlet">
-								<table width="707" border="1" cellpadding="0">
-									<tr>
-										<td height="35" colspan="2">1、${sessionScope.title1}：</td>
-									</tr>
-									<tr>
-										<td height="84" colspan="2" align="left"><c:if
-												test="${!empty sessionScope.bol1}">
-												<c:forEach items="${sessionScope.bol1}" var="bo">
-													<label><input type="radio" name="tennis"
-														value="${bo.bitems}" />${bo.bitems}</label>
-												</c:forEach>
-											</c:if></td>
-									</tr>
-									<tr>
-										<td width="462" height="37" align="right"><input
-											type="submit" value="投票" /></td>
-										<td width="239" align="right"><input type="button"
-											onclick="show('staResult')" value="查看投票结果" /></td>
-									</tr>
+					<c:forEach items="${bloghots}" var="bloghot" begin="0" end="5">
+						<tr>
+							<td height="166">
+								<form id="form1" name="form1" method="post" action="login.jsp">
+									<table width="707" border="1" cellpadding="0">
+										<tr>
+											<td height="35" colspan="2">${bloghot.btitle}：</td>
+										</tr>
+										<c:forEach items="${bloghot.bitems}" var="bitem">
+											<tr>
+												<td height="20" colspan="1" align="left"><label><input
+														type="radio" name="tennis" value="${bitem.bitemName}" />${bitem.bitemName}</label>
 
-								</table>
-							</form>
-						</td>
-					</tr>
-					<tr>
-						<td height="114">
-							<form id="form2" name="form2" method="post"
-								action="BallotServlet">
-								<table width="706" border="1" cellpadding="0">
-									<tr>
-										<td height="42" colspan="2">2、${sessionScope.title2}：</td>
-									</tr>
-									<tr>
-										<td height="91" colspan="2"><c:if
-												test="${!empty sessionScope.bol2}">
-												<c:forEach items="${sessionScope.bol2}" var="bo">
-													<label><input type="radio" name="tennis"
-														value="${bo.bitems}" />${bo.bitems}</label>
-												</c:forEach>
-											</c:if></td>
-									</tr>
-									<tr>
-										<td width="462" height="37" align="right"><input
-											type="submit" value="投票" /></td>
-										<td width="238" align="right"><input type="button"
-											onclick="show('staResult2')" value="查看投票结果" /></td>
-									</tr>
-								</table>
-							</form>
-						</td>
-					</tr>
-				</table> <!-- weibo 开始--> <!-- weibo 结束-->
+												</td>
+												<td height="20" colspan="1" align="left"><label>当前票数:${bitem.bvote}</label>
+												</td>
+
+											</tr>
+											<c:if test="${ !empty bitem.bitemimage }">
+												<tr>
+													<td height="60" colspan="2" align="left">
+														${bitem.bitemimage}</td>
+												</tr>
+											</c:if>
+										</c:forEach>
+										<tr>
+											<td width="462" height="37" align="right"><input
+												type="submit" value="投票" /></td>
+											<td width="239" align="right"><input type="button"
+												onclick="show('staResult')" value="查看投票结果" /></td>
+										</tr>
+
+									</table>
+								</form>
+							</td>
+
+						</tr>
+					</c:forEach>
+				</table> <!-- weibo 开始-->
 			</td>
 			<td width="280" align="center" valign="top" class="pageright">
 				<!-- userinfo 开始-->
 				<table align="center" id="userinfo">
 					<tr>
 						<td width="25%" rowspan="2"><img
-							src="${sessionScope.userinfo.upic}" width="50" height="50" /></td>
-						<td width="75%"><a href="profile.jsp">${sessionScope.userinfo.uname }</a></td>
+							src="${user.upic}" width="50" height="50" /></td>
+						<td width="75%"><a href="profile.jsp">${user.uname }</a></td>
 					</tr>
 					<tr>
 						<td valign="top">天津</td>
@@ -262,8 +247,8 @@ DIV.contextmenu {
 							href="ChangeUserServlet?change=5">[换一换]</a></td>
 					</tr>
 
-					<c:if test="${!empty sessionScope.userList }">
-						<c:forEach items="${sessionScope.userList}" var="usl">
+					<c:if test="${!empty userList }">
+						<c:forEach items="${userList}" var="usl">
 							<tr>
 								<td colspan="2"><table border="0" cellpadding="0"
 										cellspacing="0" class="userdetail">

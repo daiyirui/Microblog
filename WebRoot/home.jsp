@@ -179,7 +179,7 @@
 					<tr>
 						<td class="title" height="29">可能感兴趣的人</td>
 						<td align="right" class="title"><a
-							href="ChangeUserServlet?change=2">[换一换]</a></td>
+							href="UserServlet?page=1&action=userChange&uid=${user.uid}">[换一换]</a></td>
 					</tr>
 
 					<c:if test="${!empty userList }">

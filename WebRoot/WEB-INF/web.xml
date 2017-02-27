@@ -22,6 +22,11 @@
     <servlet-class>com.microblog.servlet.BallhotServlet</servlet-class>
   </servlet>
   
+   <servlet>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>com.microblog.servlet.UserServlet</servlet-class>
+  </servlet>
+  
   <servlet>
     <servlet-name>ChangeUserServlet</servlet-name>
     <servlet-class>com.microblog.servlet.ChangeUserServlet</servlet-class>
@@ -321,6 +326,10 @@
     <url-pattern>/RelationServlet</url-pattern>
   </servlet-mapping>
   
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/UserServlet</url-pattern>
+  </servlet-mapping>
    <filter>
         <filter-name>CharsetEncodingFilter</filter-name>
         <filter-class>
