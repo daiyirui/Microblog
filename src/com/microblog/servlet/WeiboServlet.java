@@ -73,9 +73,63 @@ public class WeiboServlet  extends HttpServlet{
 	 * 转发微博的功能
 	 * @param request
 	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
 	private void forwardweibo(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws ServletException, IOException {
+		    String uid = request.getParameter("uid");
+		    String wid = request.getParameter("wid");
+		    
+	        IWeiboDao weibodao = new WeiboDaoImpl();
+	       //uid的作用仅仅是判断我收藏了这条微博没有
+	        Weibo weibo =  weibodao.FindBywid(Integer.parseInt(uid),Integer.parseInt(wid));
+	        //判断转发的这条微博是不是原创,如果是原创微博就插入
+	        if(weibo.getW_wid()!=0) {
+	            //如果不是原创微博，找出原创微博，找出原创微博很简单，因为所以被转发的微博的w_wid都是原创的
+	        	//获取原创微博
+	        	weibo =  weibodao.FindBywid(Integer.parseInt(uid),weibo.getW_wid());
+	        }
+	   
+        	 //转发原创微博
+            weibodao.forwardWeibo(weibo,Integer.parseInt(uid));
+            //更新微博转发次数，同步所有转发的微博和原创微博次数
+	        weibodao.updateWtimes(weibo);
+            
+	        List<Weibo> weibos= weibodao.FindByLogin(Integer.parseInt(uid));
+	        System.out.println("weibos:"+weibos);
+		    IUserDao userdao = new UserDaoImpl();
+		    Users user = userdao.FindByuid(Integer.parseInt(uid));
+	        request.setAttribute("user", user);
+	        request.setAttribute("weibos",weibos);
+	        //共同的代码块
+	     	//显示所关注人数量
+			IRelationsDao relationBiz=new RelationsDaoImpl();
+			int countRlat=relationBiz.CountByAttention(user.getUid());
+			request.setAttribute("countRlation",countRlat);
+			//显示粉丝数量
+			int countVeri=relationBiz.CountByVermicelli(user.getUid());
+			request.setAttribute("countVeri",countVeri);
+			//自己已经关注成功的人
+			List<Users> interests = relationBiz.FindAllMyInterestByuid(user.getUid());
+			//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
+			List<Users> listAllUser=new ArrayList<Users>();//全部陌生朋友信息
+			List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
+			listAllUser=userdao.FindByInterest(user.getUid());
+			listAllUser.remove(interests);
+			for (int i = 0; i < 8; i++) {
+				listUser.add(listAllUser.get(i));		
+			}
+			
+			request.setAttribute("userAllList", listAllUser);
+			if(listUser!=null){
+				request.setAttribute("userList",listUser);	
+			}			
+			//微博数量
+			int countMicroblog=weibodao.CountByMicroblog(user.getUid());
+			request.setAttribute("countBlog",countMicroblog);
+			
+			request.getRequestDispatcher("./home.jsp").forward(request, response);
 		
 	}
 

@@ -13,6 +13,8 @@ public class Weibo implements Serializable {
    private Integer wtimes;
    private Integer w_uid;//
    private Integer wcountcomment;
+   //判断该微博是否是转发过来的，0代表不是，假如是代表转发微博的wid
+   private Integer w_wid;
    //判断是否被登陆用户收藏标记
    private Integer flag;
    private Users use=new Users();
@@ -80,13 +82,20 @@ public class Weibo implements Serializable {
 		this.flag = flag;
 	}
 	
+	public Integer getW_wid() {
+		return w_wid;
+	}
+	public void setW_wid(Integer w_wid) {
+		this.w_wid = w_wid;
+	}
+	
 	@Override
 	public String toString() {
 		return "Weibo [wid=" + wid + ", wcontent=" + wcontent + ", wdate="
 				+ wdate + ", wimage=" + wimage + ", wremarks=" + wremarks
 				+ ", wtimes=" + wtimes + ", w_uid=" + w_uid
-				+ ", wcountcomment=" + wcountcomment + ", flag=" + flag
-				+ ", use=" + use + "]";
+				+ ", wcountcomment=" + wcountcomment + ", w_wid=" + w_wid
+				+ ", flag=" + flag + ", use=" + use + "]";
 	}
 	
 }

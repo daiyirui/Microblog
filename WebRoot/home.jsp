@@ -122,7 +122,7 @@
 												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 											  </c:if>
 											 <a
-												href="ForWardServlet?wid=${weibo.wid}&wcontent=${weibo.wcontent}&wimage=${weibo.wimage}">转发(${weibo.wtimes})</a>
+												href="WeiboServlet?wid=${weibo.wid}&action=forwardweibo&uid=${user.uid}">转发(${weibo.wtimes})</a>
 												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 												<!-- 收藏和取消收藏判断 --> 
 												<c:choose>
