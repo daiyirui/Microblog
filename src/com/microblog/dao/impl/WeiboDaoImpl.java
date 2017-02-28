@@ -5,11 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.microblog.common.JDBCUtil;
 import com.microblog.dao.ICollectionDao;
+import com.microblog.dao.ICommentDao;
 import com.microblog.dao.IWeiboDao;
+import com.microblog.po.Comment;
 import com.microblog.po.Users;
 import com.microblog.po.Weibo;
 
@@ -32,23 +35,15 @@ public class WeiboDaoImpl implements IWeiboDao {
 			//step4:int 变量
 			if(rs.next()){
 				//step6:遍历结果集
-				  weibo.setWid(rs.getInt("wid"));
-				   weibo.setWcontent(rs.getString("wcontent"));
-				   weibo.setWdate(rs.getDate("wdate"));
-				   weibo.setWimage(rs.getString("wimage"));
-				   weibo.setWtimes(rs.getInt("wtimes"));
-				   weibo.setWremarks(rs.getString("wremarks"));
-				   weibo.setWcountcomment(rs.getInt("wcountcomment"));
-				   weibo.setW_uid(rs.getInt("w_uid"));
 				   weibo.setWid(rs.getInt("wid"));
 				   weibo.setWcontent(rs.getString("wcontent"));
-				   weibo.setWdate(rs.getDate("wdate"));
+				   weibo.setWdate(rs.getString("wdate"));
 				   weibo.setWimage(rs.getString("wimage"));
 				   weibo.setWtimes(rs.getInt("wtimes"));
 				   weibo.setWremarks(rs.getString("wremarks"));
 				   weibo.setWcountcomment(rs.getInt("wcountcomment"));
 				   weibo.setW_uid(rs.getInt("w_uid"));
-				   weibo.setW_wid(rs.getInt("w_wid"));				   
+				  			   
 				   //判断该微博是否被用户收藏了
 				   ICollectionDao collectiondao = new CollectionDaoImpl();
 				   if(collectiondao.judgeColletionBywid(uid, rs.getInt("wid"))==1) {
@@ -126,13 +121,14 @@ public class WeiboDaoImpl implements IWeiboDao {
 				   Weibo weibo=new Weibo();		
 				   weibo.setWid(rs.getInt("wid"));
 				   weibo.setWcontent(rs.getString("wcontent"));
-				   weibo.setWdate(rs.getDate("wdate"));
+				  
+				   weibo.setWdate(rs.getString("wdate"));
 				   weibo.setWimage(rs.getString("wimage"));
 				   weibo.setWtimes(rs.getInt("wtimes"));
 				   weibo.setWremarks(rs.getString("wremarks"));
 				   weibo.setWcountcomment(rs.getInt("wcountcomment"));
 				   weibo.setW_uid(rs.getInt("w_uid"));
-				   weibo.setW_wid(rs.getInt("w_wid"));	
+				  			   
 				   //判断该微博是否被用户收藏了
 				   ICollectionDao collectiondao = new CollectionDaoImpl();
 				   System.out.println(collectiondao.judgeColletionBywid(uid, rs.getInt("wid")));
@@ -160,7 +156,13 @@ public class WeiboDaoImpl implements IWeiboDao {
 					    use.setUremarks(re.getString("uremarks"));
 					    weibo.setUse(use);
 				   }
-				   //step6:添加到list集合
+				   //添加微博对应的评论功能
+				   ICommentDao commentdao = new CommentDaoImpl();
+				   List<Comment> comments = commentdao.findByComment(weibo.getWid());
+				   //对评论排序
+				   comments = sortComments(comments);
+				   weibo.setComments(comments);
+				 //step6:添加到list集合
 				   lisWeibo.add(weibo);
 				}
 	   } catch (SQLException e) {
@@ -236,13 +238,13 @@ public class WeiboDaoImpl implements IWeiboDao {
 						   Weibo weibo=new Weibo();		
 						   weibo.setWid(rs.getInt("wid"));
 						   weibo.setWcontent(rs.getString("wcontent"));
-						   weibo.setWdate(rs.getDate("wdate"));
+						   weibo.setWdate(rs.getString("wdate"));
 						   weibo.setWimage(rs.getString("wimage"));
 						   weibo.setWtimes(rs.getInt("wtimes"));
 						   weibo.setWremarks(rs.getString("wremarks"));
 						   weibo.setWcountcomment(rs.getInt("wcountcomment"));
 						   weibo.setW_uid(rs.getInt("w_uid"));
-						   weibo.setW_wid(rs.getInt("w_wid"));	
+						  			   
 						   //判断该微博是否被用户收藏了
 						   ICollectionDao collectiondao = new CollectionDaoImpl();
 						   if(collectiondao.judgeColletionBywid(uid, rs.getInt("wid"))==1) {
@@ -271,6 +273,12 @@ public class WeiboDaoImpl implements IWeiboDao {
 							    use.setUremarks(re.getString("uremarks"));
 							    weibo.setUse(use);
 						   }
+						   //添加微博对应的评论功能
+						   ICommentDao commentdao = new CommentDaoImpl();
+						   List<Comment> comments = commentdao.findByComment(weibo.getWid());
+						   //对评论排序
+						   comments = sortComments(comments);
+						   weibo.setComments(comments);
 						   //step6:添加到list集合
 						   lisWeibo.add(weibo);
 						}
@@ -281,6 +289,7 @@ public class WeiboDaoImpl implements IWeiboDao {
 		       }
 			   return lisWeibo;
 	}
+	
 	//实现微博转发需要三个方法(方法一：插入一条微博，标记w_wid  方法二：通过w_wid获取上一条微博  方法三：更新所有相关微博转发次数)
 	//方法一：
 	//实现微博转发功能,注意这个功能的这条转发记录没有实现转发次数加1
@@ -324,23 +333,16 @@ public class WeiboDaoImpl implements IWeiboDao {
 			//step4:int 变量
 			if(rs.next()){
 				//step6:遍历结果集
-				  weibo.setWid(rs.getInt("wid"));
+				 weibo.setWid(rs.getInt("wid"));
 				   weibo.setWcontent(rs.getString("wcontent"));
-				   weibo.setWdate(rs.getDate("wdate"));
+				   weibo.setWdate(rs.getString("wdate"));
 				   weibo.setWimage(rs.getString("wimage"));
 				   weibo.setWtimes(rs.getInt("wtimes"));
 				   weibo.setWremarks(rs.getString("wremarks"));
 				   weibo.setWcountcomment(rs.getInt("wcountcomment"));
 				   weibo.setW_uid(rs.getInt("w_uid"));
-				   weibo.setWid(rs.getInt("wid"));
-				   weibo.setWcontent(rs.getString("wcontent"));
-				   weibo.setWdate(rs.getDate("wdate"));
-				   weibo.setWimage(rs.getString("wimage"));
-				   weibo.setWtimes(rs.getInt("wtimes"));
-				   weibo.setWremarks(rs.getString("wremarks"));
-				   weibo.setWcountcomment(rs.getInt("wcountcomment"));
-				   weibo.setW_uid(rs.getInt("w_uid"));
-				   weibo.setW_wid(rs.getInt("w_wid"));				   
+				  			   
+				   		   
 				   //判断该微博是否被用户收藏了
 				   ICollectionDao collectiondao = new CollectionDaoImpl();
 				   if(collectiondao.judgeColletionBywid(uid, rs.getInt("wid"))==1) {
@@ -417,13 +419,13 @@ public class WeiboDaoImpl implements IWeiboDao {
 				   Weibo weibo=new Weibo();		
 				   weibo.setWid(rs.getInt("wid"));
 				   weibo.setWcontent(rs.getString("wcontent"));
-				   weibo.setWdate(rs.getDate("wdate"));
+				   weibo.setWdate(rs.getString("wdate"));
 				   weibo.setWimage(rs.getString("wimage"));
 				   weibo.setWtimes(rs.getInt("wtimes"));
 				   weibo.setWremarks(rs.getString("wremarks"));
 				   weibo.setWcountcomment(rs.getInt("wcountcomment"));
 				   weibo.setW_uid(rs.getInt("w_uid"));
-				   weibo.setW_wid(rs.getInt("w_wid"));	
+				  			   
 				   //判断该微博是否被用户收藏了
 				   ICollectionDao collectiondao = new CollectionDaoImpl();
 				   if(collectiondao.judgeColletionBywid(uid, rs.getInt("wid"))==1) {
@@ -452,6 +454,13 @@ public class WeiboDaoImpl implements IWeiboDao {
 					    use.setUremarks(re.getString("uremarks"));
 					    weibo.setUse(use);
 				   }
+				   
+				   //添加微博对应的评论功能
+				   ICommentDao commentdao = new CommentDaoImpl();
+				   List<Comment> comments = commentdao.findByComment(weibo.getWid());
+				   //对评论排序
+				   comments = sortComments(comments);
+				   weibo.setComments(comments);
 				   //step6:添加到list集合
 				   lisWeibo.add(weibo);
 				}
@@ -462,6 +471,43 @@ public class WeiboDaoImpl implements IWeiboDao {
        }
 	   return lisWeibo;
 	}
-	
+	/**
+	 * 对评论进行排序
+	 * @param comments
+	 * @return
+	 *   private Integer cid;
+         private Integer c_wid;
+         private Integer c_uid;
+         private String ccontent;
+         private Date cdate;
+         private String cremarks;
+         private String cimages;
+         //辨别是不是回复哪一条评论还是评论微博信息的，0代表评论微博，不为0代表回复哪一条评论信息
+          private Integer c_cid;
+         //辨别该评论是不是被用户删除,用户只对自己的微博的评论信息有删除权利，0代表没有删除，-1代表删除
+          private Integer flag;
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+	private List<Comment> sortComments(List<Comment> comments) {
+		List<Comment> comms = new ArrayList<Comment>();
+		for(int i = 0;i < comments.size() ; i++) {
+			//首先判断c_cid是不是等于0
+			Comment com = comments.get(i);
+			if(com.getC_cid()==0) {
+				comms.add(com);
+				//再来判断有没有内容是来回复他的
+				for(int j = i+1;j < comments.size() ; j++) {
+					Comment co = comments.get(j);
+					if(co.getC_cid() == com.getCid()) {
+						comms.add(co);
+					}
+				}
+			}
+		}
+		return comms;
+	}
 
 }

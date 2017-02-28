@@ -107,7 +107,7 @@ public class CollectionDaoImpl implements ICollectionDao {
 					collection.setLid(rs.getInt("lid"));
 					collection.setL_uid(rs.getInt("l_uid"));
 					collection.setLcontent(rs.getString("lcontent"));
-					collection.setLdate(rs.getDate("ldate"));
+					collection.setLdate(rs.getString("ldate"));
 					collection.setLimages(rs.getString("limages"));
 					collection.setL_wid(rs.getInt("l_wid"));
 				    sql = "SELECT * FROM users where uid=?";

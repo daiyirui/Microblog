@@ -1,13 +1,15 @@
 package com.microblog.po;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class Weibo implements Serializable {
    private Integer wid;
    private String wcontent;
-   private Date wdate;
+   private String wdate;
    private String wimage;
    private String wremarks;
    private Integer wtimes;
@@ -18,7 +20,8 @@ public class Weibo implements Serializable {
    //判断是否被登陆用户收藏标记
    private Integer flag;
    private Users use=new Users();
-
+   
+   private List<Comment> comments = new ArrayList<Comment>();
  
     public Users getUse() {
 		return use;
@@ -44,10 +47,10 @@ public class Weibo implements Serializable {
 	public void setWcontent(String wcontent) {
 		this.wcontent = wcontent;
 	}
-	public Date getWdate() {
+	public String getWdate() {
 		return wdate;
 	}
-	public void setWdate(Date wdate) {
+	public void setWdate(String wdate) {
 		this.wdate = wdate;
 	}
 	public String getWimage() {
@@ -89,13 +92,21 @@ public class Weibo implements Serializable {
 		this.w_wid = w_wid;
 	}
 	
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+	
 	@Override
 	public String toString() {
 		return "Weibo [wid=" + wid + ", wcontent=" + wcontent + ", wdate="
 				+ wdate + ", wimage=" + wimage + ", wremarks=" + wremarks
 				+ ", wtimes=" + wtimes + ", w_uid=" + w_uid
 				+ ", wcountcomment=" + wcountcomment + ", w_wid=" + w_wid
-				+ ", flag=" + flag + ", use=" + use + "]";
+				+ ", flag=" + flag + ", use=" + use + ", comments=" + comments
+				+ "]";
 	}
 	
 }

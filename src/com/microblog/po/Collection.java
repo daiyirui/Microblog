@@ -8,7 +8,7 @@ public class Collection implements Serializable {
 	private Integer lid;
 	private Integer l_uid;
 	private String lcontent;
-	private Date ldate;
+	private String ldate;
 	private String limages;
 	private String lremarks;
 	private Integer l_wid;
@@ -38,11 +38,11 @@ public class Collection implements Serializable {
 		this.lcontent = lcontent;
 	}
 
-	public Date getLdate() {
+	public String getLdate() {
 		return ldate;
 	}
 
-	public void setLdate(Date ldate) {
+	public void setLdate(String ldate) {
 		this.ldate = ldate;
 	}
 	public String getLimages() {

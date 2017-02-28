@@ -142,7 +142,24 @@
 												href="CommentServlet?wid=${weibo.wid}">评论(${weibo.wcountcomment})</a>
 											</td>
 										</tr>
-									</table></td>
+									</table>
+									  <c:if test="${! empty weibo.comments}">
+									  <c:forEach items="${weibo.comments}" var="comment">
+									 
+									  <c:choose>
+										<c:when test="${ comment.flag == 0}">
+									       <p><a href="#">${comment.use.uname}</a>：  
+									    </c:when>
+										<c:when test="${ comment.flag == 1}">
+										  <p><a href="#">weibo.use.uname</a> 回复<a href="#">${comment.use.uname}</a>：  
+										</c:when>
+										</c:choose>
+									     &nbsp;${comment.ccontent}</p>
+									     <c:if test="${! empty comment.cimages}"><img alt="" src="${comment.cimages}" width="30" height="30"></c:if>
+									      ${comment.cdate}
+									 </c:forEach>
+									</c:if>
+									</td>
 							</tr>
 						</table>
 					</c:forEach>
@@ -168,7 +185,8 @@
 									<td align="center" class="split2"><a href="RelationServlet?action=showFans&uid=${user.uid }">粉丝</a><br>${countVeri}</td>
 									<td align="center"><a href="#">微博</a><br>${countBlog}</td>
 								</tr>
-							</table></td>
+							</table>
+						</td>
 					</tr>
 					<tr>
 						<td colspan="2" class="split1"><a href="UserServlet?action=shiftUserInfo&uid=${user.uid}">个人账户设置</a></td>
