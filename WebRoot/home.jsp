@@ -144,6 +144,13 @@
 										</tr>
 									</table>
 									<!-- 发布评论部分 -->
+									<form action="WeiboServlet?action=insertweibo&uid=${user.uid }" method="post"
+					enctype="multipart/form-data">
+				        	 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<textarea id="inputbox" name="weibotext" cols="15"
+								   	rows="1"></textarea>
+					       <input  type="file" name="upfile" value="" /> <input name="submit"
+								type="submit" id="submit" value="提交">
+					               </form>
 									<!-- 评论部分 -->
 									  <c:if test="${! empty weibo.comments}">
 									  <c:forEach items="${weibo.comments}" var="comment">
