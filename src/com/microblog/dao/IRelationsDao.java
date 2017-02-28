@@ -10,7 +10,7 @@ public interface IRelationsDao {
 	//显示登录者粉丝数量 ，不是双向关注的情况
 	public int CountByVermicelli(int uid);
 	//添加关注                                       加关注着     被加关注者   flag判断对方是否已经关注我了，1为关注0为没有关注
-	public int InsertRelation(int uid,int gid,int flag);
+	public int InsertRelation(int uid,int gid);
 	//delete关注                                       加关注着     被加关注者
 	public int DeleteRelationByuid(int uid,int gid);
 	//查询对方是否关注我

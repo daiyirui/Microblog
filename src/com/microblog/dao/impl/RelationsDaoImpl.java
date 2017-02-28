@@ -65,9 +65,11 @@ public class RelationsDaoImpl implements IRelationsDao {
 	 */
 	@SuppressWarnings("resource")
 	@Override
-	public int InsertRelation(int uid, int gid,int flag) {
+	public int InsertRelation(int uid, int gid) {
 		 Connection connection = null;
 		 PreparedStatement statement = null;
+		 //判断对方是不是关注了我  ,1代表关注,0代表没有关注
+		 int flag = FindRelationByuid(uid,gid);
 		try {
 			    connection=JDBCUtil.getConn();
 				if(flag>0){
