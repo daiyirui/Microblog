@@ -103,7 +103,7 @@ public class CommentDaoImpl implements ICommentDao {
          int a = 0;
          try {
       	   connection = JDBCUtil.getConn();
-             String sql = "DELETE FROM comment where cid=?";
+             String sql = "update comment set flag = 1 where cid=?";
              System.out.println(sql);
              statement = connection.prepareStatement(sql);
              statement.setInt(1, cid);

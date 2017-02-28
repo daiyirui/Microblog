@@ -147,19 +147,20 @@
 									<!-- 评论部分 -->
 									  <c:if test="${! empty weibo.comments}">
 									  <c:forEach items="${weibo.comments}" var="comment">
-									 
+									   <c:if test="${comment.flag == 0}">
 									  <c:choose>
-										<c:when test="${ comment.flag == 0}">
+										<c:when test="${ comment.c_cid== 0}">
 									       <p><a href="#">${comment.use.uname}</a>：  
 									    </c:when>
-										<c:when test="${ comment.flag == 1}">
+										<c:when test="${ comment.c_cid !=0}">
 										  <a href="#">weibo.use.uname</a> 回复<a href="#">${comment.use.uname}</a>：  
 										</c:when>
 										</c:choose>
 									     &nbsp;&nbsp;${comment.ccontent}&nbsp;&nbsp;
 									     <c:if test="${! empty comment.cimages}"><img alt="" src="${comment.cimages}" width="30" height="30"></c:if>
-									     <c:if test="${weibo.w_uid == user.uid}"><a href="#">回复</a> &nbsp;<a href="#">删除</a></c:if>
+									     <c:if test="${weibo.w_uid == user.uid}"><a href="#">回复</a> &nbsp;<a href="CommentServlet?action=deleteComment&uid=${user.uid }&cid=${comment.cid}">删除</a></c:if>
 									      &nbsp;<br/>${comment.cdate}
+									      </c:if>
 									 </c:forEach>
 									</c:if>
 									</td>
