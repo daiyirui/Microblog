@@ -27,17 +27,6 @@
     <servlet-class>com.microblog.servlet.UserServlet</servlet-class>
   </servlet>
   
-  
-  <servlet>
-    <servlet-name>PageChangeServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.PageChangeServlet</servlet-class>
-  </servlet>
-  
-  <servlet>
-    <servlet-name>ForWardServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.ForWardServlet</servlet-class>
-  </servlet>
-  
   <servlet>
     <servlet-name>CommentServlet</servlet-name>
     <servlet-class>com.microblog.servlet.CommentServlet</servlet-class>
@@ -46,34 +35,6 @@
   <servlet>
     <servlet-name>InsertCommentServlet</servlet-name>
     <servlet-class>com.microblog.servlet.InsertCommentServlet</servlet-class>
-  </servlet>
-  
-  <servlet>
-    <servlet-name>ReturnHomeServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.ReturnHomeServlet</servlet-class>
-  </servlet>
-  
-  <servlet>
-    <servlet-name>InsertWeiboServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.InsertWeiboServlet</servlet-class>
-  </servlet>
-  
-  <servlet>
-    <servlet-name>CollectionWeiboServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.CollectionWeiboServlet</servlet-class>
-  </servlet>
-  
-  <servlet>
-    <servlet-name>DeleteCollectionServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.DeleteCollectionServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>CollectionChangeServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.CollectionChangeServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>InsertAttentionServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.InsertAttentionServlet</servlet-class>
   </servlet>
   
   <servlet>
@@ -100,15 +61,8 @@
     <servlet-name>FuzzyCollectionServlet</servlet-name>
     <servlet-class>com.microblog.servlet.FuzzyCollectionServlet</servlet-class>
   </servlet>
-  <servlet>
-    <servlet-name>FansServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.FansServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>UserDetailServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.UserDetailServlet</servlet-class>
-  </servlet>
- 
+
+
   <servlet>
     <servlet-name>CheckPasswordServlet</servlet-name>
     <servlet-class>com.microblog.servlet.CheckPasswordServlet</servlet-class>
@@ -117,10 +71,7 @@
     <servlet-name>UpdateUserServlet</servlet-name>
     <servlet-class>com.microblog.servlet.UpdateUserServlet</servlet-class>
   </servlet>
-  <servlet>
-    <servlet-name>BallhotShowServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.BallhotShowServlet</servlet-class>
-  </servlet>
+ 
   <servlet>
     <servlet-name>ShowBallotServlet</servlet-name>
     <servlet-class>com.microblog.servlet.ShowBallotServlet</servlet-class>
@@ -135,13 +86,6 @@
   </servlet>
 
   <servlet>
-    <servlet-name>MyBlogServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.MyBlogServlet</servlet-class>
-  </servlet>
-
-  <servlet>
-    
-   
     <servlet-name>HomeServlet</servlet-name>
     <servlet-class>com.microblog.servlet.HomeServlet</servlet-class>
   </servlet>
@@ -151,19 +95,6 @@
     <servlet-class>com.microblog.servlet.CollectionServlet</servlet-class>
   </servlet>
 
-<servlet>
-    <servlet-name>MyFansServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.MyFansServlet</servlet-class>
-  </servlet>
-  
-  <servlet>
-    <servlet-name>FollowServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.FollowServlet</servlet-class>
-  </servlet>
-  
-  
-  
-  
   <servlet>
     <servlet-name>WeiboServlet</servlet-name>
     <servlet-class>com.microblog.servlet.WeiboServlet</servlet-class>
@@ -179,14 +110,8 @@
     <url-pattern>/BallhotServlet</url-pattern>
   </servlet-mapping>
   
-  <servlet-mapping>
-    <servlet-name>PageChangeServlet</servlet-name>
-    <url-pattern>/PageChangeServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ForWardServlet</servlet-name>
-    <url-pattern>/ForWardServlet</url-pattern>
-  </servlet-mapping>
+ 
+
   <servlet-mapping>
     <servlet-name>CommentServlet</servlet-name>
     <url-pattern>/CommentServlet</url-pattern>
@@ -195,30 +120,7 @@
     <servlet-name>InsertCommentServlet</servlet-name>
     <url-pattern>/InsertCommentServlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ReturnHomeServlet</servlet-name>
-    <url-pattern>/ReturnHomeServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>InsertWeiboServlet</servlet-name>
-    <url-pattern>/InsertWeiboServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>CollectionWeiboServlet</servlet-name>
-    <url-pattern>/CollectionWeiboServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>DeleteCollectionServlet</servlet-name>
-    <url-pattern>/DeleteCollectionServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>CollectionChangeServlet</servlet-name>
-    <url-pattern>/CollectionChangeServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>InsertAttentionServlet</servlet-name>
-    <url-pattern>/InsertAttentionServlet</url-pattern>
-  </servlet-mapping>
+
   <servlet-mapping>
     <servlet-name>DeleteAttentionServlet</servlet-name>
     <url-pattern>/DeleteAttentionServlet</url-pattern>
@@ -243,14 +145,6 @@
     <servlet-name>FuzzyCollectionServlet</servlet-name>
     <url-pattern>/FuzzyCollectionServlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>FansServlet</servlet-name>
-    <url-pattern>/FansServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>UserDetailServlet</servlet-name>
-    <url-pattern>/UserDetailServlet</url-pattern>
-  </servlet-mapping>
 
   <servlet-mapping>
     <servlet-name>CheckPasswordServlet</servlet-name>
@@ -260,10 +154,7 @@
     <servlet-name>UpdateUserServlet</servlet-name>
     <url-pattern>/UpdateUserServlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>BallhotShowServlet</servlet-name>
-    <url-pattern>/BallhotShowServlet</url-pattern>
-  </servlet-mapping>
+ 
   <servlet-mapping>
     <servlet-name>ShowBallotServlet</servlet-name>
     <url-pattern>/ShowBallotServlet</url-pattern>
@@ -276,10 +167,7 @@
     <servlet-name>MailServlet</servlet-name>
     <url-pattern>/MailServlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>MyBlogServlet</servlet-name>
-    <url-pattern>/MyBlogServlet</url-pattern>
-  </servlet-mapping>
+ 
  
  <servlet-mapping>
     <servlet-name>HomeServlet</servlet-name>
@@ -291,16 +179,6 @@
     <url-pattern>/CollectionServlet</url-pattern>
   </servlet-mapping>
  
- <servlet-mapping>
-    <servlet-name>MyFansServlet</servlet-name>
-    <url-pattern>/MyFansServlet</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-    <servlet-name>FollowServlet</servlet-name>
-    <url-pattern>/FollowServlet</url-pattern>
-  </servlet-mapping>
-
   <servlet-mapping>
     <servlet-name>WeiboServlet</servlet-name>
     <url-pattern>/WeiboServlet</url-pattern>
