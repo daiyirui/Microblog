@@ -4,86 +4,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<STYLE>
-A.menuitem {
-	COLOR: menutext;
-	TEXT-DECORATION: none
-}
-
-A.menuitem:hover {
-	COLOR: highlighttext;
-	BACKGROUND-COLOR: highlight
-}
-
-DIV.contextmenu {
-	BORDER-RIGHT: 2px outset;
-	BORDER-TOP: 2px outset;
-	Z-INDEX: 999;
-	VISIBILITY: hidden;
-	BORDER-LEFT: 2px outset;
-	BORDER-BOTTOM: 2px outset;
-	POSITION: absolute;
-	BACKGROUND-COLOR: buttonface
-}
-</STYLE>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/friend.css" />
 <link rel="stylesheet" type="text/css" href="css/home.css" />
 <title>微博 - ${sessionScope.user.u_account}的主页</title>
 <script type="text/javascript" src="script/home.js"></script>
 
-<script language="javascript">
-	function countChar(textareaName, spanName) {
-
-		document.getElementById(spanName).innerHTML = 140 - document
-				.getElementById(textareaName).value.length;
-	}
-
-	function show(id) {
-
-		var obj = document.getElementById(id);
-		obj.style.display = "block";
-	}
-	function hide(id) {
-		var obj = document.getElementById(id);
-		obj.style.display = "none";
-	}
-</script>
 
 
 </head>
 <body>
-	<div id="staResult"
-		style="display: none; width: 100%; height: 1000px; position: absolute; top: 0; left: 0; background-image: url(images/white_trans.png);">
-		<iframe src="ShowBallotServlet" scrolling="no" frameborder="0"
-			style="width: 600px; height: 400px; position: absolute; left: 200px; top: 100px;"
-			name="showResult"></iframe>
-		<button onclick="hide('staResult')"
-			style="position: absolute; left: 710px; width: 60px; top: 110px;">关闭</button>
-	</div>
-	<div id="staResult2"
-		style="display: none; width: 100%; height: 1000px; position: absolute; top: 50; left: 0; background-image: url(images/white_trans.png);">
-		<iframe src="ShowBallot3DServlet" scrolling="no" frameborder="0"
-			style="width: 600px; height: 400px; position: absolute; left: 200px; top: 400px;"
-			name="showResult"></iframe>
-		<button onclick="hide('staResult2')"
-			style="position: absolute; left: 710px; width: 60px; top: 410px;">关闭</button>
-	</div>
-	<layer NAME="a0" LEFT=10 TOP=10 VISIBILITY=SHOW BGCOLOR="#ffff00"
-		CLIP="0,0,3,3"></layer>
-	<layer NAME="a1" LEFT=10 TOP=10 VISIBILITY=SHOW BGCOLOR="#ffff00"
-		CLIP="0,0,3,3"></layer>
-	<layer NAME="a2" LEFT=10 TOP=10 VISIBILITY=SHOW BGCOLOR="#ffff00"
-		CLIP="0,0,3,3"></layer>
-	<layer NAME="a3" LEFT=10 TOP=10 VISIBILITY=SHOW BGCOLOR="#ffff00"
-		CLIP="0,0,3,3"></layer>
-	<layer NAME="a4" LEFT=10 TOP=10 VISIBILITY=SHOW BGCOLOR="#ffff00"
-		CLIP="0,0,3,3"></layer>
-	<laye rNAME="a5" LEFT=10 TOP=10 VISIBILITY=SHOW BGCOLOR="#ffff00"
-		CLIP="0,0,3,3">
-	</layer> <layer NAME="a6" LEFT=10 TOP=10 VISIBILITY=SHOW BGCOLOR="#ffff00"
-		CLIP="0,0,3,3"></layer> <!-- header开始-->
+<!-- header开始-->
 	<table id="header" align="center" border="0" cellspacing="0"
 		cellpadding="0">
 		<tr>
@@ -93,9 +26,9 @@ DIV.contextmenu {
 				<table border="0" align="right" cellpadding="0" cellspacing="0"
 					id="daohang">
 					<tr>
-						<td width="20%"><a href="HomeServlet">我的首页</a></td>
-						<td width="20%"><a href="MyBlogServlet">我的微博</a></td>
-						<td width="20%"><a href="MyCollectionServlet">我的收藏</a></td>
+					   <td width="20%"><a href="HomeServlet?uid=${user.uid}&action=home">我的首页</a></td>
+						<td width="20%"><a href="WeiboServlet?action=allweibo&uid=${user.uid}">我的微博</a></td>
+						<td width="20%"><a href="CollectionServlet?action=allcollection&uid=${user.uid}">我的收藏</a></td>
 						<td width="20%">微博热议</td>
 					</tr>
 				</table>
@@ -120,54 +53,6 @@ DIV.contextmenu {
 		id="container">
 		<tr>
 			<td width="670" height="600" valign="top">
-				<form action="servlet/AddBlogServlet" enctype="multipart/form-data"
-					method="post">
-					<table width="100%" border="0" cellpadding="0" cellspacing="0"
-						id="input">
-						<tr>
-							<td width="165" height="32">&nbsp;</td>
-							<td width="479">&nbsp;</td>
-							<td width="31">&nbsp;</td>
-						</tr>
-						<tr>
-							<td height="84">&nbsp;</td>
-							<td align="right"><br /> <textarea id="status"
-									name="blogtext" rows="10" cols="40"
-									onkeydown='countChar("status","counter");'
-									onkeyup='countChar("status","counter");'>
-</textarea></td>
-
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td valign="top"><br /></td>
-							<td valign="top"><br /></td>
-							<td valign="top"><br /></td>
-						</tr>
-						<tr>
-							<td valign="top"><br /></td>
-							<td valign="top"><br /></td>
-							<td valign="top"><br /></td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td align="right" valign="top"><input type="file"
-								name="upfile" /> <input name="dosubmit" type="submit"
-								id="dosubmit" value=""
-								style="background: url(images/btn_input.png); border-style: none; width: 100px; height: 26px; background-repeat: no-repeat;" />
-							</td>
-							<td>&nbsp;</td>
-						</tr>
-					</table>
-				</form>
-				<table width="100%" border="0" align="center" cellpadding="0"
-					cellspacing="0" id="menu">
-					<tr>
-						<td width="33%" align="center"></td>
-						<td width="18%" align="right">&nbsp;</td>
-						<td width="49%" align="center"></td>
-					</tr>
-				</table>
 				<table width="600" border="0" cellpadding="0">
 				
 					<tr>

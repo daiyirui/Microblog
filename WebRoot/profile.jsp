@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>微博 - 我的微博</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/global.css" />
 <link rel="stylesheet" type="text/css" href="css/home.css" />
 <script type="text/javascript" src="script/home.js"></script>
@@ -22,8 +22,8 @@
 					<tr>
 						<td width="20%"><a href="HomeServlet?uid=${user.uid}&action=home">我的首页</a></td>
 						<td width="20%">我的微博</td>
-						<td width="20%"><a href="MyCollectionServlet">我的收藏</a></td>
-						<td width="20%"><a href="BallhotShowServlet">微博热议</a></td>
+						<td width="20%"><a href="CollectionServlet?action=allcollection&uid=${user.uid}">我的收藏</a></td>
+						<td width="20%"><a href="BallhotServlet?action=allBollhot&uid=${user.uid}">微博热议</a></td>
 					</tr>
 				</table>
 			</td>
@@ -48,32 +48,6 @@
 		id="container">
 		<tr>
 			<td width="670" height="600" valign="top">
-				<form action="InsertWeiboServlet" method="post"
-					enctype="multipart/form-data">
-					<table width="100%" border="0" cellpadding="0" cellspacing="0"
-						id="input">
-						<tr>
-							<td width="160" height="48">&nbsp;</td>
-							<td width="479">&nbsp;</td>
-							<td width="31">&nbsp;</td>
-						</tr>
-						<tr>
-							<td height="84">&nbsp;</td>
-							<td><textarea id="inputbox" name="weibotext" cols="45"
-									rows="5"></textarea></td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td align="right" valign="top"><img
-								src="images/imgupload.png" width="47" height="22" /> <input
-								type="file" name="upfile" /> <input name="dosubmit"
-								type="submit" id="dosubmit" value=""
-								style="background: url(images/btn_input.png); border-style: none; width: 100px; height: 26px; background-repeat: no-repeat;" /></td>
-							<td>&nbsp;</td>
-						</tr>
-					</table>
-				</form>
 				<table width="100%" border="0" align="center" cellpadding="0"
 					cellspacing="0" id="menu">
 					<tr>
@@ -81,17 +55,11 @@
 								align="center" cellpadding="0" cellspacing="0">
 								<tr>
 									<td align="center">全部</td>
-									<td align="center"><a href="friend.jsp">微博收听</a></td>
+									<td align="center"><a href="#">我的微博</a></td>
 								</tr>
 							</table></td>
 						<td width="18%" align="right">&nbsp;</td>
 						<td width="49%" align="center">
-							<form id="form1" name="form1" method="post"
-								action="FuzzyWeiboServlet">
-								<input name="textweibo" type="text" class="input" id="textfield" />
-								<input name="button" type="submit" class="btnsearch" id="button"
-									value="搜索" />
-							</form>
 						</td>
 					</tr>
 				</table> <!-- weibo 开始--> <c:if test="${!empty weibos}">
@@ -115,12 +83,28 @@
 										cellpadding="0" cellspacing="0" id="weibo_status">
 										<tr>
 											<td>${weibo.wdate}</td>
-											<td align="right"><a
-												href="ForWardServlet?wid=${weibo.wid}&wcontent=${weibo.wcontent}&wimage=${weibo.wimage}">转发(${weibo.wtimes})</a>
-												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a
-												href="CollectionWeiboServlet?wcontent=${weibo.wcontent}&wimage=${weibo.wimage}">收藏</a>
-												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a
-												href="CommentServlet?wid=${weibo.wid}">评论(${weibo.wcountcomment})</a>
+											<td align="right">
+											  <c:if test="${weibo.w_uid == user.uid}">
+											   <a
+												href="WeiboServlet?uid=${user.uid}&wid=${weibo.wid}&action=deleteweibo">删除</a>
+												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+											  </c:if>
+											 <a
+												href="WeiboServlet?wid=${weibo.wid}&action=forwardweibo&uid=${user.uid}">转发(${weibo.wtimes})</a>
+												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+												<!-- 收藏和取消收藏判断 --> 
+												<c:choose>
+												    <c:when test="${ weibo.flag == 1}">
+												    <a
+											     	href="CollectionServlet?wid=${weibo.wid}&uid=${user.uid}&action=cancelcollection">取消收藏</a>
+												   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+												    </c:when>
+												    <c:otherwise>
+												    	<a
+											    	href="CollectionServlet?wid=${weibo.wid}&uid=${user.uid}&action=collection">收藏</a>
+											      	&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                                    </c:otherwise> 
+												</c:choose>
 											</td>
 										</tr>
 									</table></td>

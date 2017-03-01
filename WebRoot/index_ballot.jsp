@@ -4,28 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<STYLE>
-A.menuitem {
-	COLOR: menutext;
-	TEXT-DECORATION: none
-}
 
-A.menuitem:hover {
-	COLOR: highlighttext;
-	BACKGROUND-COLOR: highlight
-}
-
-DIV.contextmenu {
-	BORDER-RIGHT: 2px outset;
-	BORDER-TOP: 2px outset;
-	Z-INDEX: 999;
-	VISIBILITY: hidden;
-	BORDER-LEFT: 2px outset;
-	BORDER-BOTTOM: 2px outset;
-	POSITION: absolute;
-	BACKGROUND-COLOR: buttonface
-}
-</STYLE>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/global.css" />
@@ -36,19 +15,6 @@ DIV.contextmenu {
 <link rel="stylesheet" type="text/css" href="css/index.css" />
 <script type="text/javascript" src="script/global.js"></script>
 <script type="text/javascript" src="script/index.js"></script>
-
-<script language="javascript">
-	function countChar(textareaName, spanName) {
-
-		document.getElementById(spanName).innerHTML = 140 - document
-				.getElementById(textareaName).value.length;
-	}
-
-	function show(id) {
-		document.location.href = "./login.jsp";
-	}
-</script>
-
 
 </head>
 <body>

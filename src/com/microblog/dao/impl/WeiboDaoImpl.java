@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.microblog.common.JDBCUtil;
@@ -43,7 +42,7 @@ public class WeiboDaoImpl implements IWeiboDao {
 				   weibo.setWremarks(rs.getString("wremarks"));
 				   weibo.setWcountcomment(rs.getInt("wcountcomment"));
 				   weibo.setW_uid(rs.getInt("w_uid"));
-				  			   
+				   weibo.setW_wid(rs.getInt("w_wid"));
 				   //判断该微博是否被用户收藏了
 				   ICollectionDao collectiondao = new CollectionDaoImpl();
 				   if(collectiondao.judgeColletionBywid(uid, rs.getInt("wid"))==1) {
@@ -85,7 +84,7 @@ public class WeiboDaoImpl implements IWeiboDao {
 	       PreparedStatement statement = null;
 	       int  a = 0;
 	        try {
-	        	String sql="insert into weibo(wcontent,wdate,wimage,wtimes,w_uid,wremarks,wcountcomment) values(?,now(),?,0,?,null,0)";
+	        	String sql="insert into weibo(wcontent,wdate,wimage,wtimes,w_uid,wremarks,wcountcomment w_wid) values(?,now(),?,0,?,null,0,0)";
 	            connection = JDBCUtil.getConn();
 	            statement = connection.prepareStatement(sql);
 	            statement.setString(1, weibo.getWcontent());
@@ -128,7 +127,7 @@ public class WeiboDaoImpl implements IWeiboDao {
 				   weibo.setWremarks(rs.getString("wremarks"));
 				   weibo.setWcountcomment(rs.getInt("wcountcomment"));
 				   weibo.setW_uid(rs.getInt("w_uid"));
-				  			   
+				   weibo.setW_wid(rs.getInt("w_wid"));
 				   //判断该微博是否被用户收藏了
 				   ICollectionDao collectiondao = new CollectionDaoImpl();
 				   System.out.println(collectiondao.judgeColletionBywid(uid, rs.getInt("wid")));
@@ -244,7 +243,7 @@ public class WeiboDaoImpl implements IWeiboDao {
 						   weibo.setWremarks(rs.getString("wremarks"));
 						   weibo.setWcountcomment(rs.getInt("wcountcomment"));
 						   weibo.setW_uid(rs.getInt("w_uid"));
-						  			   
+						   weibo.setW_wid(rs.getInt("w_wid"));
 						   //判断该微博是否被用户收藏了
 						   ICollectionDao collectiondao = new CollectionDaoImpl();
 						   if(collectiondao.judgeColletionBywid(uid, rs.getInt("wid"))==1) {
@@ -341,7 +340,7 @@ public class WeiboDaoImpl implements IWeiboDao {
 				   weibo.setWremarks(rs.getString("wremarks"));
 				   weibo.setWcountcomment(rs.getInt("wcountcomment"));
 				   weibo.setW_uid(rs.getInt("w_uid"));
-				  			   
+				   weibo.setW_wid(rs.getInt("w_wid"));	   
 				   		   
 				   //判断该微博是否被用户收藏了
 				   ICollectionDao collectiondao = new CollectionDaoImpl();

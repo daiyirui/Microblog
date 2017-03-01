@@ -3,9 +3,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/global.css" />
 <link rel="stylesheet" type="text/css" href="css/friend.css" />
+<link rel="stylesheet" type="text/css" href="css/home.css" />
 <title>微博 - 我的收藏</title>
 <script type="text/javascript" src="script/friend.js"></script>
 <script type="text/javascript">
@@ -27,10 +28,10 @@
 				<table border="0" align="right" cellpadding="0" cellspacing="0"
 					id="daohang">
 					<tr>
-						<td width="20%"><a href="HomeServlet">我的首页</a></td>
-						<td width="20%"><a href="MyBlogServlet">我的微博</a></td>
+					   <td width="20%"><a href="HomeServlet?uid=${user.uid}&action=home">我的首页</a></td>
+						<td width="20%"><a href="WeiboServlet?action=allweibo&uid=${user.uid}">我的微博</a></td>
 						<td width="20%">我的收藏</td>
-						<td width="20%"><a href="BallhotShowServlet">微博热议</a></td>
+						<td width="20%"><a href="BallhotServlet?action=allBollhot&uid=${user.uid}">微博热议</a></td>
 					</tr>
 				</table>
 			</td>
@@ -55,6 +56,21 @@
 		id="container">
 		<tr>
 			<td width="670" height="600" valign="top">
+			<table width="100%" border="0" align="center" cellpadding="0"
+					cellspacing="0" id="menu">
+					<tr>
+						<td width="33%" align="center"><table width="165" border="0"
+								align="center" cellpadding="0" cellspacing="0">
+								<tr>
+									<td align="center">全部</td>
+									<td align="center"><a href="#">我的收藏</a></td>
+								</tr>
+							</table></td>
+						<td width="18%" align="right">&nbsp;</td>
+						<td width="49%" align="center">
+						</td>
+					</tr>
+				</table> 
 				<!-- weibo 开始--> <c:if test="${!empty collections}">
 					<c:forEach items="${collections}" var="collection">
 						<table id="weibo" width="90%" border="0" align="center"
