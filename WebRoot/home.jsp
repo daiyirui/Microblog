@@ -8,6 +8,9 @@
 <link rel="stylesheet" type="text/css" href="css/global.css" />
 <link rel="stylesheet" type="text/css" href="css/home.css" />
 <script type="text/javascript" src="script/home.js"></script>
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
 	<!-- header开始-->
@@ -137,19 +140,16 @@
 											      	&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
                                                     </c:otherwise> 
 												</c:choose>
-												
-												<a
-												href="#">评论(${weibo.wcountcomment})</a>
 											</td>
 										</tr>
 									</table>
 									<!-- 发布评论部分 -->
-									<form action="WeiboServlet?action=insertweibo&uid=${user.uid }" method="post"
+									<form action="CommentServlet?action=insertComment&uid=${user.uid }&wid=${weibo.wid}" method="post"
 					enctype="multipart/form-data">
-				        	 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<textarea id="inputbox" name="weibotext" cols="15"
+				        	 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<textarea id="inputbox" name="commenttext" cols="15"
 								   	rows="1"></textarea>
 					       <input  type="file" name="upfile" value="" /> <input name="submit"
-								type="submit" id="submit" value="提交">
+								type="submit" id="submit" value="评论">
 					               </form>
 									<!-- 评论部分 -->
 									  <c:if test="${! empty weibo.comments}">

@@ -78,7 +78,7 @@ public class CommentDaoImpl implements ICommentDao {
 	       PreparedStatement statement = null;
 	       int  a = 0;
 	        try {
-	        	String sql="insert into comment(c_wid,c_uid,ccontent,cdate,cremarks,cimages,c_cid) values(?,?,?,now(),null,?,?)";
+	        	String sql="insert into comment(c_wid,c_uid,ccontent,cdate,cremarks,cimages,c_cid,flag) values(?,?,?,now(),null,?,?,0)";
 	            connection = JDBCUtil.getConn();
 	            statement = connection.prepareStatement(sql);
 	            statement.setInt(1, comm.getC_wid());
@@ -93,6 +93,7 @@ public class CommentDaoImpl implements ICommentDao {
 	        } finally {
 	            JDBCUtil.closeDB(connection, statement, null);
 	        }
+	        System.out.println(a);
 		return a;
 	}
 
