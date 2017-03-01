@@ -8,8 +8,17 @@
 <link rel="stylesheet" type="text/css" href="css/global.css" />
 <link rel="stylesheet" type="text/css" href="css/home.css" />
 <script type="text/javascript" src="script/home.js"></script>
+<script type="text/javascript" src="script/jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
-
+$(function(){
+	$("a#comment").bind("click",function(){
+		 var form = "<form id=\"form1\" action=\"CommentServlet?action=insertComment&uid=${user.uid }&wid=${weibo.wid}\" method=\"post\"enctype=\"multipart/form-data\">"+
+    	" &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<textarea id=\"inputbox\" name=\"commenttext\" cols=\"15\" "
+		+"rows=\"1\"></textarea> <input  type=\"file\" name=\"upfile\" value=\"\" /> <input name=\"submit\"\type=\"submit\" id=\"submit\" value=\"回复\"> </form>";
+		 $("#form1").remove();
+		 $(this).next().append(form);
+		})
+	})
 </script>
 </head>
 <body>
@@ -165,7 +174,11 @@
 										</c:choose>
 									     &nbsp;&nbsp;${comment.ccontent}&nbsp;&nbsp;
 									     <c:if test="${! empty comment.cimages}"><img alt="" src="${comment.cimages}" width="30" height="30"></c:if>
-									     <c:if test="${weibo.w_uid == user.uid}"><a href="#">回复</a> &nbsp;<a href="CommentServlet?action=deleteComment&uid=${user.uid }&cid=${comment.cid}">删除</a></c:if>
+									     <c:if test="${weibo.w_uid == user.uid}">
+									     <a href="CommentServlet?action=deleteComment&uid=${user.uid }&cid=${comment.cid}">删除</a>
+									     <a id="comment" href="#">回复</a> &nbsp;
+									     <<div id="div"></div>
+									     </c:if>
 									      &nbsp;<br/>${comment.cdate}
 									      </c:if>
 									 </c:forEach>

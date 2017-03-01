@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50163
 File Encoding         : 65001
 
-Date: 2017-02-27 09:45:28
+Date: 2017-03-01 16:43:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -101,7 +101,7 @@ CREATE TABLE `collection` (
   PRIMARY KEY (`lid`),
   KEY `FK_l_uid` (`l_uid`),
   CONSTRAINT `FK_l_uid` FOREIGN KEY (`l_uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='收藏表';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='收藏表';
 
 -- ----------------------------
 -- Records of collection
@@ -124,26 +124,31 @@ CREATE TABLE `comment` (
   `cdate` datetime NOT NULL COMMENT '评论时间',
   `cremarks` text COMMENT '备注',
   `cimages` varchar(100) DEFAULT NULL COMMENT '评论图片',
+  `c_cid` int(10) unsigned zerofill NOT NULL COMMENT 'c_cid为0代表是对方评论的是微博，c_cid不为0则表示回复哪一条评论',
+  `flag` int(10) unsigned zerofill NOT NULL COMMENT 'flag 0代表该评论没有被删除，假如flag等于-1代表被删除',
   PRIMARY KEY (`cid`),
   KEY `FK_c_wid` (`c_wid`),
   KEY `FK_c_uid` (`c_uid`),
   CONSTRAINT `FK_c_uid` FOREIGN KEY (`c_uid`) REFERENCES `users` (`uid`),
   CONSTRAINT `FK_c_wid` FOREIGN KEY (`c_wid`) REFERENCES `weibo` (`wid`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='评论表';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='评论表';
 
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
-INSERT INTO `comment` VALUES ('1', '1', '2', 'hello everyone', '2012-05-24 20:51:40', null, null);
-INSERT INTO `comment` VALUES ('2', '4', '1', '北风', '2012-05-24 20:51:40', null, '/Microblog/upload/pic/64a.jpg');
-INSERT INTO `comment` VALUES ('3', '4', '1', '北', '2012-05-25 20:51:40', null, '/Microblog/upload/pic/64a.jpg');
-INSERT INTO `comment` VALUES ('4', '4', '1', '风', '2012-05-26 20:51:40', null, null);
-INSERT INTO `comment` VALUES ('5', '4', '2', 'ok!', '2012-04-26 20:51:40', null, '/Microblog/upload/pic/64a.jpg');
-INSERT INTO `comment` VALUES ('6', '4', '3', 'why?', '2012-05-16 20:51:40', null, '/Microblog/upload/pic/dc.jpg');
-INSERT INTO `comment` VALUES ('14', '4', '1', '美丽女人！', '2012-05-27 13:41:58', null, '/Microblog/upload/pic/68w.jpg');
-INSERT INTO `comment` VALUES ('19', '17', '1', '我赞成！', '2012-05-29 21:00:06', null, '/Microblog/upload/pic/dc.jpg');
-INSERT INTO `comment` VALUES ('20', '17', '1', '中国加油！', '2012-05-29 21:05:55', null, null);
-INSERT INTO `comment` VALUES ('21', '17', '1', '中国成功！', '2012-05-29 21:06:10', null, '/Microblog/upload/pic/dc.jpg');
+INSERT INTO `comment` VALUES ('1', '1', '2', 'hello everyone', '2012-05-24 20:51:40', null, null, '0000000000', '0000000001');
+INSERT INTO `comment` VALUES ('2', '4', '1', '北风', '2012-05-24 20:51:40', null, '/Microblog/upload/pic/64a.jpg', '0000000000', '0000000000');
+INSERT INTO `comment` VALUES ('3', '4', '1', '北', '2012-05-25 20:51:40', null, '/Microblog/upload/pic/64a.jpg', '0000000000', '0000000000');
+INSERT INTO `comment` VALUES ('4', '4', '1', '风', '2012-05-26 20:51:40', null, null, '0000000000', '0000000000');
+INSERT INTO `comment` VALUES ('5', '4', '2', 'ok!', '2012-04-26 20:51:40', null, '/Microblog/upload/pic/64a.jpg', '0000000000', '0000000000');
+INSERT INTO `comment` VALUES ('6', '4', '3', 'why?', '2012-05-16 20:51:40', null, '/Microblog/upload/pic/dc.jpg', '0000000000', '0000000000');
+INSERT INTO `comment` VALUES ('14', '4', '1', '美丽女人！', '2012-05-27 13:41:58', null, '/Microblog/upload/pic/68w.jpg', '0000000000', '0000000000');
+INSERT INTO `comment` VALUES ('19', '17', '1', '我赞成！', '2012-05-29 21:00:06', null, '/Microblog/upload/pic/dc.jpg', '0000000000', '0000000001');
+INSERT INTO `comment` VALUES ('20', '17', '1', '中国加油！', '2012-05-29 21:05:55', null, null, '0000000000', '0000000001');
+INSERT INTO `comment` VALUES ('21', '17', '1', '中国成功！', '2012-05-29 21:06:10', null, '/Microblog/upload/pic/dc.jpg', '0000000000', '0000000001');
+INSERT INTO `comment` VALUES ('22', '54', '1', '123', '2017-03-01 09:26:37', null, '/Microblog/upload/pic/Lighthouse.jpg', '0000000000', '0000000001');
+INSERT INTO `comment` VALUES ('23', '53', '1', '这张图好漂亮', '2017-03-01 09:26:53', null, null, '0000000000', '0000000001');
+INSERT INTO `comment` VALUES ('24', '55', '1', '123', '2017-03-01 14:09:13', null, null, '0000000000', '0000000000');
 
 -- ----------------------------
 -- Table structure for `percontent`
@@ -210,7 +215,7 @@ CREATE TABLE `relations` (
   PRIMARY KEY (`rid`),
   KEY `FK_r_id` (`r_id`),
   KEY `FK_g_id` (`g_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='关系表';
 
 -- ----------------------------
 -- Records of relations
@@ -242,6 +247,9 @@ INSERT INTO `relations` VALUES ('26', '68', '1', '0', null);
 INSERT INTO `relations` VALUES ('27', '68', '2', '1', null);
 INSERT INTO `relations` VALUES ('28', '68', '2', '1', null);
 INSERT INTO `relations` VALUES ('29', '68', '3', '0', null);
+INSERT INTO `relations` VALUES ('30', '1', '8', '0', null);
+INSERT INTO `relations` VALUES ('31', '1', '11', '0', null);
+INSERT INTO `relations` VALUES ('32', '1', '13', '0', null);
 
 -- ----------------------------
 -- Table structure for `users`
@@ -348,25 +356,42 @@ CREATE TABLE `weibo` (
   `w_uid` int(10) unsigned NOT NULL COMMENT '发送用户信息',
   `wremarks` text COMMENT '备注',
   `wcountcomment` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '评论数量',
+  `w_wid` int(10) unsigned zerofill NOT NULL COMMENT '判断该微博是否是转发过来的，转发哪一条微博的',
   PRIMARY KEY (`wid`),
   KEY `FK_w_uid` (`w_uid`),
   CONSTRAINT `FK_w_uid` FOREIGN KEY (`w_uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COMMENT='微博信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COMMENT='微博信息表';
 
 -- ----------------------------
 -- Records of weibo
 -- ----------------------------
-INSERT INTO `weibo` VALUES ('1', '今天我在这里做展示', '2012-05-24 17:56:47', '/Microblog/upload/pic/64a.jpg', '0', '1', 'null', '1');
-INSERT INTO `weibo` VALUES ('2', 'hello', '2012-05-24 17:57:05', '/Microblog/upload/pic/64fj.jpg', '0', '1', 'null', '0');
-INSERT INTO `weibo` VALUES ('3', '中国', '2012-05-24 17:57:26', null, '0', '1', 'null', '0');
-INSERT INTO `weibo` VALUES ('4', '北风网', '2012-05-24 17:58:29', null, '1', '2', 'null', '7');
-INSERT INTO `weibo` VALUES ('17', '黄岩岛', '2012-05-29 11:36:37', '/Microblog/upload/pic/s.jpg', '0', '1', 'null', '3');
-INSERT INTO `weibo` VALUES ('20', '发布第一个微博信息！', '2012-05-30 19:58:58', '/Microblog/upload/pic/c.jpg', '0', '1', 'null', '0');
-INSERT INTO `weibo` VALUES ('25', '没有图片的微博', '2012-05-30 20:15:46', null, '0', '1', 'null', '0');
-INSERT INTO `weibo` VALUES ('26', '有图片', '2012-05-30 20:15:56', '/Microblog/upload/pic/n.jpg', '0', '1', 'null', '0');
-INSERT INTO `weibo` VALUES ('27', 'hel', '2012-05-30 20:15:56', null, '0', '1', 'null', '0');
-INSERT INTO `weibo` VALUES ('33', '小米，我拍你', '2017-02-25 14:12:13', '/Microblog/upload/pic/Jellyfish.jpg', '0', '68', null, '0');
-INSERT INTO `weibo` VALUES ('39', '我爱你，小米', '2017-02-27 08:50:21', '/Microblog/upload/pic/Jellyfish.jpg', '0', '1', null, '0');
+INSERT INTO `weibo` VALUES ('1', '今天我在这里做展示', '2012-05-24 17:56:47', '/Microblog/upload/pic/64a.jpg', '5', '1', 'null', '1', '0000000000');
+INSERT INTO `weibo` VALUES ('2', 'hello', '2012-05-24 17:57:05', '/Microblog/upload/pic/64fj.jpg', '2', '1', 'null', '0', '0000000000');
+INSERT INTO `weibo` VALUES ('3', '中国', '2012-05-24 17:57:26', null, '2', '1', 'null', '0', '0000000000');
+INSERT INTO `weibo` VALUES ('4', '北风网', '2012-05-24 17:58:29', null, '10', '2', 'null', '7', '0000000000');
+INSERT INTO `weibo` VALUES ('17', '黄岩岛', '2012-05-29 11:36:37', '/Microblog/upload/pic/s.jpg', '2', '1', 'null', '3', '0000000000');
+INSERT INTO `weibo` VALUES ('20', '发布第一个微博信息！', '2012-05-30 19:58:58', '/Microblog/upload/pic/c.jpg', '2', '1', 'null', '0', '0000000000');
+INSERT INTO `weibo` VALUES ('25', '没有图片的微博', '2012-05-30 20:15:46', null, '2', '1', 'null', '0', '0000000000');
+INSERT INTO `weibo` VALUES ('26', '有图片', '2012-05-30 20:15:56', '/Microblog/upload/pic/n.jpg', '2', '1', 'null', '0', '0000000000');
+INSERT INTO `weibo` VALUES ('27', 'hel', '2012-05-30 20:15:56', null, '3', '1', 'null', '0', '0000000000');
+INSERT INTO `weibo` VALUES ('33', '小米，我拍你', '2017-02-25 14:12:13', '/Microblog/upload/pic/Jellyfish.jpg', '2', '68', null, '0', '0000000000');
+INSERT INTO `weibo` VALUES ('39', '我爱你，小米', '2017-02-27 08:50:21', '/Microblog/upload/pic/Jellyfish.jpg', '5', '1', null, '0', '0000000000');
+INSERT INTO `weibo` VALUES ('40', '我爱你，小米', '2017-02-28 11:33:41', '/Microblog/upload/pic/Jellyfish.jpg', '4', '1', null, '0', '0000000039');
+INSERT INTO `weibo` VALUES ('41', '我爱你，小米', '2017-02-28 11:33:53', '/Microblog/upload/pic/Jellyfish.jpg', '4', '1', null, '0', '0000000039');
+INSERT INTO `weibo` VALUES ('42', '我爱你，小米', '2017-02-28 11:35:02', '/Microblog/upload/pic/Jellyfish.jpg', '4', '1', null, '0', '0000000039');
+INSERT INTO `weibo` VALUES ('43', '我爱你，小米', '2017-02-28 11:35:07', '/Microblog/upload/pic/Jellyfish.jpg', '4', '1', null, '0', '0000000039');
+INSERT INTO `weibo` VALUES ('44', '我爱你，小米', '2017-02-28 11:35:16', '/Microblog/upload/pic/Jellyfish.jpg', '4', '1', null, '0', '0000000039');
+INSERT INTO `weibo` VALUES ('45', '北风网', '2017-02-28 11:35:26', null, '10', '1', null, '0', '0000000004');
+INSERT INTO `weibo` VALUES ('46', '北风网', '2017-02-28 11:41:36', null, '10', '1', null, '0', '0000000004');
+INSERT INTO `weibo` VALUES ('47', '北风网', '2017-02-28 11:41:50', null, '10', '1', null, '0', '0000000004');
+INSERT INTO `weibo` VALUES ('48', '北风网', '2017-02-28 11:46:03', null, '10', '1', null, '0', '0000000004');
+INSERT INTO `weibo` VALUES ('49', '北风网', '2017-02-28 11:46:10', null, '10', '1', null, '0', '0000000004');
+INSERT INTO `weibo` VALUES ('50', '北风网', '2017-02-28 11:47:40', null, '10', '1', null, '0', '0000000004');
+INSERT INTO `weibo` VALUES ('51', '北风网', '2017-02-28 12:10:20', null, '10', '1', null, '0', '0000000004');
+INSERT INTO `weibo` VALUES ('52', 'hel', '2017-02-28 12:10:36', null, '3', '1', null, '0', '0000000027');
+INSERT INTO `weibo` VALUES ('53', '今天我在这里做展示', '2017-02-28 12:10:49', '/Microblog/upload/pic/64a.jpg', '5', '1', null, '0', '0000000001');
+INSERT INTO `weibo` VALUES ('54', '今天我在这里做展示', '2017-02-28 12:25:31', '/Microblog/upload/pic/64a.jpg', '5', '1', null, '0', '0000000001');
+INSERT INTO `weibo` VALUES ('55', '今天我在这里做展示', '2017-03-01 12:16:28', '/Microblog/upload/pic/64a.jpg', '5', '1', null, '0', '0000000001');
 
 -- ----------------------------
 -- Procedure structure for `hel`
