@@ -177,7 +177,7 @@ $(function(){
 									     <c:if test="${weibo.w_uid == user.uid}">
 									     <a href="CommentServlet?action=deleteComment&uid=${user.uid }&cid=${comment.cid}">删除</a>
 									     <a id="comment" href="#">回复</a> &nbsp;
-									     <<div id="div"></div>
+									     <div id="div"></div>
 									     </c:if>
 									      &nbsp;<br/>${comment.cdate}
 									      </c:if>

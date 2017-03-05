@@ -1,7 +1,6 @@
 package com.microblog.po;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @SuppressWarnings("serial")
 public class Collection implements Serializable {
