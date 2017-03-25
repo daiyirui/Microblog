@@ -113,7 +113,7 @@ $(function(){
 							<tr>
 								<td rowspan="3" align="center" valign="top"><img
 									src="${weibo.use.upic}" width="50" height="50" /></td>
-								<td width="88%" class="content"><a href="user.jsp">${weibo.use.uname}</a><img
+								<td width="88%" class="content"><a href="#">${weibo.use.uname}</a><img
 									src="icon/v.gif" width="11" height="10" align="middle" />：
 									${weibo.wcontent}</td>
 							</tr>
@@ -233,7 +233,7 @@ $(function(){
 											<td width="26%"><a href="user.jsp"><img
 													src="${usl.upic}" width="50" height="50" border="0" /></a></td>
 											<td width="74%"><a href="user.jsp">${usl.uname}</a> <a
-												href="RelationServlet?uid=${user.uid}&gid=${usl.uid}&action=guanzhu"
+												href="RelationServlet?page=1&uid=${user.uid}&gid=${usl.uid}&action=guanzhu"
 												style="border: 0px;"> <span class="btnguanzhu"
 													style="width: 50px; height: 3px;" id="button3">+关注</span></a> <br />
 											<font color="#333333" size="2px"> ${usl.uaddress}</font><br />

@@ -114,9 +114,9 @@
 						<td colspan="2" align="left"><table width="80%" border="0"
 								align="left" cellpadding="3" cellspacing="0">
 								<tr>
-									<td align="center" class="split2"><a href="FollowServlet">关注</a><br />${sessionScope.countRlation}</td>
-									<td align="center" class="split2"><a href="MyFansServlet">粉丝</a><br />${sessionScope.countVeri}</td>
-									<td align="center"><a href="#">微博</a><br />${sessionScope.countBlog}</td>
+									<td align="center" class="split2"><a href="FollowServlet">关注</a><br />${countRlation}</td>
+									<td align="center" class="split2"><a href="MyFansServlet">粉丝</a><br />${countVeri}</td>
+									<td align="center"><a href="#">微博</a><br />${countBlog}</td>
 								</tr>
 							</table></td>
 					</tr>
@@ -129,7 +129,7 @@
 					<tr>
 						<td class="title" height="29">可能感兴趣的人</td>
 						<td align="right" class="title"><a
-							href="ChangeUserServlet?change=5">[换一换]</a></td>
+							href="UserServlet?page=4&action=userChange&uid=${user.uid}">[换一换]</a></td>
 					</tr>
 
 					<c:if test="${!empty userList }">
@@ -141,7 +141,7 @@
 											<td width="26%"><a href="user.jsp"><img
 													src="${usl.upic}" width="50" height="50" border="0" /></a></td>
 											<td width="74%"><a href="user.jsp">${usl.uname}</a> <a
-												href="InsertAttentionServlet?gid=${usl.uid}"
+												href="RelationServlet?page=4&uid=${user.uid}&gid=${usl.uid}&action=guanzhu"
 												style="border: 0px;"> <span class="btnguanzhu"
 													style="width: 50px; height: 3px;" id="button3">+关注</span></a> <br />
 											<font color="#333333" size="2px"> ${usl.uaddress}</font><br />

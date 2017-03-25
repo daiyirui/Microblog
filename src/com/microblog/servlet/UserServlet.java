@@ -10,12 +10,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.microblog.dao.IBollhotDao;
+import com.microblog.dao.ICollectionDao;
 import com.microblog.dao.IRelationsDao;
 import com.microblog.dao.IUserDao;
 import com.microblog.dao.IWeiboDao;
+import com.microblog.dao.impl.BollhotDaoImpl;
+import com.microblog.dao.impl.CollectionDaoImpl;
 import com.microblog.dao.impl.RelationsDaoImpl;
 import com.microblog.dao.impl.UserDaoImpl;
 import com.microblog.dao.impl.WeiboDaoImpl;
+import com.microblog.po.Bloghot;
+import com.microblog.po.Collection;
 import com.microblog.po.Users;
 import com.microblog.po.Weibo;
 
@@ -148,14 +154,139 @@ public class UserServlet extends HttpServlet {
 			secondPagechange(request,response);
 		}else if("3".equals(page)) {
 			//点击了我的收藏页面里的换一换
+			threePagechange(request,response);
 		}else if("4".equals(page)) {
 			//点击了微博热议页面的换一换功能
+			fourPagechange(request,response);
 		}
 	}
 
-	private void secondPagechange(HttpServletRequest request,
-			HttpServletResponse response) {
+	private void fourPagechange(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		//获取收藏的所有微博
+	    String uid = request.getParameter("uid");
+	    IWeiboDao weibodao = new WeiboDaoImpl();
+		IBollhotDao  bloghotdao= new BollhotDaoImpl();
+		List<Bloghot> bloghots = bloghotdao.FindAllHot();
+        System.out.println("bloghots:"+bloghots);
+	    IUserDao userdao = new UserDaoImpl();
+	    Users user = userdao.FindByuid(Integer.parseInt(uid));
+        request.setAttribute("user", user);
+        request.setAttribute("bloghots",bloghots);
+        //共同的代码块
+     	//显示所关注人数量
+		IRelationsDao relationBiz=new RelationsDaoImpl();
+		int countRlat=relationBiz.CountByAttention(user.getUid());
+		request.setAttribute("countRlation",countRlat);
+		//显示粉丝数量
+		int countVeri=relationBiz.CountByVermicelli(user.getUid());
+		request.setAttribute("countVeri",countVeri);
+		//自己已经关注成功的人
+		List<Users> interests = relationBiz.FindAllMyInterestByuid(user.getUid());
+		//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
+				List<Users> listAllUser=new ArrayList<Users>();//全部陌生朋友信息
+				List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
+				listAllUser=userdao.FindByInterest(user.getUid());
+				listAllUser.remove(interests);
+				Collections.shuffle(listAllUser);
+				for (int i = 0; i < 8; i++) {
+					listUser.add(listAllUser.get(i));		
+				}
+				Collections.shuffle(listUser);
+				request.setAttribute("userAllList", listAllUser);
+				if(listUser!=null){
+					request.setAttribute("userList",listUser);	
+				}			
+		//微博数量
+		int countMicroblog=weibodao.CountByMicroblog(user.getUid());
+		request.setAttribute("countBlog",countMicroblog);
 		
+		request.getRequestDispatcher("./ballot.jsp").forward(request, response);
+		
+	}
+	private void threePagechange(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		//获取收藏的所有微博
+	    String uid = request.getParameter("uid");
+	    IWeiboDao weibodao = new WeiboDaoImpl();
+		ICollectionDao collectionDao = new CollectionDaoImpl();
+		List<Collection> collections = collectionDao.FindCollectionByuid(Integer.parseInt(uid));
+
+	    IUserDao userdao = new UserDaoImpl();
+	    Users user = userdao.FindByuid(Integer.parseInt(uid));
+        request.setAttribute("user", user);
+        request.setAttribute("collections",collections);
+        //共同的代码块
+     	//显示所关注人数量
+		IRelationsDao relationBiz=new RelationsDaoImpl();
+		int countRlat=relationBiz.CountByAttention(user.getUid());
+		request.setAttribute("countRlation",countRlat);
+		//显示粉丝数量
+		int countVeri=relationBiz.CountByVermicelli(user.getUid());
+		request.setAttribute("countVeri",countVeri);
+		//自己已经关注成功的人
+		List<Users> interests = relationBiz.FindAllMyInterestByuid(user.getUid());
+		//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
+		List<Users> listAllUser=new ArrayList<Users>();//全部陌生朋友信息
+		List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
+		listAllUser=userdao.FindByInterest(user.getUid());
+		listAllUser.remove(interests);
+		Collections.shuffle(listAllUser);
+		for (int i = 0; i < 8; i++) {
+			listUser.add(listAllUser.get(i));		
+		}
+		Collections.shuffle(listUser);
+		request.setAttribute("userAllList", listAllUser);
+		if(listUser!=null){
+			request.setAttribute("userList",listUser);	
+		}			
+		//微博数量
+		int countMicroblog=weibodao.CountByMicroblog(user.getUid());
+		request.setAttribute("countBlog",countMicroblog);
+		
+		request.getRequestDispatcher("./collection.jsp").forward(request, response);
+		
+	}
+	
+	private void secondPagechange(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		 String uid = request.getParameter("uid");	
+	     IWeiboDao weibodao = new WeiboDaoImpl();
+	     List<Weibo> weibos= weibodao.FindWeiboByuid(Integer.parseInt(uid));
+	     IUserDao userdao = new UserDaoImpl();
+	     Users user = userdao.FindByuid(Integer.parseInt(uid));
+	     request.setAttribute("user", user);
+	     request.setAttribute("weibos",weibos);
+	        //共同的代码块
+	     	//显示所关注人数量
+		IRelationsDao relationBiz=new RelationsDaoImpl();
+		int countRlat=relationBiz.CountByAttention(user.getUid());
+		request.setAttribute("countRlation",countRlat);
+		//显示粉丝数量
+		int countVeri=relationBiz.CountByVermicelli(user.getUid());
+		request.setAttribute("countVeri",countVeri);
+		//自己已经关注成功的人
+		List<Users> interests = relationBiz.FindAllMyInterestByuid(user.getUid());
+		System.out.println("我关注的人有:"+interests);
+		//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
+		List<Users> listAllUser=new ArrayList<Users>();//全部陌生朋友信息
+		List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
+		listAllUser=userdao.FindByInterest(user.getUid());
+		listAllUser.remove(interests);
+		Collections.shuffle(listAllUser);
+		for (int i = 0; i < 8; i++) {
+			listUser.add(listAllUser.get(i));		
+		}
+		Collections.shuffle(listUser);
+		request.setAttribute("userAllList", listAllUser);
+		if(listUser!=null){
+			request.setAttribute("userList",listUser);	
+		}			
+		//微博数量
+		int countMicroblog=weibodao.CountByMicroblog(user.getUid());
+		request.setAttribute("countBlog",countMicroblog);
+	    
+	    request.getRequestDispatcher("profile.jsp").forward(request, response);
 	}
 
 	private void firstPagechange(HttpServletRequest request,

@@ -84,7 +84,7 @@ public class WeiboDaoImpl implements IWeiboDao {
 	       PreparedStatement statement = null;
 	       int  a = 0;
 	        try {
-	        	String sql="insert into weibo(wcontent,wdate,wimage,wtimes,w_uid,wremarks,wcountcomment w_wid) values(?,now(),?,0,?,null,0,0)";
+	        	String sql="insert into weibo(wcontent,wdate,wimage,wtimes,w_uid,wremarks,wcountcomment, w_wid) values(?,now(),?,0,?,null,0,0)";
 	            connection = JDBCUtil.getConn();
 	            statement = connection.prepareStatement(sql);
 	            statement.setString(1, weibo.getWcontent());
