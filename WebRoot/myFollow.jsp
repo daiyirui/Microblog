@@ -27,10 +27,10 @@
 				<table border="0" align="right" cellpadding="0" cellspacing="0"
 					id="daohang">
 					<tr>
-						<td width="20%"><a href="HomeServlet">我的首页</a></td>
-						<td width="20%"><a href="MyBlogServlet">我的微博</a></td>
-						<td width="20%"><a href="MyCollectionServlet">我的收藏</a></td>
-						<td width="20%"><a href="BallhotShowServlet">微博热议</a></td>
+						<td width="20%"><a href="HomeServlet?uid=${user.uid}&action=home">我的首页</a></td>
+						<td width="20%"><a href="WeiboServlet?action=allweibo&uid=${user.uid}">我的微博</a></td>
+						<td width="20%"><a href="CollectionServlet?action=allcollection&uid=${user.uid}">我的收藏</a></td>
+						<td width="20%"><a href="BallhotServlet?action=allBollhot&uid=${user.uid}">微博热议</a></td>
 					</tr>
 				</table>
 			</td>
@@ -117,8 +117,8 @@
 						<td colspan="2" align="left"><table width="80%" border="0"
 								align="left" cellpadding="3" cellspacing="0">
 								<tr>
-									<td align="center" class="split2"><a href="FollowServlet">关注</a><br>${countRlation}</td>
-									<td align="center" class="split2"><a href="MyFansServlet">粉丝</a><br>${countVeri}</td>
+								<td align="center" class="split2"><a href="RelationServlet?action=showGuanzhu&uid=${user.uid }">关注</a><br>${countRlation}</td>
+									<td align="center" class="split2"><a href="RelationServlet?action=showFans&uid=${user.uid }">粉丝</a><br>${countVeri}</td>
 									<td align="center"><a href="#">微博</a><br>${countBlog}</td>
 								</tr>
 							</table></td>
