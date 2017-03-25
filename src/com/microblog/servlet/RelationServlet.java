@@ -175,7 +175,100 @@ public class RelationServlet extends HttpServlet {
 		    	threeGuanzhu(request,response);
 		    }else if("4".equals(page)) {
 		    	fourGuanzhu(request,response);
+		    }else if("5".equals(page)) {
+		    	fiveGuanzhu(request,response);
+		    }else if("6".equals(page)) {
+		    	sixGuanzhu(request,response);
 		    }
+	}
+
+	private void sixGuanzhu(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+	    String uid = request.getParameter("uid");
+	    String gid = request.getParameter("gid");
+	    //实现关注部分代码
+	    IRelationsDao relationdao = new RelationsDaoImpl();
+	    relationdao.InsertRelation(Integer.parseInt(uid), Integer.parseInt(gid));
+	    
+        IWeiboDao weibodao = new WeiboDaoImpl();
+	    IUserDao userdao = new UserDaoImpl();
+	    IRelationsDao relationsDao = new RelationsDaoImpl();
+	    List<Users> fansList =relationsDao.FindAllMyFansByuid(Integer.parseInt(uid));
+	    request.setAttribute("fansList", fansList);
+	    System.out.println("fansList:"+fansList);
+	    Users user = userdao.FindByuid(Integer.parseInt(uid));
+        request.setAttribute("user", user);
+        //共同的代码块
+     	//显示所关注人数量
+		IRelationsDao relationBiz=new RelationsDaoImpl();
+		int countRlat=relationBiz.CountByAttention(user.getUid());
+		request.setAttribute("countRlation",countRlat);
+		//显示粉丝数量
+		int countVeri=relationBiz.CountByVermicelli(user.getUid());
+		request.setAttribute("countVeri",countVeri);
+		//自己已经关注成功的人
+		List<Users> interests = relationBiz.FindAllMyInterestByuid(user.getUid());
+		//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
+		List<Users> listAllUser=new ArrayList<Users>();//全部陌生朋友信息
+		List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
+		listAllUser=userdao.FindByInterest(user.getUid());
+		listAllUser.remove(interests);
+		for (int i = 0; i < 8; i++) {
+			listUser.add(listAllUser.get(i));		
+		}
+		request.setAttribute("userAllList", listAllUser);
+		if(listUser!=null){
+			request.setAttribute("userList",listUser);	
+		}			
+		//微博数量
+		int countMicroblog=weibodao.CountByMicroblog(user.getUid());
+		request.setAttribute("countBlog",countMicroblog);
+		
+		request.getRequestDispatcher("./myFans.jsp").forward(request, response);
+	}
+
+	private void fiveGuanzhu(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		String uid = request.getParameter("uid");
+		 String gid = request.getParameter("gid");
+		    //实现关注部分代码
+		 IRelationsDao relationdao = new RelationsDaoImpl();
+		 relationdao.InsertRelation(Integer.parseInt(uid), Integer.parseInt(gid));
+        IWeiboDao weibodao = new WeiboDaoImpl();
+	    IUserDao userdao = new UserDaoImpl();
+	    IRelationsDao relationsDao = new RelationsDaoImpl();
+	    List<Users> overInterestList =relationsDao.FindAllMyInterestByuid(Integer.parseInt(uid));
+	    request.setAttribute("overInterestList", overInterestList);
+	    System.out.println("overInterestList:"+overInterestList);
+	    Users user = userdao.FindByuid(Integer.parseInt(uid));
+        request.setAttribute("user", user);
+        //共同的代码块
+     	//显示所关注人数量
+		IRelationsDao relationBiz=new RelationsDaoImpl();
+		int countRlat=relationBiz.CountByAttention(user.getUid());
+		request.setAttribute("countRlation",countRlat);
+		//显示粉丝数量
+		int countVeri=relationBiz.CountByVermicelli(user.getUid());
+		request.setAttribute("countVeri",countVeri);
+		//自己已经关注成功的人
+		List<Users> interests = relationBiz.FindAllMyInterestByuid(user.getUid());
+		//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
+		List<Users> listAllUser=new ArrayList<Users>();//全部陌生朋友信息
+		List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
+		listAllUser=userdao.FindByInterest(user.getUid());
+		listAllUser.remove(interests);
+		for (int i = 0; i < 8; i++) {
+			listUser.add(listAllUser.get(i));		
+		}
+		request.setAttribute("userAllList", listAllUser);
+		if(listUser!=null){
+			request.setAttribute("userList",listUser);	
+		}			
+		//微博数量
+		int countMicroblog=weibodao.CountByMicroblog(user.getUid());
+		request.setAttribute("countBlog",countMicroblog);
+		
+		request.getRequestDispatcher("./myFollow.jsp").forward(request, response);
 	}
 
 	private void fourGuanzhu(HttpServletRequest request,

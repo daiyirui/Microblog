@@ -60,7 +60,7 @@
           </tr>
           
            <tr>
-            <td><a href="login.jsp">+关注</a>&nbsp;&nbsp;&nbsp;<a href="index.jsp">返回</a>&nbsp;&nbsp;&nbsp;<br><br/><br/></td>
+            <td><a href="login.jsp">+关注</a>&nbsp;&nbsp;&nbsp;<a href="javascript:history.back();">返回</a>&nbsp;&nbsp;&nbsp;<br><br/><br/></td>
            </tr>
           <tr>
             <td><p><br/>

@@ -78,7 +78,7 @@
 							<tr>
 								<td rowspan="3" align="center" valign="top"><img
 									src="${collection.use.upic}" width="50" height="50" /></td>
-								<td width="88%" class="content"><a href="user.jsp">${collection.use.uname}</a><img
+								<td width="88%" class="content"><a href="HomeServlet?uid=${usl.uid}&action=userdetail">${collection.use.uname}</a><img
 									src="icon/v.gif" width="11" height="10" align="middle" />：
 									${collection.lcontent}</td>
 							</tr>
@@ -143,9 +143,9 @@
 								<td colspan="2"><table border="0" cellpadding="0"
 										cellspacing="0" class="userdetail">
 										<tr>
-											<td width="26%"><a href="user.jsp"><img
+											<td width="26%"><a href="HomeServlet?uid=${usl.uid}&action=userdetail"><img
 													src="${usl.upic}" width="50" height="50" border="0" /></a></td>
-											<td width="74%"><a href="user.jsp">${usl.uname}</a> <a
+											<td width="74%"><a href="HomeServlet?uid=${usl.uid}&action=userdetail">${usl.uname}</a> <a
 												href="RelationServlet?page=3&uid=${user.uid}&gid=${usl.uid}&action=guanzhu"
 												style="border: 0px;"> <span class="btnguanzhu"
 													style="width: 50px; height: 3px;" id="button3">+关注</span></a> <br />
