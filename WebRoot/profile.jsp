@@ -89,20 +89,15 @@
 												href="WeiboServlet?uid=${user.uid}&wid=${weibo.wid}&action=deleteweibo&page=2">删除</a>
 												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 											  </c:if>
-											 <a
-												href="WeiboServlet?wid=${weibo.wid}&action=forwardweibo&uid=${user.uid}">转发(${weibo.wtimes})</a>
-												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 												<!-- 收藏和取消收藏判断 --> 
 												<c:choose>
 												    <c:when test="${ weibo.flag == 1}">
 												    <a
-											     	href="CollectionServlet?wid=${weibo.wid}&uid=${user.uid}&action=cancelcollection">取消收藏</a>
-												   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+											     	href="CollectionServlet?wid=${weibo.wid}&uid=${user.uid}&action=cancelcollection&page=2">取消收藏</a>
 												    </c:when>
 												    <c:otherwise>
 												    	<a
-											    	href="CollectionServlet?wid=${weibo.wid}&uid=${user.uid}&action=collection">收藏</a>
-											      	&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+											    	href="CollectionServlet?wid=${weibo.wid}&uid=${user.uid}&action=collection&page=2">收藏</a>
                                                     </c:otherwise> 
 												</c:choose>
 											</td>

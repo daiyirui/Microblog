@@ -95,17 +95,189 @@ public class CollectionServlet extends HttpServlet {
 		
 	}
 
+	/**
+	 * 取消收藏功能
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	private void cancelcollection(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		    //实现取消收藏功能
+		       String page=request.getParameter("page");
+		       if("1".equals(page)) {
+		    	   cancelcollectionForwardHome(request, response);
+		       }else if("2".equals(page)) {
+		    	   cancelcollectionForwardProfile(request, response);
+		       }else if("3".equals(page)) {
+		    	   cancelcollectionForwardCollection(request, response);
+		       }
+		
+	}
+
+	/**
+	 * 我的收藏页面取消收藏功能
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	private void cancelcollectionForwardCollection(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		String wid=request.getParameter("wid");
+		String uid = request.getParameter("uid");
+		ICollectionDao collectionDao = new CollectionDaoImpl();
+		collectionDao.DeleteCollection(Integer.parseInt(uid), Integer.parseInt(wid));
+		allcollection(request,response);
+	}
+
+	/**
+	 * 我的微博页面实现取消收藏功能
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	private void cancelcollectionForwardProfile(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		         //实现取消收藏功能
 				String wid=request.getParameter("wid");
-			    String uid = request.getParameter("uid");
-			    IWeiboDao weibodao = new WeiboDaoImpl();
+				String uid = request.getParameter("uid");
+				IWeiboDao weibodao = new WeiboDaoImpl();
 				ICollectionDao collectionDao = new CollectionDaoImpl();
 				collectionDao.DeleteCollection(Integer.parseInt(uid), Integer.parseInt(wid));
 
 				
-		        List<Weibo> weibos= weibodao.FindByLogin(Integer.parseInt(uid));
+				List<Weibo> weibos= weibodao.FindWeiboByuid(Integer.parseInt(uid));
+				System.out.println("weibos:"+weibos);
+				IUserDao userdao = new UserDaoImpl();
+				Users user = userdao.FindByuid(Integer.parseInt(uid));
+				request.setAttribute("user", user);
+				request.setAttribute("weibos",weibos);
+				//共同的代码块
+				//显示所关注人数量
+				IRelationsDao relationBiz=new RelationsDaoImpl();
+				int countRlat=relationBiz.CountByAttention(user.getUid());
+				request.setAttribute("countRlation",countRlat);
+				//显示粉丝数量
+				int countVeri=relationBiz.CountByVermicelli(user.getUid());
+				request.setAttribute("countVeri",countVeri);
+				//自己已经关注成功的人
+				List<Users> interests = relationBiz.FindAllMyInterestByuid(user.getUid());
+				//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
+				List<Users> listAllUser=new ArrayList<Users>();//全部陌生朋友信息
+				List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
+				listAllUser=userdao.FindByInterest(user.getUid());
+				listAllUser.remove(interests);
+				for (int i = 0; i < 8; i++) {
+					listUser.add(listAllUser.get(i));		
+				}
+				
+				request.setAttribute("userAllList", listAllUser);
+				if(listUser!=null){
+					request.setAttribute("userList",listUser);	
+				}			
+				//微博数量
+				int countMicroblog=weibodao.CountByMicroblog(user.getUid());
+				request.setAttribute("countBlog",countMicroblog);
+				
+				request.getRequestDispatcher("./profile.jsp").forward(request, response);
+	}
+
+	/**
+	 * 首页取消收藏功能
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void cancelcollectionForwardHome(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		//实现取消收藏功能
+		String wid=request.getParameter("wid");
+		String uid = request.getParameter("uid");
+		IWeiboDao weibodao = new WeiboDaoImpl();
+		ICollectionDao collectionDao = new CollectionDaoImpl();
+		collectionDao.DeleteCollection(Integer.parseInt(uid), Integer.parseInt(wid));
+
+		
+		List<Weibo> weibos= weibodao.FindByLogin(Integer.parseInt(uid));
+		System.out.println("weibos:"+weibos);
+		IUserDao userdao = new UserDaoImpl();
+		Users user = userdao.FindByuid(Integer.parseInt(uid));
+		request.setAttribute("user", user);
+		request.setAttribute("weibos",weibos);
+		//共同的代码块
+		//显示所关注人数量
+		IRelationsDao relationBiz=new RelationsDaoImpl();
+		int countRlat=relationBiz.CountByAttention(user.getUid());
+		request.setAttribute("countRlation",countRlat);
+		//显示粉丝数量
+		int countVeri=relationBiz.CountByVermicelli(user.getUid());
+		request.setAttribute("countVeri",countVeri);
+		//自己已经关注成功的人
+		List<Users> interests = relationBiz.FindAllMyInterestByuid(user.getUid());
+		//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
+		List<Users> listAllUser=new ArrayList<Users>();//全部陌生朋友信息
+		List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
+		listAllUser=userdao.FindByInterest(user.getUid());
+		listAllUser.remove(interests);
+		for (int i = 0; i < 8; i++) {
+			listUser.add(listAllUser.get(i));		
+		}
+		
+		request.setAttribute("userAllList", listAllUser);
+		if(listUser!=null){
+			request.setAttribute("userList",listUser);	
+		}			
+		//微博数量
+		int countMicroblog=weibodao.CountByMicroblog(user.getUid());
+		request.setAttribute("countBlog",countMicroblog);
+		
+		request.getRequestDispatcher("./home.jsp").forward(request, response);
+	}
+
+	/**
+	 * 实现收藏功能
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void collection(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		 String page=request.getParameter("page");
+	       if("1".equals(page)) {
+	    	   collectionForwardHome(request, response);
+	       }else if("2".equals(page)) {
+	    	   collectionForwardProfile(request, response);
+	       }
+	
+	}
+	
+	/**
+	 * 我的微博页面实现收藏功能
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	private void collectionForwardProfile(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		//实现收藏功能
+				String wid=request.getParameter("wid");
+			    String uid = request.getParameter("uid");
+			    IWeiboDao weibodao = new WeiboDaoImpl();
+				ICollectionDao collectionDao = new CollectionDaoImpl();
+				Weibo weibo = weibodao.FindBywid(Integer.parseInt(uid), Integer.parseInt(wid));
+				Collection collection = new Collection();
+				collection.setL_uid(Integer.parseInt(uid));
+				collection.setL_wid(Integer.parseInt(wid));
+				collection.setLcontent(weibo.getWcontent());
+				collection.setLimages(weibo.getWimage());
+				collectionDao.InsertCollection(collection);
+
+		        List<Weibo> weibos= weibodao.FindWeiboByuid(Integer.parseInt(uid));
 		        System.out.println("weibos:"+weibos);
 			    IUserDao userdao = new UserDaoImpl();
 			    Users user = userdao.FindByuid(Integer.parseInt(uid));
@@ -138,12 +310,17 @@ public class CollectionServlet extends HttpServlet {
 				int countMicroblog=weibodao.CountByMicroblog(user.getUid());
 				request.setAttribute("countBlog",countMicroblog);
 				
-				request.getRequestDispatcher("./home.jsp").forward(request, response);
-		
-		
+				request.getRequestDispatcher("./profile.jsp").forward(request, response);
 	}
 
-	private void collection(HttpServletRequest request,
+	/**
+	 * 首页实现收藏功能
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	private void collectionForwardHome(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		//实现收藏功能
 		String wid=request.getParameter("wid");
@@ -158,7 +335,6 @@ public class CollectionServlet extends HttpServlet {
 		collection.setLimages(weibo.getWimage());
 		collectionDao.InsertCollection(collection);
 
-		
         List<Weibo> weibos= weibodao.FindByLogin(Integer.parseInt(uid));
         System.out.println("weibos:"+weibos);
 	    IUserDao userdao = new UserDaoImpl();

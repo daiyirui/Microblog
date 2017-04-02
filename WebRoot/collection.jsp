@@ -92,11 +92,22 @@
 										cellpadding="0" cellspacing="0" id="weibo_status">
 										<tr>
 											<td>${collection.ldate}</td>
-											<td align="right"><a
-												href="ForWardServlet?wid=${collection.lid}&wcontent=${collection.lcontent}&wimage=${collection.limages}">转发</a>
-												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a
-												href="CollectionWeiboServlet?wcontent=${weibo.wcontent}&wimage=${weibo.wimage}">取消收藏</a>
-												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</td>
+											<c:choose>
+											   <c:when test="${collection.limages ne null}">
+												    <td align="right"><a
+													href="ForWardServlet?wid=${collection.l_wid}&wcontent=${collection.lcontent}&wimage=${collection.limages}">转发</a>
+													&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a
+													href="CollectionServlet?wid=${collection.l_wid}&uid=${user.uid}&action=cancelcollection&page=3">取消收藏</a>
+													</td>
+											    </c:when>
+											    <c:otherwise> 
+											     <td align="right"><a
+													href="ForWardServlet?wid=${collection.l_wid}&wcontent=${collection.lcontent}">转发</a>
+													&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a
+													href="CollectionServlet?wid=${collection.l_wid}&uid=${user.uid}&action=cancelcollection&page=3">取消收藏</a>
+													</td>
+											    </c:otherwise>
+											</c:choose>
 										</tr>
 									</table></td>
 							</tr>
