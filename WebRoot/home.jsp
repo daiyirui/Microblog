@@ -130,7 +130,7 @@ $(function(){
 											<td align="right">
 											  <c:if test="${weibo.w_uid == user.uid}">
 											   <a
-												href="WeiboServlet?uid=${user.uid}&wid=${weibo.wid}&action=deleteweibo">删除</a>
+												href="WeiboServlet?uid=${user.uid}&wid=${weibo.wid}&action=deleteweibo&page=1">删除</a>
 												&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 											  </c:if>
 											 <a

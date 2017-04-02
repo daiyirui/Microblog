@@ -196,46 +196,115 @@ public class WeiboServlet  extends HttpServlet{
 	 * @throws ServletException 
 	 */
 	private void deleteweibo(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		    String uid = request.getParameter("uid");
-		    String wid = request.getParameter("wid");
-	        IWeiboDao weibodao = new WeiboDaoImpl();
-	        //实现删除微博
-	        weibodao.DeleteWeibo(Integer.parseInt(wid), Integer.parseInt(uid));
-	        List<Weibo> weibos= weibodao.FindByLogin(Integer.parseInt(uid));
-	        System.out.println("weibos:"+weibos);
-		    IUserDao userdao = new UserDaoImpl();
-		    Users user = userdao.FindByuid(Integer.parseInt(uid));
-	        request.setAttribute("user", user);
-	        request.setAttribute("weibos",weibos);
-	        //共同的代码块
-	     	//显示所关注人数量
-			IRelationsDao relationBiz=new RelationsDaoImpl();
-			int countRlat=relationBiz.CountByAttention(user.getUid());
-			request.setAttribute("countRlation",countRlat);
-			//显示粉丝数量
-			int countVeri=relationBiz.CountByVermicelli(user.getUid());
-			request.setAttribute("countVeri",countVeri);
-			//自己已经关注成功的人
-			List<Users> interests = relationBiz.FindAllMyInterestByuid(user.getUid());
-			//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
-			List<Users> listAllUser=new ArrayList<Users>();//全部陌生朋友信息
-			List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
-			listAllUser=userdao.FindByInterest(user.getUid());
-			listAllUser.remove(interests);
-			for (int i = 0; i < 8; i++) {
-				listUser.add(listAllUser.get(i));		
-			}
-			
-			request.setAttribute("userAllList", listAllUser);
-			if(listUser!=null){
-				request.setAttribute("userList",listUser);	
-			}			
-			//微博数量
-			int countMicroblog=weibodao.CountByMicroblog(user.getUid());
-			request.setAttribute("countBlog",countMicroblog);
-			
-			request.getRequestDispatcher("./home.jsp").forward(request, response);
+		   
+		    String page = request.getParameter("page");
+		    if("1".equals(page)) {
+		    	deleteWeiboToHome(request, response);
+		    }else if("2".equals(page)) {
+		    	deleteWeiboToProfile(request, response);
+		    }
+		    
 		
+	}
+
+	/**
+	 * profile页面发来的请求，删除微博转到profile页面
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void deleteWeiboToProfile(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		String uid = request.getParameter("uid");
+		String wid = request.getParameter("wid");
+		IWeiboDao weibodao = new WeiboDaoImpl();
+		//实现删除微博
+		weibodao.DeleteWeibo(Integer.parseInt(wid), Integer.parseInt(uid));
+	     List<Weibo> weibos= weibodao.FindWeiboByuid(Integer.parseInt(uid));
+		System.out.println("weibos:"+weibos);
+		IUserDao userdao = new UserDaoImpl();
+		Users user = userdao.FindByuid(Integer.parseInt(uid));
+		request.setAttribute("user", user);
+		request.setAttribute("weibos",weibos);
+		//共同的代码块
+		//显示所关注人数量
+		IRelationsDao relationBiz=new RelationsDaoImpl();
+		int countRlat=relationBiz.CountByAttention(user.getUid());
+		request.setAttribute("countRlation",countRlat);
+		//显示粉丝数量
+		int countVeri=relationBiz.CountByVermicelli(user.getUid());
+		request.setAttribute("countVeri",countVeri);
+		//自己已经关注成功的人
+		List<Users> interests = relationBiz.FindAllMyInterestByuid(user.getUid());
+		//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
+		List<Users> listAllUser=new ArrayList<Users>();//全部陌生朋友信息
+		List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
+		listAllUser=userdao.FindByInterest(user.getUid());
+		listAllUser.remove(interests);
+		for (int i = 0; i < 8; i++) {
+			listUser.add(listAllUser.get(i));		
+		}
+		
+		request.setAttribute("userAllList", listAllUser);
+		if(listUser!=null){
+			request.setAttribute("userList",listUser);	
+		}			
+		//微博数量
+		int countMicroblog=weibodao.CountByMicroblog(user.getUid());
+		request.setAttribute("countBlog",countMicroblog);
+		
+		request.getRequestDispatcher("./profile.jsp").forward(request, response);
+	}
+
+	/**
+	 * home页面发来的请求，删除微博转到home页面
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void deleteWeiboToHome(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		String uid = request.getParameter("uid");
+		String wid = request.getParameter("wid");
+		IWeiboDao weibodao = new WeiboDaoImpl();
+		//实现删除微博
+		weibodao.DeleteWeibo(Integer.parseInt(wid), Integer.parseInt(uid));
+		List<Weibo> weibos= weibodao.FindByLogin(Integer.parseInt(uid));
+		System.out.println("weibos:"+weibos);
+		IUserDao userdao = new UserDaoImpl();
+		Users user = userdao.FindByuid(Integer.parseInt(uid));
+		request.setAttribute("user", user);
+		request.setAttribute("weibos",weibos);
+		//共同的代码块
+		//显示所关注人数量
+		IRelationsDao relationBiz=new RelationsDaoImpl();
+		int countRlat=relationBiz.CountByAttention(user.getUid());
+		request.setAttribute("countRlation",countRlat);
+		//显示粉丝数量
+		int countVeri=relationBiz.CountByVermicelli(user.getUid());
+		request.setAttribute("countVeri",countVeri);
+		//自己已经关注成功的人
+		List<Users> interests = relationBiz.FindAllMyInterestByuid(user.getUid());
+		//显示登录者要关注人的信息-第一次登陆只显示前八个陌生朋友
+		List<Users> listAllUser=new ArrayList<Users>();//全部陌生朋友信息
+		List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
+		listAllUser=userdao.FindByInterest(user.getUid());
+		listAllUser.remove(interests);
+		for (int i = 0; i < 8; i++) {
+			listUser.add(listAllUser.get(i));		
+		}
+		
+		request.setAttribute("userAllList", listAllUser);
+		if(listUser!=null){
+			request.setAttribute("userList",listUser);	
+		}			
+		//微博数量
+		int countMicroblog=weibodao.CountByMicroblog(user.getUid());
+		request.setAttribute("countBlog",countMicroblog);
+		
+		request.getRequestDispatcher("./home.jsp").forward(request, response);
 	}
 
 	/**
