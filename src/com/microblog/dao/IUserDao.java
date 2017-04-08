@@ -16,12 +16,8 @@ public interface IUserDao {
 	public Users FindByuid(int uid);
 	//注册用户
 	public int RegisterUser(Users use);
-	// 显示刚注册用户个人详细详细
-	public Users FindByObject(String uname,String upwd,String sex);
-	//更新用户信息
-	public int UpdateUser(Users use);
 	//find password
-	public Users FindByMail(String uname,String uques);
+	public Users FindByMail(String uemail);
 	//获取所有的用户邮箱
 	public List<String> AllEmails();
 }

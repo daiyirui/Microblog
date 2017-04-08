@@ -9,26 +9,12 @@ import java.util.List;
 
 import com.microblog.common.JDBCUtil;
 import com.microblog.dao.IBollhotDao;
-import com.microblog.dbutil.DBConn;
 import com.microblog.po.Bloghot;
 import com.microblog.po.Bloghotitem;
 
 
 public class BollhotDaoImpl implements IBollhotDao {
-    DBConn db=null;
-    public BollhotDaoImpl(){
-    	db=new DBConn();
-    }
-
-
-	@Override
-	public int VoitHot(String hot) {
-		// TODO Auto-generated method stub
-		String sql="update bloghot set bvote=bvote+1 where bstate=1 and bitems=?";
-		int a=db.execOther(sql, new Object[]{hot});
-		return a;
-	}
-	
+   
 	@Override
 	public List<Bloghot> FindAllHot() {
 		Connection conn = null;

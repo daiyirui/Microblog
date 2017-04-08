@@ -45,6 +45,16 @@
 						<tr>
 							<td align="center"><table width="90%" border="0"
 									cellpadding="5" cellspacing="0" id="userinfo_content">
+									<c:if test="${ !empty emailError }">
+											<tr>
+											    <td style="color:#0F0" colspan="3">邮箱不存在！</td>
+											</tr>
+									</c:if>
+									<c:if test="${ !empty emailSuccess }">
+											<tr>
+											    <td style="color:#0F0" colspan="3">密码已经发送至邮箱！</td>
+											</tr>
+									</c:if>
 									<tr>
 										<td width="20%" align="right">输入邮箱：</td>
 										<td width="60%"><input name="mail" value="" type="text"

@@ -9,21 +9,24 @@ import java.util.List;
 
 import com.microblog.common.JDBCUtil;
 import com.microblog.dao.IUserDao;
-import com.microblog.dbutil.DBConn;
 import com.microblog.po.Users;
 
 public class UserDaoImpl implements IUserDao {
-    DBConn db=null;
-    public UserDaoImpl(){
-    	db=new DBConn();    	
-    }
+  
     @Override
-	public Users FindByMail(String uname,String uques) {
-    	String sql="SELECT * FROM users where  uname=? and uques=?";
-    	ResultSet rs=db.execQuery(sql, new Object[]{uname,uques});
+	public Users FindByMail(String uemail) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
+    	String sql="SELECT * FROM users where  uemail=?";
+    	Users use=new Users();		
     	try {
+    		connection = JDBCUtil.getConn();
+		    statement = connection.prepareStatement(sql);
+		    statement.setString(1, uemail);
+			//step3:获取查询结果
+			rs=statement.executeQuery();
 			if(rs.next()){
-				Users use=new Users();			  
 			    use.setUid(rs.getInt("uid"));
 			    use.setUname(rs.getString("uname"));
 			    use.setUpwd(rs.getString("upwd"));
@@ -38,25 +41,15 @@ public class UserDaoImpl implements IUserDao {
 			    use.setUques(rs.getString("uques"));
 			    use.setUrealname(rs.getString("urealname"));
 			    use.setUremarks(rs.getString("uremarks"));
-			    return use;
-			}else{
-				return null;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
 		} finally{
-			db.closeConn();
-		}		
+			JDBCUtil.closeDB(connection, statement, rs);
+		}
+    	   return use;
 	}
-    @Override
-	public int UpdateUser(Users use) {		
-        String sql="update users set upwd=?,unickname=?,usex=?,uedu=?,uques=?,urealname=?,uremarks=?,uqq=?,udate=now(),upic=? where uid=? ";
-        int a =db.execOther(sql, new Object[]{use.getUpwd(),use.getUnickname(),use.getUsex(),use.getUedu(),use.getUques(),use.getUrealname()
-        		,use.getUremarks(),use.getUqq(),use.getUpic(),use.getUid()});    	
-		return a;
-	}	
+   	
     
     @Override
 	public int RegisterUser(Users use) {
@@ -86,38 +79,7 @@ public class UserDaoImpl implements IUserDao {
         return a;
     }
     
-	@Override
-	public Users FindByObject(String uname, String upwd, String sex) {
-		String sql="SELECT * FROM users where  uname=? and upwd=? and usex=?";
-		ResultSet rs=db.execQuery(sql, new Object[]{uname,upwd,sex});
-		try {
-			if(rs.next()){
-				Users use=new Users();			  
-			    use.setUid(rs.getInt("uid"));
-			    use.setUname(rs.getString("uname"));
-			    use.setUpwd(rs.getString("upwd"));
-			    use.setUnickname(rs.getString("unickname"));
-			    use.setUsex(rs.getString("usex"));
-			    use.setUaddress(rs.getString("uaddress"));
-			    use.setUdate(rs.getDate("udate"));
-			    use.setUpic(rs.getString("upic"));   
-			    use.setUqq(rs.getString("uqq"));
-			    use.setUedu(rs.getString("uedu"));
-			    use.setUemail(rs.getString("uemail"));
-			    use.setUques(rs.getString("uques"));
-			    use.setUrealname(rs.getString("urealname"));
-			    use.setUremarks(rs.getString("uremarks"));
-			    return use;
-			}else{
-				return null;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		} finally{
-			db.closeConn();
-		}		
-	}
+
     @Override
 	public Users FindByuid(int uid) {
     	  Connection connection = null;
