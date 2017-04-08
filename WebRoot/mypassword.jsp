@@ -62,28 +62,10 @@
 										<td><input name="rpwd" type="password" class="input1"
 											id="nickname" /></td>
 									</tr>
+									
 									<tr>
-										<td align="right">找回密码问题：</td>
-										<td><select name="uques" style="width: 220px;">
-												<option value="我的出生地?" selected="selected">我的出生地?</option>
-												<option value="我父亲名字?">我父亲名字?</option>
-												<option value="我母亲名字?">我母亲名字?</option>
-												<option value="我妻子名字?">我妻子名字?</option>
-										</select></td>
-									</tr>
-									<tr>
-										<td align="right">答案：</td>
-										<td><input name="urequest" type="text" class="input1"
-											id="nickname" /></td>
-									</tr>
-									<tr>
-										<td align="right"><input type="hidden" name="unickname"
-											value="${param.unickname}" /> <input type="hidden"
-											name="urealname" value="${param.urealname}" /> <input
-											type="hidden" name="usex" value="${param.usex}" /> <input
-											type="hidden" name="uedu" value="${param.uedu}" /> <input
-											type="hidden" name="uqq" value="${param.uqq}" /> <input
-											type="hidden" name="uremarks" value="${param.uremarks}" /></td>
+										<td align="right"><input type="hidden" name="uid"
+											value="${user.uid}" /> </td>
 										<td align="left"><a href="javascript:pwd()"><img
 												border="0" src="images/editbtn.png" width="150" height="37" /></a>
 										</td>

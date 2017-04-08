@@ -52,10 +52,10 @@
 									cellpadding="5" cellspacing="0" id="userinfo_content">
 									<tr>
 										<td width="20%" align="center"><c:if
-												test="${sessionScope.userinfo.upic ne null}">
-												<img src="${sessionScope.userinfo.upic}" width="120"
+												test="${user.upic ne null}">
+												<img src="${user.upic}" width="120"
 													height="120" />
-											</c:if> <c:if test="${sessionScope.userinfo.upic eq null}">
+											</c:if> <c:if test="${user.upic eq null}">
 												<img src="face/9.jpg" width="120" height="120" />
 											</c:if></td>
 										<td width="53%"><p>
