@@ -35,10 +35,6 @@
     <servlet-name>CheckPasswordServlet</servlet-name>
     <servlet-class>com.microblog.servlet.CheckPasswordServlet</servlet-class>
   </servlet>
-  <servlet>
-    <servlet-name>UpdateUserServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.UpdateUserServlet</servlet-class>
-  </servlet>
  
   <servlet>
     <servlet-name>MailServlet</servlet-name>
@@ -69,8 +65,6 @@
     <servlet-name>BallhotServlet</servlet-name>
     <url-pattern>/BallhotServlet</url-pattern>
   </servlet-mapping>
-  
- 
 
   <servlet-mapping>
     <servlet-name>CommentServlet</servlet-name>
@@ -82,12 +76,7 @@
     <servlet-name>CheckPasswordServlet</servlet-name>
     <url-pattern>/CheckPasswordServlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>UpdateUserServlet</servlet-name>
-    <url-pattern>/UpdateUserServlet</url-pattern>
-  </servlet-mapping>
- 
-
+  
   <servlet-mapping>
     <servlet-name>MailServlet</servlet-name>
     <url-pattern>/MailServlet</url-pattern>
