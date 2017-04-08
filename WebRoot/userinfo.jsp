@@ -33,7 +33,9 @@
 		<tr>
 			<td width="670" height="600" valign="top">
 
-				<form action="mypassword.jsp" method="post" id="for">
+				<form action="UserServlet" method="post" id="for">
+				<input type="hidden" name="uid" value="${user.uid}" /> 
+				<input type="hidden" name="action" value="modifyUserInfo" />
 					<table border="0" align="center" cellpadding="0" cellspacing="0"
 						id="userinfo">
 						<tr>
@@ -47,6 +49,18 @@
 						<tr>
 							<td align="center"><table width="90%" border="0"
 									cellpadding="5" cellspacing="0" id="userinfo_content">
+									<tr>
+									<c:if test="${!empty emailError}">
+											<td style="color:#F00" colspan="2"><span>${emailError }</span>
+											</td>
+									</c:if>
+									<c:if test="${!empty flag }">
+									
+											<td style="color:#F00" colspan="1">${flag }</td>
+											
+										
+									</c:if>
+									</tr>
 									<tr>
 										<td width="20%" align="right">登陆姓名：</td>
 										<td width="53%">${user.uname}</td>
@@ -65,7 +79,7 @@
 										<td align="right">所在地：</td>
 										<td><input name="uaddress"
 											value="${user.uaddress}" type="text"
-											class="input1" id="nickname" readonly="readonly" /></td>
+											class="input1" id="nickname"  /></td>
 									</tr>
 									<tr>
 										<td align="right">性别：</td>
@@ -105,6 +119,7 @@
 										<td><input name="uemail" type="text" class="input1"
 											id="email" class="email"  value = "${user.uemail }" onblur="checkEmail()"/><br>一个邮箱只能注册一个账号</td>
 										<td width="27%"><span id="emailmsg"></span></td>
+										
 									</tr>
 									<tr>
 										<td align="right">备注：</td>

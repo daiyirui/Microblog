@@ -128,6 +128,7 @@ public class UserServlet extends HttpServlet {
 	    	 request.getRequestDispatcher("login.jsp").forward(request, response);
 	     }else {
 	    	 request.setAttribute("fail", "暂时不能修改密码");
+	    	 user = userdao.FindByuid(Integer.parseInt(uid));
 	    	 request.setAttribute("user", user);
 	  		 request.getRequestDispatcher("mypassword.jsp").forward(request, response);
 	     }
@@ -183,10 +184,39 @@ public class UserServlet extends HttpServlet {
 	 * 修改个人基本资料
 	 * @param request
 	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
 	private void modifyUserInfo(HttpServletRequest request,
-			HttpServletResponse response) {
-		
+			HttpServletResponse response) throws ServletException, IOException {
+	      System.out.println("modifyUserInfo");
+		  String uid = request.getParameter("uid");
+		  IUserDao userdao = new UserDaoImpl();
+		  List<String> emails = userdao.AllEmails();
+		  Users user = userdao.FindByuid(Integer.parseInt(uid));
+		  emails.remove(user.getUemail());
+		  String unickname = request.getParameter("unickname");
+		  user.setUnickname(unickname);
+		  String uaddress = request.getParameter("uaddress");
+		  user.setUaddress(uaddress);
+		  String uqq = request.getParameter("uqq");
+		  user.setUqq(uqq);
+		  String uedu = request.getParameter("uedu");
+		  user.setUedu(uedu);
+		  String uremarks = request.getParameter("uremarks");
+		  user.setUremarks(uremarks);
+		  String uemail = request.getParameter("uemail");
+		  user.setUemail(uemail);
+		  if(emails.contains(uemail)){
+			  request.setAttribute("emailError", "此邮箱其他用户已注册");
+		  }else  if(userdao.changeUserInfo(user)>0) {
+			  request.setAttribute("flag", "修改成功");
+		  }else {
+			  request.setAttribute("flag", "修改失败");
+		  }
+		  user = userdao.FindByuid(Integer.parseInt(uid));
+	      request.setAttribute("user", user);
+		  request.getRequestDispatcher("userinfo.jsp").forward(request, response);
 	}
 	/**
 	 * 换一换功能

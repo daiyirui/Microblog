@@ -117,7 +117,7 @@
 									<tr>
 										<td align="right">
 										<input type="hidden" name="uid" value="${user.uid}" /> 
-											<input type="hidden" name="action" value="modifyPassword" />
+										<input type="hidden" name="action" value="modifyPassword" />
 										</td>
 										<td align="left"><a href="javascript:pwd()"><img
 												border="0" src="images/editbtn.png" width="150" height="37" /></a>

@@ -315,7 +315,7 @@ public class UserDaoImpl implements IUserDao {
 	
 	@Override
 	public int changeUserInfo(Users user) {
-		String sql = "UPDATE users SET unickname = ? , uaddress = ?, uqq = ?, uedu = ? , uremarks = ? , uemail = ?"
+		String sql = "UPDATE users SET unickname=?,uaddress=?,uqq=?,uedu=?,uremarks=?,uemail=?"
 				+ "WHERE uid = ?";
 		 Connection connection = null;
 		 PreparedStatement statement = null;
@@ -328,7 +328,8 @@ public class UserDaoImpl implements IUserDao {
 			    statement.setString(3, user.getUqq());
 			    statement.setString(4, user.getUedu());
 			    statement.setString(5, user.getUremarks());
-			    statement.setInt(6, user.getUid());
+			    statement.setString(6, user.getUemail());
+			    statement.setInt(7, user.getUid());
 				//step3:获取查询结果
 				flag=statement.executeUpdate();
 			} catch (Exception e) {
@@ -336,7 +337,7 @@ public class UserDaoImpl implements IUserDao {
 			}finally{
 				JDBCUtil.closeDB(connection, statement, null);
 			}	
-		return flag;
+		 return flag;
 	}
 	
 	public static void main(String[] args) {
