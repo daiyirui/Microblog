@@ -24,4 +24,7 @@ public interface IUserDao {
 	public int changeFace(Users user);
 	//修改密码功能实现
 	public int changePassword(Users user);
+	//修改个人信息功能实现
+	public int changeUserInfo(Users user);
+	
 }

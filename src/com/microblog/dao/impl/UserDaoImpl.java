@@ -313,6 +313,32 @@ public class UserDaoImpl implements IUserDao {
 		return flag;
 	}
 	
+	@Override
+	public int changeUserInfo(Users user) {
+		String sql = "UPDATE users SET unickname = ? , uaddress = ?, uqq = ?, uedu = ? , uremarks = ? , uemail = ?"
+				+ "WHERE uid = ?";
+		 Connection connection = null;
+		 PreparedStatement statement = null;
+		 int flag = 0;
+		 try {
+			    connection = JDBCUtil.getConn();
+			    statement = connection.prepareStatement(sql);
+			    statement.setString(1, user.getUnickname());
+			    statement.setString(2, user.getUaddress());
+			    statement.setString(3, user.getUqq());
+			    statement.setString(4, user.getUedu());
+			    statement.setString(5, user.getUremarks());
+			    statement.setInt(6, user.getUid());
+				//step3:获取查询结果
+				flag=statement.executeUpdate();
+			} catch (Exception e) {
+				return flag;
+			}finally{
+				JDBCUtil.closeDB(connection, statement, null);
+			}	
+		return flag;
+	}
+	
 	public static void main(String[] args) {
 		IUserDao u=new UserDaoImpl();
 		List<Users> listUser=u.FindByListener();
@@ -320,9 +346,5 @@ public class UserDaoImpl implements IUserDao {
 	}
 
 
-	
-
-
-	
 
 }
