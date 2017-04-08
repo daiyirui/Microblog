@@ -90,6 +90,11 @@
 						<tr>
 							<td align="center"><table width="90%" border="0"
 									cellpadding="5" cellspacing="0" id="userinfo_content">
+								   <c:if test="${ !empty fail }">
+											<tr>
+											    <td style="color:#F00" colspan="3">${fail},密码修改失败</td>
+											</tr>
+									</c:if>
 									<tr>
 										<td width="20%" align="right">当前密码：</td>
 										<td width="53%"><input name="nowpassword" value=""

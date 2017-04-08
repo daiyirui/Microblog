@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -114,10 +113,25 @@ public class UserServlet extends HttpServlet {
 	 * 修改密码功能实现
 	 * @param request
 	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
 	private void modifyPassword(HttpServletRequest request,
-			HttpServletResponse response) {
-		
+			HttpServletResponse response) throws ServletException, IOException {
+		 String uid = request.getParameter("uid");
+		 String upwd = request.getParameter("upwd");
+		 IUserDao userdao = new UserDaoImpl();
+	     Users user = userdao.FindByuid(Integer.parseInt(uid));
+	     user.setUpwd(upwd);
+	     if(userdao.changePassword(user)>0) {
+	    	 request.setAttribute("success", 1);
+	    	 request.getRequestDispatcher("login.jsp").forward(request, response);
+	     }else {
+	    	 request.setAttribute("fail", "暂时不能修改密码");
+	    	 request.setAttribute("user", user);
+	  		 request.getRequestDispatcher("mypassword.jsp").forward(request, response);
+	     }
+	  
 	}
 	/**
 	 * 跳转到头像更换页面

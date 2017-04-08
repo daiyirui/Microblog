@@ -272,7 +272,7 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public int changeFace(Users user) {
-		String sql = "UPDATE users SET upic = ? WHERE uid = ?";
+		 String sql = "UPDATE users SET upic = ? WHERE uid = ?";
 		 Connection connection = null;
 		 PreparedStatement statement = null;
 		 int flag = 0;
@@ -292,11 +292,35 @@ public class UserDaoImpl implements IUserDao {
 		return flag;
 	}
 	
+	@Override
+	public int changePassword(Users user) {
+		 String sql = "UPDATE users SET upwd = ? WHERE uid = ?";
+		 Connection connection = null;
+		 PreparedStatement statement = null;
+		 int flag = 0;
+		 try {
+			    connection = JDBCUtil.getConn();
+			    statement = connection.prepareStatement(sql);
+			    statement.setString(1, user.getUpwd());
+			    statement.setInt(2, user.getUid());
+				//step3:获取查询结果
+				flag=statement.executeUpdate();
+			} catch (Exception e) {
+				return flag;
+			}finally{
+				JDBCUtil.closeDB(connection, statement, null);
+			}	
+		return flag;
+	}
+	
 	public static void main(String[] args) {
 		IUserDao u=new UserDaoImpl();
 		List<Users> listUser=u.FindByListener();
 		System.out.println("s "+listUser.size());
 	}
+
+
+	
 
 
 	

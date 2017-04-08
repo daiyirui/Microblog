@@ -66,6 +66,11 @@
 									<td height="163">
 										<table width="45%" height="161" border="0" cellpadding="5"
 											cellspacing="0" id="register_content">
+											<c:if test="${ !empty success }">
+											<tr>
+											    <td style="color:#F00" colspan="3">密码修改成功，请重新登陆！</td>
+											</tr>
+											</c:if>
 											<c:if test="${ !empty flag }">
 											<tr>
 											    <td style="color:#F00" colspan="3">你输入的信息有误,请重新输入！</td>

@@ -22,4 +22,6 @@ public interface IUserDao {
 	public List<String> AllEmails();
 	//改变用户的头像
 	public int changeFace(Users user);
+	//修改密码功能实现
+	public int changePassword(Users user);
 }
