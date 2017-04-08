@@ -31,38 +31,6 @@
     <servlet-name>CommentServlet</servlet-name>
     <servlet-class>com.microblog.servlet.CommentServlet</servlet-class>
   </servlet>
-  
-  <servlet>
-    <servlet-name>InsertCommentServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.InsertCommentServlet</servlet-class>
-  </servlet>
-  
-  <servlet>
-    <servlet-name>DeleteAttentionServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.DeleteAttentionServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>FriendChangeServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.FriendChangeServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>FuzzyWeiboServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.FuzzyWeiboServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>DeleteCommentServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.DeleteCommentServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>FuzzyCommentServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.FuzzyCommentServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>FuzzyCollectionServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.FuzzyCollectionServlet</servlet-class>
-  </servlet>
-
-
   <servlet>
     <servlet-name>CheckPasswordServlet</servlet-name>
     <servlet-class>com.microblog.servlet.CheckPasswordServlet</servlet-class>
@@ -72,14 +40,6 @@
     <servlet-class>com.microblog.servlet.UpdateUserServlet</servlet-class>
   </servlet>
  
-  <servlet>
-    <servlet-name>ShowBallotServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.ShowBallotServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>ShowBallot3DServlet</servlet-name>
-    <servlet-class>com.microblog.servlet.ShowBallot3DServlet</servlet-class>
-  </servlet>
   <servlet>
     <servlet-name>MailServlet</servlet-name>
     <servlet-class>com.microblog.servlet.MailServlet</servlet-class>
@@ -122,31 +82,6 @@
   </servlet-mapping>
 
   <servlet-mapping>
-    <servlet-name>DeleteAttentionServlet</servlet-name>
-    <url-pattern>/DeleteAttentionServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>FriendChangeServlet</servlet-name>
-    <url-pattern>/FriendChangeServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>FuzzyWeiboServlet</servlet-name>
-    <url-pattern>/FuzzyWeiboServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>DeleteCommentServlet</servlet-name>
-    <url-pattern>/DeleteCommentServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>FuzzyCommentServlet</servlet-name>
-    <url-pattern>/FuzzyCommentServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>FuzzyCollectionServlet</servlet-name>
-    <url-pattern>/FuzzyCollectionServlet</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
     <servlet-name>CheckPasswordServlet</servlet-name>
     <url-pattern>/CheckPasswordServlet</url-pattern>
   </servlet-mapping>
@@ -155,14 +90,7 @@
     <url-pattern>/UpdateUserServlet</url-pattern>
   </servlet-mapping>
  
-  <servlet-mapping>
-    <servlet-name>ShowBallotServlet</servlet-name>
-    <url-pattern>/ShowBallotServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ShowBallot3DServlet</servlet-name>
-    <url-pattern>/ShowBallot3DServlet</url-pattern>
-  </servlet-mapping>
+
   <servlet-mapping>
     <servlet-name>MailServlet</servlet-name>
     <url-pattern>/MailServlet</url-pattern>
