@@ -86,7 +86,7 @@
 							</tr>
 						<c:choose>
 								<c:when test="${fan.iGtflag==1 }">
-										 <tr><td><a href="DeleteAttentionServlet?gid=${fan.uid }&action=1">取消关注</a></td></tr>
+										 <tr><td><a href="RelationServlet?page=2&uid=${user.uid}&gid=${fan.uid }&action=cancelGuanzhu">取消关注</a></td></tr>
 								</c:when>
 								<c:when test="${fan.iGtflag==0}">
 										 <tr><td>

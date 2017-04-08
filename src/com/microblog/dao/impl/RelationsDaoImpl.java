@@ -18,6 +18,7 @@ public class RelationsDaoImpl implements IRelationsDao {
 	public int DeleteRelationByuid(int uid, int gid) {
 		 Connection connection = null;
 		 PreparedStatement statement = null;
+		 int b = 0;
 		//首先判断是单向还是双休关注
 		try { 
 			    String sql="SELECT * FROM relations where r_id=? and g_id=?";
@@ -26,32 +27,28 @@ public class RelationsDaoImpl implements IRelationsDao {
 				 statement.setInt(1,gid);
 				 statement.setInt(2,uid);
 				 ResultSet rs=statement.executeQuery();
-			if(rs.next()){
+			while(rs.next()){
 				//证明是双向关注
 				int id=rs.getInt(1);
 				sql="update relations set rstate=0 where rid=?";
 				statement = connection.prepareStatement(sql);
 				statement.setInt(1,id);
-				int a=statement.executeUpdate();
-				if(a==1){
-					return 1;
-				}else{
-					return 0;
-				}
+				statement.executeUpdate();
 			}
 			//无论是单还是双休，都需要删除登陆者关注的信息
 			sql="delete from relations where r_id=? and g_id=?";
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1,uid);
-			statement.setInt(1,gid);
-			int b=statement.executeUpdate();
-			return b;
+			statement.setInt(2,gid);
+		    b=statement.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
 		}finally{
 			JDBCUtil.closeDB(connection, statement, null);
 		}		
+	    	return b;
 	}
 	/*
 	 * 1.检查此用户是否已经在我的好友中：SELECT * FROM relations where r_id=1 and g_id=2

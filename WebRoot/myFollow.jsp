@@ -95,7 +95,8 @@
 										</tr>
 									</table></td>
 							</tr>
-							 <tr><td><a href="DeleteAttentionServlet?gid=${interest.uid }&action=1">取消关注</a></td></tr>
+							 <tr><td>
+							 <a href="RelationServlet?page=1&uid=${user.uid}&gid=${interest.uid }&action=cancelGuanzhu">取消关注</a></td></tr>
 						</table>
 					</c:forEach>
 				</c:if>

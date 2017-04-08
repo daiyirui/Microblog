@@ -155,9 +155,38 @@ public class RelationServlet extends HttpServlet {
 	 * @param response
 	 */
 	private void cancelGuanzhu(HttpServletRequest request,
-			HttpServletResponse response) {
-		
+			HttpServletResponse response) throws ServletException, IOException{
+		//取消关注功能只出现在了两个页面   一个是我的关注者页面   另一个是我的粉丝页面
+		String page = request.getParameter("page");
+		 if("1".equals(page)) {
+		 	onecancelGuanzhu(request,response);
+		 }else if("2".equals(page)){
+		 	twocancelGuanzhu(request,response);
+		 }
 	}
+	
+	private void twocancelGuanzhu(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		   String uid = request.getParameter("uid");
+		   String gid = request.getParameter("gid");
+		   
+		   //实现关注部分代码
+		    IRelationsDao relationdao = new RelationsDaoImpl();
+		    relationdao.DeleteRelationByuid(Integer.parseInt(uid), Integer.parseInt(gid));
+		    showFans(request,response);
+	}
+
+	private void onecancelGuanzhu(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		   String uid = request.getParameter("uid");
+		   String gid = request.getParameter("gid");
+		   
+		   //实现关注部分代码
+		    IRelationsDao relationdao = new RelationsDaoImpl();
+		    relationdao.DeleteRelationByuid(Integer.parseInt(uid), Integer.parseInt(gid));
+		    showGuanzhu(request,response);
+	}
+
 	/**
 	 * 关注对方
 	 * @param request
