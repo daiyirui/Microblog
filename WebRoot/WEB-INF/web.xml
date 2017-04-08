@@ -76,10 +76,7 @@
     <servlet-name>CommentServlet</servlet-name>
     <url-pattern>/CommentServlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>InsertCommentServlet</servlet-name>
-    <url-pattern>/InsertCommentServlet</url-pattern>
-  </servlet-mapping>
+ 
 
   <servlet-mapping>
     <servlet-name>CheckPasswordServlet</servlet-name>
