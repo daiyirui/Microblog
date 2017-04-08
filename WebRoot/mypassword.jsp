@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/global.css" />
 <link rel="stylesheet" type="text/css" href="css/mypassword.css" />
 <title>微博 - 账号管理</title>
@@ -13,9 +13,52 @@
 		var s = document.getElementById("for");
 		s.submit();
 	}
+	
+	function checkNowPassword(){
+		var password=document.getElementById("nowpassword");
+		var passwordmsg=document.getElementById("nowpasswordmsg");
+		
+		//判断是否为空
+		if(password.value==""){
+			passwordmsg.innerHTML="<img src='icon/err.png' align='absmiddle'><font color='red'>原密码不能为空</font>";
+		}else{
+			passwordmsg.innerHTML="<img src='icon/ok.png' align='absmiddle'><font color='green'>原密码格式正确</font>";
+			return true;
+		}
+		
+	}
+	function checkPassword(){
+		var password=document.getElementById("password");
+		var passwordmsg=document.getElementById("passwordmsg");
+		
+		//判断是否为空
+		if(password.value==""){
+			passwordmsg.innerHTML="<img src='icon/err.png' align='absmiddle'><font color='red'>新密码不能为空</font>";
+		}else{
+			passwordmsg.innerHTML="<img src='icon/ok.png' align='absmiddle'><font color='green'>新密码格式正确</font>";
+			return true;
+		}
+		
+	}
+
+	function checkRpassword(){
+		var password=document.getElementById("password");
+		var rpassword=document.getElementById("rpassword");
+		var rpasswordmsg=document.getElementById("rpasswordmsg");
+		if((rpassword.value!=password.value)&&(rpassword.value!="")){
+			rpasswordmsg.innerHTML="<img src='icon/err.png' align='absmiddle'><font color='red'>两次密码输入不一致</font>";
+		    return false;
+		}
+		if(rpassword.value!=""){
+			rpasswordmsg.innerHTML="<img src='icon/ok.png' align='absmiddle'><font color='green'>密码输入正确</font>";
+			return true;
+		}
+	}
+
+	
 </script>
 </head>
-<body>
+<body onload="init()">
 	<!-- header开始-->
 	<table id="header" align="center" border="0" cellspacing="0"
 		cellpadding="0">
@@ -33,7 +76,7 @@
 		<tr>
 			<td width="670" valign="top">
 
-				<form action="CheckPasswordServlet" method="post" id="for">
+				<form action="UserServlet" method="post" id="for">
 					<table border="0" align="center" cellpadding="0" cellspacing="0"
 						id="userinfo">
 						<tr>
@@ -50,22 +93,27 @@
 									<tr>
 										<td width="20%" align="right">当前密码：</td>
 										<td width="53%"><input name="nowpassword" value=""
-											type="password" class="input1" id="password" /></td>
+											type="password" class="input1" id="nowpassword" onblur="checkNowPassword()"/></td>
+											<td width="27%"><span id="nowpasswordmsg"></span></td>
 									</tr>
 									<tr>
-										<td align="right">新密码：</td>
+										<td align="right">输入新密码：</td>
 										<td><input name="upwd" type="password" class="input1"
-											id="rpassword" /></td>
+											id="password" onblur="checkPassword()"/></td>
+										<td width="27%"><span id="passwordmsg"></span></td>
 									</tr>
 									<tr>
-										<td align="right">确认密码：</td>
-										<td><input name="rpwd" type="password" class="input1"
-											id="nickname" /></td>
+										<td align="right">确认新密码：</td>
+										<td><input name="rpassword" type="password"
+											class="input1" id="rpassword" onblur="checkRpassword()"/></td>
+										<td width="27%"><span id="rpasswordmsg"></span></td>
 									</tr>
 									
 									<tr>
-										<td align="right"><input type="hidden" name="uid"
-											value="${user.uid}" /> </td>
+										<td align="right">
+										<input type="hidden" name="uid" value="${user.uid}" /> 
+											<input type="hidden" name="action" value="modifyPassword" />
+										</td>
 										<td align="left"><a href="javascript:pwd()"><img
 												border="0" src="images/editbtn.png" width="150" height="37" /></a>
 										</td>
