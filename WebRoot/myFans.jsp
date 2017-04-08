@@ -89,7 +89,8 @@
 										 <tr><td><a href="DeleteAttentionServlet?gid=${fan.uid }&action=1">取消关注</a></td></tr>
 								</c:when>
 								<c:when test="${fan.iGtflag==0}">
-										 <tr><td><a href="InsertAttentionServlet?gid=${fan.uid }&action=1">+关注</a></td></tr>
+										 <tr><td>
+										 <a href="RelationServlet?page=7&uid=${user.uid}&gid=${fan.uid }&action=guanzhu">+关注</a></td></tr>
 								</c:when>
 						</c:choose>
 						</table>

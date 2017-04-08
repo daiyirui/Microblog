@@ -2,6 +2,7 @@ package com.microblog.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -179,7 +180,20 @@ public class RelationServlet extends HttpServlet {
 		    	fiveGuanzhu(request,response);
 		    }else if("6".equals(page)) {
 		    	sixGuanzhu(request,response);
+		    }else if("7".equals(page)) {
+		    	sevenGuanzhu(request,response);
 		    }
+	}
+
+	private void sevenGuanzhu(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		    String uid = request.getParameter("uid");
+		    String gid = request.getParameter("gid");
+		    //实现关注部分代码
+		    IRelationsDao relationdao = new RelationsDaoImpl();
+		    relationdao.InsertRelation(Integer.parseInt(uid), Integer.parseInt(gid));
+		    
+		    showFans(request,response);
 	}
 
 	private void sixGuanzhu(HttpServletRequest request,
@@ -213,6 +227,7 @@ public class RelationServlet extends HttpServlet {
 		List<Users> listUser=new ArrayList<Users>();//显示前8个陌生朋友信息
 		listAllUser=userdao.FindByInterest(user.getUid());
 		listAllUser.remove(interests);
+		Collections.shuffle(listAllUser);
 		for (int i = 0; i < 8; i++) {
 			listUser.add(listAllUser.get(i));		
 		}
