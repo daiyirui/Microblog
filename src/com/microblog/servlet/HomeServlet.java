@@ -214,6 +214,14 @@ public class HomeServlet extends HttpServlet {
 		String unickname=request.getParameter("unickname");
 		String uqq = request.getParameter("uqq");
 		String uemail = request.getParameter("uemail");
+		IUserDao usersDao = new UserDaoImpl();
+		List<String> emails = usersDao.AllEmails();
+		if(emails!=null&&emails.contains(uemail)) {
+			request.setAttribute("emailError", 1);
+			request.setAttribute("register", 1);
+			request.getRequestDispatcher("register.jsp").forward(request, response);
+			return ;
+		}
 		String usex = request.getParameter("usex");
 		String province = request.getParameter("province");
 		String city = request.getParameter("city");
@@ -229,8 +237,9 @@ public class HomeServlet extends HttpServlet {
 		user.setUqq(uqq);
 		user.setUsex(usex);
 		user.setUnickname(unickname);
-		IUserDao usersDao = new UserDaoImpl();
+		
 		int flag = usersDao.RegisterUser(user);
+		
 		if(flag==1) {
 			request.setAttribute("register", 1);
 			request.getRequestDispatcher("login.jsp").forward(request, response);

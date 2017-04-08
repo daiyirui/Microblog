@@ -42,7 +42,12 @@
 											<tr>
 											    <td style="color:#0F0" colspan="3">注册失败,请重新注册！</td>
 											</tr>
-											</c:if>
+										</c:if>
+										<c:if test="${ !empty emailError }">
+											<tr>
+											    <td style="color:#0F0" colspan="3">失败原因:邮箱已经注册！</td>
+											</tr>
+										</c:if>
 									<tr>
 										<td width="20%" align="right">登陆名称：</td>
 										<td width="53%"><input name="uname" type="text"
@@ -82,7 +87,7 @@
 									<tr>
 										<td align="right">邮箱：</td>
 										<td><input name="uemail" type="text" class="input1"
-											id="email" class="email" onblur="checkEmail()"/></td>
+											id="email" class="email" onblur="checkEmail()"/>一个邮箱只能注册一个账号</td>
 										<td width="27%"><span id="emailmsg"></span></td>
 									</tr>
 									<tr>

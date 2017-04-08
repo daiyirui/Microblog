@@ -46,32 +46,15 @@
 							<td align="center"><table width="90%" border="0"
 									cellpadding="5" cellspacing="0" id="userinfo_content">
 									<tr>
-										<td width="20%" align="right">用户名：</td>
-										<td width="53%"><input name="usn" value="" type="text"
-											class="input1" id="password" /></td>
-									</tr>
-									<tr>
-										<td align="right">找回密码问题：</td>
-										<td><select name="uques" style="width: 220px;">
-												<option value="我的出生地?" selected="selected">我的出生地?</option>
-												<option value="我父亲名字?">我父亲名字?</option>
-												<option value="我母亲名字?">我母亲名字?</option>
-												<option value="我妻子名字?">我妻子名字?</option>
-										</select></td>
-									</tr>
-									<tr>
-										<td align="right">答案：</td>
-										<td><input name="urequest" type="text" class="input1"
-											id="nickname" /></td>
-									</tr>
-									<tr>
 										<td width="20%" align="right">输入邮箱：</td>
-										<td width="53%"><input name="mail" value="" type="text"
-											class="input1" id="password" /></td>
+										<td width="60%"><input name="mail" value="" type="text"
+											class="input1" id="password" />邮箱为注册时提交的邮箱</td>
 									</tr>
 									<tr>
-										<td align="right"></td>
-										<td align="left"><input type="submit" value=" 找回密码 " /></td>
+									    <td align="right"></td>
+										<td align="left"><input type="submit" value=" 找回密码 " />
+										<a href="javascript:history.back();">》》返回上一级</a>
+										</td>
 									</tr>
 								</table></td>
 						</tr>

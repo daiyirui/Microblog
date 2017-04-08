@@ -64,7 +64,7 @@ public class UserDaoImpl implements IUserDao {
         PreparedStatement statement = null;
         int  a = 0;
         try {
-        	String sql="insert into users(uname,upwd,unickname,usex,uaddress,udate,uqq,uedu,urealname,uemail,uremarks) values(?,?,?,?,?,?,?,?,?,?,null)";
+        	String sql="insert into users(uname,upwd,unickname,usex,uaddress,udate,uqq,uedu,urealname,uemail,uremarks) values(?,?,?,?,?,now(),?,?,?,?,null)";
             connection = JDBCUtil.getConn();
             statement = connection.prepareStatement(sql);
             statement.setString(1, use.getUname());
@@ -72,11 +72,10 @@ public class UserDaoImpl implements IUserDao {
             statement.setString(3, use.getUnickname());
             statement.setString(4, use.getUsex());
             statement.setString(5, use.getUaddress());
-            statement.setString(6, use.getUdate().toString());
-            statement.setString(7, use.getUqq());
-            statement.setString(8, use.getUedu());
-            statement.setString(9, use.getUrealname());
-            statement.setString(10, use.getUemail());
+            statement.setString(6, use.getUqq());
+            statement.setString(7, use.getUedu());
+            statement.setString(8, use.getUrealname());
+            statement.setString(9, use.getUemail());
             a=statement.executeUpdate();
         } catch (SQLException e) {
         	a=0;
@@ -281,11 +280,38 @@ public class UserDaoImpl implements IUserDao {
 		}finally{
 			JDBCUtil.closeDB(connection, statement, null);
 		}	
-	}		
+	}	
+	
+	
+
+	@Override
+	public List<String> AllEmails() {
+		 String sql="SELECT uemail FROM users";
+		 List<String> emails = null;
+		 Connection connection = null;
+		 PreparedStatement statement = null;
+		 ResultSet rs = null;
+		 try {
+			    connection = JDBCUtil.getConn();
+			    statement = connection.prepareStatement(sql);
+			    emails = new ArrayList<String>();
+				//step3:获取查询结果
+				rs=statement.executeQuery();
+				while (rs.next()) {
+				    emails.add(rs.getString("uemail"));
+				}
+			} catch (Exception e) {
+				return emails;
+			}finally{
+				JDBCUtil.closeDB(connection, statement, rs);
+			}	
+		return emails;
+	}
 
 	public static void main(String[] args) {
 		IUserDao u=new UserDaoImpl();
 		List<Users> listUser=u.FindByListener();
 		System.out.println("s "+listUser.size());
 	}
+
 }

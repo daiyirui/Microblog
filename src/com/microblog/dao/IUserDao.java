@@ -22,4 +22,6 @@ public interface IUserDao {
 	public int UpdateUser(Users use);
 	//find password
 	public Users FindByMail(String uname,String uques);
+	//获取所有的用户邮箱
+	public List<String> AllEmails();
 }
