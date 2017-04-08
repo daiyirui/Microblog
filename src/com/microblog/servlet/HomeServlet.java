@@ -234,6 +234,8 @@ public class HomeServlet extends HttpServlet {
 		user.setUemail(uemail);
 		user.setUaddress(province+city);
 		user.setUedu(uedu);
+		//默认头像
+		user.setUpic("face/9.jpg");
 		user.setUqq(uqq);
 		user.setUsex(usex);
 		user.setUnickname(unickname);

@@ -35,7 +35,7 @@
 		<tr>
 			<td width="670" valign="top">
 
-				<form action="UpdateUserServlet" method="post" id="for"
+				<form action="UserServlet?action=changeFace&uid=${user.uid}" method="post" id="for"
 					enctype="multipart/form-data">
 					<table border="0" align="center" cellpadding="0" cellspacing="0"
 						id="userinfo">
@@ -61,7 +61,7 @@
 										<td width="53%"><p>
 												<input type="file" name="upfile" id="fileField" />&nbsp;
 											</p>
-											<p>请选择jpg、gif格式，且文件大小不超过2M的图片</p></td>
+											<p>请选择jpg、gif格式，且文件大小不超过4M的图片</p></td>
 									</tr>
 									<tr>
 										<td align="right">&nbsp;</td>

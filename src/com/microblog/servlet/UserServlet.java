@@ -1,14 +1,22 @@
 package com.microblog.servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.microblog.dao.IBollhotDao;
 import com.microblog.dao.ICollectionDao;
@@ -58,20 +66,50 @@ public class UserServlet extends HttpServlet {
 			 modifyPassword(request,response);
 			 //更换头像功能
 		 }else if("changeFace".equals(action)) {
-			 changeFace(request,response);
+			 try {
+				changeFace(request,response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		 }
-		 
-		 
 	}
 
 	/**
 	 * 更换头像功能实现
 	 * @param request
 	 * @param response
+	 * @throws Exception 
 	 */
 	private void changeFace(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws Exception {
+		String uid = request.getParameter("uid");
+		IUserDao userdao = new UserDaoImpl();
+		Users user = userdao.FindByuid(Integer.parseInt(uid));
+		FileItemFactory factory=new DiskFileItemFactory();
+		ServletFileUpload fileload=new ServletFileUpload(factory);
+		//设置文件大小，4m
+		fileload.setSizeMax(4194304);
+		List<FileItem> iteraor=fileload.parseRequest(request);
+		Iterator<FileItem> iter=iteraor.iterator();
+		while (iter.hasNext()) {
+			FileItem item=iter.next();
+				//获取文件名，包含上传文件路径
+				String filename=item.getName();
+				if(filename!=""){
+					File file=new File(filename);
+					File filetoserver=new File(this.getServletContext().getRealPath("/face"),file.getName());
+					item.write(filetoserver);
+				    String image=request.getContextPath()+"/face/"+filename.substring(filename.lastIndexOf("\\")+1);
+				    user.setUpic(image);
+				}
+			}
+		userdao.changeFace(user);
+		
+		shiftChangeFace(request,response);
 	}
+		
+		
+		
 	/**
 	 * 修改密码功能实现
 	 * @param request

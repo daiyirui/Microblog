@@ -20,4 +20,6 @@ public interface IUserDao {
 	public Users FindByMail(String uemail);
 	//获取所有的用户邮箱
 	public List<String> AllEmails();
+	//改变用户的头像
+	public int changeFace(Users user);
 }
