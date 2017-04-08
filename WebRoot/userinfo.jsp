@@ -49,34 +49,32 @@
 									cellpadding="5" cellspacing="0" id="userinfo_content">
 									<tr>
 										<td width="20%" align="right">登陆姓名：</td>
-										<td width="53%">${sessionScope.userinfo.uname}</td>
+										<td width="53%">${user.uname}</td>
 									</tr>
 									<tr>
 										<td align="right">昵称：</td>
 										<td><input name="unickname"
-											value="${sessionScope.userinfo.unickname}" type="text"
+											value="${user.unickname}" type="text"
 											class="input1" id="password" /></td>
 									</tr>
 									<tr>
 										<td align="right">真实姓名：</td>
-										<td><input name="urealname"
-											value="${sessionScope.userinfo.urealname}" type="text"
-											class="input1" id="rpassword" /></td>
+										<td width="53%">${user.urealname}</td>
 									</tr>
 									<tr>
 										<td align="right">所在地：</td>
 										<td><input name="uaddress"
-											value="${sessionScope.userinfo.uaddress}" type="text"
+											value="${user.uaddress}" type="text"
 											class="input1" id="nickname" readonly="readonly" /></td>
 									</tr>
 									<tr>
 										<td align="right">性别：</td>
-										<td><c:if test="${sessionScope.userinfo.usex eq '男'}">
+										<td><c:if test="${user.usex eq '男'}">
 												<input type="radio" name="usex" checked="checked" id="radio"
 													value="男" />男
                 &nbsp; &nbsp; &nbsp; &nbsp; 
                <input type="radio" name="usex" id="radio2" value="女" />女
-             </c:if> <c:if test="${sessionScope.userinfo.usex eq '女'}">
+             </c:if> <c:if test="${user.usex eq '女'}">
 												<input type="radio" name="usex" id="radio" value="男" />男
                 &nbsp; &nbsp; &nbsp; &nbsp; 
                <input type="radio" name="usex" checked="checked"
@@ -85,12 +83,12 @@
 									</tr>
 									<tr>
 										<td align="right">注册日期：</td>
-										<td>${sessionScope.userinfo.udate}</td>
+										<td>${user.udate}</td>
 									</tr>
 									<tr>
 										<td align="right">QQ：</td>
 										<td><input name="uqq" type="text"
-											value="${sessionScope.userinfo.uqq}" class="input1"
+											value="${user.uqq}" class="input1"
 											id="nickname2" /></td>
 									</tr>
 									<tr>
@@ -103,9 +101,15 @@
 										</select></td>
 									</tr>
 									<tr>
+										<td align="right">邮箱：</td>
+										<td><input name="uemail" type="text" class="input1"
+											id="email" class="email"  value = "${user.uemail }" onblur="checkEmail()"/><br>一个邮箱只能注册一个账号</td>
+										<td width="27%"><span id="emailmsg"></span></td>
+									</tr>
+									<tr>
 										<td align="right">备注：</td>
 										<td align="left"><input name="uremarks"
-											value="${sessionScope.userinfo.uremarks}" type="text"
+											value="${user.uremarks}" type="text"
 											class="input1" id="nickname4" /></td>
 									</tr>
 									<tr>
