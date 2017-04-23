@@ -131,7 +131,7 @@
 							</table></td>
 					</tr>
 					<tr>
-						<td colspan="2" class="split1"><a href="userinfo.jsp">个人账户设置</a></td>
+						<td colspan="2" class="split1"><a href="UserServlet?action=shiftUserInfo&uid=${user.uid}">个人账户设置</a></td>
 					</tr>
 				</table>
 				<table border="0" align="center" cellpadding="0" cellspacing="0"
