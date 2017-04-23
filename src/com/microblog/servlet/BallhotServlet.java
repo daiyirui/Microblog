@@ -51,6 +51,14 @@ public class BallhotServlet extends HttpServlet {
 	 */
 	private void viotBollhot(HttpServletRequest request,
 			HttpServletResponse response) {
+		String radio = request.getParameter("tennis");
+		String bid = radio.split("\\/")[1];
+		String item = radio.split("\\/")[0].replace("\\", "");
+		System.out.println("bid:"+bid);
+		System.out.println("item:"+item);
+		IBollhotDao bollhotDao = new BollhotDaoImpl();
+		
+		
 		
 	}
 

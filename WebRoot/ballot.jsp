@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="css/global.css" />
 <link rel="stylesheet" type="text/css" href="css/friend.css" />
 <link rel="stylesheet" type="text/css" href="css/home.css" />
-<title>微博 - ${sessionScope.user.u_account}的主页</title>
+<title>微博 - ${user.uname }的热议界面</title>
 <script type="text/javascript" src="script/home.js"></script>
 
 
@@ -62,7 +62,7 @@
 					<c:forEach items="${bloghots}" var="bloghot" begin="0" end="5">
 						<tr>
 							<td height="166">
-								<form id="form1" name="form1" method="post" action="login.jsp">
+								<form id="form1" name="form1" method="post" action="BallhotServlet?action=viotBollhot">
 									<table width="707" border="1" cellpadding="0">
 										<tr>
 											<td height="35" colspan="2">${bloghot.btitle}：</td>
@@ -70,7 +70,7 @@
 										<c:forEach items="${bloghot.bitems}" var="bitem">
 											<tr>
 												<td height="20" colspan="1" align="left"><label><input
-														type="radio" name="tennis" value="${bitem.bitemName}" />${bitem.bitemName}</label>
+														type="radio" name="tennis" value="${bitem.bloghotitemid }\/${bloghot.bid}" />${bitem.bitemName}</label>
 
 												</td>
 												<td height="20" colspan="1" align="left"><label>当前票数:${bitem.bvote}</label>
@@ -80,7 +80,7 @@
 											<c:if test="${ !empty bitem.bitemimage }">
 												<tr>
 													<td height="60" colspan="2" align="left">
-														${bitem.bitemimage}</td>
+													<img src="${bitem.bitemimage}" width="50" height="50" />	</td>
 												</tr>
 											</c:if>
 										</c:forEach>
