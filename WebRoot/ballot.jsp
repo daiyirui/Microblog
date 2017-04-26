@@ -62,7 +62,7 @@
 					<c:forEach items="${bloghots}" var="bloghot" begin="0" end="5">
 						<tr>
 							<td height="166">
-								<form id="form1" name="form1" method="post" action="BallhotServlet?action=viotBollhot">
+								<form id="form1" name="form1" method="post" action="BallhotServlet?action=viotBollhot&uid=${user.uid }">
 									<table width="707" border="1" cellpadding="0">
 										<tr>
 											<td height="35" colspan="2">${bloghot.btitle}：</td>

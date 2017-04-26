@@ -18,6 +18,7 @@ import com.microblog.dao.impl.RelationsDaoImpl;
 import com.microblog.dao.impl.UserDaoImpl;
 import com.microblog.dao.impl.WeiboDaoImpl;
 import com.microblog.po.Bloghot;
+import com.microblog.po.Bloghotitem;
 import com.microblog.po.Users;
 
 public class BallhotServlet extends HttpServlet {
@@ -48,17 +49,25 @@ public class BallhotServlet extends HttpServlet {
 	 * 实现对热议话题进行投票的功能
 	 * @param request
 	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
 	private void viotBollhot(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws ServletException, IOException {
 		String radio = request.getParameter("tennis");
 		String bid = radio.split("\\/")[1];
-		String item = radio.split("\\/")[0].replace("\\", "");
+		String itemId = radio.split("\\/")[0].replace("\\", "");
 		System.out.println("bid:"+bid);
-		System.out.println("item:"+item);
+		System.out.println("item:"+itemId);
 		IBollhotDao bollhotDao = new BollhotDaoImpl();
-		
-		
+		bollhotDao.viotBollhotItem(Integer.parseInt(itemId));
+		List<Bloghotitem>  bloghotitems = bollhotDao.FindAllHotItem(Integer.parseInt(bid));
+		int count = 0;
+		for (Bloghotitem bloghotitem: bloghotitems) {
+			count+=bloghotitem.getBvote();
+		}
+		bollhotDao.viotBollhot(Integer.parseInt(bid), count);
+		allBollhot(request,response);
 		
 	}
 
