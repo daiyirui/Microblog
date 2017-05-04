@@ -15,6 +15,8 @@ public class Comment implements Serializable {
     private Integer c_cid;
     //辨别该评论是不是被用户删除,用户只对自己的微博的评论信息有删除权利，0代表没有删除，-1代表删除
     private Integer flag;
+    //判断是不是被其他用户给回复了，是就为1，不是就为0
+    private Integer remark;
     private Weibo weibo=new Weibo();
     private Users use=new Users();
   
@@ -84,6 +86,13 @@ public class Comment implements Serializable {
 	}
 	public void setFlag(Integer flag) {
 		this.flag = flag;
+	}
+	
+	public Integer getRemark() {
+		return remark;
+	}
+	public void setRemark(Integer remark) {
+		this.remark = remark;
 	}
 	@Override
 	public String toString() {

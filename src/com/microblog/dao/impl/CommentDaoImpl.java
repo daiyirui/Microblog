@@ -38,6 +38,7 @@ public class CommentDaoImpl implements ICommentDao {
 						   comment.setCremarks(rs.getString("cremarks"));
 						   comment.setC_cid(rs.getInt("c_cid"));
 						   comment.setFlag(rs.getInt("flag"));
+						   comment.setRemark(rs.getInt("remark"));
 						   sql = "SELECT * FROM users where uid=?";
 						   statement = connection.prepareStatement(sql);
 						   statement.setInt(1, rs.getInt("c_uid"));
@@ -74,11 +75,12 @@ public class CommentDaoImpl implements ICommentDao {
 	//插入评论
 	@Override
 	public int InsertComment(Comment comm) {
-		  Connection connection = null;
+		   remarkComment(comm.getC_cid());
+		   Connection connection = null;
 	       PreparedStatement statement = null;
 	       int  a = 0;
 	        try {
-	        	String sql="insert into comment(c_wid,c_uid,ccontent,cdate,cremarks,cimages,c_cid,flag) values(?,?,?,now(),null,?,?,0)";
+	        	String sql="insert into comment(c_wid,c_uid,ccontent,cdate,cremarks,cimages,c_cid,flag,remark) values(?,?,?,now(),null,?,?,0,0)";
 	            connection = JDBCUtil.getConn();
 	            statement = connection.prepareStatement(sql);
 	            statement.setInt(1, comm.getC_wid());
@@ -115,6 +117,27 @@ public class CommentDaoImpl implements ICommentDao {
              JDBCUtil.closeDB(connection, statement, null);
          }
 		return a;
+	}
+
+	@Override
+	public int remarkComment(int c_cid) {
+		int flag = 0;
+		Connection connection = null;
+	    PreparedStatement statement = null;
+	   try {
+			String sql="update comment set remark = 1 where cid= ?";
+			connection = JDBCUtil.getConn();
+	        statement = connection.prepareStatement(sql);
+	        statement.setInt(1, c_cid);
+	        flag = statement.executeUpdate();
+			
+	   } catch (SQLException e) {
+           e.printStackTrace();
+           return flag;
+       } finally {
+           JDBCUtil.closeDB(connection, statement, null);
+       }
+	   return flag;
 	}
   
 }

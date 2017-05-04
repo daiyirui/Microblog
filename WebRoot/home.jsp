@@ -20,6 +20,10 @@ $(function(){
 		})
 	})
 </script>
+<script type="text/javascript">
+
+
+</script>
 </head>
 <body>
 	<!-- header开始-->
@@ -151,12 +155,10 @@ $(function(){
 										</tr>
 									</table>
 									<!-- 发布评论部分 -->
-									<form action="CommentServlet?action=insertComment&uid=${user.uid }&wid=${weibo.wid}" method="post"
-					enctype="multipart/form-data">
-				        	 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<textarea id="inputbox" name="commenttext" cols="15"
-								   	rows="1"></textarea>
-					       <input  type="file" name="upfile" value="" /> <input name="submit"
-								type="submit" id="submit" value="评论">
+									<form action="CommentServlet?action=insertComment&uid=${user.uid }&wid=${weibo.wid}" method="post" id="subform">
+				        	 <input type="text" name="commenttext" size="24"style="border-color: #878787;border-style: solid;border-top-width: 0px;border-right-width: 0px;
+                                border-bottom-width: 1px;border-left-width: 0px" > 
+					         <a id="comment1" href="#" onclick="document.getElementById('subform').submit();return false">评论</a>
 					               </form>
 									<!-- 评论部分 -->
 									  <c:if test="${! empty weibo.comments}">
@@ -167,18 +169,23 @@ $(function(){
 									       <p><a href="#">${comment.use.uname}</a>：  
 									    </c:when>
 										<c:when test="${ comment.c_cid !=0}">
-										  <a href="#">weibo.use.uname</a> 回复<a href="#">${comment.use.uname}</a>：  
+										
+										  <a href="#">${weibo.use.uname}</a> 回复<a href="#">${comment.use.uname}</a>：  
 										</c:when>
 										</c:choose>
-									     &nbsp;&nbsp;${comment.ccontent}&nbsp;&nbsp;
-									     <c:if test="${! empty comment.cimages}"><img alt="" src="${comment.cimages}" width="30" height="30"></c:if>
-									     <c:if test="${weibo.w_uid == user.uid}">
-									     <a href="CommentServlet?action=deleteComment&uid=${user.uid }&cid=${comment.cid}">删除</a>
-									     <a id="comment" href="#">回复</a> &nbsp;
-									     <div id="div"></div>
+									    &nbsp;&nbsp; ${comment.ccontent} &nbsp;&nbsp;  &nbsp;&nbsp;  
+									     ${comment.cdate}  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  
+									      <c:if test="${weibo.w_uid == user.uid}">
+									     <a href="CommentServlet?action=deleteComment&uid=${user.uid }&cid=${comment.cid}">删除</a><br>
+									      <c:if test="${comment.remark == 0}">
+									     <form action="CommentServlet?action=insertComment&uid=${user.uid }&wid=${weibo.wid}&cid=${comment.cid}" method="post" id="subform1">
+				             	 <input type="text" name="commenttext" size="24"style="border-color: #878787;border-style: solid;border-top-width: 0px;border-right-width: 0px;
+                                border-bottom-width: 1px;border-left-width: 0px" > 
+					            <a id="comment1" href="#" onclick="document.getElementById('subform1').submit();return false">回复</a>
+					               </form>
+					                     </c:if>
 									     </c:if>
-									      &nbsp;<br/>${comment.cdate}
-									      </c:if>
+									     </c:if>
 									 </c:forEach>
 									</c:if>
 									</td>

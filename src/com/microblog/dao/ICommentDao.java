@@ -12,5 +12,7 @@ public interface ICommentDao {
 	public int InsertComment(Comment comm);
 	//删除评论
 	public int DeleteComment(int cid);
+	//标记该评论是不是被回复了
+	public int remarkComment(int c_cid);
 	
 }

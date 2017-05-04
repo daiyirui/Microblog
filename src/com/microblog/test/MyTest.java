@@ -10,7 +10,6 @@ public class MyTest {
 	@Test
     public void test(){
 		
-		//System.out.println(relatinDao.FindRelationByuid(5,2));
 		System.out.println(relatinDao.FindAllMyInterestByuid(2));
 	}
 	public static void main(String[] args) {

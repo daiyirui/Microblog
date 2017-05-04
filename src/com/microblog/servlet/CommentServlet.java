@@ -1,9 +1,7 @@
 package com.microblog.servlet;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,10 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.microblog.dao.ICommentDao;
 import com.microblog.dao.IRelationsDao;
@@ -102,51 +96,22 @@ public class CommentServlet extends HttpServlet {
 		   String uid = request.getParameter("uid");
 		    String wid = request.getParameter("wid");
 		    String cid = request.getParameter("cid");
+		    String commenttext=request.getParameter("commenttext");
 		    //实现插入评论功能
 		   
 		    ICommentDao commentdao =new CommentDaoImpl();
-		  //要插入的微博
-	    	String w_image=request.getParameter("upfile");
-			FileItemFactory factory=new DiskFileItemFactory();
-			ServletFileUpload fileload=new ServletFileUpload(factory);
-			//设置文件大小，4m
-			fileload.setSizeMax(4194304);
-			List<FileItem> iteraor=fileload.parseRequest(request);
-			Iterator<FileItem> iter=iteraor.iterator();
-			 Comment comm = new Comment();
-			 comm.setC_uid(Integer.parseInt(uid));
-			 comm.setC_wid(Integer.parseInt(wid));
-			 if(cid == null) {
-				 comm.setC_cid(0);
-			 } else {
-				 comm.setC_cid(Integer.parseInt(cid));
-			 }
-			 
-			while (iter.hasNext()) {
-				FileItem item=iter.next();
-				if(item.isFormField()){
-					if("commenttext".equals(item.getFieldName())){
-						comm.setCcontent(item.getString("utf-8"));						
-					}
-				}else{
-					//获取文件名，包含上传文件路径
-					String filename=item.getName();
-					if(filename!=""){
-						File file=new File(filename);
-						File filetoserver=new File(this.getServletContext().getRealPath("/upload/pic"),file.getName());
-						item.write(filetoserver);
-						w_image=request.getContextPath()+"/upload/pic/"+filename.substring(filename.lastIndexOf("\\")+1);
-						comm.setCimages(w_image);
-						commentdao.InsertComment(comm);
-					}else{
-						commentdao.InsertComment(comm);
-					}
-				}
-			}
 		    
+		    Comment comm = new Comment();
+		    if(cid!=null) {
+		       comm.setC_cid(Integer.parseInt(cid));
+		     }else{
+		       comm.setC_cid(0);
+		     }
+		    comm.setC_wid(Integer.parseInt(wid));
+		    comm.setC_uid(Integer.parseInt(uid));
+		    comm.setCcontent(commenttext);
+			commentdao.InsertComment(comm);
 		    
-		    
-		   
 		    
 	        IWeiboDao weibodao = new WeiboDaoImpl();
 	        List<Weibo> weibos= weibodao.FindByLogin(Integer.parseInt(uid));
